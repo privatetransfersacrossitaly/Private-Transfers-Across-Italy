@@ -1,0 +1,54 @@
+source,target,anchor_en,anchor_it,rationale,language_counterpart,status
+home,florence,Private transfers in Florence,Transfer privati a Firenze,"The homepage already carries a Florence tile with a blurb about the regulated centre and the two airports; it currently links nowhere. The tile's page field is unset and available",both,proposed
+home,florence-airport,Florence (Peretola),Firenze (Peretola),"The airport directory already names FLR in the 'Tuscany and the centre' group. The name becomes the link, as Venice's and Milan's did",both,proposed
+home,pisa-airport,Pisa (Galileo Galilei),Pisa (Galileo Galilei),"Same — and the directory already calls it 'the larger airport for Tuscany', which is this page's opening argument",both,proposed
+home,val-dorcia,—,—,"NO homepage link proposed. The Val d'Orcia is not a homepage destination tile and adding one would mean editing the destinations grid, which is outside the approved scope. It is reachable from the Florence hub, the navbar and the footer",both,proposed
+navbar,florence,Transfers in Florence,Transfer a Firenze,Destinations → Tuscany group,both,proposed
+navbar,val-dorcia,Val d'Orcia,Val d'Orcia,Destinations → Tuscany group,both,proposed
+navbar,pisa-airport,Pisa Galileo Galilei (PSA),Pisa Galileo Galilei (PSA),Airports → Tuscany group,both,proposed
+navbar,florence-airport,Florence Peretola (FLR),Firenze Peretola (FLR),Airports → Tuscany group,both,proposed
+footer,florence,Transfers in Florence,Transfer a Firenze,Footer Tuscany column,both,proposed
+footer,pisa-airport,Pisa (PSA),Pisa (PSA),Footer Tuscany column,both,proposed
+footer,florence-airport,Florence Peretola (FLR),Firenze Peretola (FLR),Footer Tuscany column,both,proposed
+footer,val-dorcia,Val d'Orcia,Val d'Orcia,Footer Tuscany column,both,proposed
+florence,home,Home,Home,Breadcrumb level 1,both,proposed
+florence,pisa-airport,Pisa (PSA),Pisa (PSA),"Arrival chooser — the region's busier airport, and the one most Florence visitors actually use",both,proposed
+florence,florence-airport,Peretola (FLR),Peretola (FLR),"Arrival chooser — the city's own airport, and why it is the smaller one",both,proposed
+florence,val-dorcia,the Val d'Orcia,la Val d'Orcia,"Onward — the countryside the homepage already says begins minutes past the ring road",both,proposed
+florence,route-psa-florence,Pisa Airport to Florence,Dall'aeroporto di Pisa a Firenze,Route index,both,proposed
+florence,route-flr-florence,Florence Airport to Florence,Dall'aeroporto di Firenze alla città,Route index,both,proposed
+florence,home#request-a-quote,Request a quotation,Richiedi un preventivo,CTA,both,proposed
+florence,EXTERNAL comune di firenze,the city publishes the current ZTL rules,Il Comune pubblica le regole ZTL aggiornate,"REQUIRED outbound link. Because the ZTL hours and the NCC position could not be verified, the page must send the reader to the authority rather than state rules itself",both,proposed
+pisa-airport,home,Home,Home,Breadcrumb level 1,both,proposed
+pisa-airport,florence,Florence,Firenze,"Breadcrumb level 2 — the destination most of its passengers are heading for, mirroring Treviso's parenting to Venice",both,proposed
+pisa-airport,route-psa-florence,Pisa Airport to Florence,Dall'aeroporto di Pisa a Firenze,Onward — the dominant journey from this airport,both,proposed
+pisa-airport,florence-airport,Peretola (FLR),Peretola (FLR),"The other Tuscan airport, same operator, very different size",both,proposed
+pisa-airport,val-dorcia,the Val d'Orcia,la Val d'Orcia,"Onward — the destination's own authority lists Pisa among its airports",both,proposed
+florence-airport,home,Home,Home,Breadcrumb level 1,both,proposed
+florence-airport,florence,Florence,Firenze,Breadcrumb level 2,both,proposed
+florence-airport,route-flr-florence,Florence Airport to Florence,Dall'aeroporto di Firenze alla città,Onward,both,proposed
+florence-airport,pisa-airport,Pisa (PSA),Pisa (PSA),"Named in the size comparison — the runway fact explains why travellers often end up at Pisa instead",both,proposed
+val-dorcia,home,Home,Home,Breadcrumb level 1,both,proposed
+val-dorcia,florence,Florence,Firenze,Breadcrumb level 2 — the hub a visitor usually arrives through,both,proposed
+val-dorcia,pisa-airport,Pisa (PSA),Pisa (PSA),"Arriving by air — listed by the destination's own authority",both,proposed
+val-dorcia,florence-airport,Peretola (FLR),Peretola (FLR),"Arriving by air — listed by the destination's own authority",both,proposed
+val-dorcia,EXTERNAL visitvaldorcia.it,the destination's own travel information,le informazioni di viaggio ufficiali,"REQUIRED outbound link. The page's central claims — that a car is the best way and that no railway reaches it — are that authority's words, not ours",both,proposed
+route-psa-florence,home,Home,Home,Breadcrumb level 1,both,proposed
+route-psa-florence,florence,Florence,Firenze,Breadcrumb level 2,both,proposed
+route-psa-florence,pisa-airport,Pisa (PSA),Pisa (PSA),Breadcrumb level 3 and the departure endpoint,both,proposed
+route-psa-florence,florence,arriving in Florence,arrivare a Firenze,Arrival endpoint column,both,proposed
+route-psa-florence,route-flr-florence,the same city from Peretola,la stessa città da Peretola,Related route,both,proposed
+route-flr-florence,home,Home,Home,Breadcrumb level 1,both,proposed
+route-flr-florence,florence,Florence,Firenze,Breadcrumb level 2,both,proposed
+route-flr-florence,florence-airport,Peretola (FLR),Peretola (FLR),Breadcrumb level 3 and the departure endpoint,both,proposed
+route-flr-florence,route-psa-florence,the longer run from Pisa,il tragitto più lungo da Pisa,Related route,both,proposed
+NOT-LINKED,siena,—,—,"DEFERRED. Named in Val d'Orcia copy as a nearest railway station, as plain text with no link",—,deferred
+NOT-LINKED,chianti,—,—,"DEFERRED. Not named as a destination on any proposed page",—,deferred
+NOT-LINKED,winery-trips,—,—,"DEFERRED. No page links to it and no proposed page implies a multi-stop tour",—,deferred
+NOT-LINKED,villas,—,—,DEFERRED,—,deferred
+NOT-LINKED,weddings,—,—,DEFERRED,—,deferred
+NOT-LINKED,coast-versilia,—,—,DEFERRED,—,deferred
+NOT-LINKED,maremma,—,—,DEFERRED,—,deferred
+NOT-LINKED,tuscan-archipelago,—,—,"DEFERRED and flagged. No proposed page names Elba or Giglio, so none can imply an island transfer",—,deferred
+NOT-LINKED,livorno-cruise,—,—,"DEFERRED. The homepage's existing Livorno sentence is not a link and is not changed",—,deferred
+ORPHAN CHECK,—,—,—,"All six proposed pages have inbound links: four from the homepage, navbar and footer; val-dorcia from the Florence hub, both airports, the navbar and the footer; both routes from their airport and the hub. No orphans",—,verified

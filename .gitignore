@@ -32,6 +32,7 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
 # vercel
 .vercel
@@ -39,3 +40,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Internal security audit of the Italy Taxi Service site.
+#
+# Deliberately not published. This repository is public, and that document
+# names a live site's domain, admin address, CRM routes and lead-intake
+# endpoint, and sets out weaknesses in it in enough detail to act on. It
+# stays on disk; nothing in this codebase depends on it.
+docs/lead-system-reference-audit.md

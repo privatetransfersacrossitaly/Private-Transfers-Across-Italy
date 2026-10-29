@@ -1,0 +1,28 @@
+source,target,anchor_en,anchor_it,rationale,language_counterpart,status
+home,naples,Private transfers in Naples,Transfer privati a Napoli,"CONDITIONAL. 'Naples and the Amalfi Coast' already appears in the homepage 'Also asked about' list as plain text, governed by its own note that naming a city does not mean a page exists. No promise is broken either way",both,proposed - needs navigation approval
+home,salerno-airport,Salerno (Costa d'Amalfi),Salerno (Costa d'Amalfi),"CONDITIONAL. QSR is NOT currently in the homepage airport directory; adding it would be a homepage content change, out of scope for this planning task",both,proposed - needs navigation approval
+home,nap-airport,Naples (Capodichino),Napoli (Capodichino),"NOT PROPOSED NOW. NAP already sits in the homepage airport directory with the note 'Inside the Naples urban area' and NO page field. It becomes a link only when the NAP page is built, which is deferred",both,deferred
+navbar,naples,Transfers in Naples,Transfer a Napoli,Destinations -> a new 'Naples and Campania' group,both,proposed - needs navigation approval
+navbar,naples-cruise-port,Naples cruise terminal,Terminal crociere di Napoli,Destinations -> a new 'Naples and Campania' group,both,proposed - needs navigation approval
+navbar,salerno-airport,Salerno Costa d'Amalfi (QSR),Salerno Costa d'Amalfi (QSR),Airports -> a new 'Campania' group,both,proposed - needs navigation approval
+footer,naples,Transfers in Naples,Transfer a Napoli,"A new 'Naples and Campania' footer column, making a ninth. The footer grid is sm:grid-cols-2 lg:grid-cols-3 and already renders eight",both,proposed - needs navigation approval
+footer,salerno-airport,Salerno Costa d'Amalfi (QSR),Salerno Costa d'Amalfi (QSR),"A new 'Naples and Campania' footer column, making a ninth. The footer grid is sm:grid-cols-2 lg:grid-cols-3 and already renders eight",both,proposed - needs navigation approval
+footer,naples-cruise-port,Naples cruise terminal,Terminal crociere di Napoli,"A new 'Naples and Campania' footer column, making a ninth. The footer grid is sm:grid-cols-2 lg:grid-cols-3 and already renders eight",both,proposed - needs navigation approval
+naples,home,Home,Home,Breadcrumb level 1,both,proposed
+naples,salerno-airport,Salerno Costa d'Amalfi Airport,L'aeroporto di Salerno Costa d'Amalfi,Gateway chooser - and in November the Campanian airport that is open,both,proposed
+naples,naples-cruise-port,The cruise terminal at the Stazione Marittima,Il terminal crociere alla Stazione Marittima,Gateway chooser - the quay a cruise passenger actually means,both,proposed
+naples,EXTERNAL aeroportodinapoli.it,the airport operator publishes its own notices,Il gestore aeroportuale pubblica i propri avvisi,REQUIRED outbound link. The operator has announced a November 2026 runway closure (N1) but publishes no dates in what could be read (N2). The reader must be sent to the operator,both,proposed
+naples,home#request-a-quote,Request a quotation,Richiedi un preventivo,CTA,both,proposed
+salerno-airport,home,Home,Home,Breadcrumb level 1,both,proposed
+salerno-airport,naples,Naples,Napoli,Breadcrumb level 2,both,proposed
+salerno-airport,EXTERNAL aeroportosalerno.it,the airport publishes its own information,L'aeroporto pubblica le proprie informazioni,REQUIRED outbound link. The 22:30-05:00 terminal closure (S4) is the operator's statement and must be attributed; so must the absence of any published pickup point (S9),both,proposed
+naples-cruise-port,home,Home,Home,Breadcrumb level 1,both,proposed
+naples-cruise-port,naples,Naples,Napoli,Breadcrumb level 2,both,proposed
+naples-cruise-port,EXTERNAL terminal operator,the terminal operator's own information,Le informazioni dell'operatore del terminal,"REQUIRED outbound link, BUT terminalnapoli.it returned HTTP 403 and must be opened in a browser before it is linked. Do NOT invent a replacement URL - the Florence ZTL precedent",both,proposed
+NOT-LINKED,nap-airport,-,-,"DEFERRED. The Naples hub NAMES the airport and its announced closure in plain text, and links the operator. It does not link a page that does not exist",-,deferred
+NOT-LINKED,pompeii / caserta,-,-,DEFERRED. May be named in plain text on the Naples hub only where the gateway model needs an example,-,deferred
+NOT-LINKED,sorrento / positano / amalfi / ravello / salerno-city,-,-,DEFERRED. Not named as links,-,deferred
+NOT-LINKED,all five route candidates,-,-,DEFERRED. The shared route type needs a PageId at BOTH ends; none of the far endpoints exists,-,deferred
+NOT-LINKED,any Campania hotel,-,-,REJECTED for this cluster at this stage,-,deferred
+NOT-LINKED,"any tour, ticket or guided-visit page",-,-,REJECTED. The homepage states twice that this business is not a tour operator and does not sell admissions,-,deferred
+ORPHAN CHECK,-,-,-,"Under the proposed navigation each of the 3 build pages has an inbound link from outside its own sub-tree: all three from navbar and footer, and the two sub-pages from the Naples hub. WITHOUT navigation approval all three are orphans - the same bind recorded for Bologna at D3, resolved there by Option A",-,verified

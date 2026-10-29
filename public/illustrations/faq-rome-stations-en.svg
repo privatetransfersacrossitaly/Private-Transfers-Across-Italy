@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 260" width="320" height="260" role="presentation">
+  <title>A platform clock beside a timetable</title>
+  <!-- Drawn in light strokes: this one sits on the deep navy FAQ band. -->
+  <g fill="none" stroke="#f0ebe0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" opacity=".92">
+    <circle cx="106" cy="112" r="62"/>
+    <circle cx="106" cy="112" r="54" stroke="#8c94a6" stroke-width="1.4"/>
+    <path d="M106 50v-14M106 188v14M44 112H30M182 112h14"/>
+    <path d="M106 174v32M86 206h40"/>
+  </g>
+  <g fill="#8c94a6">
+    <circle cx="106" cy="68" r="2.6"/>
+    <circle cx="150" cy="112" r="2.6"/>
+    <circle cx="106" cy="156" r="2.6"/>
+    <circle cx="62" cy="112" r="2.6"/>
+  </g>
+  <g fill="none" stroke="#e08a5c" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M92 98c0-8.5 6.4-14.5 14.5-14.5S121 89.6 121 97.4c0 9.6-11.6 10.4-13.4 18.2"/>
+  </g>
+  <circle cx="107.2" cy="126" r="4" fill="#e08a5c"/>
+  <circle cx="106" cy="112" r="4.6" fill="#f0ebe0"/>
+  <g fill="none" stroke="#f0ebe0" stroke-width="2.4" stroke-linejoin="round" opacity=".92">
+    <rect x="196" y="54" width="100" height="134" rx="8"/>
+    <path d="M196 82h100"/>
+  </g>
+  <g fill="#8c94a6">
+    <rect x="208" y="64" width="28" height="7" rx="3"/>
+    <rect x="256" y="64" width="28" height="7" rx="3"/>
+  </g>
+  <g fill="#f0ebe0" opacity=".65">
+    <rect x="208" y="96" width="30" height="7" rx="3"/>
+    <rect x="248" y="96" width="36" height="7" rx="3"/>
+    <rect x="208" y="118" width="30" height="7" rx="3"/>
+    <rect x="248" y="118" width="26" height="7" rx="3"/>
+    <rect x="208" y="162" width="30" height="7" rx="3"/>
+    <rect x="248" y="162" width="32" height="7" rx="3"/>
+  </g>
+  <rect x="202" y="134" width="88" height="20" rx="4" fill="#e08a5c" opacity=".22"/>
+  <g fill="none" stroke="#e08a5c" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M236 142.5c0-4.4 3.5-7.5 8-7.5s8 2.9 8 7.1c0 5.3-6.5 5.8-7.6 10.1"/>
+  </g>
+  <circle cx="244.2" cy="156.6" r="2.6" fill="#e08a5c"/>
+</svg>

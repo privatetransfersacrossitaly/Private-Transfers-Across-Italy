@@ -1,0 +1,64 @@
+source,target,anchor_text_en,anchor_text_it,rationale,language_counterpart,status
+home,venice,Private transfers in Venice,Transfer privati a Venezia,"The homepage already carries a Venice tile stating the road/water fact; it now links to the page that explains it",both,published
+home,verona,Private transfers in Verona,Transfer privati a Verona,"Verona has no homepage tile — reached through the navbar and footer instead, so the destinations grid is not padded with a fifth card",both,published
+home,venice-marco-polo,Venice Marco Polo,Venezia Marco Polo,"The airport directory already names VCE in the north-east group; the name becomes the link",both,published
+home,treviso-airport,Treviso (A. Canova),Treviso (A. Canova),"Same — and the directory already says it is 'often sold under Venice's name', which is the page's argument",both,published
+home,verona-airport,Verona Villafranca,Verona Villafranca,"Same — the directory already calls it the road gateway to Lake Garda",both,published
+venice,home,Home,Home,Breadcrumb level 1,both,published
+venice,venice-marco-polo,Marco Polo (VCE),Marco Polo (VCE),"Endpoint chooser: the airport inside the comune of Venice",both,published
+venice,treviso-airport,Treviso (TSF),Treviso (TSF),"Endpoint chooser: the airport sold as Venice but 31 km away — the correction belongs where the choice is made",both,published
+venice,venice-stations,Venice's railway stations,Le stazioni di Venezia,"Endpoint chooser: Santa Lucia and Mestre are different places and the ticket decides which",both,published
+venice,route-vce-venice,Marco Polo Airport to Venice,Dall'aeroporto Marco Polo a Venezia,Route index,both,published
+venice,route-tsf-venice,Treviso Airport to Venice,Dall'aeroporto di Treviso a Venezia,Route index,both,published
+venice,verona,Verona,Verona,"One link only, in the onward section — the two cities are in one region but serve different trips; no forced cross-linking",both,published
+venice,home#request-a-quote,Request a quotation,Richiedi un preventivo,CTA,both,published
+verona,home,Home,Home,Breadcrumb level 1,both,published
+verona,verona-airport,Verona Villafranca (VRN),Verona Villafranca (VRN),"Arrival mode: by air",both,published
+verona,route-vrn-verona,Verona Airport to Verona,Dall'aeroporto di Verona alla città,Route index,both,published
+verona,venice,Venice,Venezia,"One reciprocal link, for a traveller genuinely doing both cities",both,published
+venice-marco-polo,home,Home,Home,Breadcrumb level 1,both,published
+venice-marco-polo,venice,Venice,Venezia,Breadcrumb level 2 — the airport is inside the comune of Venice,both,published
+venice-marco-polo,route-vce-venice,Marco Polo Airport to Venice,Dall'aeroporto Marco Polo a Venezia,"Endpoint matrix — the road-reachable column",both,published
+venice-marco-polo,venice-stations,Venice's railway stations,Le stazioni di Venezia,"Endpoint matrix — Mestre is the road-reachable station",both,published
+venice-marco-polo,venice,where a road transfer can end,dove può finire un transfer su strada,"Contextual link in the water-leg explanation",both,published
+venice-marco-polo,treviso-airport,Treviso (TSF),Treviso (TSF),"The other airport sold as Venice, for travellers still choosing",both,published
+treviso-airport,home,Home,Home,Breadcrumb level 1,both,published
+treviso-airport,venice,Venice,Venezia,Breadcrumb level 2 — the destination most of its passengers are heading for,both,published
+treviso-airport,route-tsf-venice,Treviso Airport to Venice,Dall'aeroporto di Treviso a Venezia,Onward,both,published
+treviso-airport,venice-marco-polo,Marco Polo (VCE),Marco Polo (VCE),"Named in the comparison — the reference works call it the primary Venice airport",both,published
+verona-airport,home,Home,Home,Breadcrumb level 1,both,published
+verona-airport,verona,Verona,Verona,Breadcrumb level 2,both,published
+verona-airport,route-vrn-verona,Verona Airport to Verona,Dall'aeroporto di Verona alla città,Onward — the city fork,both,published
+verona-airport,venice-marco-polo,Marco Polo (VCE),Marco Polo (VCE),"Only where a traveller is comparing Veneto airports; not a keyword link",both,published
+venice-stations,home,Home,Home,Breadcrumb level 1,both,published
+venice-stations,venice,Venice,Venezia,Breadcrumb level 2,both,published
+venice-stations,venice-marco-polo,Marco Polo Airport,L'aeroporto Marco Polo,"Mestre is where airport buses reach, so the two pages genuinely connect",both,published
+venice-stations,route-vce-venice,Marco Polo Airport to Venice,Dall'aeroporto Marco Polo a Venezia,Onward,both,published
+route-vce-venice,home,Home,Home,Breadcrumb level 1,both,published
+route-vce-venice,venice,Venice,Venezia,Breadcrumb level 2,both,published
+route-vce-venice,venice-marco-polo,Marco Polo (VCE),Marco Polo (VCE),Breadcrumb level 3 and the departure endpoint,both,published
+route-vce-venice,venice-stations,Venice's railway stations,Le stazioni di Venezia,"Related — Mestre is the road-reachable alternative endpoint",both,published
+route-vce-venice,route-tsf-venice,the same journey from Treviso,la stessa tratta da Treviso,Related route,both,published
+route-tsf-venice,home,Home,Home,Breadcrumb level 1,both,published
+route-tsf-venice,venice,Venice,Venezia,Breadcrumb level 2,both,published
+route-tsf-venice,treviso-airport,Treviso (TSF),Treviso (TSF),Breadcrumb level 3 and the departure endpoint,both,published
+route-tsf-venice,route-vce-venice,the same journey from Marco Polo,la stessa tratta da Marco Polo,Related route,both,published
+route-vrn-verona,home,Home,Home,Breadcrumb level 1,both,published
+route-vrn-verona,verona,Verona,Verona,Breadcrumb level 2,both,published
+route-vrn-verona,verona-airport,Verona Villafranca (VRN),Verona Villafranca (VRN),Breadcrumb level 3 and the departure endpoint,both,published
+route-vrn-verona,venice,transfers in Venice,i transfer a Venezia,"Related — only because a Veneto trip often includes both; one link, not a block",both,published
+footer,venice,Transfers in Venice,Transfer a Venezia,Footer Veneto column,both,published
+footer,verona,Transfers in Verona,Transfer a Verona,Footer Veneto column,both,published
+footer,venice-marco-polo,Marco Polo (VCE),Marco Polo (VCE),Footer Veneto column,both,published
+footer,treviso-airport,Treviso (TSF),Treviso (TSF),Footer Veneto column,both,published
+footer,verona-airport,Verona Villafranca (VRN),Verona Villafranca (VRN),Footer Veneto column,both,published
+footer,venice-stations,Venice railway stations,Stazioni di Venezia,Footer Veneto column,both,published
+navbar,venice,Transfers in Venice,Transfer a Venezia,Destinations → Venice and Veneto,both,published
+navbar,verona,Transfers in Verona,Transfer a Verona,Destinations → Venice and Veneto,both,published
+navbar,venice-stations,Venice railway stations,Stazioni ferroviarie di Venezia,Destinations → Venice and Veneto,both,published
+navbar,venice-marco-polo,Venice Marco Polo (VCE),Venezia Marco Polo (VCE),Airports → Venice and Verona,both,published
+navbar,treviso-airport,Treviso (TSF),Treviso (TSF),Airports → Venice and Verona,both,published
+navbar,verona-airport,Verona Villafranca (VRN),Verona Villafranca (VRN),Airports → Venice and Verona,both,published
+NOT-LINKED,venice-cruise,—,—,"DEFERRED page — no link anywhere. Nothing points at an unbuilt URL",—,deferred
+NOT-LINKED,vrn-garda,—,—,"DEFERRED. Lake Garda is named as a direction on the VRN page as plain text, with no link and no claim of service",—,deferred
+NOT-LINKED,venice-verona-route,—,—,"DEFERRED. The hubs link to each other directly instead",—,deferred

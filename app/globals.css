@@ -1,26 +1,253 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Private Transfer Across Italy — the design system.
+ *
+ * One palette for the whole site. Future city, airport, port and route pages
+ * draw from exactly these tokens; nothing gets a palette of its own, because
+ * a brand that changes colour per destination is not a brand.
+ *
+ * The direction is editorial travel rather than taxi rank: warm ivory paper,
+ * deep navy ink, a restrained terracotta that comes from Italian roof tiles
+ * and brick rather than from a brand deck, and warm stone neutrals that sit
+ * quietly under photography. Every pair in use was measured for WCAG AA
+ * before anything was built on it — see the contrast table in the project
+ * notes. Terracotta is split in two: `--accent` for surfaces and markers,
+ * `--accent-ink` for small type, because the surface value does not carry
+ * 4.5:1 text on ivory.
+ */
+@theme inline {
+  /* Surfaces and ink */
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  /* Brand */
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-wash: var(--accent-wash);
+  --color-accent-glow: var(--accent-glow);
+
+  /* Dark sections */
+  --color-deep: var(--deep);
+  --color-deep-foreground: var(--deep-foreground);
+  --color-deep-muted: var(--deep-muted);
+  --color-deep-line: var(--deep-line);
+
+  /* Lines, focus, state */
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-destructive: var(--destructive);
+
+  /* shadcn primitives expect these names */
+  --color-card: var(--surface);
+  --color-card-foreground: var(--foreground);
+  --color-popover: var(--surface);
+  --color-popover-foreground: var(--foreground);
+  --color-secondary: var(--muted);
+  --color-secondary-foreground: var(--foreground);
+  --color-input: var(--border-strong);
+
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-display);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Type scale. Fluid where a fixed size would either shout on a phone or
+     look timid on a desktop; fixed where the size is already right. */
+  --text-display: clamp(2.5rem, 1.45rem + 4.6vw, 4.5rem);
+  --text-display--line-height: 1.04;
+  --text-display--letter-spacing: -0.02em;
+  --text-h1: clamp(2.125rem, 1.5rem + 2.7vw, 3.25rem);
+  --text-h1--line-height: 1.08;
+  --text-h1--letter-spacing: -0.018em;
+  --text-h2: clamp(1.625rem, 1.3rem + 1.4vw, 2.375rem);
+  --text-h2--line-height: 1.14;
+  --text-h2--letter-spacing: -0.012em;
+  --text-h3: clamp(1.1875rem, 1.1rem + 0.45vw, 1.4375rem);
+  --text-h3--line-height: 1.3;
+  --text-lead: clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem);
+  --text-lead--line-height: 1.68;
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.72;
+  --text-small: 0.9375rem;
+  --text-small--line-height: 1.6;
+  --text-label: 0.8125rem;
+  --text-label--line-height: 1.45;
+  --text-label--letter-spacing: 0.14em;
+  --text-caption: 0.8125rem;
+  --text-caption--line-height: 1.5;
+
+  /* Containers */
+  --container-prose: 68ch;
+  --container-content: 72rem;
+  --container-wide: 82rem;
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+}
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+
+  /* Paper and ink */
+  --background: oklch(0.977 0.008 85); /* #fbf8f2 warm ivory */
+  --surface: oklch(1 0 0); /* #ffffff cards over ivory */
+  --surface-sunken: oklch(0.955 0.011 83); /* #f3eee5 stone */
+  --foreground: oklch(0.247 0.029 258); /* #18233a deep navy ink */
+  --muted: oklch(0.955 0.011 83);
+  --muted-foreground: oklch(0.487 0.021 258); /* #5b6477 */
+
+  /* Brand */
+  --primary: oklch(0.273 0.041 259); /* #1b2a47 navy */
+  --primary-foreground: oklch(0.985 0.006 85);
+  --primary-hover: oklch(0.224 0.036 259);
+  --accent: oklch(0.552 0.129 42); /* #b2542c terracotta */
+  --accent-foreground: oklch(0.99 0.006 85);
+  --accent-hover: oklch(0.487 0.117 41);
+  --accent-ink: oklch(0.487 0.117 41); /* small type on ivory */
+  --accent-wash: oklch(0.955 0.024 62); /* tinted surface */
+  --accent-glow: oklch(0.755 0.104 46); /* the accent as small type on deep */
+
+  /* Dark sections */
+  --deep: oklch(0.235 0.034 259);
+  --deep-foreground: oklch(0.973 0.007 85);
+  --deep-muted: oklch(0.792 0.021 258);
+  --deep-line: oklch(1 0 0 / 16%);
+
+  /* Lines, focus, state */
+  --border: oklch(0.889 0.013 82); /* hairlines between content */
+  --border-strong: oklch(0.247 0.029 258 / 55%); /* control boundaries, >=3:1 */
+  --ring: oklch(0.552 0.129 42);
+  --success: oklch(0.47 0.108 152);
+  --warning: oklch(0.52 0.117 70);
+  --destructive: oklch(0.52 0.197 27);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  * {
+    @apply border-border;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    /* `font-sans` as a utility rather than `font-family: var(--font-sans)`:
+       with `@theme inline` Tailwind inlines the value into utilities and does
+       not emit the custom property. */
+    @apply bg-background font-sans text-foreground;
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* One visible focus treatment everywhere, including for keyboard users
+     inside dark sections. */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-foreground);
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-heading font-semibold text-balance;
+  }
+
+  /* Anchored sections must clear the sticky header when linked to. */
+  [id] {
+    scroll-margin-top: 6rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/*
+ * The type scale as named classes.
+ *
+ * Not `text-h2` and friends: a font-size utility in the `text-*` namespace
+ * collides with `text-<colour>` when the two are merged, and the size loses.
+ * That is exactly what happened the first time this was built — every section
+ * heading quietly rendered at body size. A separate `type-*` namespace cannot
+ * collide with a colour, so the size always survives.
+ */
+@layer components {
+  .type-display {
+    font-family: var(--font-display);
+    font-size: var(--text-display);
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+  .type-h1 {
+    font-family: var(--font-display);
+    font-size: var(--text-h1);
+    line-height: 1.08;
+    letter-spacing: -0.018em;
+    font-weight: 600;
+  }
+  .type-h2 {
+    font-family: var(--font-display);
+    font-size: var(--text-h2);
+    line-height: 1.14;
+    letter-spacing: -0.012em;
+    font-weight: 600;
+  }
+  .type-h3 {
+    font-family: var(--font-display);
+    font-size: var(--text-h3);
+    line-height: 1.3;
+    font-weight: 600;
+  }
+  .type-lead {
+    font-size: var(--text-lead);
+    line-height: 1.68;
+  }
+  .type-body {
+    font-size: var(--text-body);
+    line-height: 1.72;
+  }
+  .type-small {
+    font-size: var(--text-small);
+    line-height: 1.6;
+  }
+  .type-label {
+    font-size: var(--text-label);
+    line-height: 1.45;
+    letter-spacing: 0.14em;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .type-caption {
+    font-size: var(--text-caption);
+    line-height: 1.5;
+  }
 }

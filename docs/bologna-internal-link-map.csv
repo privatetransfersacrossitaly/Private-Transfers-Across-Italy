@@ -1,0 +1,123 @@
+source,target,anchor_en,anchor_it,rationale,language_counterpart,status
+home,bologna,Private transfers in Bologna,Transfer privati a Bologna,"CONDITIONAL ON D3 OPTION A. Bologna is already named in the homepage 'Also asked about' list as plain text; that list's own note says naming a city does not mean a page exists, so no promise is broken either way",both,proposed - requires D3 Option A
+home,blq,Bologna (Guglielmo Marconi),Bologna (Guglielmo Marconi),CONDITIONAL ON D3 OPTION A. BLQ is ALREADY listed in the homepage airport directory with the note 'North-west of the city centre' and NO page field. Adding the page id turns existing text into a link - the same one-field change made for Pisa and Peretola,both,proposed - requires D3 Option A
+navbar,bologna,Transfers in Bologna,Transfer a Bologna,Destinations -> new 'Bologna and Emilia-Romagna' group,both,proposed - requires D3 Option A
+navbar,ravenna,Ravenna,Ravenna,Destinations -> same group,both,proposed - requires D3 Option A
+navbar,blq,Bologna Marconi (BLQ),Bologna Marconi (BLQ),Airports -> new 'Emilia-Romagna' group,both,proposed - requires D3 Option A
+footer,bologna,Transfers in Bologna,Transfer a Bologna,"New footer column, making an 8th. The footer grid is sm:grid-cols-2 lg:grid-cols-3 and already renders 7 without layout change",both,proposed - requires D3 Option A
+footer,blq,Bologna Marconi (BLQ),Bologna Marconi (BLQ),Same column,both,proposed - requires D3 Option A
+footer,ravenna-terminal,Ravenna Cruise Terminal,Terminal crociere di Ravenna,Same column,both,proposed - requires D3 Option A
+bologna,home,Home,Home,Breadcrumb level 1,both,proposed
+bologna,blq,Bologna Marconi Airport (BLQ),Aeroporto di Bologna Marconi (BLQ),Arrival chooser - the way most visitors reach the city,both,proposed
+bologna,hotel-majestic,Grand Hotel Majestic,Grand Hotel Majestic,"Hotel index, keyed by ZTL tier: Area T, restricted 24 hours. The hub's job is to send a reader to the tier their own address falls in",both,IMPLEMENTED 2026-10-27 (Stage 2A)
+bologna,hotel-excelsior,Starhotels Excelsior,Starhotels Excelsior,"Hotel index, keyed by ZTL tier: outside the ZTL, opposite Bologna Centrale. The hub's job is to send a reader to the tier their own address falls in",both,IMPLEMENTED 2026-10-27 (Stage 2A)
+bologna,hotel-commercianti,Art Hotel Commercianti,Art Hotel Commercianti,"Hotel index, keyed by ZTL tier: a pedestrian address. The hub's job is to send a reader to the tier their own address falls in",both,IMPLEMENTED 2026-10-27 (Stage 2A)
+bologna,hotel-savoia,Savoia Hotel Regency,Savoia Hotel Regency,"Hotel index, keyed by ZTL tier: outside the centre, near BolognaFiere. The hub's job is to send a reader to the tier their own address falls in",both,proposed
+bologna,ravenna,Ravenna,Ravenna,"Onward - the other end of the region, and the cruise port",both,proposed
+bologna,EXTERNAL comune di bologna,the Comune publishes the current ZTL rules,Il Comune pubblica le regole ZTL aggiornate,"REQUIRED outbound link. Bologna Welcome states hotel-access concessions exist but does not publish the procedure (Z5), and no official position on private hire could be read (Z8). The reader must be sent to the authority",both,proposed
+bologna,home#request-a-quote,Request a quotation,Richiedi un preventivo,CTA,both,proposed
+blq,home,Home,Home,Breadcrumb level 1,both,proposed
+blq,bologna,Bologna,Bologna,Breadcrumb level 2,both,proposed
+blq,route-blq-majestic,Bologna Airport to Grand Hotel Majestic,Dall'aeroporto di Bologna a Grand Hotel Majestic,Onward - the four arrival routes this airport page leads to,both,IMPLEMENTED 2026-10-27 (Stage 3)
+blq,route-blq-excelsior,Bologna Airport to Starhotels Excelsior,Dall'aeroporto di Bologna a Starhotels Excelsior,Onward - the four arrival routes this airport page leads to,both,IMPLEMENTED 2026-10-27 (Stage 3)
+blq,route-blq-commercianti,Bologna Airport to Art Hotel Commercianti,Dall'aeroporto di Bologna a Art Hotel Commercianti,Onward - the four arrival routes this airport page leads to,both,IMPLEMENTED 2026-10-27 (Stage 3)
+blq,route-blq-savoia,Bologna Airport to Savoia Hotel Regency,Dall'aeroporto di Bologna a Savoia Hotel Regency,Onward - the four arrival routes this airport page leads to,both,proposed
+blq,EXTERNAL bologna-airport.it,the airport publishes its own transport information,L'aeroporto pubblica le proprie informazioni sui trasporti,"REQUIRED outbound link. Marconi Express facts, and the fact that the airport publishes no private-hire pickup point (B8), are the operator's and must be attributed",both,proposed
+hotel-majestic,home,Home,Home,Breadcrumb level 1,both,IMPLEMENTED 2026-10-27 (Stage 2A)
+hotel-majestic,bologna,Bologna,Bologna,Breadcrumb level 2 - and the page that explains the tier model,both,IMPLEMENTED 2026-10-27 (Stage 2A)
+hotel-majestic,route-blq-majestic,Arriving from the airport,Arrivare dall'aeroporto,The arrival direction,both,IMPLEMENTED 2026-10-27 (Stage 3)
+hotel-majestic,route-majestic-blq,Leaving for the airport,Partire per l'aeroporto,The departure direction,both,"DEFERRED - target is a hotel-airport route, not built (Stage 3/4)"
+hotel-majestic,blq,Bologna Marconi (BLQ),Bologna Marconi (BLQ),The airport most of its guests arrive through,both,IMPLEMENTED 2026-10-27 (Stage 2A)
+hotel-excelsior,home,Home,Home,Breadcrumb level 1,both,IMPLEMENTED 2026-10-27 (Stage 2A)
+hotel-excelsior,bologna,Bologna,Bologna,Breadcrumb level 2 - and the page that explains the tier model,both,IMPLEMENTED 2026-10-27 (Stage 2A)
+hotel-excelsior,route-blq-excelsior,Arriving from the airport,Arrivare dall'aeroporto,The arrival direction,both,IMPLEMENTED 2026-10-27 (Stage 3)
+hotel-excelsior,route-excelsior-blq,Leaving for the airport,Partire per l'aeroporto,The departure direction,both,"DEFERRED - target is a hotel-airport route, not built (Stage 3/4)"
+hotel-excelsior,blq,Bologna Marconi (BLQ),Bologna Marconi (BLQ),The airport most of its guests arrive through,both,IMPLEMENTED 2026-10-27 (Stage 2A)
+hotel-commercianti,home,Home,Home,Breadcrumb level 1,both,IMPLEMENTED 2026-10-27 (Stage 2A)
+hotel-commercianti,bologna,Bologna,Bologna,Breadcrumb level 2 - and the page that explains the tier model,both,IMPLEMENTED 2026-10-27 (Stage 2A)
+hotel-commercianti,route-blq-commercianti,Arriving from the airport,Arrivare dall'aeroporto,The arrival direction,both,IMPLEMENTED 2026-10-27 (Stage 3)
+hotel-commercianti,route-commercianti-blq,Leaving for the airport,Partire per l'aeroporto,The departure direction,both,"DEFERRED - target is a hotel-airport route, not built (Stage 3/4)"
+hotel-commercianti,blq,Bologna Marconi (BLQ),Bologna Marconi (BLQ),The airport most of its guests arrive through,both,IMPLEMENTED 2026-10-27 (Stage 2A)
+hotel-savoia,home,Home,Home,Breadcrumb level 1,both,proposed
+hotel-savoia,bologna,Bologna,Bologna,Breadcrumb level 2 - and the page that explains the tier model,both,proposed
+hotel-savoia,route-blq-savoia,Arriving from the airport,Arrivare dall'aeroporto,The arrival direction,both,proposed
+hotel-savoia,route-savoia-blq,Leaving for the airport,Partire per l'aeroporto,The departure direction,both,proposed
+hotel-savoia,blq,Bologna Marconi (BLQ),Bologna Marconi (BLQ),The airport most of its guests arrive through,both,proposed
+hotel-majestic,hotel-commercianti,another address restricted around the clock,un altro indirizzo soggetto a limitazione continua,"DELIBERATE, and the ONLY hotel-to-hotel link proposed. These two share a tier (24-hour restriction) and a reader comparing them is comparing like with like. No other hotel pair is cross-linked, to avoid the 'every page links to every page' pattern that reads as filler",both,IMPLEMENTED 2026-10-27 (Stage 2A)
+route-blq-majestic,home,Home,Home,Breadcrumb level 1,both,IMPLEMENTED 2026-10-27 (Stage 3)
+route-blq-majestic,bologna,Bologna,Bologna,Breadcrumb level 2,both,IMPLEMENTED 2026-10-27 (Stage 3)
+route-blq-majestic,blq,Bologna Marconi (BLQ),Bologna Marconi (BLQ),Breadcrumb level 3 and the departure endpoint,both,IMPLEMENTED 2026-10-27 (Stage 3)
+route-blq-majestic,hotel-majestic,Grand Hotel Majestic,Grand Hotel Majestic,Arrival endpoint column,both,IMPLEMENTED 2026-10-27 (Stage 3)
+route-blq-majestic,route-majestic-blq,the same journey in reverse,lo stesso tragitto al contrario,"Paired direction. Each route page links its opposite ONCE, which is what keeps the pair legible instead of competing",both,IMPLEMENTED 2026-10-27 (Stage 3)
+route-majestic-blq,home,Home,Home,Breadcrumb level 1,both,proposed
+route-majestic-blq,bologna,Bologna,Bologna,Breadcrumb level 2,both,proposed
+route-majestic-blq,hotel-majestic,Grand Hotel Majestic,Grand Hotel Majestic,Breadcrumb level 3 and the departure endpoint,both,"DEFERRED - target is a hotel-airport route, not built (Stage 3/4)"
+route-majestic-blq,blq,Bologna Marconi (BLQ),Bologna Marconi (BLQ),Arrival endpoint column,both,proposed
+route-majestic-blq,route-blq-majestic,the same journey in reverse,lo stesso tragitto al contrario,Paired direction,both,IMPLEMENTED 2026-10-27 (Stage 3)
+route-blq-excelsior,home,Home,Home,Breadcrumb level 1,both,IMPLEMENTED 2026-10-27 (Stage 3)
+route-blq-excelsior,bologna,Bologna,Bologna,Breadcrumb level 2,both,IMPLEMENTED 2026-10-27 (Stage 3)
+route-blq-excelsior,blq,Bologna Marconi (BLQ),Bologna Marconi (BLQ),Breadcrumb level 3 and the departure endpoint,both,IMPLEMENTED 2026-10-27 (Stage 3)
+route-blq-excelsior,hotel-excelsior,Starhotels Excelsior,Starhotels Excelsior,Arrival endpoint column,both,IMPLEMENTED 2026-10-27 (Stage 3)
+route-blq-excelsior,route-excelsior-blq,the same journey in reverse,lo stesso tragitto al contrario,"Paired direction. Each route page links its opposite ONCE, which is what keeps the pair legible instead of competing",both,IMPLEMENTED 2026-10-27 (Stage 3)
+route-excelsior-blq,home,Home,Home,Breadcrumb level 1,both,proposed
+route-excelsior-blq,bologna,Bologna,Bologna,Breadcrumb level 2,both,proposed
+route-excelsior-blq,hotel-excelsior,Starhotels Excelsior,Starhotels Excelsior,Breadcrumb level 3 and the departure endpoint,both,"DEFERRED - target is a hotel-airport route, not built (Stage 3/4)"
+route-excelsior-blq,blq,Bologna Marconi (BLQ),Bologna Marconi (BLQ),Arrival endpoint column,both,proposed
+route-excelsior-blq,route-blq-excelsior,the same journey in reverse,lo stesso tragitto al contrario,Paired direction,both,IMPLEMENTED 2026-10-27 (Stage 3)
+route-blq-commercianti,home,Home,Home,Breadcrumb level 1,both,IMPLEMENTED 2026-10-27 (Stage 3)
+route-blq-commercianti,bologna,Bologna,Bologna,Breadcrumb level 2,both,IMPLEMENTED 2026-10-27 (Stage 3)
+route-blq-commercianti,blq,Bologna Marconi (BLQ),Bologna Marconi (BLQ),Breadcrumb level 3 and the departure endpoint,both,IMPLEMENTED 2026-10-27 (Stage 3)
+route-blq-commercianti,hotel-commercianti,Art Hotel Commercianti,Art Hotel Commercianti,Arrival endpoint column,both,IMPLEMENTED 2026-10-27 (Stage 3)
+route-blq-commercianti,route-commercianti-blq,the same journey in reverse,lo stesso tragitto al contrario,"Paired direction. Each route page links its opposite ONCE, which is what keeps the pair legible instead of competing",both,IMPLEMENTED 2026-10-27 (Stage 3)
+route-commercianti-blq,home,Home,Home,Breadcrumb level 1,both,proposed
+route-commercianti-blq,bologna,Bologna,Bologna,Breadcrumb level 2,both,proposed
+route-commercianti-blq,hotel-commercianti,Art Hotel Commercianti,Art Hotel Commercianti,Breadcrumb level 3 and the departure endpoint,both,"DEFERRED - target is a hotel-airport route, not built (Stage 3/4)"
+route-commercianti-blq,blq,Bologna Marconi (BLQ),Bologna Marconi (BLQ),Arrival endpoint column,both,proposed
+route-commercianti-blq,route-blq-commercianti,the same journey in reverse,lo stesso tragitto al contrario,Paired direction,both,IMPLEMENTED 2026-10-27 (Stage 3)
+route-blq-savoia,home,Home,Home,Breadcrumb level 1,both,proposed
+route-blq-savoia,bologna,Bologna,Bologna,Breadcrumb level 2,both,proposed
+route-blq-savoia,blq,Bologna Marconi (BLQ),Bologna Marconi (BLQ),Breadcrumb level 3 and the departure endpoint,both,proposed
+route-blq-savoia,hotel-savoia,Savoia Hotel Regency,Savoia Hotel Regency,Arrival endpoint column,both,proposed
+route-blq-savoia,route-savoia-blq,the same journey in reverse,lo stesso tragitto al contrario,"Paired direction. Each route page links its opposite ONCE, which is what keeps the pair legible instead of competing",both,proposed
+route-savoia-blq,home,Home,Home,Breadcrumb level 1,both,proposed
+route-savoia-blq,bologna,Bologna,Bologna,Breadcrumb level 2,both,proposed
+route-savoia-blq,hotel-savoia,Savoia Hotel Regency,Savoia Hotel Regency,Breadcrumb level 3 and the departure endpoint,both,proposed
+route-savoia-blq,blq,Bologna Marconi (BLQ),Bologna Marconi (BLQ),Arrival endpoint column,both,proposed
+route-savoia-blq,route-blq-savoia,the same journey in reverse,lo stesso tragitto al contrario,Paired direction,both,proposed
+ravenna,home,Home,Home,Breadcrumb level 1,both,proposed
+ravenna,ravenna-terminal,Ravenna Cruise Terminal at Porto Corsini,Il terminal crociere di Ravenna a Porto Corsini,The reason this hub exists: the port is not in the city,both,proposed
+ravenna,route-terminal-ravenna,From the cruise terminal into Ravenna,Dal terminal crociere a Ravenna,Disembarkation direction,both,proposed
+ravenna,route-ravenna-terminal,From Ravenna to the cruise terminal,Da Ravenna al terminal crociere,Embarkation direction,both,proposed
+ravenna,bologna,Bologna,Bologna,"The nearest cluster hub, and where most visitors arrive by air",both,proposed
+ravenna-terminal,home,Home,Home,Breadcrumb level 1,both,proposed
+ravenna-terminal,ravenna,Ravenna,Ravenna,Breadcrumb level 2,both,proposed
+ravenna-terminal,route-terminal-ravenna,Into Ravenna,Verso Ravenna,Disembarkation,both,proposed
+ravenna-terminal,route-ravenna-terminal,To the ship,Verso la nave,Embarkation,both,proposed
+ravenna-terminal,EXTERNAL rccp.it,the port operator publishes its own guest information,L'operatore portuale pubblica le proprie informazioni,REQUIRED outbound link. The terminal is currently a temporary marquee (R5) and the operator publishes no car pick-up rule (R9); both must be attributed,both,proposed
+ravenna-terminal,EXTERNAL visitravenna.it,the tourism authority's own transport information,Le informazioni di viaggio dell'ente turistico,"REQUIRED outbound link. The statement that taxis are limited and cannot be booked in advance (R3) is theirs, not ours - and it is the honest case for arranging a car",both,proposed
+route-terminal-ravenna,home,Home,Home,Breadcrumb level 1,both,proposed
+route-terminal-ravenna,ravenna,Ravenna,Ravenna,Breadcrumb level 2,both,proposed
+route-terminal-ravenna,ravenna-terminal,Ravenna Cruise Terminal at Porto Corsini,Terminal crociere di Ravenna a Porto Corsini,Terminal endpoint,both,proposed
+route-ravenna-terminal,home,Home,Home,Breadcrumb level 1,both,proposed
+route-ravenna-terminal,ravenna,Ravenna,Ravenna,Breadcrumb level 2,both,proposed
+route-ravenna-terminal,ravenna-terminal,Ravenna Cruise Terminal at Porto Corsini,Terminal crociere di Ravenna a Porto Corsini,Terminal endpoint,both,proposed
+route-terminal-ravenna,route-ravenna-terminal,the same journey in reverse,lo stesso tragitto al contrario,Paired direction,both,proposed
+route-ravenna-terminal,route-terminal-ravenna,the same journey in reverse,lo stesso tragitto al contrario,Paired direction,both,proposed
+NOT-LINKED,the 15 deferred hotels,-,-,DEFERRED. Not named as a link on any page. A hotel may be named in plain text on the Bologna hub only where the tier model requires an example,-,deferred
+NOT-LINKED,bologna-centrale,-,-,"DEFERRED. Named in plain text on the BLQ page as the Marconi Express terminus (B3); not a link, because no page exists",-,deferred
+NOT-LINKED,route-blq-bologna,-,-,MERGED into the BLQ hub. A generic airport-to-city route would cannibalise all four hotel arrival routes at once,-,deferred
+NOT-LINKED,Bologna <-> Porto Corsini,-,-,DEFERRED. No page links it and no proposed page implies it is served,-,deferred
+NOT-LINKED,the three NCC firms the airport lists,-,-,"NEVER LINKED. Amne, Cosepuri and Saca are third-party competitors. The architecture forbids copying airport-listed operators or implying affiliation - the same decision taken for the two chauffeur firms named in Toscana Aeroporti's charter",-,deferred
+NOT-LINKED,Visit Ravenna's seasonal shuttles,-,-,"NOT PRESENTED AS OURS. May be mentioned as attributed context on the terminal page, or omitted. They are a third party, seasonal, and one of the three routes is 'to be defined'",-,deferred
+ORPHAN CHECK,-,-,-,"Under D3 Option A every one of the 18 pages has an inbound link from outside its own sub-tree: the two hubs and the terminal from navbar, footer and homepage; the four hotels from the Bologna hub and BLQ; all ten routes from their two endpoint pages. NO ORPHANS. Under Option B the whole cluster is an orphan island - see the recommendation, D3",-,verified
+footer,hotel-majestic,Grand Hotel Majestic,Grand Hotel Majestic,"IMPLEMENTED. Added to the existing Bologna footer column only. The NAVBAR was deliberately left untouched, so no global navigation structure changed",both,IMPLEMENTED 2026-10-27 (Stage 2A)
+footer,hotel-commercianti,Art Hotel Commercianti,Art Hotel Commercianti,IMPLEMENTED. Same footer column,both,IMPLEMENTED 2026-10-27 (Stage 2A)
+footer,hotel-excelsior,Starhotels Excelsior,Starhotels Excelsior,IMPLEMENTED. Same footer column,both,IMPLEMENTED 2026-10-27 (Stage 2A)
+NOT-LINKED,hotel-savoia,-,-,HELD FOR WAVE 2 at Stage 2A. Not named as a link on any page,-,deferred
+hotel-majestic,route-blq-majestic,Bologna Airport to this hotel,Dall'aeroporto di Bologna a questo hotel,IMPLEMENTED. The hotel page's onward index leads with its own arrival route,both,IMPLEMENTED 2026-10-27 (Stage 3)
+blq,route-blq-majestic,This airport to the hotel,Da questo aeroporto all'hotel,IMPLEMENTED. The BLQ page's onward index carries all three arrival routes,both,IMPLEMENTED 2026-10-27 (Stage 3)
+hotel-commercianti,route-blq-commercianti,Bologna Airport to this hotel,Dall'aeroporto di Bologna a questo hotel,IMPLEMENTED. The hotel page's onward index leads with its own arrival route,both,IMPLEMENTED 2026-10-27 (Stage 3)
+blq,route-blq-commercianti,This airport to the hotel,Da questo aeroporto all'hotel,IMPLEMENTED. The BLQ page's onward index carries all three arrival routes,both,IMPLEMENTED 2026-10-27 (Stage 3)
+hotel-excelsior,route-blq-excelsior,Bologna Airport to this hotel,Dall'aeroporto di Bologna a questo hotel,IMPLEMENTED. The hotel page's onward index leads with its own arrival route,both,IMPLEMENTED 2026-10-27 (Stage 3)
+blq,route-blq-excelsior,This airport to the hotel,Da questo aeroporto all'hotel,IMPLEMENTED. The BLQ page's onward index carries all three arrival routes,both,IMPLEMENTED 2026-10-27 (Stage 3)
+NOT-LINKED,the four hotel-to-BLQ departure routes,-,-,DEFERRED to Stage 4. No page links them and none is referenced anywhere; verified 0 departure-route hrefs on the Stage 3 pages,-,deferred

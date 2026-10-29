@@ -1,0 +1,73 @@
+from_page,to_page,link_type,placement,anchor_text_en,anchor_text_it,required
+home,rome,contextual,destinations grid — Rome tile,Private transfers in Rome,Transfer privati a Roma,yes
+home,fiumicino,contextual,airport directory — Rome group,Fiumicino Airport (FCO),Aeroporto di Fiumicino (FCO),yes
+home,ciampino,contextual,airport directory — Rome group,Ciampino Airport (CIA),Aeroporto di Ciampino (CIA),yes
+home,civitavecchia,contextual,cruise-port section,Civitavecchia cruise port,Il porto di Civitavecchia,yes
+home,rome,nav,navbar → Destinations,Rome,Roma,yes
+home,fiumicino,nav,navbar → Airports,Rome Fiumicino (FCO),Roma Fiumicino (FCO),yes
+home,ciampino,nav,navbar → Airports,Rome Ciampino (CIA),Roma Ciampino (CIA),yes
+home,civitavecchia,nav,navbar → Transfers → On arrival,Civitavecchia cruise port,Porto di Civitavecchia,yes
+home,rome-stations,nav,navbar → Transfers → On arrival,Rome railway stations,Stazioni di Roma,yes
+rome,home,breadcrumb,breadcrumb level 1,Home,Home,yes
+rome,fiumicino,contextual,arrival-point chooser row 1,Fiumicino Airport,l'aeroporto di Fiumicino,yes
+rome,ciampino,contextual,arrival-point chooser row 2,Ciampino Airport,l'aeroporto di Ciampino,yes
+rome,civitavecchia,contextual,arrival-point chooser row 3,Civitavecchia cruise port,il porto di Civitavecchia,yes
+rome,rome-stations,contextual,arrival-point chooser row 4,Rome's railway stations,le stazioni ferroviarie di Roma,yes
+rome,route-fco-rome,contextual,route index,Fiumicino Airport to Rome,Da Fiumicino a Roma,yes
+rome,route-cia-rome,contextual,route index,Ciampino Airport to Rome,Da Ciampino a Roma,yes
+rome,route-rome-civitavecchia,contextual,route index,Rome to Civitavecchia cruise port,Da Roma a Civitavecchia,yes
+rome,route-fco-civitavecchia,contextual,route index,Fiumicino Airport to Civitavecchia,Da Fiumicino a Civitavecchia,yes
+rome,home#request-a-quote,cta,hero and closing band,Request a quotation,Richiedi un preventivo,yes
+fiumicino,home,breadcrumb,breadcrumb level 1,Home,Home,yes
+fiumicino,rome,breadcrumb,breadcrumb level 2,Rome,Roma,yes
+fiumicino,rome,contextual,body — where the journey ends,transfers in Rome,i transfer a Roma,yes
+fiumicino,ciampino,contextual,body — not this airport,Ciampino,Ciampino,yes
+fiumicino,route-fco-rome,contextual,onward destinations,Fiumicino to Rome,Da Fiumicino a Roma,yes
+fiumicino,route-fco-civitavecchia,contextual,onward destinations,Fiumicino to Civitavecchia cruise port,Da Fiumicino a Civitavecchia,yes
+fiumicino,rome-stations,contextual,onward destinations,Rome's railway stations,le stazioni di Roma,no
+ciampino,home,breadcrumb,breadcrumb level 1,Home,Home,yes
+ciampino,rome,breadcrumb,breadcrumb level 2,Rome,Roma,yes
+ciampino,fiumicino,contextual,comparison table header,Fiumicino,Fiumicino,yes
+ciampino,rome,contextual,body,transfers in Rome,i transfer a Roma,yes
+ciampino,route-cia-rome,contextual,onward destinations,Ciampino to Rome,Da Ciampino a Roma,yes
+civitavecchia,home,breadcrumb,breadcrumb level 1,Home,Home,yes
+civitavecchia,rome,breadcrumb,breadcrumb level 2,Rome,Roma,yes
+civitavecchia,rome,contextual,geography stepper — stage 3,Rome,Roma,yes
+civitavecchia,fiumicino,contextual,connections,Fiumicino Airport,l'aeroporto di Fiumicino,yes
+civitavecchia,route-rome-civitavecchia,contextual,connections,Rome to Civitavecchia,Da Roma a Civitavecchia,yes
+civitavecchia,route-fco-civitavecchia,contextual,connections,Fiumicino to Civitavecchia,Da Fiumicino a Civitavecchia,yes
+rome-stations,home,breadcrumb,breadcrumb level 1,Home,Home,yes
+rome-stations,rome,breadcrumb,breadcrumb level 2,Rome,Roma,yes
+rome-stations,rome,contextual,body — districts,where you are staying in Rome,dove alloggiate a Roma,yes
+rome-stations,fiumicino,contextual,body — airport link,Fiumicino Airport,l'aeroporto di Fiumicino,no
+rome-stations,ciampino,contextual,body — airport link,Ciampino,Ciampino,no
+route-fco-rome,home,breadcrumb,breadcrumb level 1,Home,Home,yes
+route-fco-rome,rome,breadcrumb,breadcrumb level 2,Rome,Roma,yes
+route-fco-rome,fiumicino,breadcrumb,breadcrumb level 3,Fiumicino Airport,Aeroporto di Fiumicino,yes
+route-fco-rome,fiumicino,contextual,endpoint column — departure,the airport page,la pagina dell'aeroporto,yes
+route-fco-rome,rome,contextual,endpoint column — arrival,arriving in Rome,arrivare a Roma,yes
+route-fco-rome,route-fco-civitavecchia,contextual,related routes,Fiumicino to Civitavecchia,Da Fiumicino a Civitavecchia,yes
+route-fco-rome,rome-stations,contextual,related routes,Rome's railway stations,le stazioni di Roma,no
+route-cia-rome,home,breadcrumb,breadcrumb level 1,Home,Home,yes
+route-cia-rome,rome,breadcrumb,breadcrumb level 2,Rome,Roma,yes
+route-cia-rome,ciampino,breadcrumb,breadcrumb level 3,Ciampino Airport,Aeroporto di Ciampino,yes
+route-cia-rome,ciampino,contextual,endpoint column — departure,the airport page,la pagina dell'aeroporto,yes
+route-cia-rome,rome,contextual,endpoint column — arrival,arriving in Rome,arrivare a Roma,yes
+route-cia-rome,route-fco-rome,contextual,related routes,the same journey from Fiumicino,la stessa tratta da Fiumicino,yes
+route-rome-civitavecchia,home,breadcrumb,breadcrumb level 1,Home,Home,yes
+route-rome-civitavecchia,rome,breadcrumb,breadcrumb level 2,Rome,Roma,yes
+route-rome-civitavecchia,civitavecchia,breadcrumb,breadcrumb level 3,Civitavecchia cruise port,Porto di Civitavecchia,yes
+route-rome-civitavecchia,civitavecchia,contextual,endpoint column — arrival,the port page,la pagina del porto,yes
+route-rome-civitavecchia,rome,contextual,endpoint column — departure,your Rome address,il vostro indirizzo a Roma,yes
+route-rome-civitavecchia,route-fco-civitavecchia,contextual,related routes,straight from Fiumicino instead,direttamente da Fiumicino,yes
+route-fco-civitavecchia,home,breadcrumb,breadcrumb level 1,Home,Home,yes
+route-fco-civitavecchia,rome,breadcrumb,breadcrumb level 2,Rome,Roma,yes
+route-fco-civitavecchia,civitavecchia,breadcrumb,breadcrumb level 3,Civitavecchia cruise port,Porto di Civitavecchia,yes
+route-fco-civitavecchia,fiumicino,contextual,scenario panels,the airport page,la pagina dell'aeroporto,yes
+route-fco-civitavecchia,civitavecchia,contextual,scenario panels,the port page,la pagina del porto,yes
+route-fco-civitavecchia,route-rome-civitavecchia,contextual,related routes,a night in Rome first,una notte a Roma prima,yes
+route-fco-civitavecchia,rome,contextual,related routes,transfers in Rome,i transfer a Roma,no
+footer,rome,nav,footer — destinations column,Rome,Roma,yes
+footer,fiumicino,nav,footer — destinations column,Rome Fiumicino (FCO),Roma Fiumicino (FCO),yes
+footer,ciampino,nav,footer — destinations column,Rome Ciampino (CIA),Roma Ciampino (CIA),yes
+footer,civitavecchia,nav,footer — destinations column,Civitavecchia,Civitavecchia,yes

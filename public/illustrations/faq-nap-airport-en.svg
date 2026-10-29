@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 260" width="320" height="260" role="presentation">
+  <title>Departures board with a question</title>
+  <g fill="none" stroke="#18233a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="34" y="40" width="252" height="162" rx="10" fill="#ffffff"/>
+    <path d="M34 70h252"/>
+    <path d="M78 202v22M242 202v22M64 224h32M226 224h32"/>
+  </g>
+  <g fill="#5b6477" font-family="system-ui, sans-serif" font-size="11" letter-spacing="1.6">
+    <text x="50" y="62">TIME</text>
+    <text x="124" y="62">DESTINATION</text>
+    <text x="238" y="62">GATE</text>
+  </g>
+  <g fill="none" stroke="#e3ded3" stroke-width="1.6">
+    <path d="M34 100h252M34 130h252M34 160h252"/>
+  </g>
+  <g fill="#18233a" opacity=".75">
+    <rect x="50" y="82" width="34" height="9" rx="2"/>
+    <rect x="104" y="82" width="86" height="9" rx="2"/>
+    <rect x="238" y="82" width="20" height="9" rx="2"/>
+    <rect x="50" y="112" width="34" height="9" rx="2"/>
+    <rect x="104" y="112" width="62" height="9" rx="2"/>
+    <rect x="238" y="112" width="20" height="9" rx="2"/>
+    <rect x="50" y="172" width="34" height="9" rx="2"/>
+    <rect x="104" y="172" width="74" height="9" rx="2"/>
+  </g>
+  <g>
+    <rect x="42" y="136" width="236" height="22" rx="4" fill="#f6e9e1"/>
+    <text x="50" y="153" fill="#b2542c" font-family="system-ui, sans-serif" font-size="13" font-weight="600" letter-spacing="2">— — : — —</text>
+    <text x="238" y="153" fill="#b2542c" font-family="system-ui, sans-serif" font-size="16" font-weight="700">?</text>
+  </g>
+  <g fill="none" stroke="#b2542c" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M196 140.5c0-5 4-8.5 9-8.5s9 3.2 9 8c0 6-7.4 6.6-8.6 11.4"/>
+    <path d="M205.2 158.4h.1"/>
+  </g>
+</svg>

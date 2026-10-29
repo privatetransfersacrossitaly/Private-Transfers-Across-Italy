@@ -1,0 +1,83 @@
+from_page,to_page,link_type,placement,anchor_text_en,anchor_text_it,required
+home,milan,contextual,destinations grid — Milan tile,Private transfers in Milan,Transfer privati a Milano,yes
+home,malpensa,contextual,airport directory — Milan group,Milan Malpensa,Milano Malpensa,yes
+home,linate,contextual,airport directory — Milan group,Milan Linate,Milano Linate,yes
+home,bergamo-airport,contextual,airport directory — Milan group,Milan Bergamo (Orio al Serio),Milano Bergamo (Orio al Serio),yes
+home,milan,nav,navbar → Destinations,Transfers in Milan,Transfer a Milano,yes
+home,lake-como,nav,navbar → Destinations,Lake Como,Lago di Como,yes
+home,milan-stations,nav,navbar → Destinations,Milan railway stations,Stazioni ferroviarie di Milano,yes
+home,malpensa,nav,navbar → Airports,Malpensa Airport (MXP),Aeroporto di Malpensa (MXP),yes
+home,linate,nav,navbar → Airports,Linate Airport (LIN),Aeroporto di Linate (LIN),yes
+home,bergamo-airport,nav,navbar → Airports,Bergamo Airport (BGY),Aeroporto di Bergamo (BGY),yes
+milan,home,breadcrumb,breadcrumb level 1,Home,Home,yes
+milan,malpensa,contextual,airport chooser — row 1,Malpensa,Malpensa,yes
+milan,linate,contextual,airport chooser — row 2,Linate,Linate,yes
+milan,bergamo-airport,contextual,airport chooser — row 3,Bergamo,Bergamo,yes
+milan,milan-stations,contextual,arrival by rail,Milan's railway stations,le stazioni ferroviarie di Milano,yes
+milan,lake-como,contextual,onward destinations,Lake Como,il Lago di Como,yes
+milan,route-mxp-milan,contextual,route index,Malpensa Airport to Milan,Da Malpensa a Milano,yes
+milan,route-lin-milan,contextual,route index,Linate Airport to Milan,Da Linate a Milano,yes
+milan,route-bgy-milan,contextual,route index,Bergamo Airport to Milan,Da Bergamo a Milano,yes
+milan,route-mxp-como,contextual,route index,Malpensa Airport to Lake Como,Da Malpensa al Lago di Como,yes
+milan,home#request-a-quote,cta,hero and closing band,Request a quotation,Richiedi un preventivo,yes
+malpensa,home,breadcrumb,breadcrumb level 1,Home,Home,yes
+malpensa,milan,breadcrumb,breadcrumb level 2,Milan,Milano,yes
+malpensa,milan,contextual,destination matrix — into the city,transfers in Milan,i transfer a Milano,yes
+malpensa,lake-como,contextual,destination matrix — to the lakes,Lake Como,il Lago di Como,yes
+malpensa,route-mxp-milan,contextual,destination matrix,Malpensa to Milan,Da Malpensa a Milano,yes
+malpensa,route-mxp-como,contextual,destination matrix,Malpensa to Lake Como,Da Malpensa al Lago di Como,yes
+malpensa,linate,contextual,body — the other city airport,Linate,Linate,yes
+malpensa,milan-stations,contextual,destination matrix,Milan's railway stations,le stazioni di Milano,no
+linate,home,breadcrumb,breadcrumb level 1,Home,Home,yes
+linate,milan,breadcrumb,breadcrumb level 2,Milan,Milano,yes
+linate,milan,contextual,body — the city end,transfers in Milan,i transfer a Milano,yes
+linate,malpensa,contextual,body — the comparison,Malpensa,Malpensa,yes
+linate,route-lin-milan,contextual,onward,Linate to Milan,Da Linate a Milano,yes
+linate,milan-stations,contextual,onward,Milan's railway stations,le stazioni di Milano,no
+bergamo-airport,home,breadcrumb,breadcrumb level 1,Home,Home,yes
+bergamo-airport,milan,breadcrumb,breadcrumb level 2,Milan,Milano,yes
+bergamo-airport,milan,contextual,what the distance changes,transfers in Milan,i transfer a Milano,yes
+bergamo-airport,route-bgy-milan,contextual,onward destinations,Bergamo Airport to Milan,Da Bergamo a Milano,yes
+bergamo-airport,malpensa,contextual,comparison,Malpensa,Malpensa,yes
+bergamo-airport,linate,contextual,comparison,Linate,Linate,no
+milan-stations,home,breadcrumb,breadcrumb level 1,Home,Home,yes
+milan-stations,milan,breadcrumb,breadcrumb level 2,Milan,Milano,yes
+milan-stations,milan,contextual,body — districts and zones,where you are staying in Milan,dove alloggiate a Milano,yes
+milan-stations,malpensa,contextual,Cadorna row — Malpensa Express,Malpensa,Malpensa,yes
+milan-stations,lake-como,contextual,onward,Lake Como,il Lago di Como,no
+lake-como,home,breadcrumb,breadcrumb level 1,Home,Home,yes
+lake-como,milan,breadcrumb,breadcrumb level 2,Milan,Milano,yes
+lake-como,malpensa,contextual,arriving by air,Malpensa Airport,l'aeroporto di Malpensa,yes
+lake-como,route-mxp-como,contextual,arriving by air,Malpensa Airport to Lake Como,Da Malpensa al Lago di Como,yes
+lake-como,milan,contextual,arriving from the city,Milan,Milano,yes
+route-mxp-milan,home,breadcrumb,breadcrumb level 1,Home,Home,yes
+route-mxp-milan,milan,breadcrumb,breadcrumb level 2,Milan,Milano,yes
+route-mxp-milan,malpensa,breadcrumb,breadcrumb level 3,Malpensa (MXP),Malpensa (MXP),yes
+route-mxp-milan,malpensa,contextual,endpoint column — departure,the airport page,la pagina dell'aeroporto,yes
+route-mxp-milan,milan,contextual,endpoint column — arrival,arriving in Milan,arrivare a Milano,yes
+route-mxp-milan,route-lin-milan,contextual,related routes,the same journey from Linate,la stessa tratta da Linate,yes
+route-mxp-milan,route-mxp-como,contextual,related routes,Malpensa to Lake Como,Da Malpensa al Lago di Como,yes
+route-lin-milan,home,breadcrumb,breadcrumb level 1,Home,Home,yes
+route-lin-milan,milan,breadcrumb,breadcrumb level 2,Milan,Milano,yes
+route-lin-milan,linate,breadcrumb,breadcrumb level 3,Linate (LIN),Linate (LIN),yes
+route-lin-milan,linate,contextual,endpoint column — departure,the airport page,la pagina dell'aeroporto,yes
+route-lin-milan,milan,contextual,endpoint column — arrival,arriving in Milan,arrivare a Milano,yes
+route-lin-milan,route-mxp-milan,contextual,related routes,the same journey from Malpensa,la stessa tratta da Malpensa,yes
+route-bgy-milan,home,breadcrumb,breadcrumb level 1,Home,Home,yes
+route-bgy-milan,milan,breadcrumb,breadcrumb level 2,Milan,Milano,yes
+route-bgy-milan,bergamo-airport,breadcrumb,breadcrumb level 3,Bergamo (BGY),Bergamo (BGY),yes
+route-bgy-milan,bergamo-airport,contextual,endpoint column — departure,the airport page,la pagina dell'aeroporto,yes
+route-bgy-milan,milan,contextual,endpoint column — arrival,arriving in Milan,arrivare a Milano,yes
+route-bgy-milan,route-mxp-milan,contextual,related routes,the journey from Malpensa,la tratta da Malpensa,yes
+route-mxp-como,home,breadcrumb,breadcrumb level 1,Home,Home,yes
+route-mxp-como,milan,breadcrumb,breadcrumb level 2,Milan,Milano,yes
+route-mxp-como,lake-como,breadcrumb,breadcrumb level 3,Lake Como,Lago di Como,yes
+route-mxp-como,malpensa,contextual,endpoint column — departure,the airport page,la pagina dell'aeroporto,yes
+route-mxp-como,lake-como,contextual,endpoint column — arrival,the lake page,la pagina del lago,yes
+route-mxp-como,route-mxp-milan,contextual,related routes,into Milan instead,verso Milano,yes
+footer,milan,nav,footer — Milan column,Transfers in Milan,Transfer a Milano,yes
+footer,malpensa,nav,footer — Milan column,Malpensa (MXP),Malpensa (MXP),yes
+footer,linate,nav,footer — Milan column,Linate (LIN),Linate (LIN),yes
+footer,bergamo-airport,nav,footer — Milan column,Bergamo (BGY),Bergamo (BGY),yes
+footer,lake-como,nav,footer — Milan column,Lake Como,Lago di Como,yes
+footer,milan-stations,nav,footer — Milan column,Milan railway stations,Stazioni di Milano,yes

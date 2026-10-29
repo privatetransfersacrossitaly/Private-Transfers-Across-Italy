@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 260" width="320" height="260" role="presentation">
+  <title>Hillside terraces and a fingerpost</title>
+  <g fill="none" stroke="#e3ded3" stroke-width="1.6">
+    <path d="M18 214h284"/>
+  </g>
+  <g fill="#f6e9e1">
+    <path d="M18 214c26-10 44-34 60-58s34-46 62-52 54 10 72 32 36 50 70 58v20z"/>
+  </g>
+  <g fill="none" stroke="#18233a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 214c26-10 44-34 60-58s34-46 62-52 54 10 72 32 36 50 70 58"/>
+    <path d="M52 186c30-6 58-6 86 2M70 160c26-6 52-6 76 1M92 134c22-5 44-5 64 1M112 110c16-4 34-4 48 1"/>
+  </g>
+  <g fill="none" stroke="#5b6477" stroke-width="2" stroke-linecap="round">
+    <path d="M232 214V96"/>
+  </g>
+  <g fill="#ffffff" stroke="#18233a" stroke-width="2.4" stroke-linejoin="round">
+    <path d="M232 104h56l12 13-12 13h-56z"/>
+    <path d="M232 138h-58l-12 13 12 13h58z"/>
+  </g>
+  <g fill="#18233a" opacity=".7">
+    <rect x="240" y="114" width="36" height="6" rx="3"/>
+    <rect x="182" y="148" width="36" height="6" rx="3"/>
+  </g>
+  <g fill="none" stroke="#b2542c" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M214 78c0-9 7-15.5 16-15.5S246 68 246 76.5c0 10.5-13 11.5-15 20"/>
+    <path d="M230.6 108.5h.1"/>
+  </g>
+  <circle cx="230.6" cy="108.5" r="3.4" fill="#b2542c"/>
+</svg>

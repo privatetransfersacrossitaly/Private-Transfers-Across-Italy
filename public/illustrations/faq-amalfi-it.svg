@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 260" width="320" height="260" role="presentation">
+  <title>Una carta nautica con rosa dei venti e un punto interrogativo</title>
+  <g fill="#ffffff" stroke="#18233a" stroke-width="2.4" stroke-linejoin="round">
+    <path d="M44 54c22-8 44-8 66 0s44 8 66 0 44-8 66 0v150c-22-8-44-8-66 0s-44 8-66 0-44-8-66 0z"/>
+  </g>
+  <g fill="none" stroke="#e3ded3" stroke-width="1.4">
+    <path d="M44 94c22-8 44-8 66 0s44 8 66 0 44-8 66 0M44 134c22-8 44-8 66 0s44 8 66 0 44-8 66 0M44 174c22-8 44-8 66 0s44 8 66 0 44-8 66 0"/>
+    <path d="M88 60v146M132 56v150M176 56v150M220 56v150"/>
+  </g>
+  <g fill="none" stroke="#5b6477" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="7 6">
+    <path d="M70 182c28-10 46-34 66-44s42-6 68-26"/>
+  </g>
+  <g fill="#5b6477">
+    <circle cx="70" cy="182" r="3.4"/>
+    <circle cx="204" cy="112" r="3.4"/>
+  </g>
+  <g transform="translate(160 124)">
+    <circle r="40" fill="#f6e9e1" stroke="#18233a" stroke-width="2.2"/>
+    <circle r="30" fill="none" stroke="#e3ded3" stroke-width="1.4"/>
+    <g fill="#18233a">
+      <path d="M0-38 7-7 0 0 -7-7z" opacity=".85"/>
+      <path d="M0 38 7 7 0 0 -7 7z" opacity=".5"/>
+      <path d="M38 0 7 7 0 0 7-7z" opacity=".5"/>
+      <path d="M-38 0 -7 7 0 0 -7-7z" opacity=".5"/>
+    </g>
+    <g fill="#5b6477" font-family="system-ui, sans-serif" font-size="10" letter-spacing="1" text-anchor="middle">
+      <text y="-44">N</text>
+    </g>
+  </g>
+  <g fill="none" stroke="#b2542c" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M232 70c0-10.5 7.8-18 18-18s18 7.8 18 17.2c0 12-14 13-16 21.8"/>
+  </g>
+  <circle cx="251.4" cy="104" r="4.4" fill="#b2542c"/>
+  <g fill="none" stroke="#18233a" stroke-width="2.2" stroke-linecap="round">
+    <path d="M44 54c-6 4-6 146 0 150M242 54c6 4 6 146 0 150"/>
+  </g>
+</svg>
