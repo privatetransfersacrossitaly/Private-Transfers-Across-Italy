@@ -298,7 +298,7 @@ export const it: HomeContent = {
       },
     ],
     note:
-      "Inviare una richiesta significa fare una domanda, non prenotare. Il modulo per i preventivi è oggetto di una fase successiva di questo sito; per ora la sezione qui sotto spiega che cosa tenere pronto.",
+      "Inviare una richiesta significa fare una domanda, non prenotare. La sezione qui sotto spiega che cosa tenere pronto prima di compilare il modulo.",
   },
 
   prepare: {
@@ -389,7 +389,7 @@ export const it: HomeContent = {
     primaryCta: "Richiedi un preventivo",
     secondaryCta: "Vedi che cosa tenere pronto",
     note:
-      "Il modulo per i preventivi e il suo invio sono oggetto della fase successiva di questo sito. Finché non c'è, questa sezione è la destinazione a cui puntano la navigazione e i pulsanti: qui nulla finge di inviare un messaggio o di confermare una prenotazione.",
+      "Il modulo di preventivo è la destinazione di ogni “Richiedi un preventivo” di questo sito. Inviarlo è una richiesta e non una prenotazione: nulla è riservato e nessun veicolo è bloccato finché un viaggio non è stato confermato per iscritto e voi non l'avete accettato.",
   },
 
   chrome: {

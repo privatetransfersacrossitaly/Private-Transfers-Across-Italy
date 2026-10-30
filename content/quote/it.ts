@@ -133,8 +133,9 @@ export const quoteIt: QuoteContent = {
     invalid: "Alcune cose vanno corrette prima di poter inviare. Sono segnalate qui sotto.",
     delivered: {
       heading: "Abbiamo ricevuto la vostra richiesta",
+      // Volutamente silenzioso sull'email: vedere il commento in en.ts.
       body:
-        "Una copia è stata inviata all'indirizzo che ci avete lasciato. Vi risponderemo con un prezzo per questo viaggio e con l'accordo per iscritto.",
+        "La vostra richiesta è arrivata. Vi risponderemo con un prezzo per questo viaggio e con l'accordo per iscritto.",
       referenceLabel: "Il vostro riferimento",
       note:
         "Questa è una richiesta, non una prenotazione. Nulla è riservato e nessun veicolo è assegnato alla vostra data finché il viaggio non è stato confermato per iscritto e voi non l'avete accettato.",

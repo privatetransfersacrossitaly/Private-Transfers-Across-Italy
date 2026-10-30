@@ -48,3 +48,11 @@ next-env.d.ts
 # endpoint, and sets out weaknesses in it in enough detail to act on. It
 # stays on disk; nothing in this codebase depends on it.
 docs/lead-system-reference-audit.md
+
+# OpenNext
+.open-next
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example

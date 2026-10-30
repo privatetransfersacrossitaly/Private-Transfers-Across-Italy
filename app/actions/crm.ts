@@ -1,8 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
-import { createSessionClient, isCrmConfigured, requireCrmActor } from "@/lib/crm/auth";
+import { requireCrmActor } from "@/lib/crm/auth";
 import { setLeadNotes, setLeadStatus } from "@/lib/crm/leads";
 import type { CrmActionState } from "@/lib/crm/action-state";
 import type { LeadStatus } from "@/lib/leads/types";
@@ -12,10 +11,10 @@ import type { LeadStatus } from "@/lib/leads/types";
  *
  * ── Every one of these authorizes before it does anything ─────────────────
  * The mutations delegate to `lib/crm/leads.ts`, whose functions call
- * `requireCrmActor()` as their first statement — before the service-role
- * client is created, let alone used. The sign-in and sign-out actions are
- * the two exceptions, for the obvious reason, and neither of them touches a
- * lead.
+ * `requireCrmActor()` as their first statement — before the database binding
+ * is touched, let alone read. Every action in this file is a mutation; there
+ * is no sign-in action, because Cloudflare Access authenticates at the edge
+ * and a local one would be a second, weaker door.
  *
  * This is the part of the reference CRM that is missing entirely: there,
  * `deleteBookingAction`, `confirmBookingAction` and `updateBookingAction`
@@ -31,56 +30,6 @@ import type { LeadStatus } from "@/lib/leads/types";
 // `CrmActionState` and `initialCrmActionState` live in
 // `lib/crm/action-state.ts`: a "use server" module may export async
 // functions and nothing else.
-
-/* ── Session ───────────────────────────────────────────────────────────── */
-
-export async function signInAction(
-  _previous: CrmActionState,
-  formData: FormData,
-): Promise<CrmActionState> {
-  if (!isCrmConfigured()) {
-    return { ok: false, message: "The CRM is not configured for this deployment." };
-  }
-
-  const email = String(formData.get("email") ?? "").trim();
-  const password = String(formData.get("password") ?? "");
-  if (!email || !password) {
-    return { ok: false, message: "Enter an email address and a password." };
-  }
-
-  const supabase = await createSessionClient();
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
-
-  if (error) {
-    // Deliberately uniform: a caller learns nothing about whether the
-    // address exists, is allow-listed, or merely has the wrong password.
-    console.warn("[crm] sign-in refused");
-    return { ok: false, message: "Those details were not accepted." };
-  }
-
-  // Signing in is not the same as being allowed in. If the address is not
-  // allow-listed the session is ended again immediately, so a Supabase
-  // account on this project does not become CRM access.
-  const { data } = await supabase.auth.getUser();
-  const allowed = (process.env.CRM_ALLOWED_EMAILS ?? "")
-    .split(",")
-    .map((entry) => entry.trim().toLowerCase())
-    .filter(Boolean);
-
-  if (!data.user?.email || !allowed.includes(data.user.email.toLowerCase())) {
-    await supabase.auth.signOut();
-    console.warn("[crm] sign-in by a non-allow-listed address refused");
-    return { ok: false, message: "Those details were not accepted." };
-  }
-
-  redirect("/crm");
-}
-
-export async function signOutAction(): Promise<void> {
-  const supabase = await createSessionClient();
-  await supabase.auth.signOut();
-  redirect("/crm/login");
-}
 
 /* ── Leads ─────────────────────────────────────────────────────────────── */
 

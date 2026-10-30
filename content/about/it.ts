@@ -85,7 +85,7 @@ export const aboutIt: AboutContent = {
       },
     ],
     note:
-      "Il modulo di preventivo è oggetto di una fase successiva di questo sito. Finché non sarà attivo, ogni collegamento “Richiedi un preventivo” porta alla sezione della home che elenca che cosa tenere pronto: oggi nessuna pagina del sito invia un messaggio né conferma una prenotazione.",
+      "Ogni collegamento “Richiedi un preventivo” porta al modulo. Inviarlo significa fare una domanda: non conferma una prenotazione e, finché le predisposizioni dietro di esso non saranno completate, il modulo dice con chiarezza che cosa è successo e che cosa no alla vostra richiesta.",
   },
 
   coverage: {

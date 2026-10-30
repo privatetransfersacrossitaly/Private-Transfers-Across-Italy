@@ -12,6 +12,12 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Cloudflare build output. `.open-next` is ~39 MB of generated and
+    // bundled JavaScript; linting it does not finish in any useful time, and
+    // nothing in it is ours to fix.
+    ".open-next/**",
+    ".wrangler/**",
+    "cloudflare-env.d.ts",
   ]),
 ]);
 

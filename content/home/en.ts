@@ -298,7 +298,7 @@ export const en: HomeContent = {
       },
     ],
     note:
-      "Sending a request is asking a question, not making a reservation. The quotation request form is the subject of a later phase of this site; for now the section below sets out what to have ready.",
+      "Sending a request is asking a question, not making a reservation. The section below sets out what to have ready before you fill the form in.",
   },
 
   prepare: {
@@ -389,7 +389,7 @@ export const en: HomeContent = {
     primaryCta: "Request a quote",
     secondaryCta: "See what to have ready",
     note:
-      "The quotation form and its submission path are the subject of the next phase of this site. Until it is in place, this section is the quote destination that the navigation and the buttons point at — nothing here pretends to send a message or to confirm a booking.",
+      "The quotation form is where every “Request a quote” on this site leads. Sending it is a request and not a booking: nothing is reserved and no vehicle is held until a journey has been confirmed in writing and you have agreed to it.",
   },
 
   chrome: {

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { signOutAction } from "@/app/actions/crm";
 import { Container } from "@/components/site/container";
 import { cn } from "cn";
 
@@ -27,14 +26,17 @@ export function CrmHeader({ email }: { email: string }) {
 
         <div className="ml-auto flex items-center gap-5">
           <span className="hidden type-caption text-deep-muted sm:inline">{email}</span>
-          <form action={signOutAction}>
-            <button
-              type="submit"
-              className="inline-flex min-h-9 cursor-pointer items-center rounded-md border border-deep-muted/60 px-3.5 type-caption font-medium text-deep-foreground transition-colors hover:bg-deep-foreground/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-            >
-              Sign out
-            </button>
-          </form>
+          {/*
+            Cloudflare Access owns the session, so signing out means clearing
+            it at the edge rather than deleting a cookie this app set. A plain
+            link, not a form: there is no action to call.
+          */}
+          <a
+            href="/cdn-cgi/access/logout"
+            className="inline-flex min-h-9 items-center rounded-md border border-deep-muted/60 px-3.5 type-caption font-medium text-deep-foreground transition-colors hover:bg-deep-foreground/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+          >
+            Sign out
+          </a>
         </div>
       </Container>
     </header>
@@ -72,11 +74,10 @@ export function StatusBadge({ status }: { status: string }) {
 }
 
 /**
- * Shown when Supabase has not been configured for this deployment.
+ * Shown when the CRM has not been configured for this deployment.
  *
  * It explains what is missing rather than failing with a stack trace, and —
- * because it renders no lead data — it is safe to show before a session
- * exists.
+ * because it renders no lead data — it is safe to show to anyone.
  */
 export function CrmSetupNotice({ missing }: { missing: string[] }) {
   return (
@@ -86,10 +87,10 @@ export function CrmSetupNotice({ missing }: { missing: string[] }) {
         The CRM is not configured yet
       </h1>
       <p className="mt-4 type-body text-muted-foreground">
-        This deployment has no Supabase project attached, so there is nothing
-        to sign in to and no leads to show. Nothing is broken — the quotation
-        form behaves the same way and tells visitors plainly that it is not
-        live.
+        This deployment does not know which Cloudflare Access application to
+        trust, or who is allowed in, so there is nothing to show. Nothing is
+        broken — the quotation form behaves the same way and tells visitors
+        plainly when it is not live.
       </p>
       <p className="mt-6 type-label text-muted-foreground">Missing</p>
       <ul className="mt-3 space-y-2">

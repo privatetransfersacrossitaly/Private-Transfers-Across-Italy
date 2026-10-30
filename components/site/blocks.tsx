@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "cn";
+import { outboundRel } from "@/lib/site";
 
 /**
  * The modules the Rome cluster pages are built from.
@@ -142,7 +143,9 @@ export function SourceNote({
       {children}{" "}
       <a
         href={href}
-        rel="nofollow noopener"
+        // Decided by the destination. Every citation written so far is
+        // external, but see `outboundRel` for the one that is not.
+        rel={outboundRel(href)}
         className={cn(
           "underline underline-offset-4 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring",
           tone === "deep"

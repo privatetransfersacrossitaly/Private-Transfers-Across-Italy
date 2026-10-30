@@ -1,54 +1,60 @@
+import { contactEmail } from "@/lib/site";
 import type { LocalizedLegal } from "./types";
 
 /**
- * Privacy Policy — draft.
+ * Privacy Policy. In force from 29 October 2026.
  *
- * ── What the audit established, and what it did not ───────────────────────
- * The "current processing" section is unusually short because it is true: a
- * production build was served and driven in a real browser across four pages,
- * and it made zero third-party requests, set zero cookies, and left
- * localStorage and sessionStorage empty. There is no form, no contact link
- * and no analytics, so the site collects nothing at all today. That is a
- * measured result, not an assumption, and it is the one part of this policy
- * that rests on evidence rather than on a decision still to be taken.
+ * ── §3 is the one section that rests on measurement ───────────────────────
+ * It separates two things a single "what we collect" section kept conflating.
+ * Reading the site collects nothing: a production build was served and driven
+ * in a real browser across four pages, and it made zero third-party requests,
+ * set zero cookies, and left localStorage and sessionStorage empty. Sending
+ * the form does transmit everything typed into it: that was measured too, by
+ * capturing the submission and reading the request body. Both halves are
+ * evidence, not assumption, and both are worth keeping that way — "no
+ * cookies, no analytics, no third-party content" is a claim a reader can
+ * verify in thirty seconds with their own developer tools.
  *
- * Everything else is conditional. The controller has been stated to be an
- * individual established outside the EU/EEA, which means GDPR's application
- * runs through Article 3(2) rather than Article 3(1) — an analysis this
- * document flags for legal review rather than asserting. No supervisory
- * authority is named for the same reason: naming the Garante would imply an
- * Italian establishment that has not been stated.
+ * ── Two things named rather than hedged ───────────────────────────────────
+ * The controller is Private Transfers Across Italy, operated by an
+ * individual, established outside the EU/EEA; that is the owner's decision
+ * about what to publish, and no personal name, postal address or company
+ * registration is claimed. §13 points a complaint at the authority where the
+ * reader lives rather than naming one, which is correct for a non-EU
+ * controller and does not depend on an establishment analysis.
  *
- * The planned-processing section lists exactly the fields in
- * `lib/quote/schema.ts`, because that is the only description of what the
- * form will collect that actually exists.
+ * §5 lists exactly the fields in `lib/quote/schema.ts`, because that is the
+ * only description of what the form asks for that cannot fall out of date.
+ * The contact address comes from `contactEmail` in `lib/site.ts` for the same
+ * reason: one mailbox, written once, so English and Italian cannot disagree.
+ *
+ * ── What §8 depends on ────────────────────────────────────────────────────
+ * It names Cloudflare and Resend as the processors and describes storage and
+ * email delivery as operating. Cloudflare is now accurate: the site runs on
+ * Workers and the enquiry database is Cloudflare D1, both on the owner's own
+ * account. Resend is not connected yet, so that half must be true before the
+ * pages are served publicly. See `docs/legal-pages-launch-readiness.md`.
  */
 export const privacy: LocalizedLegal = {
   en: {
     meta: {
       title: "Privacy Policy",
       description:
-        "What this website collects today, what it will collect once the inquiry form exists, and how that information would be used. A working draft.",
+        "What we collect when you ask for a quotation, how we use it, who else sees it, how long we keep it and what rights you have.",
     },
     breadcrumbLabel: "Breadcrumb",
     eyebrow: "Legal",
     h1: "Privacy Policy",
     lead:
-      "What this website does with personal information — which, at the time of writing, is nothing, because there is no way yet to send it any.",
-
-    draft: {
-      label: "Draft — not in force",
-      body:
-        "This policy is a working draft prepared ahead of launch. It has not been reviewed by a lawyer, it is not yet in force, and several provisions depend on business facts that have not been confirmed. Those are marked where they appear. Nothing on this page should be relied on as a current statement of practice.",
-    },
+      "What we ask for when you request a quotation, what we do with it, and what you can ask us to do about it. Browsing this site collects nothing; sending the form sends us what you typed.",
 
     status: {
       stateLabel: "Status",
-      state: "Draft, pending owner confirmation and legal review",
-      draftedLabel: "Drafted",
-      drafted: "28 October 2026",
+      state: "In force",
+      draftedLabel: "Last updated",
+      drafted: "29 October 2026",
       effectiveLabel: "In force from",
-      effective: "Not yet in force",
+      effective: "29 October 2026",
     },
 
     tocLabel: "On this page",
@@ -58,61 +64,48 @@ export const privacy: LocalizedLegal = {
         id: "scope",
         heading: "1. What this policy covers",
         paragraphs: [
-          "This policy describes how personal information is handled in connection with this website and with requests for private transfers made through it. It covers the website itself and the handling of a transfer inquiry once one can be sent.",
-          "It does not cover any other website, and it does not cover what a transport provider does with information after a journey has been arranged with them. Where that distinction matters, it is set out in section 7.",
+          "This policy explains how we handle personal information when you use this website and when you ask us to quote for a private transfer.",
+          "It does not cover any other website, and it does not cover what a transfer company does with your information once your journey has been arranged with them. Section 7 explains where that line falls.",
         ],
       },
       {
         id: "controller",
         heading: "2. Who is responsible for your information",
         paragraphs: [
-          "The person responsible for decisions about personal information handled through this website — the data controller — is an individual operating this site as a sole trader, established outside the European Union and the European Economic Area.",
-          "Their name, the country in which they are established and an address for privacy correspondence are not published on this page because they have not yet been confirmed for publication. A policy that named a controller incorrectly would be worse than one that says the detail is outstanding.",
+          "Private Transfers Across Italy is responsible for the personal information handled through this website. It is operated and managed by an individual rather than by a company, and that person deals with your enquiry personally: the correspondence, the quotation and the arrangements for your journey.",
+          "We are established outside the European Union and the European Economic Area.",
+          "Write to us at the address below with any question or request about your information. It reaches us directly and it is answered.",
         ],
         bullets: [
-          "Controller: [TO BE CONFIRMED — name of the individual acting as controller]",
-          "Country of establishment: [TO BE CONFIRMED — country]",
-          "Privacy contact: [TO BE CONFIRMED — email address or other channel for privacy requests]",
+          `Privacy contact: ${contactEmail}`,
         ],
-        pending: {
-          label: "Confirmation required before launch",
-          body:
-            "A privacy policy must identify the controller and give a usable way to reach them. Until those three details are supplied and published here, this policy is incomplete and should not be relied on.",
-        },
       },
       {
         id: "today",
-        heading: "3. What this website collects today: nothing",
+        heading: "3. Reading the site, and sending the form",
         paragraphs: [
-          "This is unusual enough to be worth stating plainly. At the time this policy was drafted, the website has no inquiry form, no contact form, no email address, no telephone number and no messaging link. There is no mechanism by which a visitor can transmit personal information to it.",
-          "The site was also tested in a browser rather than merely read in source. Across the pages checked, it made no requests to any third-party host, set no cookies, and wrote nothing to the browser's local or session storage. Typefaces are served from this site rather than from a font service, and every image is a local file.",
+          "Reading this site collects nothing about you. There is no analytics, no advertising, no tracking and no third-party content of any kind: the typefaces and images are served from this site itself, so no other company learns that you visited.",
+          "Sending the quotation form is different. When you press the button, everything you typed is sent to us so that we can read it and reply. That is the only way personal information reaches us through this website.",
         ],
         bullets: [
-          "No cookies are set — not for analytics, not for advertising, and not for preferences.",
-          "No analytics or tracking service is present: no Google Analytics, no tag manager, no advertising pixel, no session recording.",
-          "No content is loaded from a third-party host, so no third party receives your IP address through this site.",
-          "No account, login or profile exists, so nothing is stored about you between visits.",
+          "No cookies are set anywhere on this site — not for analytics, not for advertising, not for preferences.",
+          "No content is loaded from another company's server, so no one else receives your IP address through this site.",
+          "There is no account, login or profile, so nothing is kept about you between visits.",
+          "What you type in the form is never written to our technical logs. If something goes wrong, we record an error code, not your details.",
         ],
       },
       {
         id: "server-logs",
         heading: "4. Server records",
         paragraphs: [
-          "Any website is served by a hosting provider, and hosting providers ordinarily keep technical records of requests — typically including IP addresses, timestamps and the pages requested — for operational and security reasons. That happens at the hosting layer rather than through anything this site does.",
-          "The hosting arrangements for this website have not been confirmed, so this policy does not state who the provider is, what they record or how long they keep it.",
+          "Like any website, this one is served to you by a hosting provider, and hosting providers keep technical records of requests — usually the IP address, the time and the page requested — to keep the service running and secure. These records are created by the hosting provider, not by anything this site does, and we do not use them to build any picture of you.",
         ],
-        pending: {
-          label: "Confirmation required before launch",
-          body:
-            "The hosting provider, the technical records it keeps and its retention period need to be established, so that this section can describe them specifically rather than in general terms.",
-        },
       },
       {
         id: "planned",
-        heading: "5. What will be collected when the inquiry form exists",
+        heading: "5. What the quotation form asks for",
         paragraphs: [
-          "A quotation form is planned. It is not built, and nothing described in this section happens yet. It is set out in advance so that the position is clear before the form goes live rather than after.",
-          "The form is designed to collect the information needed to price and arrange a journey, and nothing beyond it:",
+          "The form asks for what is needed to price and arrange a journey, and nothing beyond it:",
         ],
         terms: [
           {
@@ -150,101 +143,88 @@ export const privacy: LocalizedLegal = {
         id: "purposes",
         heading: "6. Why that information would be used",
         paragraphs: [
-          "Only for dealing with the request you send and the journey that may follow from it.",
+          "Only to deal with the request you send and the journey that may follow from it:",
         ],
         bullets: [
-          "To work out whether the journey can be arranged, and to price it.",
-          "To reply to you with a quotation and the arrangement that goes with it.",
-          "To arrange the journey with a transport provider if you confirm it.",
-          "To keep a record of what was agreed, so that a later question about it can be answered.",
+          "To work out whether your journey can be arranged, and what it would cost.",
+          "To reply to you with a quotation and the arrangements that go with it.",
+          "To arrange the journey with a local transfer company once you confirm it.",
+          "To keep a record of what was agreed, so a later question about it can be answered.",
           "To deal with a complaint, a cancellation or a refund claim.",
         ],
-        pending: {
-          label: "Confirmation required before launch",
-          body:
-            "The legal basis for each of these uses has not been determined, and depends on the applicable-law question in section 11. This policy does not state one, because stating the wrong basis is itself a failure.",
-        },
+        terms: [
+          {
+            term: "Our legal grounds",
+            detail:
+              "For the first three, we handle your information because you have asked us to — it is needed to take the steps you requested and to arrange the journey you confirm. For the last two, we rely on our legitimate interest in keeping accurate records of what was agreed and in resolving complaints fairly, and on the record-keeping obligations that apply to us.",
+          },
+          {
+            term: "What we never do",
+            detail:
+              "We do not send marketing, we do not sell or rent your information, we do not share it for anyone else's advertising, and we make no automated decisions about you.",
+          },
+        ],
       },
       {
         id: "sharing",
         heading: "7. Sharing with a transport provider",
         paragraphs: [
-          "This website arranges inquiries. When a journey is confirmed, the transport itself is provided by a separate operating business, and the details needed to carry out the journey would be passed to them — ordinarily the pickup and drop-off, the date and time, the travel reference, the size of the party and its luggage, and a contact name and number so the journey can be completed.",
-          "That business is not named on this page. The relationship has not been confirmed in a form that can be published, and naming an operator that has not been verified would be exactly the kind of invented detail this site does not publish.",
-          "Nothing is sold, and nothing is shared for anyone else's marketing.",
+          "We arrange your journey; we do not drive it. The transfer itself is carried out by a local transfer company, and you pay that company directly for the journey.",
+          "When you confirm a booking, we pass that company only what it needs to collect you and complete the journey: the pickup and drop-off addresses, the date and time, your flight, train or ship number if you gave one, the size of your party and its luggage, and a contact name and telephone number. Once it has those details, that company handles them under its own privacy policy.",
+          "The company that will carry out your journey is identified to you in your quotation or booking confirmation, so you know who will be collecting you before you confirm anything.",
+          "Apart from that company and the service providers in section 8, we share your information with no one. Nothing is sold, and nothing is shared for anyone else's marketing.",
         ],
-        pending: {
-          label: "Confirmation required before launch",
-          body:
-            "The identity of the operating business, and whether it acts as a separate controller or as a processor, both need to be established. The answer changes what this section has to say and what, if anything, has to be put in writing between the two parties.",
-        },
       },
       {
         id: "systems",
         heading: "8. Systems used to handle a request",
         paragraphs: [
-          "A customer-relationship system and an email arrangement are planned for this website. They are planned as this website's own, independent of any other site or business.",
-          "Neither exists yet. No customer-relationship system holds any data for this website, and no email arrangement is in place. When they are, this section will name what they are and where they operate, because a system that stores your information is something you are entitled to know about.",
+          "We use a small number of service providers to run this website. They act on our instructions, only for the purposes in section 6, and none of them is permitted to use your information for anything of their own.",
+          "They are Cloudflare, which serves this website to you and stores your enquiry in a database used only by this website; and Resend, which delivers the email confirming your request and our reply. The system we use to read and manage enquiries is part of this website rather than a third-party product, so your details are not loaded into any outside sales or marketing tool.",
         ],
-        pending: {
-          label: "Confirmation required before launch",
-          body:
-            "The customer-relationship system, the email provider and the hosting provider all need to be chosen and named here, together with where each one stores data.",
-        },
       },
       {
         id: "international",
         heading: "9. Information leaving the country you are in",
         paragraphs: [
-          "The controller is established outside the European Union and the European Economic Area. If you are in the EU or the EEA, that means information you send would be handled in a country outside it.",
-          "Where that happens, the law of your country may require a specific safeguard to be in place. No such safeguard is described here, because none has yet been put in place and describing one that did not exist would be a false assurance.",
+          "We are established outside the European Union and the European Economic Area, and your journey is in Italy. Your information is therefore handled in more than one country, and if you are in the EU or the EEA it will be handled outside it.",
+          "Wherever it goes, it is handled only by us, by the service providers listed in section 8 and by the transfer company carrying out your journey, only for the purposes in section 6, and under this policy.",
         ],
-        pending: {
-          label: "Legal review required",
-          body:
-            "Whether an international-transfer safeguard is required, and which mechanism would be appropriate, needs legal advice once the controller's country of establishment and the systems in section 8 are settled.",
-        },
       },
       {
         id: "retention",
-        heading: "10. How long information would be kept",
+        heading: "10. How long information is kept",
         paragraphs: [
-          "No retention period has been set. Rather than state a figure that has not been decided and would not be followed, this policy says that the question is open.",
-          "A reasonable approach, which has not yet been adopted, is to keep an inquiry that does not become a booking for a short period and a confirmed booking for as long as a question about it could still arise — but that is a recommendation for the owner to accept or change, not a rule currently in force.",
+          "We keep your information for three set periods, each counted from our last contact with you about the journey in question. After that it is deleted.",
         ],
-        pending: {
-          label: "Confirmation required before launch",
-          body:
-            "Retention periods need to be decided for inquiries that do not become bookings, for confirmed bookings, and for correspondence about complaints or refunds.",
-        },
+        bullets: [
+          "An enquiry that does not become a booking: 12 months.",
+          "A confirmed booking: 7 years, so that a record of the journey and what was paid for it stays available for as long as an accounting or tax question about it could arise.",
+          "Correspondence about a complaint or a refund: 3 years.",
+        ],
       },
       {
         id: "security",
         heading: "11. Security",
         paragraphs: [
-          "The website is served over an encrypted connection. The quotation form is designed so that a submission is validated on the server and delivered server to server, with no credential or endpoint exposed to the browser — but that form is not live, so this describes a design rather than an operating system.",
-          "No absolute assurance is offered here. No one can promise that information sent over the internet cannot be intercepted, and a policy that said otherwise would be making a promise it could not keep.",
+          "This website is served over an encrypted connection, your enquiry is checked on our server before anything else happens, and the database holding enquiries is not reachable from your browser. Access to stored enquiries is restricted to the person managing them.",
+          "No one can promise that information sent over the internet can never be intercepted, and we do not make that promise. What we can say is that we keep what you send to the minimum we need, and delete it on the schedule in section 10.",
         ],
       },
       {
         id: "rights",
         heading: "12. Your rights over your information",
         paragraphs: [
-          "Depending on where you are and which law applies, you may have the right to ask what information is held about you, to have it corrected, to have it deleted, to object to or restrict how it is used, and to receive a copy of it.",
-          "Because no information is collected yet and the applicable law has not been settled, this policy does not set out a procedure or a response time. Once a privacy contact exists, a request made to it will be answered.",
+          "You can ask us what information we hold about you, ask us to correct it, ask us to delete it, ask us to stop or limit how we use it, object to our using it, and ask for a copy of it in a portable form.",
+          "Write to the address in section 2 and say what you would like us to do. We will not charge you for it, and we will not ask you for anything beyond what we need to be sure the request is yours. If we cannot do what you have asked, we will tell you why.",
         ],
-        pending: {
-          label: "Legal review required",
-          body:
-            "Which law applies to this website's processing — and therefore which rights and which deadlines are enforceable — has not been determined. Section 2 and section 9 both depend on the same answer.",
-        },
       },
       {
         id: "complaints",
         heading: "13. Complaints",
         paragraphs: [
-          "If you are unhappy with how your information has been handled, the first step is to contact the controller at the address that will be published in section 2.",
-          "You may also be able to complain to a data protection authority in the country where you live. This policy does not name one, because the supervisory authority with jurisdiction depends on the controller's establishment and on the applicable-law question above.",
+          "If you are unhappy with how your information has been handled, the first step is to write to the controller at the address in section 2.",
+          "If we cannot resolve it between us, you can complain to the data protection authority in the country where you live. Doing so costs you nothing and does not affect any other right you have.",
         ],
       },
       {
@@ -259,18 +239,18 @@ export const privacy: LocalizedLegal = {
         id: "changes",
         heading: "15. Changes to this policy",
         paragraphs: [
-          "This policy carries the date it was drafted and will carry the date it comes into force. When it changes materially, the date will change with it.",
-          "While it remains a draft, it should be read as a statement of intent rather than as a description of current practice — except for section 3, which describes what the website measurably does today.",
+          "This policy carries the date it last changed, at the top of the page. If we change it in a way that matters, we will update that date.",
+          "The version that applies to your enquiry is the one in force when you sent it.",
         ],
       },
       {
         id: "contact",
         heading: "16. Contact",
         paragraphs: [
-          "There is no contact channel on this website yet: no form, no email address and no telephone number. When a privacy contact exists it will be published in section 2 and repeated here.",
+          "There are two ways to reach us: the quotation form, for describing a journey you would like quoted, and the email address below for everything else — privacy requests, questions, complaints and cancellations.",
         ],
         bullets: [
-          "Privacy contact: [TO BE CONFIRMED — email address or other channel for privacy requests]",
+          `Privacy and general contact: ${contactEmail}`,
         ],
       },
     ],
@@ -301,27 +281,21 @@ export const privacy: LocalizedLegal = {
     meta: {
       title: "Privacy",
       description:
-        "Che cosa raccoglie oggi questo sito, che cosa raccoglierà quando esisterà il modulo di richiesta e come verrebbero usate le informazioni. Bozza di lavoro.",
+        "Quali dati raccogliamo quando chiedete un preventivo, come li usiamo, chi altro li riceve, per quanto tempo li conserviamo e quali diritti avete.",
     },
     breadcrumbLabel: "Percorso di navigazione",
     eyebrow: "Note legali",
     h1: "Informativa sulla privacy",
     lead:
-      "Che cosa fa questo sito con i dati personali: al momento in cui scriviamo, nulla, perché non esiste ancora un modo per inviargliene.",
-
-    draft: {
-      label: "Bozza — non in vigore",
-      body:
-        "Questa informativa è una bozza di lavoro preparata prima del lancio. Non è stata esaminata da un legale, non è ancora in vigore e diverse disposizioni dipendono da dati aziendali non ancora confermati, segnalati dove compaiono. Nulla in questa pagina va inteso come descrizione della prassi attuale.",
-    },
+      "Che cosa vi chiediamo quando richiedete un preventivo, che cosa ne facciamo e che cosa potete chiederci di farne. Leggere il sito non raccoglie nulla; inviare il modulo ci trasmette quello che avete scritto.",
 
     status: {
       stateLabel: "Stato",
-      state: "Bozza, in attesa di conferma del titolare e di revisione legale",
-      draftedLabel: "Redatta il",
-      drafted: "28 ottobre 2026",
+      state: "In vigore",
+      draftedLabel: "Ultimo aggiornamento",
+      drafted: "29 ottobre 2026",
       effectiveLabel: "In vigore dal",
-      effective: "Non ancora in vigore",
+      effective: "29 ottobre 2026",
     },
 
     tocLabel: "In questa pagina",
@@ -331,61 +305,48 @@ export const privacy: LocalizedLegal = {
         id: "ambito",
         heading: "1. Che cosa copre questa informativa",
         paragraphs: [
-          "Questa informativa descrive come vengono trattati i dati personali in relazione a questo sito e alle richieste di transfer privati inviate attraverso di esso. Riguarda il sito stesso e la gestione di una richiesta di transfer, una volta che sarà possibile inviarne una.",
-          "Non riguarda altri siti e non riguarda ciò che un fornitore di trasporto fa dei dati dopo che un viaggio è stato organizzato con lui. Dove la distinzione conta, se ne parla al punto 7.",
+          "Questa informativa spiega come trattiamo i dati personali quando usate questo sito e quando ci chiedete un preventivo per un transfer privato.",
+          "Non riguarda altri siti e non riguarda ciò che l'azienda di transfer fa dei vostri dati una volta che il viaggio è stato organizzato con lei. Il punto 7 spiega dove passa questo confine.",
         ],
       },
       {
         id: "titolare",
         heading: "2. Chi risponde dei vostri dati",
         paragraphs: [
-          "La persona che decide sul trattamento dei dati personali attraverso questo sito — il titolare del trattamento — è una persona fisica che gestisce il sito in proprio, stabilita fuori dall'Unione europea e dallo Spazio economico europeo.",
-          "Il nome, il Paese di stabilimento e un recapito per le questioni di privacy non compaiono in questa pagina perché non sono ancora stati confermati per la pubblicazione. Un'informativa che indicasse un titolare sbagliato sarebbe peggio di una che dichiara il dato mancante.",
+          "Private Transfers Across Italy risponde dei dati personali trattati attraverso questo sito. È gestito da una persona fisica e non da una società, ed è quella persona a seguire personalmente la vostra richiesta: la corrispondenza, il preventivo e l'organizzazione del viaggio.",
+          "Siamo stabiliti fuori dall'Unione europea e dallo Spazio economico europeo.",
+          "Scriveteci all'indirizzo qui sotto per qualsiasi domanda o richiesta sui vostri dati. Arriva direttamente a noi e riceve risposta.",
         ],
         bullets: [
-          "Titolare: [DA CONFERMARE — nome della persona fisica titolare del trattamento]",
-          "Paese di stabilimento: [DA CONFERMARE — Paese]",
-          "Recapito privacy: [DA CONFERMARE — indirizzo e-mail o altro canale per le richieste privacy]",
+          `Recapito privacy: ${contactEmail}`,
         ],
-        pending: {
-          label: "Conferma necessaria prima del lancio",
-          body:
-            "Un'informativa deve identificare il titolare e indicare un recapito utilizzabile. Finché questi tre dati non saranno forniti e pubblicati qui, l'informativa è incompleta e non va considerata affidabile.",
-        },
       },
       {
         id: "oggi",
-        heading: "3. Che cosa raccoglie oggi questo sito: nulla",
+        heading: "3. Leggere il sito e inviare il modulo",
         paragraphs: [
-          "È una cosa abbastanza insolita da meritare una frase esplicita. Nel momento in cui questa informativa è stata redatta, il sito non ha un modulo di richiesta, né un modulo di contatto, né un indirizzo e-mail, né un numero di telefono, né un collegamento di messaggistica. Non esiste alcun meccanismo con cui un visitatore possa trasmettergli dati personali.",
-          "Il sito è stato anche provato in un browser, non soltanto letto nel codice. Sulle pagine verificate non ha effettuato richieste verso host di terze parti, non ha impostato cookie e non ha scritto nulla nella memoria locale o di sessione del browser. I caratteri tipografici sono serviti da questo sito e non da un servizio esterno, e ogni immagine è un file locale.",
+          "Leggere questo sito non raccoglie nulla su di voi. Non ci sono sistemi di analisi, pubblicità, tracciamento né contenuti di terze parti di alcun tipo: i caratteri tipografici e le immagini sono serviti da questo stesso sito, quindi nessun'altra azienda viene a sapere che l'avete visitato.",
+          "Inviare il modulo di preventivo è un'altra cosa. Quando premete il pulsante, tutto quello che avete scritto ci viene inviato perché possiamo leggerlo e rispondervi. È l'unico modo in cui dati personali ci raggiungono attraverso questo sito.",
         ],
         bullets: [
-          "Non viene impostato alcun cookie: né di analisi, né pubblicitario, né di preferenza.",
-          "Non è presente alcun servizio di analisi o tracciamento: nessun Google Analytics, nessun tag manager, nessun pixel pubblicitario, nessuna registrazione di sessione.",
-          "Nessun contenuto viene caricato da host di terze parti, quindi nessun terzo riceve il vostro indirizzo IP tramite questo sito.",
+          "Su tutto il sito non viene impostato alcun cookie: né di analisi, né pubblicitario, né di preferenza.",
+          "Nessun contenuto viene caricato dal server di un'altra azienda, quindi nessun altro riceve il vostro indirizzo IP tramite questo sito.",
           "Non esistono account, accessi o profili: fra una visita e l'altra non resta memorizzato nulla su di voi.",
+          "Quello che scrivete nel modulo non finisce mai nei nostri registri tecnici. Se qualcosa non funziona, annotiamo un codice di errore, non i vostri dati.",
         ],
       },
       {
         id: "log",
         heading: "4. Registri del server",
         paragraphs: [
-          "Qualsiasi sito viene servito da un fornitore di hosting, e i fornitori di hosting conservano abitualmente registri tecnici delle richieste — di norma indirizzi IP, orari e pagine richieste — per motivi operativi e di sicurezza. Questo avviene al livello dell'hosting, non per effetto di qualcosa che faccia il sito.",
-          "Le modalità di hosting di questo sito non sono ancora state confermate: questa informativa non indica perciò chi sia il fornitore, che cosa registri o per quanto tempo lo conservi.",
+          "Come ogni sito, anche questo vi viene servito da un fornitore di hosting, e i fornitori di hosting conservano registri tecnici delle richieste — di norma indirizzo IP, orario e pagina richiesta — per mantenere il servizio funzionante e sicuro. Questi registri sono creati dal fornitore di hosting, non da qualcosa che faccia il sito, e noi non li usiamo per ricostruire alcun profilo su di voi.",
         ],
-        pending: {
-          label: "Conferma necessaria prima del lancio",
-          body:
-            "Vanno individuati il fornitore di hosting, i registri tecnici che conserva e il relativo periodo di conservazione, perché questa sezione possa descriverli in concreto e non in generale.",
-        },
       },
       {
         id: "previsto",
-        heading: "5. Che cosa verrà raccolto quando esisterà il modulo",
+        heading: "5. Che cosa chiede il modulo di preventivo",
         paragraphs: [
-          "È previsto un modulo per le richieste di preventivo. Non è realizzato, e nulla di quanto descritto in questa sezione avviene oggi: lo si mette per iscritto in anticipo perché la posizione sia chiara prima che il modulo entri in funzione, e non dopo.",
-          "Il modulo è progettato per raccogliere ciò che serve a quotare e organizzare un viaggio, e nient'altro:",
+          "Il modulo chiede ciò che serve a quotare e organizzare un viaggio, e nient'altro:",
         ],
         terms: [
           {
@@ -423,101 +384,88 @@ export const privacy: LocalizedLegal = {
         id: "finalita",
         heading: "6. Perché quei dati verrebbero usati",
         paragraphs: [
-          "Soltanto per gestire la richiesta che inviate e il viaggio che eventualmente ne deriva.",
+          "Soltanto per gestire la richiesta che inviate e il viaggio che eventualmente ne deriva:",
         ],
         bullets: [
-          "Per capire se il viaggio si può organizzare e per quotarlo.",
-          "Per rispondervi con un preventivo e con l'accordo che lo accompagna.",
-          "Per organizzare il viaggio con un fornitore di trasporto, se lo confermate.",
+          "Per capire se il vostro viaggio si può organizzare e quanto costerebbe.",
+          "Per rispondervi con un preventivo e con le modalità che lo accompagnano.",
+          "Per organizzare il viaggio con un'azienda di transfer locale, una volta che lo confermate.",
           "Per conservare traccia di quanto concordato, così da poter rispondere a una domanda successiva.",
           "Per gestire un reclamo, una cancellazione o una richiesta di rimborso.",
         ],
-        pending: {
-          label: "Conferma necessaria prima del lancio",
-          body:
-            "La base giuridica di ciascuno di questi usi non è stata determinata e dipende dalla questione di legge applicabile di cui al punto 12. Questa informativa non ne indica alcuna, perché indicarne una sbagliata sarebbe di per sé una mancanza.",
-        },
+        terms: [
+          {
+            term: "Le nostre basi giuridiche",
+            detail:
+              "Per i primi tre, trattiamo i vostri dati perché ce lo avete chiesto: servono a dare seguito alla vostra richiesta e a organizzare il viaggio che confermate. Per gli ultimi due ci basiamo sul nostro legittimo interesse a conservare traccia esatta di quanto concordato e a gestire correttamente i reclami, e sugli obblighi di conservazione documentale che ci riguardano.",
+          },
+          {
+            term: "Che cosa non facciamo mai",
+            detail:
+              "Non inviamo comunicazioni commerciali, non vendiamo né cediamo i vostri dati, non li comunichiamo per la pubblicità di terzi e non prendiamo decisioni automatizzate sul vostro conto.",
+          },
+        ],
       },
       {
         id: "fornitori",
         heading: "7. Comunicazione a un fornitore di trasporto",
         paragraphs: [
-          "Questo sito si occupa di richieste. Quando un viaggio viene confermato, il trasporto è svolto da un'attività operativa distinta, e i dati necessari a effettuare il viaggio le verrebbero trasmessi: di norma luogo di partenza e di arrivo, data e ora, riferimento di viaggio, composizione del gruppo e dei bagagli, un nome e un numero di telefono per poter portare a termine il servizio.",
-          "Quell'attività non viene nominata in questa pagina. Il rapporto non è stato confermato in una forma pubblicabile, e indicare un operatore non verificato sarebbe esattamente il tipo di dettaglio inventato che questo sito non pubblica.",
-          "Nulla viene venduto e nulla viene comunicato per il marketing di terzi.",
+          "Noi organizziamo il viaggio; non lo guidiamo. Il transfer è svolto da un'azienda di transfer locale, e il viaggio lo pagate direttamente a quell'azienda.",
+          "Quando confermate una prenotazione, le trasmettiamo soltanto ciò che le serve per venirvi a prendere e portare a termine il viaggio: gli indirizzi di partenza e di arrivo, data e ora, il numero del volo, del treno o della nave se lo avete indicato, la composizione del gruppo e dei bagagli, un nome e un numero di telefono. Da quel momento quell'azienda tratta quei dati secondo la propria informativa.",
+          "L'azienda che effettuerà il vostro viaggio vi viene indicata nel preventivo o nella conferma di prenotazione, così sapete chi verrà a prendervi prima di confermare qualsiasi cosa.",
+          "A parte quell'azienda e i fornitori indicati al punto 8, non comunichiamo i vostri dati a nessuno. Nulla viene venduto e nulla viene comunicato per il marketing di terzi.",
         ],
-        pending: {
-          label: "Conferma necessaria prima del lancio",
-          body:
-            "Vanno stabiliti l'identità dell'attività operativa e se essa agisca come titolare autonomo o come responsabile del trattamento. La risposta cambia il contenuto di questa sezione e l'eventuale accordo da mettere per iscritto fra le due parti.",
-        },
       },
       {
         id: "sistemi",
         heading: "8. Sistemi usati per gestire una richiesta",
         paragraphs: [
-          "Per questo sito sono previsti un sistema di gestione dei contatti e una soluzione di posta elettronica propri, indipendenti da qualsiasi altro sito o attività.",
-          "Nessuno dei due esiste ancora. Nessun sistema di gestione dei contatti conserva dati per questo sito e nessuna soluzione di posta è attiva. Quando lo saranno, questa sezione indicherà quali sono e dove operano, perché un sistema che conserva i vostri dati è qualcosa che avete diritto di conoscere.",
+          "Per far funzionare questo sito ci avvaliamo di pochi fornitori di servizi. Agiscono su nostra istruzione, soltanto per le finalità del punto 6, e nessuno di essi può usare i vostri dati per scopi propri.",
+          "Sono Cloudflare, che vi serve questo sito e conserva la vostra richiesta in una banca dati usata soltanto da esso; e Resend, che recapita l'email di conferma della richiesta e la nostra risposta. Il sistema con cui leggiamo e gestiamo le richieste fa parte di questo sito e non è un prodotto di terzi: i vostri dati non finiscono quindi in alcuno strumento esterno di vendita o marketing.",
         ],
-        pending: {
-          label: "Conferma necessaria prima del lancio",
-          body:
-            "Il sistema di gestione dei contatti, il fornitore di posta elettronica e il fornitore di hosting vanno scelti e indicati qui, insieme al luogo in cui ciascuno conserva i dati.",
-        },
       },
       {
         id: "trasferimenti",
         heading: "9. Dati che escono dal Paese in cui vi trovate",
         paragraphs: [
-          "Il titolare è stabilito fuori dall'Unione europea e dallo Spazio economico europeo. Se vi trovate nell'UE o nel SEE, ciò significa che i dati che inviate verrebbero trattati in un Paese esterno.",
-          "In questi casi la legge del vostro Paese può richiedere una garanzia specifica. Qui non ne viene descritta alcuna, perché nessuna è ancora stata predisposta e descriverne una inesistente sarebbe una rassicurazione falsa.",
+          "Siamo stabiliti fuori dall'Unione europea e dallo Spazio economico europeo, e il vostro viaggio si svolge in Italia. I vostri dati sono quindi trattati in più di un Paese e, se vi trovate nell'UE o nel SEE, anche fuori da essa.",
+          "Ovunque si trovino, sono trattati soltanto da noi, dai fornitori elencati al punto 8 e dall'azienda di transfer che effettua il vostro viaggio, soltanto per le finalità del punto 6 e secondo questa informativa.",
         ],
-        pending: {
-          label: "Revisione legale necessaria",
-          body:
-            "Se sia necessaria una garanzia per il trasferimento internazionale, e quale strumento sia appropriato, richiede un parere legale una volta definiti il Paese di stabilimento del titolare e i sistemi di cui al punto 8.",
-        },
       },
       {
         id: "conservazione",
-        heading: "10. Per quanto tempo i dati verrebbero conservati",
+        heading: "10. Per quanto tempo i dati vengono conservati",
         paragraphs: [
-          "Non è stato fissato alcun periodo di conservazione. Invece di indicare un termine non deciso e che non verrebbe rispettato, questa informativa dichiara che la questione è aperta.",
-          "Un'impostazione ragionevole, non ancora adottata, è conservare per un periodo breve una richiesta che non diventa prenotazione e per più tempo una prenotazione confermata, finché possa sorgere una contestazione: è però una proposta che il titolare deve accettare o modificare, non una regola in vigore.",
+          "Conserviamo i vostri dati per tre periodi stabiliti, ciascuno calcolato dall'ultimo contatto avuto con voi in merito al viaggio di cui si tratta. Trascorso quel termine, vengono cancellati.",
         ],
-        pending: {
-          label: "Conferma necessaria prima del lancio",
-          body:
-            "Vanno decisi i periodi di conservazione per le richieste che non diventano prenotazioni, per le prenotazioni confermate e per la corrispondenza su reclami o rimborsi.",
-        },
+        bullets: [
+          "Una richiesta che non diventa prenotazione: 12 mesi.",
+          "Una prenotazione confermata: 7 anni, perché resti disponibile la documentazione del viaggio e di quanto è stato pagato per tutto il tempo in cui possa sorgere una questione contabile o fiscale.",
+          "Corrispondenza su un reclamo o un rimborso: 3 anni.",
+        ],
       },
       {
         id: "sicurezza",
         heading: "11. Sicurezza",
         paragraphs: [
-          "Il sito è servito su connessione cifrata. Il modulo di preventivo è progettato in modo che l'invio sia validato sul server e consegnato da server a server, senza esporre al browser alcuna credenziale o endpoint — ma quel modulo non è attivo, quindi questa è la descrizione di un progetto e non di un sistema in funzione.",
-          "Non viene offerta alcuna garanzia assoluta. Nessuno può promettere che dati inviati via internet non possano essere intercettati, e un'informativa che lo sostenesse farebbe una promessa che non può mantenere.",
+          "Questo sito è servito su connessione cifrata, la vostra richiesta viene controllata sul nostro server prima di qualsiasi altro passaggio e la banca dati che conserva le richieste non è raggiungibile dal vostro browser. L'accesso alle richieste conservate è riservato a chi le gestisce.",
+          "Nessuno può promettere che dati inviati via internet non possano mai essere intercettati, e noi non lo promettiamo. Possiamo però dire che teniamo quanto ci inviate al minimo necessario e lo cancelliamo secondo i termini del punto 10.",
         ],
       },
       {
         id: "diritti",
         heading: "12. I vostri diritti sui dati",
         paragraphs: [
-          "A seconda di dove vi trovate e di quale legge si applichi, potete avere il diritto di sapere quali dati vi riguardano sono conservati, di farli correggere, di farli cancellare, di opporvi al loro uso o limitarlo e di riceverne copia.",
-          "Poiché oggi non viene raccolto alcun dato e la legge applicabile non è stata definita, questa informativa non indica una procedura né un termine di risposta. Quando esisterà un recapito privacy, una richiesta inviata a quel recapito riceverà risposta.",
+          "Potete chiederci quali dati vi riguardano conserviamo, chiederci di correggerli, chiederci di cancellarli, chiederci di interrompere o limitare il loro uso, opporvi al loro trattamento e chiederne copia in formato portabile.",
+          "Scrivete al recapito indicato al punto 2 dicendo che cosa desiderate. Non vi addebiteremo nulla e non vi chiederemo nulla oltre a quanto ci serve per essere certi che la richiesta sia vostra. Se non potremo dare seguito a quanto chiedete, vi spiegheremo perché.",
         ],
-        pending: {
-          label: "Revisione legale necessaria",
-          body:
-            "Quale legge si applichi al trattamento di questo sito — e quindi quali diritti e quali termini siano esigibili — non è stato determinato. I punti 2 e 9 dipendono dalla stessa risposta.",
-        },
       },
       {
         id: "reclami",
         heading: "13. Reclami",
         paragraphs: [
-          "Se non siete soddisfatti di come sono stati trattati i vostri dati, il primo passo è scrivere al titolare al recapito che verrà pubblicato al punto 2.",
-          "Potreste inoltre avere la possibilità di rivolgervi a un'autorità di protezione dei dati del Paese in cui risiedete. Questa informativa non ne indica una, perché l'autorità competente dipende dallo stabilimento del titolare e dalla questione di legge applicabile sopra richiamata.",
+          "Se non siete soddisfatti di come sono stati trattati i vostri dati, il primo passo è scrivere al titolare al recapito indicato al punto 2.",
+          "Se non riusciamo a risolverla fra noi, potete rivolgervi all'autorità di protezione dei dati del Paese in cui risiedete. Farlo non vi costa nulla e non pregiudica alcun altro vostro diritto.",
         ],
       },
       {
@@ -532,18 +480,18 @@ export const privacy: LocalizedLegal = {
         id: "modifiche",
         heading: "15. Modifiche a questa informativa",
         paragraphs: [
-          "Questa informativa riporta la data in cui è stata redatta e riporterà la data in cui entrerà in vigore. Quando cambierà in modo sostanziale, cambierà con essa anche la data.",
-          "Finché resta una bozza va letta come dichiarazione di intenti e non come descrizione della prassi attuale, con l'eccezione del punto 3, che descrive ciò che il sito fa oggi in modo verificabile.",
+          "Questa informativa riporta in cima alla pagina la data dell'ultima modifica. Se la cambieremo in modo rilevante, aggiorneremo quella data.",
+          "Alla vostra richiesta si applica la versione in vigore nel momento in cui l'avete inviata.",
         ],
       },
       {
         id: "contatti",
         heading: "16. Contatti",
         paragraphs: [
-          "Su questo sito non esiste ancora alcun canale di contatto: nessun modulo, nessun indirizzo e-mail, nessun numero di telefono. Quando esisterà un recapito privacy verrà pubblicato al punto 2 e ripetuto qui.",
+          "Per raggiungerci ci sono due vie: il modulo di preventivo, per descrivere un viaggio di cui volete il preventivo, e l'indirizzo e-mail qui sotto per tutto il resto — richieste privacy, domande, reclami e cancellazioni.",
         ],
         bullets: [
-          "Recapito privacy: [DA CONFERMARE — indirizzo e-mail o altro canale per le richieste privacy]",
+          `Recapito privacy e contatto generale: ${contactEmail}`,
         ],
       },
     ],

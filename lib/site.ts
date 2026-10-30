@@ -2,13 +2,51 @@
  * The handful of facts about this site that more than one file needs.
  *
  * Deliberately short, and deliberately free of anything that has not been
- * verified. There is no address, telephone number, company registration or
- * social account here, because none has been supplied — and an invented one
- * would end up in structured data, in the footer and in search results.
+ * verified. There is no postal address, telephone number, company
+ * registration or social account here, because none has been supplied — and
+ * an invented one would end up in structured data, in the footer and in
+ * search results.
  */
+
+/**
+ * The canonical production origin.
+ *
+ * Non-`www` by decision. The host must redirect `www.` and plain `http://`
+ * to this spelling, because a canonical that disagrees with what the host
+ * serves is the one SEO defect that costs rankings silently.
+ *
+ * It is written here as well as in the hosting dashboard on purpose. These
+ * pages are statically generated, so every canonical, every hreflang, every
+ * Open Graph URL and every sitemap entry is baked in at `next build` time —
+ * a `NEXT_PUBLIC_` variable missing from the *build* environment cannot be
+ * repaired at runtime. A build without it used to emit `http://localhost:3000`
+ * into every one of them. Now the worst case is the right origin, and
+ * `NEXT_PUBLIC_SITE_URL` is only needed to point a staging or preview build
+ * somewhere else.
+ */
+export const productionUrl = "https://privatetransfersacrossitaly.com";
+
+const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+
 export const siteUrl = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
+  configuredSiteUrl ||
+  (process.env.NODE_ENV === "development"
+    ? "http://localhost:3000"
+    : productionUrl)
 ).replace(/\/+$/, "");
+
+/**
+ * The one published contact address.
+ *
+ * Supplied by the owner, and the only contact detail on this site that has
+ * been. It is the privacy contact, the complaints contact and the
+ * cancellations contact, because they are the same mailbox — writing it once
+ * is what keeps the English and the Italian policies from drifting apart.
+ *
+ * Not yet in the header or the footer: the pages that carry it are drafts,
+ * and putting it in a shared component would publish it site-wide.
+ */
+export const contactEmail = "privatetransfersacrossitaly@gmail.com";
 
 export const siteName = "Private Transfer Across Italy";
 
@@ -39,8 +77,60 @@ export const htmlLang: Record<Locale, string> = {
   it: "it",
 };
 
+/**
+ * A path turned into an absolute URL on the canonical origin.
+ *
+ * The homepage is the one case worth a line of code. Its registry path is
+ * `/`, and `${siteUrl}/` is the same resource as `${siteUrl}` — but not the
+ * same string, and the two surfaces that a crawler compares were emitting one
+ * each. Next normalises a resolved canonical by dropping the lone trailing
+ * slash, so the homepage declared `…/transfersacrossitaly.com` while the
+ * sitemap offered `…/transfersacrossitaly.com/`, and the hreflang cluster
+ * disagreed with itself across the two. Returning the bare origin here makes
+ * every surface emit the string Next would, and matches the registry's
+ * no-trailing-slash rule.
+ *
+ * `scripts/seo-check.mjs` is what found it, and asserts it stays fixed.
+ */
 export function absoluteUrl(path: string): string {
-  return path.startsWith("http") ? path : `${siteUrl}${path}`;
+  if (path.startsWith("http")) return path;
+  return path === "/" ? siteUrl : `${siteUrl}${path}`;
+}
+
+/**
+ * The `rel` for a link whose destination comes from a content file.
+ *
+ * ── Do-follow by decision ─────────────────────────────────────────────────
+ * Every external link on this site is a citation: the comune whose ordinance
+ * a page quotes, the airport operator whose terminal allocation it reports,
+ * RFI, UNESCO. `nofollow` exists for untrusted and paid links, and these are
+ * neither — linking to the authority a claim rests on is the whole editorial
+ * premise of the site. So ordinary external links are followed.
+ *
+ * `noopener` stays. Nothing here opens in a new tab, so it is a no-op today
+ * rather than a protection, and it costs nothing to keep correct in advance
+ * of the first link that does.
+ *
+ * ── Why the destination decides, and not the component ───────────────────
+ * A citation is external in almost every case written so far — but not every
+ * case. The Stazione Marittima pages cite `/destinations/naples`, which is
+ * this site's own. When the components hardcoded their `rel`, that internal
+ * link got the external treatment, which was invisible in the source and
+ * only turned up by parsing the built HTML.
+ *
+ * `undefined` for anything on this site or any relative path; React then
+ * omits the attribute entirely.
+ */
+export function outboundRel(href: string): string | undefined {
+  if (!/^https?:\/\//i.test(href)) return undefined;
+  try {
+    const host = new URL(href).hostname;
+    const own = new URL(productionUrl).hostname;
+    if (host === own || host === `www.${own}`) return undefined;
+  } catch {
+    return undefined;
+  }
+  return "noopener";
 }
 
 /**

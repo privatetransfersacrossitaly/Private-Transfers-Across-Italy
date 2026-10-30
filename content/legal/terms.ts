@@ -1,53 +1,57 @@
+import { contactEmail } from "@/lib/site";
 import type { LocalizedLegal } from "./types";
 
 /**
- * Terms and Conditions — draft.
+ * Terms and Conditions. In force from 29 October 2026.
  *
- * ── The two structural facts these terms are written around ───────────────
- * First, this website arranges inquiries; the transport is provided by a
- * separate operating business. That has been confirmed by the owner, and it
- * changes the shape of the document: the website is not the carrier, and
- * these terms must not read as if it were. The operating business is not
- * named, because its identity has not been confirmed in a publishable form.
+ * ── The three-party shape, stated once in §2 ──────────────────────────────
+ * The customer deals with one person, who arranges the journey; a local
+ * transfer company performs it and takes payment directly. §2 sets that out
+ * as two `terms` entries — what we do, what the transfer company does —
+ * because the whole document depends on a reader holding both in mind, and a
+ * paragraph is easier to skim past than a pair of labelled rows.
  *
- * Second, nothing can currently be requested, quoted, booked or paid for.
- * There is no form, no contact channel and no payment arrangement. So these
- * terms describe the arrangement that will apply once those exist, and say so
- * rather than pretending to govern transactions that cannot happen.
+ * That split also drives §13. The site is not the carrier and must not read
+ * as if it were, but a customer should not be handed a jurisdictional puzzle
+ * when something goes wrong on the road. So §13 allocates responsibility
+ * plainly and then commits to helping take a problem up with the company
+ * rather than retreating behind the distinction.
  *
- * ── What is deliberately absent ───────────────────────────────────────────
- * No governing law, no dispute venue, no VAT rate, no blanket exclusion of
- * liability. The first two are not known; the third would be invented; the
- * fourth would purport to override consumer protections that cannot be
- * contracted away, which is both wrong and, in most jurisdictions,
- * ineffective.
+ * ── Deliberately absent ───────────────────────────────────────────────────
+ * No governing law, no chosen court, no VAT rate, no limitation of liability.
+ * The VAT rate depends on the journey and the company. The other three are
+ * absent on purpose: a non-EU operator choosing its own law and forum against
+ * EU consumers is both unenforceable and a bad look, so §17 says instead that
+ * the customer keeps the mandatory protection of their own country. An
+ * unstated limitation leaves the ordinary law in place, which is the safer
+ * default of the two.
+ *
+ * ── The one commercial fact kept off the page ─────────────────────────────
+ * How this is paid for. §5 says the customer pays the transfer company and
+ * that no fee is added — both true and both the customer's business. What the
+ * arrangement is between this site and that company is not, and no section
+ * hints at it.
  */
 export const terms: LocalizedLegal = {
   en: {
     meta: {
       title: "Terms and Conditions",
       description:
-        "What this website does, the difference between a quotation request and a confirmed booking, and the terms that will apply to a journey. A working draft.",
+        "How our transfer quotation service works: requests, quotations, booking confirmation, payment direct to the transfer company, changes, cancellations and responsibilities.",
     },
     breadcrumbLabel: "Breadcrumb",
     eyebrow: "Legal",
     h1: "Terms and Conditions",
     lead:
-      "What this website is, what it is not, and the terms that will apply to a journey arranged through it.",
-
-    draft: {
-      label: "Draft — not in force",
-      body:
-        "These terms are a working draft prepared ahead of launch. They have not been reviewed by a lawyer, they are not yet in force, and several provisions — including the governing law — depend on business facts that have not been confirmed. Those are marked where they appear.",
-    },
+      "How this service works, what we do and do not do, and the terms that apply to a journey arranged through us.",
 
     status: {
       stateLabel: "Status",
-      state: "Draft, pending owner confirmation and legal review",
-      draftedLabel: "Drafted",
-      drafted: "28 October 2026",
+      state: "In force",
+      draftedLabel: "Last updated",
+      drafted: "29 October 2026",
       effectiveLabel: "In force from",
-      effective: "Not yet in force",
+      effective: "29 October 2026",
     },
 
     tocLabel: "On this page",
@@ -57,23 +61,30 @@ export const terms: LocalizedLegal = {
         id: "scope",
         heading: "1. Scope",
         paragraphs: [
-          "These terms will govern the use of this website and the arrangement of private transfers requested through it, once those arrangements can be made.",
-          "At present they cannot. There is no quotation form, no contact channel and no payment arrangement on this website, so no request can be sent, no booking can be made and no payment can be taken. These terms are published in advance so the position is clear before that changes.",
+          "These terms govern your use of this website and the arrangement of a private transfer requested through it. By sending a request you accept them.",
+          "They apply alongside our Privacy Policy and our Cancellation and Refund Policy, both of which form part of them.",
         ],
       },
       {
         id: "what-this-is",
         heading: "2. What this website is",
         paragraphs: [
-          "This website is an independent service through which a traveller can describe a journey in Italy and ask for it to be quoted. It publishes information about reaching places by road — where a vehicle may go, where it may stop, and which authority says so — and it takes the details of a journey so that a quotation can be prepared.",
-          "It is operated independently. It is not part of, and does not trade as, any other transfer website or business.",
-          "The transport itself is provided by a separate operating business. This website does not own vehicles, does not employ drivers and does not itself carry passengers. It makes no claim to hold transport licences, permits or insurance of its own.",
+          "Private Transfers Across Italy is an independent service that arranges private transfers in Italy. It is operated and managed by an individual rather than by a company, and that person handles your enquiry personally from first message to completed journey.",
+          "We publish what is actually known about reaching places by road — where a vehicle may go, where it may stop, and which authority says so — we take the details of your journey, and we arrange it with a transfer company near the route.",
+          "We do not own vehicles, we do not employ drivers and we do not carry passengers ourselves. The journey is carried out by a local transfer company, which is identified to you before you confirm.",
         ],
-        pending: {
-          label: "Confirmation required before launch",
-          body:
-            "The operating business that provides the transport is not named here, and the party a customer contracts with for the journey has not been confirmed. Section 13 cannot be completed, and these terms cannot come into force, until it is.",
-        },
+        terms: [
+          {
+            term: "What we do",
+            detail:
+              "Answer your enquiry, prepare the quotation, choose and brief the transfer company, confirm the arrangements in writing, and stay reachable about your journey before and on the day.",
+          },
+          {
+            term: "What the transfer company does",
+            detail:
+              "Supplies the vehicle and the driver, performs the journey, and takes payment from you for it directly. It is responsible for holding the licences, permits and insurance required to carry you.",
+          },
+        ],
       },
       {
         id: "request-vs-booking",
@@ -101,26 +112,22 @@ export const terms: LocalizedLegal = {
         id: "payment",
         heading: "5. Payment",
         paragraphs: [
-          "No payment arrangement exists on this website today. Nothing can be paid for here, and no card or bank details are collected by it.",
-          "When bookings begin, payment timing and method may vary by destination and by individual booking. Some journeys may require payment in advance; others may be payable to the driver by cash or card. The method that applies to your journey will be stated in your quotation or booking confirmation.",
+          "You pay the transfer company directly for your journey. We do not take payment for it, and this website collects no card or bank details at any point — there is no payment page on it, and you will never be asked to enter card details here.",
+          "Payment is normally made to the driver at the end of the journey, by cash or by card where the company accepts it. Some journeys or destinations may be arranged differently; where that is the case, your quotation and booking confirmation will say so before you are asked to confirm.",
         ],
         bullets: [
-          "The total amount payable will be stated before you are asked to confirm.",
-          "The payment method and any deadline for payment will be stated before you are asked to confirm.",
-          "No fee is added for administration, for card handling or for arranging the booking unless it is stated in the quotation.",
+          "The total amount payable is stated before you are asked to confirm.",
+          "How and when to pay is stated before you are asked to confirm.",
+          "We add no booking fee, administration fee or card-handling fee. The price you are quoted is the price for the journey.",
+          "If anyone asks you to pay us by card through this website, it is not us. Please tell us at the address in section 18.",
         ],
-        pending: {
-          label: "Confirmation required before launch",
-          body:
-            "How payment will be taken, and by which party, has not been decided. Until it is, this section describes an intention rather than a process, and the Privacy Policy cannot name a payment provider either.",
-        },
       },
       {
         id: "tax",
         heading: "6. VAT and other charges",
         paragraphs: [
-          "Where VAT or another tax applies to a journey, it will be identified in the quotation or booking confirmation, and the total shown to you will be the total payable.",
-          "No tax rate is stated on this page, and no assumption is made about whether tax applies to any particular booking or to any particular payment method. Those depend on the journey and on the party providing the transport, and will be stated for your booking rather than assumed from this page.",
+          "Where VAT or another tax applies to a journey, it is included in the quotation and identified there. The total you are shown is the total payable: there is nothing further to add at the end.",
+          "No tax rate is stated on this page, because it depends on the journey and on the transfer company carrying it out. Your quotation states the position for your booking.",
         ],
       },
       {
@@ -160,7 +167,7 @@ export const terms: LocalizedLegal = {
         heading: "10. Cancellation and refunds",
         paragraphs: [
           "Cancellation deadlines, cancellation charges, no-show charges and refund handling are set out in the Cancellation and Refund Policy, which forms part of these terms.",
-          "In summary, and subject to that policy: a cancellation more than 24 hours before the confirmed pickup time may qualify for a refund of an advance payment; a cancellation at or within 24 hours is intended to attract a charge equal to the full confirmed price. Those provisions are themselves drafts awaiting legal review.",
+          "In summary, and subject to that policy: a cancellation more than 24 hours before the confirmed pickup time may qualify for a refund of an advance payment; a cancellation at or within 24 hours attracts a charge of up to the full confirmed price. The Cancellation and Refund Policy sets out both in full, along with the 60-minute airport waiting period, no-shows, and what happens if the transfer cannot be provided.",
         ],
       },
       {
@@ -170,21 +177,16 @@ export const terms: LocalizedLegal = {
           "Road journeys are affected by traffic, weather, roadworks, accidents, demonstrations, official closures and similar events. Where a journey is delayed by something of that kind, the delay does not by itself mean the service was not provided.",
           "That is a narrow statement and it is meant narrowly. It does not mean that every delay is excused, and it does not apply where the confirmed service was not provided at all — where no vehicle arrived, where the vehicle was unsuitable for the party and luggage that had been confirmed, or where the journey was not completed. Those are failures to provide the service and are dealt with as such.",
         ],
-        pending: {
-          label: "Legal review required",
-          body:
-            "The boundary between an excused delay and a failure to provide the service needs legal review, as does the question of what remedies apply in each case under the law that will govern these terms.",
-        },
       },
       {
         id: "complaints",
         heading: "12. Complaints",
         paragraphs: [
           "If something goes wrong, the first step is to say so in writing, with the booking details and what happened, as soon as you reasonably can.",
-          "No complaints address exists on this website yet, and no response time is promised here because none has been set. A complaints channel and a target for acknowledging complaints will be published before bookings begin.",
+          "Write to the address below. No response time is promised here, because none has been set; a target for acknowledging a complaint will be published before bookings begin.",
         ],
         bullets: [
-          "Complaints contact: [TO BE CONFIRMED — email address or other channel]",
+          `Complaints contact: ${contactEmail}`,
         ],
       },
       {
@@ -192,13 +194,10 @@ export const terms: LocalizedLegal = {
         heading: "13. Responsibility and your rights as a consumer",
         paragraphs: [
           "Nothing in these terms removes or limits any right you have as a consumer that cannot lawfully be removed or limited. Where any provision here conflicts with such a right, the right applies and the provision does not.",
-          "The extent of responsibility, and which party carries it for what, depends on who you contract with for the journey and on the law that governs that contract. Neither has been confirmed, so this page does not state a limit of liability. A limitation written before those facts were known would be guesswork dressed as a term.",
+          "We are responsible for arranging your journey as described in your confirmation: for quoting it accurately, for booking it with a suitable company, and for passing on the details correctly. If we get that wrong, tell us and we will put it right.",
+          "The transfer company is responsible for performing the journey — the vehicle, the driver, the licences and insurance, and the way the journey is carried out. Where something goes wrong on the road, we will help you take it up with them, and we will not hide behind the distinction.",
+          "Neither of us is responsible for what neither of us can control: traffic, weather, strikes, official road closures and similar events. Section 11 explains how those are handled.",
         ],
-        pending: {
-          label: "Legal review required",
-          body:
-            "The contracting party, the allocation of responsibility between this website and the operating business, and any permissible limitation of liability all need to be settled with legal advice before these terms come into force.",
-        },
       },
       {
         id: "content",
@@ -212,40 +211,32 @@ export const terms: LocalizedLegal = {
         id: "privacy",
         heading: "15. Privacy",
         paragraphs: [
-          "How personal information is handled is set out in the Privacy Policy. At present the website collects nothing: there is no form, no contact channel, no analytics and no cookies.",
+          "How we handle personal information is set out in the Privacy Policy. In short: reading this site collects nothing — no cookies, no analytics, no third-party content — and what you type into the quotation form comes to us so that we can quote for your journey and arrange it.",
         ],
       },
       {
         id: "changes-to-terms",
         heading: "16. Changes to these terms",
         paragraphs: [
-          "These terms carry the date they were drafted and will carry the date they come into force. The terms that apply to a booking are the ones in force when that booking was confirmed, not a later version.",
+          "These terms carry the date they last changed, at the top of the page. The terms that apply to a booking are the ones in force when that booking was confirmed, not a later version.",
         ],
       },
       {
         id: "law",
-        heading: "17. Governing law and disputes",
+        heading: "17. Disputes",
         paragraphs: [
-          "No governing law or dispute venue is stated here, because neither has been determined.",
-          "The owner is established outside the European Union and the European Economic Area, while the journeys are in Italy and many customers will be consumers resident in the EU. Consumer protection law commonly gives a consumer rights in their own country of residence regardless of what a contract says, so this is not a clause that can be settled by choosing a convenient jurisdiction.",
+          "If something goes wrong, please write to us first, at the address in section 18. Most things are settled that way, and quickly.",
+          "These terms do not choose a governing law or a court, and they do not ask you to give up the protection of your own. If you are a consumer, the mandatory consumer-protection law of the country where you live applies to you whatever a contract says, and you keep the right to bring a claim in the courts of that country.",
+          "Where a dispute concerns how the journey itself was performed, it is a matter between you and the transfer company that carried it out. We will give you its details and help you take it up with them.",
         ],
-        bullets: [
-          "Governing law: [TO BE CONFIRMED — requires legal advice]",
-          "Dispute resolution: [TO BE CONFIRMED — requires legal advice]",
-        ],
-        pending: {
-          label: "Legal review required",
-          body:
-            "This is the single provision most likely to be wrong if guessed. It needs advice that takes account of the owner's place of establishment, the place of performance and the consumer-protection rules of the customer's country.",
-        },
       },
       {
         id: "contact",
         heading: "18. Contact",
         paragraphs: [
-          "There is no contact channel on this website yet. When one exists it will be published here and in the Privacy Policy.",
+          "Two ways to reach us: the quotation form, for describing a journey you would like quoted, and the email address below for everything else. Your booking confirmation tells you how to reach us on the day of travel.",
         ],
-        bullets: ["Contact: [TO BE CONFIRMED — email address or other channel]"],
+        bullets: [`Contact: ${contactEmail}`],
       },
     ],
 
@@ -255,7 +246,7 @@ export const terms: LocalizedLegal = {
         {
           page: "privacy",
           label: "Privacy Policy",
-          detail: "What is collected, what is not, and what would happen to it.",
+          detail: "What we collect, how we use it, and how long we keep it.",
         },
         {
           page: "cancellation",
@@ -275,27 +266,21 @@ export const terms: LocalizedLegal = {
     meta: {
       title: "Termini e condizioni",
       description:
-        "Che cosa fa questo sito, la differenza fra una richiesta di preventivo e una prenotazione confermata e i termini che si applicheranno a un viaggio. Bozza di lavoro.",
+        "Come funziona il nostro servizio di preventivi per transfer: richieste, preventivi, conferma, pagamento diretto all'azienda di transfer, modifiche, cancellazioni e responsabilità.",
     },
     breadcrumbLabel: "Percorso di navigazione",
     eyebrow: "Note legali",
     h1: "Termini e condizioni",
     lead:
-      "Che cos'è questo sito, che cosa non è e quali termini si applicheranno a un viaggio organizzato tramite esso.",
-
-    draft: {
-      label: "Bozza — non in vigore",
-      body:
-        "Questi termini sono una bozza di lavoro preparata prima del lancio. Non sono stati esaminati da un legale, non sono ancora in vigore e diverse disposizioni — fra cui la legge applicabile — dipendono da dati aziendali non ancora confermati, segnalati dove compaiono.",
-    },
+      "Come funziona questo servizio, che cosa facciamo e che cosa non facciamo, e quali termini si applicano a un viaggio organizzato tramite noi.",
 
     status: {
       stateLabel: "Stato",
-      state: "Bozza, in attesa di conferma del titolare e di revisione legale",
-      draftedLabel: "Redatti il",
-      drafted: "28 ottobre 2026",
+      state: "In vigore",
+      draftedLabel: "Ultimo aggiornamento",
+      drafted: "29 ottobre 2026",
       effectiveLabel: "In vigore dal",
-      effective: "Non ancora in vigore",
+      effective: "29 ottobre 2026",
     },
 
     tocLabel: "In questa pagina",
@@ -305,23 +290,30 @@ export const terms: LocalizedLegal = {
         id: "ambito",
         heading: "1. Ambito",
         paragraphs: [
-          "Questi termini disciplineranno l'uso di questo sito e l'organizzazione dei transfer privati richiesti attraverso di esso, quando sarà possibile organizzarli.",
-          "Al momento non lo è. Su questo sito non esistono un modulo di preventivo, un canale di contatto o una modalità di pagamento: non si può inviare una richiesta, non si può prenotare e non si può pagare. Questi termini vengono pubblicati in anticipo perché la posizione sia chiara prima che tutto ciò cambi.",
+          "Questi termini disciplinano l'uso di questo sito e l'organizzazione di un transfer privato richiesto tramite esso. Inviando una richiesta li accettate.",
+          "Si applicano insieme all'Informativa sulla privacy e alla pagina Cancellazioni e rimborsi, che ne fanno parte.",
         ],
       },
       {
         id: "che-cos-e",
         heading: "2. Che cos'è questo sito",
         paragraphs: [
-          "Questo sito è un servizio indipendente attraverso il quale chi viaggia può descrivere un tragitto in Italia e chiederne il preventivo. Pubblica informazioni sul raggiungere i luoghi su strada — dove un veicolo può andare, dove può fermarsi e chi lo stabilisce — e raccoglie i dati di un viaggio perché se ne possa preparare un preventivo.",
-          "È gestito in modo indipendente. Non fa parte di alcun altro sito o attività di transfer e non opera con un altro marchio.",
-          "Il trasporto è svolto da un'attività operativa distinta. Questo sito non possiede veicoli, non impiega conducenti e non trasporta esso stesso passeggeri. Non rivendica licenze, autorizzazioni o coperture assicurative di trasporto proprie.",
+          "Private Transfers Across Italy è un servizio indipendente che organizza transfer privati in Italia. È gestito da una persona fisica e non da una società, ed è quella persona a seguire personalmente la vostra richiesta, dal primo messaggio al viaggio concluso.",
+          "Pubblichiamo ciò che si sa davvero sul raggiungere i luoghi su strada — dove un veicolo può andare, dove può fermarsi e chi lo stabilisce — raccogliamo i dati del vostro viaggio e lo organizziamo con un'azienda di transfer della zona.",
+          "Non possediamo veicoli, non impieghiamo conducenti e non trasportiamo noi stessi passeggeri. Il viaggio è effettuato da un'azienda di transfer locale, che vi viene indicata prima della conferma.",
         ],
-        pending: {
-          label: "Conferma necessaria prima del lancio",
-          body:
-            "L'attività operativa che svolge il trasporto non è indicata qui, e la parte con cui il cliente conclude il contratto per il viaggio non è stata confermata. Il punto 13 non può essere completato, e questi termini non possono entrare in vigore, finché non lo sarà.",
-        },
+        terms: [
+          {
+            term: "Che cosa facciamo noi",
+            detail:
+              "Rispondiamo alla vostra richiesta, prepariamo il preventivo, scegliamo e istruiamo l'azienda di transfer, confermiamo per iscritto le modalità e restiamo raggiungibili sul vostro viaggio prima e durante la giornata.",
+          },
+          {
+            term: "Che cosa fa l'azienda di transfer",
+            detail:
+              "Mette a disposizione veicolo e conducente, effettua il viaggio e ne riceve direttamente il pagamento da voi. È responsabile delle licenze, delle autorizzazioni e delle coperture assicurative necessarie per trasportarvi.",
+          },
+        ],
       },
       {
         id: "richiesta-prenotazione",
@@ -349,26 +341,22 @@ export const terms: LocalizedLegal = {
         id: "pagamento",
         heading: "5. Pagamento",
         paragraphs: [
-          "Su questo sito non esiste oggi alcuna modalità di pagamento. Qui non si può pagare nulla e non vengono raccolti dati di carte o conti.",
-          "Quando le prenotazioni saranno attive, tempi e modalità di pagamento potranno variare per destinazione e per singola prenotazione. Alcuni viaggi potranno richiedere il pagamento anticipato; altri potranno essere pagati al conducente in contanti o con carta. La modalità che riguarda il vostro viaggio sarà indicata nel preventivo o nella conferma di prenotazione.",
+          "Il viaggio lo pagate direttamente all'azienda di transfer. Noi non ne incassiamo il prezzo, e questo sito non raccoglie in nessun momento dati di carte o conti: non esiste una pagina di pagamento e non vi verrà mai chiesto di inserire qui i dati di una carta.",
+          "Di norma si paga al conducente al termine del viaggio, in contanti o con carta dove l'azienda la accetta. Alcuni viaggi o destinazioni possono essere organizzati diversamente: in quel caso il preventivo e la conferma di prenotazione lo indicano prima che vi sia chiesto di confermare.",
         ],
         bullets: [
-          "L'importo totale dovuto sarà indicato prima che vi sia chiesto di confermare.",
-          "La modalità di pagamento e l'eventuale termine saranno indicati prima che vi sia chiesto di confermare.",
-          "Non vengono aggiunti costi di gestione pratica, di incasso con carta o di intermediazione, salvo che siano indicati nel preventivo.",
+          "L'importo totale dovuto è indicato prima che vi sia chiesto di confermare.",
+          "Come e quando pagare è indicato prima che vi sia chiesto di confermare.",
+          "Non aggiungiamo costi di prenotazione, di gestione pratica o di incasso con carta. Il prezzo che vi viene indicato è il prezzo del viaggio.",
+          "Se qualcuno vi chiede di pagarci con carta tramite questo sito, non siamo noi. Segnalatecelo al recapito indicato al punto 18.",
         ],
-        pending: {
-          label: "Conferma necessaria prima del lancio",
-          body:
-            "Come verrà incassato il pagamento, e da quale parte, non è stato deciso. Finché non lo sarà, questa sezione descrive un'intenzione e non un processo, e nemmeno l'informativa privacy può indicare un fornitore di pagamento.",
-        },
       },
       {
         id: "imposte",
         heading: "6. IVA e altri oneri",
         paragraphs: [
-          "Quando a un viaggio si applica l'IVA o un'altra imposta, questa sarà indicata nel preventivo o nella conferma di prenotazione, e il totale che vi verrà mostrato sarà l'importo dovuto.",
-          "In questa pagina non è indicata alcuna aliquota e non si dà per scontato che un'imposta si applichi a una determinata prenotazione o a una determinata modalità di pagamento. Dipende dal viaggio e dalla parte che svolge il trasporto, e sarà indicato per la vostra prenotazione anziché desunto da qui.",
+          "Quando a un viaggio si applica l'IVA o un'altra imposta, è compresa nel preventivo e vi è indicata. Il totale che vedete è il totale dovuto: non c'è nulla da aggiungere alla fine.",
+          "In questa pagina non viene indicata alcuna aliquota, perché dipende dal viaggio e dall'azienda di transfer che lo effettua. Il vostro preventivo indica la situazione relativa alla vostra prenotazione.",
         ],
       },
       {
@@ -408,7 +396,7 @@ export const terms: LocalizedLegal = {
         heading: "10. Cancellazioni e rimborsi",
         paragraphs: [
           "Termini di cancellazione, penali, addebiti per mancata presentazione e gestione dei rimborsi sono indicati nella pagina Cancellazioni e rimborsi, che forma parte di questi termini.",
-          "In sintesi, e fatto salvo quanto previsto in quella pagina: una cancellazione più di 24 ore prima dell'orario di presa in carico confermato può dare diritto al rimborso di un pagamento anticipato; una cancellazione nelle 24 ore precedenti è destinata a comportare un addebito pari all'intero prezzo confermato. Anche quelle disposizioni sono bozze in attesa di revisione legale.",
+          "In sintesi, e fatto salvo quanto previsto in quella pagina: una cancellazione più di 24 ore prima dell'orario di presa in carico confermato può dare diritto al rimborso di un pagamento anticipato; una cancellazione nelle 24 ore precedenti comporta un addebito fino all'intero prezzo confermato. La pagina Cancellazioni e rimborsi illustra entrambe per esteso, insieme ai 60 minuti di attesa in aeroporto, alla mancata presentazione e a che cosa succede se il transfer non può essere effettuato.",
         ],
       },
       {
@@ -418,21 +406,16 @@ export const terms: LocalizedLegal = {
           "I viaggi su strada risentono di traffico, meteo, cantieri, incidenti, manifestazioni, chiusure disposte dalle autorità ed eventi simili. Quando un viaggio subisce un ritardo di questo tipo, il ritardo non significa di per sé che il servizio non sia stato prestato.",
           "È un'affermazione circoscritta, e va intesa in senso stretto. Non significa che ogni ritardo sia giustificato e non vale quando il servizio confermato non è stato affatto prestato: quando nessun veicolo si è presentato, quando il veicolo non era adatto al gruppo e ai bagagli confermati, o quando il viaggio non è stato completato. Quelle sono mancate prestazioni e come tali vengono trattate.",
         ],
-        pending: {
-          label: "Revisione legale necessaria",
-          body:
-            "Il confine fra un ritardo giustificato e una mancata prestazione richiede una revisione legale, così come la questione dei rimedi applicabili in ciascun caso secondo la legge che disciplinerà questi termini.",
-        },
       },
       {
         id: "reclami",
         heading: "12. Reclami",
         paragraphs: [
           "Se qualcosa va storto, il primo passo è scriverlo, con i dati della prenotazione e il racconto dell'accaduto, appena ragionevolmente possibile.",
-          "Su questo sito non esiste ancora un recapito per i reclami, e qui non viene promesso alcun tempo di risposta perché non ne è stato fissato alcuno. Un canale per i reclami e un termine per il riscontro saranno pubblicati prima dell'avvio delle prenotazioni.",
+          "Scrivete al recapito indicato qui sotto. Qui non viene promesso alcun tempo di risposta, perché non ne è stato fissato alcuno: un termine per il riscontro a un reclamo sarà pubblicato prima dell'avvio delle prenotazioni.",
         ],
         bullets: [
-          "Recapito reclami: [DA CONFERMARE — indirizzo e-mail o altro canale]",
+          `Recapito reclami: ${contactEmail}`,
         ],
       },
       {
@@ -440,13 +423,10 @@ export const terms: LocalizedLegal = {
         heading: "13. Responsabilità e diritti del consumatore",
         paragraphs: [
           "Nulla in questi termini elimina o limita diritti che vi spettano come consumatori e che non possono essere legittimamente eliminati o limitati. Quando una disposizione di questa pagina confligge con un diritto di quel tipo, prevale il diritto e non la disposizione.",
-          "L'estensione della responsabilità, e quale parte ne risponda e per che cosa, dipende da chi è la vostra controparte contrattuale per il viaggio e dalla legge che disciplina quel contratto. Nessuno dei due elementi è confermato, quindi questa pagina non indica alcun limite di responsabilità. Una limitazione scritta prima di conoscere quei fatti sarebbe una supposizione travestita da clausola.",
+          "Noi rispondiamo dell'organizzazione del vostro viaggio come descritta nella conferma: del preventivo corretto, della scelta di un'azienda adeguata e della trasmissione esatta dei dati. Se sbagliamo, ditecelo e lo sistemiamo.",
+          "L'azienda di transfer risponde dell'esecuzione del viaggio: veicolo, conducente, licenze e assicurazioni, e il modo in cui il viaggio viene svolto. Se qualcosa va storto sulla strada, vi aiutiamo a farlo valere nei suoi confronti e non ci nascondiamo dietro questa distinzione.",
+          "Nessuno dei due risponde di ciò che nessuno dei due può controllare: traffico, meteo, scioperi, chiusure stradali disposte dalle autorità ed eventi simili. Il punto 11 spiega come vengono gestiti.",
         ],
-        pending: {
-          label: "Revisione legale necessaria",
-          body:
-            "La controparte contrattuale, la ripartizione delle responsabilità fra questo sito e l'attività operativa e ogni limitazione di responsabilità ammissibile vanno definite con un parere legale prima che questi termini entrino in vigore.",
-        },
       },
       {
         id: "contenuti",
@@ -460,40 +440,32 @@ export const terms: LocalizedLegal = {
         id: "privacy",
         heading: "15. Privacy",
         paragraphs: [
-          "Il trattamento dei dati personali è descritto nell'informativa sulla privacy. Al momento il sito non raccoglie nulla: non ci sono moduli, canali di contatto, strumenti di analisi né cookie.",
+          "Il trattamento dei dati personali è descritto nell'informativa sulla privacy. In sintesi: leggere questo sito non raccoglie nulla — niente cookie, niente analisi, nessun contenuto di terze parti — e quanto scrivete nel modulo di preventivo arriva a noi perché possiamo quotare il vostro viaggio e organizzarlo.",
         ],
       },
       {
         id: "modifiche-termini",
         heading: "16. Modifiche a questi termini",
         paragraphs: [
-          "Questi termini riportano la data di redazione e riporteranno la data di entrata in vigore. I termini che si applicano a una prenotazione sono quelli in vigore al momento in cui quella prenotazione è stata confermata, non una versione successiva.",
+          "Questi termini riportano in cima alla pagina la data dell'ultima modifica. A una prenotazione si applicano i termini in vigore al momento della conferma, non una versione successiva.",
         ],
       },
       {
         id: "legge",
-        heading: "17. Legge applicabile e controversie",
+        heading: "17. Controversie",
         paragraphs: [
-          "Qui non è indicata alcuna legge applicabile né alcun foro, perché nessuno dei due è stato determinato.",
-          "Il titolare è stabilito fuori dall'Unione europea e dallo Spazio economico europeo, mentre i viaggi si svolgono in Italia e molti clienti saranno consumatori residenti nell'UE. Il diritto dei consumatori riconosce di norma tutele nel Paese di residenza del consumatore a prescindere da quanto scritto nel contratto: non è quindi una clausola che si possa risolvere scegliendo un foro comodo.",
+          "Se qualcosa non va, scriveteci prima a noi, al recapito indicato al punto 18. Quasi tutto si risolve così, e in fretta.",
+          "Questi termini non scelgono una legge applicabile né un foro, e non vi chiedono di rinunciare alla tutela della vostra. Se siete consumatori, si applica comunque la normativa imperativa a tutela dei consumatori del Paese in cui risiedete, qualunque cosa preveda un contratto, e conservate il diritto di agire davanti ai giudici di quel Paese.",
+          "Quando la controversia riguarda il modo in cui il viaggio è stato effettuato, è una questione fra voi e l'azienda di transfer che lo ha svolto. Vi forniamo i suoi dati e vi aiutiamo a farla valere nei suoi confronti.",
         ],
-        bullets: [
-          "Legge applicabile: [DA CONFERMARE — richiede parere legale]",
-          "Risoluzione delle controversie: [DA CONFERMARE — richiede parere legale]",
-        ],
-        pending: {
-          label: "Revisione legale necessaria",
-          body:
-            "È la disposizione che più facilmente risulterebbe errata se indovinata. Richiede un parere che tenga conto del luogo di stabilimento del titolare, del luogo di esecuzione e delle norme a tutela del consumatore del Paese del cliente.",
-        },
       },
       {
         id: "contatti",
         heading: "18. Contatti",
         paragraphs: [
-          "Su questo sito non esiste ancora un canale di contatto. Quando ci sarà, verrà pubblicato qui e nell'informativa sulla privacy.",
+          "Due modi per raggiungerci: il modulo di preventivo, per descrivere un viaggio di cui volete il preventivo, e l'indirizzo e-mail qui sotto per tutto il resto. La conferma di prenotazione vi indica come raggiungerci il giorno del viaggio.",
         ],
-        bullets: ["Contatto: [DA CONFERMARE — indirizzo e-mail o altro canale]"],
+        bullets: [`Contatto: ${contactEmail}`],
       },
     ],
 
@@ -503,7 +475,7 @@ export const terms: LocalizedLegal = {
         {
           page: "privacy",
           label: "Informativa sulla privacy",
-          detail: "Che cosa viene raccolto, che cosa no e che fine farebbe.",
+          detail: "Quali dati raccogliamo, come li usiamo e per quanto tempo li conserviamo.",
         },
         {
           page: "cancellation",

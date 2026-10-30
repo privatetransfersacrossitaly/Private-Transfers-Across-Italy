@@ -1,0 +1,52 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"main": ".open-next/worker.js",
+
+	// The Worker that already exists on the account. `opennextjs-cloudflare
+	// migrate` guessed "rome-transfers" from package.json; no such Worker
+	// exists, and a deploy under that name would have created a second one.
+	"name": "private-transfers-across-italy",
+	"compatibility_date": "2026-10-29",
+
+	// nodejs_compat is required for one import: lib/quote/idempotency.ts hashes
+	// the submission with node:crypto. It also covered @supabase/ssr until that
+	// was removed, so this is now a narrower dependency than it looks.
+	"compatibility_flags": [
+		"nodejs_compat",
+		"global_fetch_strictly_public"
+	],
+
+	"assets": {
+		"directory": ".open-next/assets",
+		"binding": "ASSETS"
+	},
+
+	"services": [
+		{
+			// Self-reference, used by OpenNext for cache purging. The service name
+			// must equal the Worker name above or the deploy fails to resolve it.
+			"binding": "WORKER_SELF_REFERENCE",
+			"service": "private-transfers-across-italy"
+		}
+	],
+
+	// The D1 database that already exists on the account. Inspected
+	// 29 October 2026: 0 tables, so the migration in
+	// migrations/0001_create_leads.sql creates rather than alters.
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "italytransfers",
+			"database_id": "9f31329f-0b8e-4abd-8b06-9d82f6f6cef6"
+		}
+	]
+
+	// No "images" binding. Cloudflare Images transformations are billable
+	// beyond the free allowance and have not been approved, so next/image runs
+	// unoptimized instead — see the `images` block in next.config.ts for the
+	// trade-off. Add the binding back here, and remove `unoptimized`, to turn
+	// optimization on.
+
+	// No R2 bucket and no KV namespace. The incremental cache is served from
+	// the Worker's own assets; see open-next.config.ts.
+}

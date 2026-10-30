@@ -83,7 +83,7 @@ export const aboutEn: AboutContent = {
       },
     ],
     note:
-      "The quotation form is the subject of a later phase of this site. Until it is in place, every “Request a quote” link leads to the section of the homepage that sets out what to have ready — nothing on the site sends a message or confirms a booking today.",
+      "Every “Request a quote” link leads to the quotation form. Sending it is asking a question: it does not confirm a booking, and until the arrangements behind it are finished the form says plainly what has and has not happened to your request.",
   },
 
   coverage: {

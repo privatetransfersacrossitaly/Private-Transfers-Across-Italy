@@ -1,5 +1,5 @@
 import "server-only";
-import { getDb, isDatabaseConfigured } from "@/lib/db/supabase";
+import { all, first, isDatabaseConfigured, newId, nowIso, run } from "@/lib/db/d1";
 import { requireCrmActor, requireCrmUser } from "@/lib/crm/auth";
 import type { LeadStatus } from "@/lib/leads/types";
 
@@ -113,54 +113,79 @@ export async function listLeads(query: LeadQuery): Promise<LeadPage> {
   if (!isDatabaseConfigured()) return { rows: [], total: 0, page: 1, pages: 1 };
 
   const page = Math.max(1, query.page ?? 1);
-  const from = (page - 1) * PAGE_SIZE;
+  const offset = (page - 1) * PAGE_SIZE;
 
-  let request = getDb()
-    .from("leads")
-    .select("*", { count: "exact" })
-    .order("created_at", { ascending: false });
+  // Built as a WHERE clause with positional bindings. Nothing is concatenated
+  // into the SQL but the clause skeleton itself: every value the visitor
+  // supplies goes through `params` and is bound by D1, so a search term
+  // cannot become syntax.
+  const where: string[] = [];
+  const params: unknown[] = [];
 
   // `completed` is derived rather than stored, so it cannot be a column
   // filter. Confirmed rows are fetched and narrowed below.
   if (query.status && query.status !== "all" && query.status !== "completed") {
-    request = request.eq("status", query.status);
+    params.push(query.status);
+    where.push(`status = ?${params.length}`);
   } else if (query.status === "completed") {
-    request = request.eq("status", "confirmed");
+    params.push("confirmed");
+    where.push(`status = ?${params.length}`);
   }
 
   if (query.date) {
-    request = request
-      .gte("pickup_at", `${query.date}T00:00:00Z`)
-      .lte("pickup_at", `${query.date}T23:59:59Z`);
+    params.push(`${query.date}T00:00:00Z`, `${query.date}T23:59:59Z`);
+    where.push(`pickup_at >= ?${params.length - 1} AND pickup_at <= ?${params.length}`);
   }
 
   const term = (query.search ?? "").trim();
   if (term) {
-    // Escape the characters PostgREST's `or` filter treats as syntax, so a
-    // search for "a,b" cannot become two filters.
-    const safe = term.replace(/[,()]/g, " ").trim();
-    const like = `%${safe}%`;
-    request = request.or(
-      [
-        `full_name.ilike.${like}`,
-        `email.ilike.${like}`,
-        `phone_e164.ilike.${like}`,
-        `phone_national.ilike.${like}`,
-        `pickup.ilike.${like}`,
-        `dropoff.ilike.${like}`,
-      ].join(","),
+    // SQLite's LIKE is case-insensitive for ASCII only, so an Italian name
+    // with an accent would not match a differently-cased query. lower() on
+    // both sides fixes the common case; it costs the index on these columns,
+    // which is acceptable because search is the one query a human waits for
+    // deliberately. The `%` and `_` wildcards are escaped so a term
+    // containing them cannot widen the match.
+    const safe = term.replace(/[\\%_]/g, (ch) => `\\${ch}`).toLowerCase();
+    params.push(`%${safe}%`);
+    const n = params.length;
+    where.push(
+      "(" +
+        [
+          "full_name",
+          "email",
+          "phone_e164",
+          "phone_national",
+          "pickup",
+          "dropoff",
+        ]
+          .map((column) => `lower(${column}) LIKE ?${n} ESCAPE '\\'`)
+          .join(" OR ") +
+        ")",
     );
   }
 
-  const { data, count, error } = await request.range(from, from + PAGE_SIZE - 1);
+  const clause = where.length ? `WHERE ${where.join(" AND ")}` : "";
+  const now = new Date();
+  let rows: LeadRow[];
+  let total: number;
 
-  if (error) {
-    console.error("[crm] list failed:", error.message);
+  try {
+    const counted = await first<{ n: number }>(
+      `SELECT COUNT(*) AS n FROM leads ${clause}`,
+      params,
+    );
+    total = counted?.n ?? 0;
+    rows = await all<LeadRow>(
+      `SELECT * FROM leads ${clause} ORDER BY created_at DESC LIMIT ?${params.length + 1} OFFSET ?${params.length + 2}`,
+      [...params, PAGE_SIZE, offset],
+    );
+  } catch (error) {
+    console.error(
+      "[crm] list failed:",
+      error instanceof Error ? error.message : "unknown",
+    );
     return { rows: [], total: 0, page, pages: 1 };
   }
-
-  let rows = (data ?? []) as LeadRow[];
-  const now = new Date();
 
   // Narrow the derived statuses after the query, since neither can be
   // expressed as a column filter.
@@ -170,7 +195,6 @@ export async function listLeads(query: LeadQuery): Promise<LeadPage> {
     rows = rows.filter((row) => effectiveStatus(row, now) === "confirmed");
   }
 
-  const total = count ?? rows.length;
   return { rows, total, page, pages: Math.max(1, Math.ceil(total / PAGE_SIZE)) };
 }
 
@@ -181,17 +205,22 @@ export async function getLead(
   await requireCrmUser();
   if (!isDatabaseConfigured()) return null;
 
-  const db = getDb();
-  const { data, error } = await db.from("leads").select("*").eq("id", id).maybeSingle();
-  if (error || !data) return null;
+  try {
+    const lead = await first<LeadRow>("SELECT * FROM leads WHERE id = ?1", [id]);
+    if (!lead) return null;
 
-  const { data: events } = await db
-    .from("lead_events")
-    .select("*")
-    .eq("lead_id", id)
-    .order("created_at", { ascending: false });
-
-  return { lead: data as LeadRow, events: (events ?? []) as LeadEventRow[] };
+    const events = await all<LeadEventRow>(
+      "SELECT * FROM lead_events WHERE lead_id = ?1 ORDER BY created_at DESC",
+      [id],
+    );
+    return { lead, events };
+  } catch (error) {
+    console.error(
+      "[crm] lead fetch failed:",
+      error instanceof Error ? error.message : "unknown",
+    );
+    return null;
+  }
 }
 
 /** Counts for the status filter, so the tabs can show them. */
@@ -199,8 +228,18 @@ export async function leadCounts(): Promise<Record<string, number>> {
   await requireCrmUser();
   if (!isDatabaseConfigured()) return {};
 
-  const { data, error } = await getDb().from("leads").select("status,pickup_at,return_at,has_return");
-  if (error || !data) return {};
+  let data: LeadRow[];
+  try {
+    data = await all<LeadRow>(
+      "SELECT status, pickup_at, return_at, has_return FROM leads",
+    );
+  } catch (error) {
+    console.error(
+      "[crm] counts failed:",
+      error instanceof Error ? error.message : "unknown",
+    );
+    return {};
+  }
 
   const now = new Date();
   const counts: Record<string, number> = {
@@ -210,8 +249,9 @@ export async function leadCounts(): Promise<Record<string, number>> {
     completed: 0,
     cancelled: 0,
   };
-  for (const row of data as LeadRow[]) {
-    counts[effectiveStatus(row, now)] = (counts[effectiveStatus(row, now)] ?? 0) + 1;
+  for (const row of data) {
+    const status = effectiveStatus(row, now);
+    counts[status] = (counts[status] ?? 0) + 1;
   }
   return counts;
 }
@@ -231,25 +271,40 @@ export async function setLeadStatus(
   const actor = await requireCrmActor();
   if (!isDatabaseConfigured()) return { ok: false, error: "not_configured" };
 
-  const db = getDb();
-  const { data: before } = await db.from("leads").select("status").eq("id", id).maybeSingle();
+  try {
+    const before = await first<{ status: string }>(
+      "SELECT status FROM leads WHERE id = ?1",
+      [id],
+    );
+    // No row means nothing to change. Reporting success would tell a caller
+    // probing ids that this one exists.
+    if (!before) return { ok: false, error: "failed" };
 
-  const { error } = await db.from("leads").update({ status }).eq("id", id);
-  if (error) {
-    console.error("[crm] status update failed:", error.message);
+    const changed = await run("UPDATE leads SET status = ?1 WHERE id = ?2", [
+      status,
+      id,
+    ]);
+    if (changed === 0) return { ok: false, error: "failed" };
+
+    await run(
+      "INSERT INTO lead_events (id, lead_id, created_at, actor, event, detail) " +
+        "VALUES (?1, ?2, ?3, ?4, 'status_changed', ?5)",
+      [
+        newId(),
+        id,
+        nowIso(),
+        actor.email,
+        JSON.stringify({ from: before.status, to: status }),
+      ],
+    );
+    return { ok: true };
+  } catch (error) {
+    console.error(
+      "[crm] status update failed:",
+      error instanceof Error ? error.message : "unknown",
+    );
     return { ok: false, error: "failed" };
   }
-
-  await db.from("lead_events").insert([
-    {
-      lead_id: id,
-      actor: actor.email,
-      event: "status_changed",
-      detail: { from: before?.status ?? null, to: status },
-    },
-  ]);
-
-  return { ok: true };
 }
 
 /** Replace a lead's internal notes. Customer-facing fields are untouched. */
@@ -261,20 +316,25 @@ export async function setLeadNotes(
   if (!isDatabaseConfigured()) return { ok: false, error: "not_configured" };
 
   const trimmed = notes.trim().slice(0, 4000);
-  const db = getDb();
-  const { error } = await db
-    .from("leads")
-    .update({ admin_notes: trimmed || null })
-    .eq("id", id);
 
-  if (error) {
-    console.error("[crm] notes update failed:", error.message);
+  try {
+    const changed = await run(
+      "UPDATE leads SET admin_notes = ?1 WHERE id = ?2",
+      [trimmed || null, id],
+    );
+    if (changed === 0) return { ok: false, error: "failed" };
+
+    await run(
+      "INSERT INTO lead_events (id, lead_id, created_at, actor, event, detail) " +
+        "VALUES (?1, ?2, ?3, ?4, 'notes_updated', NULL)",
+      [newId(), id, nowIso(), actor.email],
+    );
+    return { ok: true };
+  } catch (error) {
+    console.error(
+      "[crm] notes update failed:",
+      error instanceof Error ? error.message : "unknown",
+    );
     return { ok: false, error: "failed" };
   }
-
-  await db.from("lead_events").insert([
-    { lead_id: id, actor: actor.email, event: "notes_updated", detail: null },
-  ]);
-
-  return { ok: true };
 }

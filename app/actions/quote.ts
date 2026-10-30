@@ -177,9 +177,25 @@ export async function submitQuoteRequest(
 
   // 5. The lead is saved. From here the visitor has succeeded whatever
   //    happens next. A deduplicated submission does not re-send the emails.
+  //
+  //    Wrapped because "whatever happens next" has to be true in both
+  //    directions. `send()` already swallows its own failures and
+  //    `recordEmailStatus` never throws, so this guards what is left — the
+  //    template building — and makes the guarantee structural rather than a
+  //    property of code that happens not to throw today. Without it an
+  //    unexpected throw here would return `status: "error"` for a lead that
+  //    is already in the database: the opposite lie to claiming a send that
+  //    did not happen, and the one that makes a visitor submit again.
   if (!created.lead.deduplicated) {
-    const notified = await sendLeadNotifications(lead, created.lead.reference);
-    await recordEmailStatus(created.lead.id, notified);
+    try {
+      const notified = await sendLeadNotifications(lead, created.lead.reference);
+      await recordEmailStatus(created.lead.id, notified);
+    } catch (error) {
+      console.error("[quote] notification step failed after the lead was saved:", error);
+      // Conservative: record both as failed rather than guess which got out.
+      // Never "sent" — that is the claim this must not make.
+      await recordEmailStatus(created.lead.id, { admin: "failed", customer: "failed" });
+    }
   }
 
   return {

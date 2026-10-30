@@ -10,7 +10,7 @@ import { photo, type PhotoSlug } from "@/content/photos";
 import type { EndpointSplit } from "@/content/veneto/types";
 import { EndpointPanels } from "@/components/veneto/endpoint-panels";
 import type { PageId } from "@/lib/routes";
-import type { Locale } from "@/lib/site";
+import { outboundRel, type Locale } from "@/lib/site";
 
 /**
  * Six openings, one brand.
@@ -1030,14 +1030,24 @@ export function HeroConstraint({
               </p>
             </div>
 
+            {/*
+              A source citation, and the only place besides `SourceNote` that
+              can link off the site. It used `next/link`, which gives an
+              outbound URL nothing it needs and rendered an anchor with no
+              `rel` at all — so four authority citations went out followed
+              while every other citation on the site went out `nofollow`.
+              `outboundRel` decides from the destination, because one of
+              these citations points at this site's own Naples page.
+            */}
             <p className="mt-4 border-t border-border pt-4 type-caption text-muted-foreground">
               {constraint.source.text}{" "}
-              <Link
+              <a
                 href={constraint.source.href}
+                rel={outboundRel(constraint.source.href)}
                 className="font-medium text-accent-ink underline decoration-accent/40 underline-offset-4 transition-colors hover:decoration-current focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
               >
                 {constraint.source.linkText}
-              </Link>
+              </a>
             </p>
           </div>
         </div>

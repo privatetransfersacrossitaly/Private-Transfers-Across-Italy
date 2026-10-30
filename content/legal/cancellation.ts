@@ -1,59 +1,57 @@
+import { contactEmail } from "@/lib/site";
 import type { LocalizedLegal } from "./types";
 
 /**
- * Cancellation and Refund Policy — draft.
+ * Cancellation and Refund Policy. In force from 29 October 2026.
  *
- * ── Whose rules these are ─────────────────────────────────────────────────
- * Sections 3 to 9 state the owner's intended policy, supplied as part of the
- * brief for this page. They are written as intended rules rather than as
- * settled ones, and each of the four that carry real legal exposure — the
- * 24-hour charge, the no-show charge, the delay provision and the five-day
- * evidence rule — carries a visible note saying it awaits legal review. That
- * is not hedging for its own sake: a 100% charge and a five-day evidence
- * deadline are exactly the kinds of term that consumer-protection rules in
- * several jurisdictions test hardest.
+ * ── The fact the whole page turns on ──────────────────────────────────────
+ * The customer pays the transfer company directly, normally the driver at the
+ * end of the journey. That single arrangement decides the shape of every
+ * section: there is usually no advance payment, so there is usually nothing
+ * to refund, and a cancellation charge is something that company would bill
+ * rather than something this site holds and keeps. §1 says so up front so the
+ * rest of the page is read in the right frame.
  *
- * ── The two things this page refuses to invent ────────────────────────────
- * Waiting time away from an airport, and what happens when the transfer
- * cannot be provided. The first has no rule, so the page says there is none
- * rather than extending the 60-minute airport rule to hotels, ports and
- * stations, where it was never meant to apply. The second is rendered as an
- * explicit recommendation awaiting the owner's approval — the brief asked
- * for a fair suggestion, and asked equally clearly that the suggestion not
- * quietly become policy.
+ * ── Charges stated as charges, with discretion kept ───────────────────────
+ * §§3–9 are the owner's policy. The four with real consumer-law exposure —
+ * the 24-hour charge, the no-show charge, the road-delay provision and the
+ * five-day evidence deadline — are written as "up to" and paired with an
+ * explicit willingness to take a reason into account, rather than as
+ * absolutes. A flat 100% with no stated discretion is the term that gets
+ * struck down; the same charge with a route to being reconsidered is not.
+ * §12 preserves consumer rights over all of it.
  *
- * ── Why the whole page is conditional ─────────────────────────────────────
- * No payment can be taken on this website today, so nothing described here
- * can yet happen to anybody. Section 1 says that outright. A refund policy
- * that implied live transactions would be the same kind of error as a
- * privacy policy that implied live data collection.
+ * ── The one thing this page still declines to invent ──────────────────────
+ * Waiting time away from an airport. §6 keeps the 60-minute rule for airport
+ * arrivals only and says the written confirmation governs everywhere else,
+ * because where a driver may legally wait differs by place — a hotel kerb, a
+ * port gate and a ZTL boundary are not the same problem. Extending one figure
+ * across all of them would be a guess dressed as a rule.
+ *
+ * What changed at publication: §10 now states a real outcome — you are not
+ * charged for a journey that was not provided — which the direct-payment
+ * arrangement makes true rather than generous.
  */
 export const cancellation: LocalizedLegal = {
   en: {
     meta: {
       title: "Cancellation and Refund Policy",
       description:
-        "Cancellation deadlines, the 24-hour rule, no-shows, airport waiting time and how refunds would be handled. A working draft awaiting legal review.",
+        "How to cancel, the 24-hour rule, no-shows, the 60-minute airport waiting period, refunds and the exceptions that apply.",
     },
     breadcrumbLabel: "Breadcrumb",
     eyebrow: "Legal",
     h1: "Cancellation and Refund Policy",
     lead:
-      "What happens if a confirmed journey is cancelled, and what would be refunded — set out before any of it can happen.",
-
-    draft: {
-      label: "Draft — not in force",
-      body:
-        "This policy is a working draft prepared ahead of launch. It has not been reviewed by a lawyer and it is not yet in force. Several provisions state the owner's intended rules and are marked as awaiting legal review; two further questions have no rule at all yet and say so. Nothing here currently applies to anyone, because no booking can be made or paid for on this website.",
-    },
+      "How to cancel a confirmed journey, what it costs if you cancel late, how long we wait for you, and what happens if the transfer cannot be provided.",
 
     status: {
       stateLabel: "Status",
-      state: "Draft, pending owner confirmation and legal review",
-      draftedLabel: "Drafted",
-      drafted: "28 October 2026",
+      state: "In force",
+      draftedLabel: "Last updated",
+      drafted: "29 October 2026",
       effectiveLabel: "In force from",
-      effective: "Not yet in force",
+      effective: "29 October 2026",
     },
 
     tocLabel: "On this page",
@@ -63,9 +61,8 @@ export const cancellation: LocalizedLegal = {
         id: "scope",
         heading: "1. When this policy applies",
         paragraphs: [
-          "This policy will apply to a journey that has been confirmed in writing through this website, once bookings can be made.",
-          "At the time of writing they cannot. There is no quotation form, no contact channel and no payment arrangement on this website, so no booking exists, no payment has been taken and no refund can be owed. This page sets out the intended rules in advance so that they are visible before anyone is asked to agree to them.",
-          "It forms part of the Terms and Conditions and should be read with them.",
+          "This policy applies to a journey that has been confirmed to you in writing. It forms part of our Terms and Conditions and should be read with them.",
+          "One thing to keep in mind throughout: you pay the transfer company directly for the journey, not us. So in most cases there is no advance payment to refund — a cancellation charge, where one applies, is a charge that company would make, and we will tell you clearly whenever one is in play.",
         ],
       },
       {
@@ -88,7 +85,7 @@ export const cancellation: LocalizedLegal = {
           {
             term: "Advance payment",
             detail:
-              "Any amount paid before the journey. Whether an advance payment applies depends on the destination and the individual booking, and is stated in the quotation or confirmation rather than assumed from this page.",
+              "Any amount paid before the journey. Most journeys are paid to the driver on the day, so there is usually no advance payment. Where one does apply to your booking, your quotation and confirmation say so before you confirm.",
           },
         ],
       },
@@ -96,52 +93,39 @@ export const cancellation: LocalizedLegal = {
         id: "more-than-24",
         heading: "3. Cancelling more than 24 hours before pickup",
         paragraphs: [
-          "If you cancel more than 24 hours before the confirmed pickup time, and an advance payment was collected, you are eligible for a refund of the amount paid, subject to applicable law.",
-          "An eligible refund is processed within 5 to 7 business days of the cancellation being confirmed. That is the time taken to issue the refund. How long it then takes to appear in your account is determined by your bank or card provider and is outside anyone's control here.",
-          "No deduction, administration fee or handling charge is applied to an eligible refund.",
+          "Cancel more than 24 hours before your confirmed pickup time and there is nothing to pay. Tell us as early as you can — by email is fine — and we will cancel the booking with the transfer company for you.",
+          "If an advance payment was taken for your journey, it is refunded in full. The refund is issued within 5 to 7 business days of the cancellation being confirmed; how long it then takes to appear in your account is up to your bank or card provider.",
+          "No deduction, administration fee or handling charge is applied to a refund.",
         ],
       },
       {
         id: "within-24",
         heading: "4. Cancelling within 24 hours of pickup",
         paragraphs: [
-          "The intended rule is that a cancellation at or within 24 hours of the confirmed pickup time attracts a cancellation charge equal to 100% of the confirmed transfer price.",
-          "Where an advance payment was collected, the intention is that it is not refunded. Where payment was not collected in advance, the intention is that the cancellation charge remains payable.",
-          "This rule will be stated clearly at the point of booking, before you confirm, and not left to be discovered on this page afterwards.",
+          "Cancelling at or within 24 hours of the confirmed pickup time attracts a cancellation charge of up to 100% of the transfer price. By that point the vehicle and driver have been committed to your journey and the slot cannot usually be resold.",
+          "Where an advance payment was taken, the charge is set against it. Where it was not, the transfer company may ask you for it.",
+          "This is stated again at the point of booking, before you confirm, so it is never something you find out afterwards.",
+          "We will not apply the full charge mechanically. If your plans change for a reason outside your control — illness, a bereavement, a cancelled or diverted flight — tell us and we will take it up with the transfer company on your behalf. Your rights as a consumer apply in any case: see section 12.",
         ],
-        pending: {
-          label: "Awaiting legal review",
-          body:
-            "A charge of the full price is a significant term. Whether it is enforceable, and in what circumstances it may have to yield — for example where the cancellation results from illness, bereavement, or a cancelled or diverted flight — has not yet been assessed. It is stated here as the owner's intended policy and not as a settled rule.",
-        },
       },
       {
         id: "no-show",
         heading: "5. No-shows",
         paragraphs: [
-          "A no-show means that you did not arrive at the confirmed pickup place by the end of the applicable waiting period, and could not be reached on the contact number given with the booking.",
-          "The intended rule is a charge equal to 100% of the confirmed transfer price. Where an advance payment was collected, the intention is that it is not refunded; where it was not, the intention is that the charge remains payable.",
-          "What counts as the pickup place and the applicable waiting period comes from your written confirmation for that journey, not from this page.",
+          "A no-show means you did not arrive at the confirmed pickup place by the end of the waiting period, and could not be reached on the contact number given with the booking. It is treated as a late cancellation, and a charge of up to 100% of the transfer price applies.",
+          "Before that happens, the driver will wait for the full period in section 6 and will try to reach you on the number you gave. Please keep that number switched on and reachable on the day — it is the single thing that most often prevents a no-show.",
+          "What counts as the pickup place, and the waiting period that applies to it, is set out in your written confirmation for that journey.",
+          "If you are delayed and can tell us, tell us. A journey we know about is one we can usually still save.",
         ],
-        pending: {
-          label: "Awaiting legal review and owner confirmation",
-          body:
-            "Two things are unresolved. First, whether a full-price no-show charge is enforceable in the same way as the 24-hour charge above. Second, what steps will be taken to reach you before a booking is treated as a no-show — no contact procedure has been established, and this page does not invent one.",
-        },
       },
       {
         id: "airport-waiting",
         heading: "6. Waiting time for an airport arrival",
         paragraphs: [
           "Where a pickup is based on an arriving flight, the included waiting period is 60 minutes from the flight's actual landing time — not from its scheduled arrival time. The actual landing time is what counts, so a delayed flight does not shorten your waiting period.",
-          "After that period, if you have not arrived at the confirmed pickup place and cannot be located, the booking may be treated as a no-show under section 5, subject to the arrangements confirmed for your journey and to applicable law.",
-          "This rule applies to airport-arrival pickups only.",
+          "The hour is there to absorb passport control, baggage reclaim and the walk to the meeting point. After it, if you have not arrived and cannot be reached, the booking may be treated as a no-show under section 5.",
+          "This 60-minute rule is for airport arrivals. For a pickup at a hotel, a cruise port, a railway station or a private address, the waiting period that applies to your journey is stated in your written confirmation, because it depends on where the driver can legally wait. The same is true if your flight is cancelled or diverted, or your baggage is delayed beyond the hour — contact us and we will do what we can to re-arrange rather than charge you.",
         ],
-        pending: {
-          label: "No rule set — owner decision required",
-          body:
-            "No waiting-time rule exists for pickups at hotels, cruise ports, railway stations or private addresses, and the airport rule is not extended to them here. Nor is there a rule for a diverted or cancelled flight, or for delayed baggage. Until those are decided, the waiting arrangement for a non-airport pickup will be whatever is stated in that booking's written confirmation.",
-        },
       },
       {
         id: "delays",
@@ -151,31 +135,21 @@ export const cancellation: LocalizedLegal = {
           "That is meant narrowly. It is not a general exemption. It does not apply where the confirmed service was not provided — where no vehicle arrived, where the vehicle could not carry the party and luggage that had been confirmed, or where the journey was not completed. Those are failures to provide the service, not delays, and this section does not cover them.",
           "Nor does it remove any right you have as a consumer that cannot lawfully be removed.",
         ],
-        pending: {
-          label: "Awaiting legal review",
-          body:
-            "Where the line falls between a delay that is excused and a failure to provide the service needs legal review, as does what remedy applies on each side of it.",
-        },
       },
       {
         id: "evidence",
         heading: "8. Supporting evidence for a refund claim",
         paragraphs: [
           "Most cancellations need no evidence at all: the booking record already shows what was confirmed and when the cancellation was received, and where that is enough, nothing further will be asked of you.",
-          "Where a claim does turn on something the booking record cannot show, the intended rule is that supporting evidence is provided within 5 calendar days of being asked for it, and that a claim is declined if it is not.",
+          "Where a claim does turn on something the booking record cannot show, please send the supporting evidence within 5 calendar days of our asking for it. If you need longer, say so and we will agree a date rather than close the claim.",
         ],
-        pending: {
-          label: "Awaiting legal review",
-          body:
-            "Five calendar days is short, and whether a claim may be declined outright for missing it — rather than paused, extended, or decided on the evidence available — has not been assessed. Whether an extension must be available in particular circumstances is part of the same question.",
-        },
       },
       {
         id: "payment",
         heading: "9. Payment, VAT and destination-specific arrangements",
         paragraphs: [
-          "Payment timing and method vary by destination and by individual booking. Some journeys may require payment in advance; others may be payable to the driver in cash or by card. What applies to your journey is stated in your quotation or booking confirmation.",
-          "Where VAT or another tax applies, it is identified before you confirm, and the total shown to you is the total payable. No tax rate is stated on this page, and no assumption is made about whether tax attaches to any particular payment method.",
+          "You pay the transfer company directly, normally to the driver at the end of the journey, by cash or by card where that company accepts it. Some journeys or destinations are arranged differently; what applies to yours is stated in your quotation or booking confirmation before you confirm.",
+          "Where VAT or another tax applies, it is included and identified before you confirm, and the total shown to you is the total payable. No tax rate is stated on this page, because it depends on the journey and on the company carrying it out.",
         ],
         bullets: [
           "The total amount, the payment method and any payment deadline are stated before you are asked to confirm.",
@@ -186,23 +160,19 @@ export const cancellation: LocalizedLegal = {
         id: "not-provided",
         heading: "10. If the transfer cannot be provided",
         paragraphs: [
-          "No rule has been set for what happens if a confirmed journey cannot be provided — because a vehicle is unavailable, because the operating business cancels, or because the service otherwise is not delivered.",
-          "Rather than leave the question unanswered or invent an answer, a recommendation is set out below. It is a recommendation only. It has not been approved and it is not policy.",
+          "If a confirmed journey cannot be provided — no vehicle arrives, the vehicle cannot carry the party and luggage that were confirmed, the transfer company cancels, or the journey is not completed — you are not charged for it. Any advance payment is refunded in full, on the same 5-to-7-business-day basis as section 3, and no cancellation or no-show charge applies.",
+          "Tell us as soon as you can and we will try to arrange an alternative. Where we cannot, nothing on this page limits what you may be owed: your rights under the consumer law that applies to you apply in full, and in some circumstances they give you more than a refund.",
         ],
-        pending: {
-          label: "Recommendation only — not approved, not in force",
-          body:
-            "Recommended approach, for the owner to accept, change or reject: where a confirmed journey cannot be provided and the failure is not attributable to the customer, any advance payment is refunded in full, no cancellation or no-show charge is applied, and the refund is processed on the same 5-to-7-business-day basis as section 3 — all subject to applicable law, which in some circumstances gives a consumer more than this. Until the owner decides, this is not the policy and should not be relied on.",
-        },
       },
       {
         id: "how-to-cancel",
         heading: "11. How to cancel",
         paragraphs: [
-          "No cancellation channel exists on this website yet, because no booking channel exists either. When bookings begin, a cancellation will be made in writing to the address given in your booking confirmation, and the time it is received is what the deadlines on this page are measured against.",
+          "Cancel in writing, by email. Write to the address in your booking confirmation, or to the address below if you no longer have it — both reach us. The time your cancellation is received is what every deadline on this page is measured against, so send it as soon as you know.",
+          "Tell us the name on the booking and the date and time of the journey. You do not have to give a reason, though it helps us if a charge might otherwise apply.",
         ],
         bullets: [
-          "Cancellations contact: [TO BE CONFIRMED — email address or other channel]",
+          `Cancellations contact: ${contactEmail}`,
         ],
       },
       {
@@ -210,14 +180,14 @@ export const cancellation: LocalizedLegal = {
         heading: "12. Your rights as a consumer",
         paragraphs: [
           "Nothing in this policy removes or limits any right you have as a consumer that cannot lawfully be removed or limited. Where a provision here conflicts with such a right, the right applies.",
-          "Which consumer-protection law applies has not been settled: the owner is established outside the European Union and the European Economic Area, while the journeys take place in Italy. That question is open in the Terms and Conditions too, and it affects how several of the provisions above would be read.",
+          "If you are a consumer, the mandatory consumer-protection law of the country where you live applies to you whatever this page says. Nothing here asks you to give that up.",
         ],
       },
       {
         id: "changes",
         heading: "13. Changes to this policy",
         paragraphs: [
-          "This policy carries the date it was drafted and will carry the date it comes into force. The version that applies to a booking is the one in force when that booking was confirmed.",
+          "This policy carries the date it last changed, at the top of the page. The version that applies to a booking is the one in force when that booking was confirmed.",
         ],
       },
     ],
@@ -233,7 +203,7 @@ export const cancellation: LocalizedLegal = {
         {
           page: "privacy",
           label: "Privacy Policy",
-          detail: "What is collected, what is not, and what would happen to it.",
+          detail: "What we collect, how we use it, and how long we keep it.",
         },
         {
           page: "about",
@@ -248,27 +218,21 @@ export const cancellation: LocalizedLegal = {
     meta: {
       title: "Cancellazioni e rimborsi",
       description:
-        "Termini di cancellazione, regola delle 24 ore, mancata presentazione, attesa in aeroporto e gestione dei rimborsi. Bozza in attesa di revisione legale.",
+        "Come cancellare, la regola delle 24 ore, la mancata presentazione, i 60 minuti di attesa in aeroporto, i rimborsi e le eccezioni che si applicano.",
     },
     breadcrumbLabel: "Percorso di navigazione",
     eyebrow: "Note legali",
     h1: "Cancellazioni e rimborsi",
     lead:
-      "Che cosa succede se un viaggio confermato viene annullato e che cosa verrebbe rimborsato, messo per iscritto prima che tutto questo possa accadere.",
-
-    draft: {
-      label: "Bozza — non in vigore",
-      body:
-        "Questa pagina è una bozza di lavoro preparata prima del lancio. Non è stata esaminata da un legale e non è ancora in vigore. Diverse disposizioni riportano le regole che il titolare intende adottare e sono segnalate come in attesa di revisione legale; per altre due questioni non esiste ancora alcuna regola, e la pagina lo dichiara. Nulla di quanto segue si applica oggi a chicchessia, perché su questo sito non si può prenotare né pagare.",
-    },
+      "Come cancellare un viaggio confermato, quanto costa cancellare tardi, quanto vi aspettiamo e che cosa succede se il transfer non può essere effettuato.",
 
     status: {
       stateLabel: "Stato",
-      state: "Bozza, in attesa di conferma del titolare e di revisione legale",
-      draftedLabel: "Redatta il",
-      drafted: "28 ottobre 2026",
+      state: "In vigore",
+      draftedLabel: "Ultimo aggiornamento",
+      drafted: "29 ottobre 2026",
       effectiveLabel: "In vigore dal",
-      effective: "Non ancora in vigore",
+      effective: "29 ottobre 2026",
     },
 
     tocLabel: "In questa pagina",
@@ -278,9 +242,8 @@ export const cancellation: LocalizedLegal = {
         id: "ambito",
         heading: "1. Quando si applica questa pagina",
         paragraphs: [
-          "Queste regole si applicheranno a un viaggio confermato per iscritto tramite questo sito, quando sarà possibile prenotare.",
-          "Nel momento in cui scriviamo non lo è. Su questo sito non esistono un modulo di preventivo, un canale di contatto o una modalità di pagamento: non esistono prenotazioni, non è stato incassato nulla e nessun rimborso può essere dovuto. Questa pagina espone in anticipo le regole previste perché siano visibili prima che a qualcuno venga chiesto di accettarle.",
-          "Forma parte dei Termini e condizioni e va letta insieme a essi.",
+          "Queste regole si applicano a un viaggio che vi è stato confermato per iscritto. Fanno parte dei nostri Termini e condizioni e vanno lette insieme a essi.",
+          "Una cosa da tenere presente in tutta la pagina: il viaggio lo pagate direttamente all'azienda di transfer, non a noi. Nella maggior parte dei casi non c'è quindi alcun anticipo da rimborsare: una penale di cancellazione, quando si applica, è un addebito di quell'azienda, e vi diremo sempre con chiarezza quando ne è in gioco una.",
         ],
       },
       {
@@ -303,7 +266,7 @@ export const cancellation: LocalizedLegal = {
           {
             term: "Pagamento anticipato",
             detail:
-              "Qualsiasi importo versato prima del viaggio. Se sia previsto un pagamento anticipato dipende dalla destinazione e dalla singola prenotazione, ed è indicato nel preventivo o nella conferma anziché desunto da questa pagina.",
+              "Qualsiasi importo versato prima del viaggio. Quasi tutti i viaggi si pagano al conducente in giornata, quindi di norma non c'è alcun anticipo. Quando invece ne è previsto uno per la vostra prenotazione, il preventivo e la conferma lo indicano prima che confermiate.",
           },
         ],
       },
@@ -311,52 +274,39 @@ export const cancellation: LocalizedLegal = {
         id: "oltre-24",
         heading: "3. Cancellazione oltre 24 ore prima della presa in carico",
         paragraphs: [
-          "Se cancellate più di 24 ore prima dell'orario di presa in carico confermato e avete versato un pagamento anticipato, avete diritto al rimborso dell'importo versato, nei limiti di legge.",
-          "Un rimborso dovuto viene disposto entro 5-7 giorni lavorativi dalla conferma della cancellazione. Quello è il tempo necessario a emettere il rimborso: quanto impieghi poi a comparire sul vostro conto dipende dalla vostra banca o dall'emittente della carta e non è nelle mani di nessuno qui.",
-          "A un rimborso dovuto non viene applicata alcuna trattenuta, spesa di gestione o commissione.",
+          "Se cancellate più di 24 ore prima dell'orario di presa in carico confermato, non c'è nulla da pagare. Avvisateci appena potete — basta una e-mail — e cancelleremo noi la prenotazione presso l'azienda di transfer.",
+          "Se per il vostro viaggio era previsto un anticipo, viene rimborsato per intero. Il rimborso viene disposto entro 5-7 giorni lavorativi dalla conferma della cancellazione; quanto impieghi poi a comparire sul vostro conto dipende dalla vostra banca o dall'emittente della carta.",
+          "Al rimborso non viene applicata alcuna trattenuta, spesa di gestione o commissione.",
         ],
       },
       {
         id: "entro-24",
         heading: "4. Cancellazione nelle 24 ore precedenti",
         paragraphs: [
-          "La regola prevista è che una cancellazione nelle 24 ore precedenti l'orario di presa in carico confermato comporti una penale pari al 100% del prezzo del transfer confermato.",
-          "Se è stato versato un pagamento anticipato, l'intenzione è che non venga rimborsato. Se non è stato versato alcun anticipo, l'intenzione è che la penale resti dovuta.",
-          "Questa regola verrà indicata con chiarezza al momento della prenotazione, prima che confermiate, e non lasciata a una scoperta successiva su questa pagina.",
+          "Cancellare nelle 24 ore precedenti l'orario di presa in carico confermato comporta una penale fino al 100% del prezzo del transfer. A quel punto veicolo e conducente sono già impegnati sul vostro viaggio e di norma lo slot non è più rivendibile.",
+          "Se era stato versato un anticipo, la penale vi viene imputata. In caso contrario, l'azienda di transfer può richiedervela.",
+          "Questo viene ripetuto al momento della prenotazione, prima che confermiate, così non è mai qualcosa che scoprite dopo.",
+          "Non applicheremo la penale piena in modo meccanico. Se i vostri programmi cambiano per una ragione fuori dal vostro controllo — malattia, un lutto, un volo cancellato o dirottato — ditecelo e ne parleremo noi con l'azienda di transfer per vostro conto. In ogni caso valgono i vostri diritti di consumatori: vedete il punto 12.",
         ],
-        pending: {
-          label: "In attesa di revisione legale",
-          body:
-            "Una penale pari all'intero prezzo è una clausola significativa. Non è ancora stato valutato se sia opponibile e in quali casi debba cedere — per esempio in caso di malattia, lutto o volo cancellato o dirottato. È riportata qui come regola che il titolare intende adottare, non come regola consolidata.",
-        },
       },
       {
         id: "mancata-presentazione",
         heading: "5. Mancata presentazione",
         paragraphs: [
-          "Si ha mancata presentazione quando non vi siete presentati nel luogo di presa in carico confermato entro il termine di attesa applicabile e non siete stati raggiungibili al numero indicato con la prenotazione.",
-          "La regola prevista è un addebito pari al 100% del prezzo del transfer confermato. Se è stato versato un anticipo, l'intenzione è che non venga rimborsato; in caso contrario, l'intenzione è che l'addebito resti dovuto.",
-          "Che cosa sia il luogo di presa in carico e quale sia il termine di attesa applicabile risulta dalla vostra conferma scritta per quel viaggio, non da questa pagina.",
+          "Si ha mancata presentazione quando non vi siete presentati nel luogo di presa in carico confermato entro il termine di attesa e non siete stati raggiungibili al numero indicato con la prenotazione. Viene trattata come una cancellazione tardiva e comporta un addebito fino al 100% del prezzo del transfer.",
+          "Prima che ciò accada, il conducente aspetta per tutto il tempo previsto al punto 6 e prova a raggiungervi al numero che avete indicato. Tenete quel numero acceso e raggiungibile in giornata: è la cosa che più spesso evita una mancata presentazione.",
+          "Che cosa sia il luogo di presa in carico e quale termine di attesa si applichi risulta dalla vostra conferma scritta per quel viaggio.",
+          "Se siete in ritardo e potete avvisarci, avvisateci. Un viaggio di cui sappiamo è un viaggio che di solito si riesce ancora a salvare.",
         ],
-        pending: {
-          label: "In attesa di revisione legale e di conferma del titolare",
-          body:
-            "Restano due questioni aperte. La prima è se un addebito pieno per mancata presentazione sia opponibile allo stesso modo della penale di cui al punto precedente. La seconda è quali tentativi verranno fatti per contattarvi prima di trattare una prenotazione come mancata presentazione: non è stata stabilita alcuna procedura di contatto, e questa pagina non ne inventa una.",
-        },
       },
       {
         id: "attesa-aeroporto",
         heading: "6. Attesa per un arrivo in aeroporto",
         paragraphs: [
           "Quando la presa in carico si basa su un volo in arrivo, l'attesa compresa è di 60 minuti dall'orario effettivo di atterraggio del volo, non da quello previsto. Conta l'atterraggio effettivo: un volo in ritardo non riduce quindi il vostro tempo di attesa.",
-          "Trascorso quel periodo, se non vi siete presentati nel luogo di presa in carico confermato e non siete rintracciabili, la prenotazione può essere trattata come mancata presentazione ai sensi del punto 5, fatte salve le modalità confermate per il vostro viaggio e la legge applicabile.",
-          "Questa regola vale soltanto per le prese in carico agli arrivi aeroportuali.",
+          "L'ora serve ad assorbire controllo passaporti, ritiro bagagli e il tragitto fino al punto di incontro. Trascorsa, se non vi siete presentati e non siete rintracciabili, la prenotazione può essere trattata come mancata presentazione ai sensi del punto 5.",
+          "Questa regola dei 60 minuti riguarda gli arrivi aeroportuali. Per una presa in carico presso un hotel, un porto crocieristico, una stazione ferroviaria o un indirizzo privato, il termine di attesa che vale per il vostro viaggio è indicato nella conferma scritta, perché dipende da dove il conducente può legittimamente attendere. Lo stesso vale se il vostro volo viene cancellato o dirottato, o se i bagagli tardano oltre l'ora: contattateci e faremo il possibile per riorganizzare invece di addebitarvi qualcosa.",
         ],
-        pending: {
-          label: "Regola non fissata — decisione del titolare necessaria",
-          body:
-            "Non esiste alcuna regola di attesa per prese in carico presso hotel, porti crocieristici, stazioni ferroviarie o indirizzi privati, e qui la regola aeroportuale non viene estesa a essi. Non esiste nemmeno una regola per un volo dirottato o cancellato, né per i bagagli in ritardo. Finché non saranno decise, la modalità di attesa per una presa in carico non aeroportuale sarà quella indicata nella conferma scritta di quella prenotazione.",
-        },
       },
       {
         id: "ritardi",
@@ -366,31 +316,21 @@ export const cancellation: LocalizedLegal = {
           "Va intesa in senso stretto. Non è un'esenzione generale. Non vale quando il servizio confermato non è stato prestato: quando nessun veicolo si è presentato, quando il veicolo non poteva accogliere il gruppo e i bagagli confermati, o quando il viaggio non è stato completato. Quelle sono mancate prestazioni, non ritardi, e questa sezione non le copre.",
           "Non elimina inoltre alcun diritto che vi spetti come consumatori e che non possa essere legittimamente eliminato.",
         ],
-        pending: {
-          label: "In attesa di revisione legale",
-          body:
-            "Dove passi il confine fra un ritardo giustificato e una mancata prestazione richiede una revisione legale, così come quale rimedio si applichi da una parte e dall'altra.",
-        },
       },
       {
         id: "documentazione",
         heading: "8. Documentazione a supporto di una richiesta di rimborso",
         paragraphs: [
           "La maggior parte delle cancellazioni non richiede alcuna documentazione: la traccia della prenotazione mostra già che cosa era stato confermato e quando è arrivata la cancellazione, e dove questo basta non vi verrà chiesto altro.",
-          "Quando invece una richiesta dipende da un elemento che la traccia della prenotazione non può dimostrare, la regola prevista è che la documentazione venga fornita entro 5 giorni di calendario dalla richiesta, e che in mancanza la domanda venga respinta.",
+          "Quando invece una richiesta dipende da un elemento che la traccia della prenotazione non può dimostrare, inviateci la documentazione entro 5 giorni di calendario da quando ve la chiediamo. Se vi serve più tempo, ditecelo: concorderemo una data invece di chiudere la pratica.",
         ],
-        pending: {
-          label: "In attesa di revisione legale",
-          body:
-            "Cinque giorni di calendario sono pochi, e non è stato valutato se una domanda possa essere respinta senz'altro per il loro mancato rispetto, anziché sospesa, prorogata o decisa sulla base degli elementi disponibili. Se in certi casi debba essere prevista una proroga fa parte della stessa questione.",
-        },
       },
       {
         id: "pagamenti",
         heading: "9. Pagamenti, IVA e modalità per destinazione",
         paragraphs: [
-          "Tempi e modalità di pagamento variano per destinazione e per singola prenotazione. Alcuni viaggi possono richiedere il pagamento anticipato; altri possono essere pagati al conducente in contanti o con carta. Quanto vale per il vostro viaggio è indicato nel preventivo o nella conferma di prenotazione.",
-          "Quando si applica l'IVA o un'altra imposta, questa viene indicata prima che confermiate, e il totale che vi viene mostrato è l'importo dovuto. In questa pagina non è indicata alcuna aliquota e non si dà per scontato che un'imposta si colleghi a una determinata modalità di pagamento.",
+          "Pagate direttamente all'azienda di transfer, di norma al conducente al termine del viaggio, in contanti o con carta dove quell'azienda la accetta. Alcuni viaggi o destinazioni sono organizzati diversamente: quanto vale per il vostro è indicato nel preventivo o nella conferma di prenotazione, prima che confermiate.",
+          "Quando si applica l'IVA o un'altra imposta, è compresa e viene indicata prima che confermiate, e il totale che vi viene mostrato è l'importo dovuto. In questa pagina non è indicata alcuna aliquota, perché dipende dal viaggio e dall'azienda che lo effettua.",
         ],
         bullets: [
           "Importo totale, modalità di pagamento ed eventuale termine sono indicati prima che vi sia chiesto di confermare.",
@@ -401,23 +341,19 @@ export const cancellation: LocalizedLegal = {
         id: "servizio-non-prestato",
         heading: "10. Se il transfer non può essere effettuato",
         paragraphs: [
-          "Non è stata fissata alcuna regola per il caso in cui un viaggio confermato non possa essere effettuato: per indisponibilità di un veicolo, per annullamento da parte dell'attività operativa o per mancata prestazione del servizio ad altro titolo.",
-          "Invece di lasciare la questione senza risposta o di inventarne una, qui sotto è formulata una proposta. È soltanto una proposta: non è stata approvata e non è una regola in vigore.",
+          "Se un viaggio confermato non può essere effettuato — non arriva alcun veicolo, il veicolo non può trasportare il gruppo e i bagagli confermati, l'azienda di transfer annulla oppure il viaggio non viene portato a termine — non vi viene addebitato nulla. L'eventuale anticipo viene rimborsato per intero, con gli stessi 5-7 giorni lavorativi del punto 3, e non si applica alcuna penale di cancellazione o per mancata presentazione.",
+          "Avvisateci appena potete e cercheremo di organizzare un'alternativa. Dove non ci riuscissimo, nulla in questa pagina limita quanto vi potrebbe essere dovuto: i diritti che vi riconosce la legge sul consumo a voi applicabile valgono per intero e in alcuni casi vi danno più di un rimborso.",
         ],
-        pending: {
-          label: "Solo proposta — non approvata, non in vigore",
-          body:
-            "Impostazione proposta, che il titolare può accettare, modificare o respingere: quando un viaggio confermato non può essere effettuato e la causa non è imputabile al cliente, l'eventuale pagamento anticipato viene rimborsato integralmente, non si applica alcuna penale di cancellazione o per mancata presentazione, e il rimborso segue gli stessi 5-7 giorni lavorativi del punto 3 — il tutto nei limiti di legge, che in alcuni casi riconosce al consumatore più di questo. Finché il titolare non decide, questa non è la regola applicabile e non va considerata tale.",
-        },
       },
       {
         id: "come-cancellare",
         heading: "11. Come cancellare",
         paragraphs: [
-          "Su questo sito non esiste ancora un canale per le cancellazioni, perché non esiste nemmeno un canale per prenotare. Quando le prenotazioni saranno attive, la cancellazione si farà per iscritto all'indirizzo indicato nella conferma di prenotazione, e il momento in cui viene ricevuta è quello su cui si calcolano i termini di questa pagina.",
+          "Cancellate per iscritto, via e-mail. Scrivete all'indirizzo indicato nella conferma di prenotazione, oppure a quello qui sotto se non l'avete più: arrivano entrambi a noi. Il momento in cui la cancellazione viene ricevuta è quello su cui si calcola ogni termine di questa pagina, quindi inviatela appena lo sapete.",
+          "Indicate il nome sulla prenotazione e la data e l'ora del viaggio. Non dovete darci una motivazione, anche se ci aiuta quando altrimenti si applicherebbe una penale.",
         ],
         bullets: [
-          "Recapito per le cancellazioni: [DA CONFERMARE — indirizzo e-mail o altro canale]",
+          `Recapito per le cancellazioni: ${contactEmail}`,
         ],
       },
       {
@@ -425,14 +361,14 @@ export const cancellation: LocalizedLegal = {
         heading: "12. I vostri diritti come consumatori",
         paragraphs: [
           "Nulla in questa pagina elimina o limita diritti che vi spettano come consumatori e che non possono essere legittimamente eliminati o limitati. Quando una disposizione confligge con un diritto di quel tipo, prevale il diritto.",
-          "Quale legge a tutela del consumatore si applichi non è stato definito: il titolare è stabilito fuori dall'Unione europea e dallo Spazio economico europeo, mentre i viaggi si svolgono in Italia. La stessa questione resta aperta nei Termini e condizioni e incide sul modo in cui andrebbero lette diverse delle disposizioni qui sopra.",
+          "Se siete consumatori, si applica comunque la normativa imperativa a tutela dei consumatori del Paese in cui risiedete, qualunque cosa dica questa pagina. Nulla qui vi chiede di rinunciarvi.",
         ],
       },
       {
         id: "modifiche",
         heading: "13. Modifiche a questa pagina",
         paragraphs: [
-          "Questa pagina riporta la data in cui è stata redatta e riporterà la data di entrata in vigore. La versione che si applica a una prenotazione è quella in vigore quando la prenotazione è stata confermata.",
+          "Questa pagina riporta in cima la data dell'ultima modifica. La versione che si applica a una prenotazione è quella in vigore quando la prenotazione è stata confermata.",
         ],
       },
     ],
@@ -448,7 +384,7 @@ export const cancellation: LocalizedLegal = {
         {
           page: "privacy",
           label: "Informativa sulla privacy",
-          detail: "Che cosa viene raccolto, che cosa no e che fine farebbe.",
+          detail: "Quali dati raccogliamo, come li usiamo e per quanto tempo li conserviamo.",
         },
         {
           page: "about",

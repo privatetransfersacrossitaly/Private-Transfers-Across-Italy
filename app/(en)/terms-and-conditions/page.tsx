@@ -8,25 +8,17 @@ import { pageJsonLd } from "@/lib/structured-data";
 const content = legal.terms.en;
 
 /**
- * Terms and Conditions (English) — draft.
- *
- * `robots: noindex, nofollow` overrides the site default, and the page is
- * marked `published: false` in the route registry so it stays out of the
- * sitemap. Both come off together, in one commit, once the outstanding
- * business facts are confirmed and the text has had legal review.
+ * Terms and Conditions (English).
  *
  * No `faq` is passed to the structured data: this page renders no questions,
  * and the project only emits `FAQPage` where a page shows them as text.
  */
-export const metadata: Metadata = {
-  ...pageMetadata({
+export const metadata: Metadata = pageMetadata({
     id: "terms",
     locale: "en",
     title: content.meta.title,
     description: content.meta.description,
-  }),
-  robots: { index: false, follow: false },
-};
+});
 
 export default function Page() {
   return (

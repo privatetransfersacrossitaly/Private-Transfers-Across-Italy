@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Band } from "@/components/site/band";
 import {
-  Callout,
   Checklist,
   DefinitionList,
   Eyebrow,
@@ -35,15 +34,13 @@ import type { Locale } from "@/lib/site";
  * It is still the same design system — the same palette, type scale,
  * container, breadcrumb and footer. It just stops decorating.
  *
- * ── The draft notice and the pending blocks ───────────────────────────────
- * `draft` renders before anything else, in the accent treatment reserved on
- * this site for a refusal or a caveat, because that is what it is: these are
- * not in force. `section.pending` renders the same way inside a section, for
- * a provision that is not settled.
- *
- * Both are customer-facing text, deliberately. The alternative — a clean
- * page with the uncertainty recorded only in a project document — would read
- * as finished terms to the one person whose reading matters.
+ * ── What this component used to render, and no longer does ────────────────
+ * A notice at the top of every page saying the policy was not in force, and
+ * a callout inside any section whose rule was unsettled. Both were right
+ * while the pages were drafts and both are gone now that they are published:
+ * what a reader needs is the policy, with its limits stated in its own prose,
+ * not a tour of the drafting process. The status list below carries the one
+ * thing that is still a status rather than content — in force, from when.
  */
 export function PolicyPage({
   page,
@@ -64,15 +61,6 @@ export function PolicyPage({
             <h1 className="mt-5 type-h1 text-foreground">{c.h1}</h1>
             <p className="mt-6 type-lead text-muted-foreground">{c.lead}</p>
           </div>
-
-          {/* Required by the type. First thing after the title, on purpose. */}
-          <Callout
-            heading={c.draft.label}
-            tone="accent"
-            className="mt-9 max-w-[76ch]"
-          >
-            <p>{c.draft.body}</p>
-          </Callout>
 
           <dl className="mt-9 grid max-w-[76ch] gap-x-10 gap-y-3 border-t border-border pt-6 sm:grid-cols-[minmax(0,10rem)_minmax(0,1fr)]">
             {[
@@ -135,17 +123,6 @@ export function PolicyPage({
 
               {section.terms ? (
                 <DefinitionList items={section.terms} className="mt-8" />
-              ) : null}
-
-              {/* An unsettled provision, marked as one where it sits. */}
-              {section.pending ? (
-                <Callout
-                  heading={section.pending.label}
-                  tone="accent"
-                  className="mt-7"
-                >
-                  <p>{section.pending.body}</p>
-                </Callout>
               ) : null}
             </section>
           ))}

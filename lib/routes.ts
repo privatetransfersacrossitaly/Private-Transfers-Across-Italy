@@ -673,26 +673,22 @@ const pages: Record<PageId, PageRecord> = {
   },
 
   // ── The policy pages ──────────────────────────────────────────────────
-  // `published: false` on purpose, and it is the publishing gate doing
-  // exactly the job described at the top of this file. These three are
-  // drafts: they have had no legal review, they depend on business facts
-  // that have not been supplied, and each says so on its face. They are
-  // routes so the work can be read and corrected; they are out of the
-  // sitemap, and their pages carry `robots: noindex`, so a search engine is
-  // not invited to index draft terms as though they governed anybody.
-  //
-  // Publishing them is one word per line here, once the owner has confirmed
-  // the outstanding facts and a lawyer has reviewed the text.
+  // Published. These were `published: false` while they were drafts that
+  // depended on business facts nobody had supplied; the facts are in, the
+  // pages are finished, and the gate has been opened. Low priority because a
+  // policy is something a customer looks up rather than something a search
+  // engine should rank above a destination page — not because it matters
+  // less.
   privacy: {
     path: { en: "/privacy-policy", it: "/it/privacy" },
     parent: "home",
-    published: false,
+    published: true,
     priority: 0.3,
   },
   terms: {
     path: { en: "/terms-and-conditions", it: "/it/termini-e-condizioni" },
     parent: "home",
-    published: false,
+    published: true,
     priority: 0.3,
   },
   cancellation: {
@@ -701,7 +697,7 @@ const pages: Record<PageId, PageRecord> = {
       it: "/it/cancellazione-e-rimborsi",
     },
     parent: "home",
-    published: false,
+    published: true,
     priority: 0.3,
   },
 };

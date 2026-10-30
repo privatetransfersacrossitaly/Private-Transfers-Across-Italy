@@ -134,8 +134,14 @@ export const quoteEn: QuoteContent = {
     invalid: "A few things need correcting before this can be sent. They are marked below.",
     delivered: {
       heading: "We have your request",
+      // Deliberately silent about email. `status: "delivered"` is decided by
+      // the database write alone, so the form knows the request is safely
+      // stored and does not know whether a confirmation was sent — when the
+      // mail provider is unconfigured it is recorded as `skipped`. This copy
+      // used to say "a copy has gone to the address you gave", which was a
+      // promise the page could not keep.
       body:
-        "A copy has gone to the address you gave. We will come back to you with a price for this journey and the arrangement in writing.",
+        "Your request has reached us. We will come back to you with a price for this journey and the arrangement in writing.",
       referenceLabel: "Your reference",
       note:
         "This is a request, not a booking. Nothing is reserved and no vehicle is allocated to your date until the journey has been confirmed in writing and you have agreed to it.",

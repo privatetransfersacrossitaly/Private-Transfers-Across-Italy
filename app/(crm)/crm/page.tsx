@@ -3,7 +3,7 @@ import { CrmHeader, CrmSetupNotice, CrmShell, StatusBadge } from "@/components/c
 import { Container } from "@/components/site/container";
 import { isCrmConfigured, requireCrmUser } from "@/lib/crm/auth";
 import { effectiveStatus, leadCounts, listLeads, PAGE_SIZE, type LeadQuery } from "@/lib/crm/leads";
-import { isDatabaseConfigured } from "@/lib/db/supabase";
+import { isDatabaseConfigured } from "@/lib/db/d1";
 import { formatPhone } from "@/lib/quote/phone";
 import type { LeadStatus } from "@/lib/leads/types";
 import { connection } from "next/server";
@@ -67,18 +67,22 @@ export default async function CrmLeadsPage({
 }: {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
-  // Read configuration at request time, not build time. See the note on the
-  // login page.
+  // Read configuration at request time, not build time: whether the CRM is
+  // configured is a property of the running deployment. Without this the
+  // branch below freezes at build time and a site built before Access was
+  // configured keeps saying "not configured" afterwards.
   await connection();
 
   // Unconfigured deployments get an explanation, not a crash — and no lead
-  // data is involved, so this is safe before a session exists.
+  // data is involved, so this is safe to render to anyone who reaches it.
   if (!isCrmConfigured() || !isDatabaseConfigured()) {
     const missing = [
-      !process.env.NEXT_PUBLIC_SUPABASE_URL && "NEXT_PUBLIC_SUPABASE_URL",
-      !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY && "NEXT_PUBLIC_SUPABASE_ANON_KEY",
-      !process.env.SUPABASE_SERVICE_ROLE_KEY && "SUPABASE_SERVICE_ROLE_KEY",
+      !process.env.CF_ACCESS_TEAM_DOMAIN && "CF_ACCESS_TEAM_DOMAIN",
+      !process.env.CF_ACCESS_AUD && "CF_ACCESS_AUD",
       !process.env.CRM_ALLOWED_EMAILS && "CRM_ALLOWED_EMAILS",
+      // Not an environment variable: the D1 binding comes from
+      // wrangler.jsonc, so its absence means the Worker, not the secrets.
+      !isDatabaseConfigured() && "DB (D1 binding in wrangler.jsonc)",
     ].filter((v): v is string => Boolean(v));
     return (
       <main id="main" className="min-h-screen bg-surface-sunken py-20">
