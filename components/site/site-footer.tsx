@@ -1,12 +1,28 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/site/container";
 import { Cta } from "@/components/site/cta";
 import { homeContent } from "@/content/home";
 import { buildFooterNav, buildLegalNav } from "@/content/navigation";
-import { copyrightYear, quotePathFor, siteName, type Locale } from "@/lib/site";
+import {
+  copyrightYear,
+  homePath,
+  quotePathFor,
+  siteName,
+  type Locale,
+} from "@/lib/site";
 
 /**
  * The site's one footer, in either language.
+ *
+ * ── Why the logo sits on an ivory plate here and not in the header ───────
+ * This footer is `bg-deep`, a dark navy. Two of the three words in the
+ * supplied lockup are dark navy themselves, so placed directly on this
+ * background they would be invisible — the gold "Transfers" would appear to
+ * float alone. The asset has no light-text variant and one cannot be derived
+ * from it, because the wordmark sits on a photographic composite rather than
+ * flat artwork. The plate is the honest fix: it reads as deliberate, and it
+ * keeps a single logo file serving both surfaces.
  *
  * Three columns of links that all resolve, a short description of what the
  * service is, and a quotation CTA. There is no address, telephone number,
@@ -25,10 +41,18 @@ export function SiteFooter({ locale }: { locale: Locale }) {
       <Container size="wide" className="pt-14 pb-28 sm:pt-16 md:pb-16">
         <div className="grid gap-x-10 gap-y-12 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)]">
           <div>
-            <p className="font-heading type-h3">
-              <span className="text-deep-foreground">Private Transfer</span>
-              <span className="ml-1.5 text-accent-glow">Across Italy</span>
-            </p>
+            <Link
+              href={homePath[locale]}
+              className="inline-flex rounded-lg bg-background p-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+            >
+              <Image
+                src="/brand/logo.png"
+                alt={siteName}
+                width={480}
+                height={105}
+                className="h-10 w-auto sm:h-11"
+              />
+            </Link>
             <p className="mt-4 max-w-[42ch] type-small text-deep-muted">
               {chrome.footerTagline}
             </p>

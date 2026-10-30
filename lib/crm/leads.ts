@@ -293,7 +293,7 @@ export async function setLeadStatus(
         newId(),
         id,
         nowIso(),
-        actor.email,
+        actor.username,
         JSON.stringify({ from: before.status, to: status }),
       ],
     );
@@ -327,7 +327,7 @@ export async function setLeadNotes(
     await run(
       "INSERT INTO lead_events (id, lead_id, created_at, actor, event, detail) " +
         "VALUES (?1, ?2, ?3, ?4, 'notes_updated', NULL)",
-      [newId(), id, nowIso(), actor.email],
+      [newId(), id, nowIso(), actor.username],
     );
     return { ok: true };
   } catch (error) {

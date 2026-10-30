@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { CrmHeader, CrmSetupNotice, CrmShell, StatusBadge } from "@/components/crm/chrome";
 import { Container } from "@/components/site/container";
-import { isCrmConfigured, requireCrmUser } from "@/lib/crm/auth";
+import { isCrmConfigured, missingCrmConfig, requireCrmUser } from "@/lib/crm/auth";
 import { effectiveStatus, leadCounts, listLeads, PAGE_SIZE, type LeadQuery } from "@/lib/crm/leads";
 import { isDatabaseConfigured } from "@/lib/db/d1";
 import { formatPhone } from "@/lib/quote/phone";
@@ -77,9 +77,7 @@ export default async function CrmLeadsPage({
   // data is involved, so this is safe to render to anyone who reaches it.
   if (!isCrmConfigured() || !isDatabaseConfigured()) {
     const missing = [
-      !process.env.CF_ACCESS_TEAM_DOMAIN && "CF_ACCESS_TEAM_DOMAIN",
-      !process.env.CF_ACCESS_AUD && "CF_ACCESS_AUD",
-      !process.env.CRM_ALLOWED_EMAILS && "CRM_ALLOWED_EMAILS",
+      ...missingCrmConfig(),
       // Not an environment variable: the D1 binding comes from
       // wrangler.jsonc, so its absence means the Worker, not the secrets.
       !isDatabaseConfigured() && "DB (D1 binding in wrangler.jsonc)",
@@ -93,9 +91,9 @@ export default async function CrmLeadsPage({
     );
   }
 
-  // Second guard. The middleware has already turned away anyone without a
-  // session, and this repeats it so a misconfigured matcher cannot expose
-  // the page.
+  // Second guard. `proxy.ts` has already turned away anyone with no session
+  // cookie at all, and this repeats the check properly so a misconfigured
+  // matcher cannot expose the page.
   const user = await requireCrmUser();
 
   const params = await searchParams;
@@ -122,7 +120,7 @@ export default async function CrmLeadsPage({
 
   return (
     <>
-      <CrmHeader email={user.email} />
+      <CrmHeader username={user.username} />
       <CrmShell>
         <div className="flex flex-wrap items-baseline justify-between gap-4">
           <h1 className="font-heading type-h2 text-foreground">Leads</h1>

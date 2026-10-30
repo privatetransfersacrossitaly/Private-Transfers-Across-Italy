@@ -21,6 +21,26 @@
 		"binding": "ASSETS"
 	},
 
+	// The production hostname. `custom_domain: true` makes Cloudflare create
+	// and own the proxied DNS record for the apex, which is also what puts the
+	// request behind Cloudflare Access: the Access application is scoped to
+	// `privatetransfersacrossitaly.com/crm`, so it can only intercept traffic
+	// that arrives on this hostname. Access does NOT cover the workers.dev
+	// URL below, which is why /crm there refuses everyone.
+	"routes": [
+		{
+			"pattern": "privatetransfersacrossitaly.com",
+			"custom_domain": true
+		}
+	],
+
+	// Stated rather than defaulted. Adding `routes` would otherwise flip this
+	// to false and withdraw the workers.dev URL. Keeping it on is a deliberate,
+	// temporary choice: it is a second public origin for the whole site, so it
+	// should be set to false once the custom domain is confirmed working. Every
+	// page canonicals to the apex, so nothing here claims to be the original.
+	"workers_dev": true,
+
 	"services": [
 		{
 			// Self-reference, used by OpenNext for cache purging. The service name

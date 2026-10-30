@@ -1,237 +1,83 @@
 import "server-only";
-import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { assertCsrf, isSessionConfigured, readSession } from "@/lib/crm/session";
 
 /**
- * Who is allowed into the CRM, decided on the server from a signature.
+ * Who is allowed into the CRM.
  *
- * ── The defect this file exists to avoid ──────────────────────────────────
- * The system this CRM was modelled on protects itself with a `useEffect`
- * that calls `getSession()` in the browser and redirects if there isn't one.
- * That is a redirect, not a security boundary: it runs after the page has
- * already been sent, it can be skipped by anything that is not a browser,
- * and none of that project's CRM *server actions* checks anything at all
- * before using its privileged database key. A server action is reachable by
- * POST and an action id is not a secret, so anyone who finds one can delete a
- * booking.
+ * ── What changed when Cloudflare Access went ──────────────────────────────
+ * This file used to verify an Access JWT: fetch the team's JWKS, check an
+ * RS256 signature, then the issuer, audience and expiry, then an allow-list
+ * of email addresses. Cloudflare authenticated at the edge and refused
+ * unauthenticated requests before the Worker ran at all.
  *
- * ── Why the JWT and not the email header ──────────────────────────────────
- * Cloudflare Access puts two things on an authenticated request:
- * `Cf-Access-Authenticated-User-Email` and `Cf-Access-Jwt-Assertion`. Only
- * the second is evidence. The first is an ordinary header, and an ordinary
- * header can be sent by anyone — so if the Worker is ever reachable other
- * than through the Access hostname (its `workers.dev` subdomain, a second
- * route, a misconfigured policy), trusting it means anyone can be anyone by
- * typing a header. That is the single most common way an Access integration
- * is got wrong.
+ * Now the application authenticates, with a username and password, and owns
+ * the session itself. That is a deliberate reduction in depth and it should
+ * be recorded plainly: `/crm` is reachable from the public internet, so the
+ * login form, the key derivation and the rate limiter are what stand in
+ * front of the lead data, rather than Cloudflare's edge.
  *
- * So this verifies the JWT: signature against the team's published keys,
- * then issuer, audience and expiry. The email is read from the verified
- * payload and nowhere else.
+ * ── The exports did not change, and that was the point ────────────────────
+ * `getCrmUser`, `requireCrmUser`, `requireCrmActor` and `isCrmConfigured`
+ * keep the same names and shapes they had under Access. Every CRM page,
+ * every server action and both mutations in `lib/crm/leads.ts` call them and
+ * needed no edit, so swapping the authentication method could not quietly
+ * drop a guard. The only visible difference is that a user is identified by
+ * a username rather than an email address.
  *
- * ── Authentication is not authorization ───────────────────────────────────
- * A verified token proves Cloudflare authenticated somebody. It does not
- * prove that somebody runs this business. So a verified address gets a second
- * test against `CRM_ALLOWED_EMAILS`, and an empty allow-list denies everyone
- * — a misconfigured deployment should lock the CRM, not open it.
+ * ── Two guards, each sufficient alone ─────────────────────────────────────
+ *   1. every CRM page awaits `requireCrmUser()` before it renders;
+ *   2. every CRM server action awaits `requireCrmActor()` as its first
+ *      statement, and so do `setLeadStatus` and `setLeadNotes` in
+ *      lib/crm/leads.ts — the layer closest to the data.
  *
- * That second test is also what makes the Access policy and the application
- * independent: widening the Access policy by accident does not widen the CRM.
- *
- * ── Three guards, each sufficient alone ───────────────────────────────────
- *   1. Cloudflare Access refuses the request at the edge, before the Worker
- *      runs at all.
- *   2. every CRM page awaits `requireCrmUser()` before it renders.
- *   3. every CRM server action awaits `requireCrmActor()` as its first
- *      statement, before any data is touched.
- *
- * Layer 1 is Cloudflare's; 2 and 3 are this file's, and they are what hold if
- * layer 1 is ever misconfigured.
+ * `proxy.ts` adds a cheap third check that turns a cookie-less request away
+ * early. It is not a security boundary: it can be defeated by sending any
+ * cookie at all, and the two guards above are what actually hold.
  */
 
-export type CrmUser = { id: string; email: string };
-
-/** The addresses permitted into the CRM, lower-cased. */
-function allowList(): string[] {
-  return (process.env.CRM_ALLOWED_EMAILS ?? "")
-    .split(",")
-    .map((entry) => entry.trim().toLowerCase())
-    .filter(Boolean);
-}
+export type CrmUser = { id: string; username: string };
 
 /**
- * Configured means: we know which Access application to trust, and we know
- * who is allowed. Missing either is a locked CRM, not an open one.
+ * Configured means: a username, a password hash and a session secret are all
+ * present. Missing any of them is a locked CRM, not an open one.
  */
 export function isCrmConfigured(): boolean {
-  return Boolean(
-    process.env.CF_ACCESS_TEAM_DOMAIN &&
-      process.env.CF_ACCESS_AUD &&
-      allowList().length > 0,
-  );
+  return isSessionConfigured();
 }
 
-/* ── JWT verification ─────────────────────────────────────────────────────
- * Done by hand against WebCrypto rather than with a library. The whole job
- * is: fetch the team's JWKS, find the key the token names, verify RS256,
- * check three claims. A dependency for that is a dependency to audit, and
- * `crypto.subtle` is available in both the Workers runtime and Node 18+.
- */
-
-type Jwk = {
-  kid: string;
-  kty: string;
-  alg?: string;
-  n: string;
-  e: string;
-};
-
-type AccessClaims = {
-  email?: string;
-  sub?: string;
-  aud?: string | string[];
-  iss?: string;
-  exp?: number;
-  nbf?: number;
-};
-
-/**
- * Backed by an explicit `ArrayBuffer` rather than `new Uint8Array(length)`.
- *
- * The bare form is typed `Uint8Array<ArrayBufferLike>`, which could be a
- * `SharedArrayBuffer`, and `crypto.subtle.verify` will not accept one. This
- * is the narrowing, not a stylistic choice.
- */
-function base64UrlToBytes(value: string): Uint8Array<ArrayBuffer> {
-  const padded = value.replace(/-/g, "+").replace(/_/g, "/");
-  const binary = atob(padded + "=".repeat((4 - (padded.length % 4)) % 4));
-  const bytes = new Uint8Array(new ArrayBuffer(binary.length));
-  for (let i = 0; i < binary.length; i += 1) bytes[i] = binary.charCodeAt(i);
-  return bytes;
-}
-
-function decodeSegment<T>(segment: string): T | null {
-  try {
-    return JSON.parse(new TextDecoder().decode(base64UrlToBytes(segment))) as T;
-  } catch {
-    return null;
-  }
-}
-
-/**
- * The team's signing keys.
- *
- * Cached for an hour in module scope. Access rotates keys, so this cannot be
- * cached forever; fetching per request would add a round trip to every CRM
- * page load. An hour is Cloudflare's own suggested order of magnitude, and a
- * rotation mid-cache simply fails verification once and refetches.
- */
-let jwksCache: { keys: Jwk[]; at: number } | null = null;
-const JWKS_TTL_MS = 60 * 60 * 1000;
-
-async function teamKeys(teamDomain: string): Promise<Jwk[]> {
-  if (jwksCache && Date.now() - jwksCache.at < JWKS_TTL_MS) {
-    return jwksCache.keys;
-  }
-  const response = await fetch(`https://${teamDomain}/cdn-cgi/access/certs`);
-  if (!response.ok) {
-    throw new Error(`Access certs unavailable (${response.status})`);
-  }
-  const body = (await response.json()) as { keys?: Jwk[] };
-  const keys = body.keys ?? [];
-  jwksCache = { keys, at: Date.now() };
-  return keys;
-}
-
-/**
- * Verify an Access JWT and return its claims, or null.
- *
- * Returns null for every failure and logs no token material. A caller cannot
- * tell a malformed token from an expired one from a wrong audience, which is
- * the correct amount to tell an unauthorised caller.
- */
-async function verifyAccessJwt(token: string): Promise<AccessClaims | null> {
-  const teamDomain = process.env.CF_ACCESS_TEAM_DOMAIN;
-  const audience = process.env.CF_ACCESS_AUD;
-  if (!teamDomain || !audience) return null;
-
-  const parts = token.split(".");
-  if (parts.length !== 3) return null;
-
-  const header = decodeSegment<{ alg?: string; kid?: string }>(parts[0]);
-  const claims = decodeSegment<AccessClaims>(parts[1]);
-  if (!header?.kid || header.alg !== "RS256" || !claims) return null;
-
-  let keys: Jwk[];
-  try {
-    keys = await teamKeys(teamDomain);
-  } catch (error) {
-    console.error(
-      "[crm] could not fetch Access certs:",
-      error instanceof Error ? error.message : "unknown",
-    );
-    return null;
-  }
-
-  const jwk = keys.find((key) => key.kid === header.kid);
-  if (!jwk) return null;
-
-  let valid = false;
-  try {
-    const key = await crypto.subtle.importKey(
-      "jwk",
-      { kty: jwk.kty, n: jwk.n, e: jwk.e, alg: "RS256", ext: true },
-      { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" },
-      false,
-      ["verify"],
-    );
-    valid = await crypto.subtle.verify(
-      "RSASSA-PKCS1-v1_5",
-      key,
-      base64UrlToBytes(parts[2]),
-      new TextEncoder().encode(`${parts[0]}.${parts[1]}`),
-    );
-  } catch {
-    return null;
-  }
-  if (!valid) return null;
-
-  // Signature is good. Now the claims, because a validly signed token for
-  // somebody else's Access application is still not a token for this one.
-  const now = Math.floor(Date.now() / 1000);
-  if (typeof claims.exp !== "number" || claims.exp <= now) return null;
-  if (typeof claims.nbf === "number" && claims.nbf > now + 60) return null;
-  if (claims.iss !== `https://${teamDomain}`) return null;
-
-  const audiences = Array.isArray(claims.aud) ? claims.aud : [claims.aud];
-  if (!audiences.includes(audience)) return null;
-
-  return claims;
+/** The names of whatever is missing, for the setup notice. */
+export function missingCrmConfig(): string[] {
+  return [
+    !process.env.CRM_ADMIN_USERNAME && "CRM_ADMIN_USERNAME",
+    !process.env.CRM_ADMIN_PASSWORD_HASH && "CRM_ADMIN_PASSWORD_HASH",
+    !(process.env.CRM_SESSION_SECRET && process.env.CRM_SESSION_SECRET.length >= 32) &&
+      "CRM_SESSION_SECRET (at least 32 characters)",
+  ].filter((value): value is string => Boolean(value));
 }
 
 /**
  * The authenticated CRM user, or null.
  *
- * Reads `Cf-Access-Jwt-Assertion` and nothing else. In particular it does not
- * fall back to `Cf-Access-Authenticated-User-Email` when the JWT is missing:
- * a missing JWT means the request did not come through Access, and that is
- * exactly when the email header must not be believed.
+ * The username is read from the session row, never from anything the browser
+ * sent. A cookie proves only that some session exists; which session it is,
+ * and who it belongs to, is decided by the database.
  */
 export async function getCrmUser(): Promise<CrmUser | null> {
   if (!isCrmConfigured()) return null;
 
-  const store = await headers();
-  const token =
-    store.get("cf-access-jwt-assertion") ?? store.get("cf-authorization") ?? null;
-  if (!token) return null;
+  const session = await readSession();
+  if (!session) return null;
 
-  const claims = await verifyAccessJwt(token);
-  if (!claims?.email) return null;
+  // A session issued to a username that is no longer the configured
+  // administrator is refused. Without this, changing CRM_ADMIN_USERNAME
+  // would leave every session minted under the old name still working.
+  const configured = process.env.CRM_ADMIN_USERNAME;
+  if (!configured || session.username !== configured.trim().toLowerCase()) {
+    return null;
+  }
 
-  const email = claims.email.toLowerCase();
-  if (!allowList().includes(email)) return null;
-
-  return { id: claims.sub ?? email, email };
+  return { id: session.id, username: session.username };
 }
 
 /**
@@ -239,12 +85,10 @@ export async function getCrmUser(): Promise<CrmUser | null> {
  *
  * Every CRM page starts with this. `redirect()` throws, so there is no path
  * past it — a caller that forgets to check the return value is still stopped.
- * It goes to the CRM root rather than a login page, because Access does the
- * logging in and a local login form would be a second, weaker door.
  */
 export async function requireCrmUser(): Promise<CrmUser> {
   const user = await getCrmUser();
-  if (!user) redirect("/crm/denied");
+  if (!user) redirect("/crm/login");
   return user;
 }
 
@@ -258,5 +102,24 @@ export async function requireCrmUser(): Promise<CrmUser> {
 export async function requireCrmActor(): Promise<CrmUser> {
   const user = await getCrmUser();
   if (!user) throw new Error("Not authorised.");
+  return user;
+}
+
+/**
+ * Authorise a state-changing action: a valid session *and* a CSRF token that
+ * belongs to it.
+ *
+ * Next verifies the Origin header on server actions, which already blocks
+ * the classic cross-site POST. This is the second lock: the token is an HMAC
+ * over the session id, so it cannot be guessed, it cannot be replayed into a
+ * different session, and it dies with the session it came from.
+ */
+export async function requireCrmActorWithCsrf(
+  formData: FormData,
+): Promise<CrmUser> {
+  const user = await requireCrmActor();
+  if (!(await assertCsrf(user.id, formData.get("csrf")))) {
+    throw new Error("Not authorised.");
+  }
   return user;
 }

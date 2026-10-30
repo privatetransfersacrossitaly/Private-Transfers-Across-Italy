@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { signOutAction } from "@/app/actions/crm-auth";
 import { Container } from "@/components/site/container";
 import { cn } from "cn";
 
@@ -12,7 +13,7 @@ import { cn } from "cn";
  * The deep band is deliberate: it makes it obvious at a glance that you are
  * looking at the back office and not at the website.
  */
-export function CrmHeader({ email }: { email: string }) {
+export function CrmHeader({ username }: { username: string }) {
   return (
     <header className="border-b border-deep-line bg-deep text-deep-foreground">
       <Container size="wide" className="flex flex-wrap items-center gap-x-6 gap-y-3 py-4">
@@ -25,18 +26,22 @@ export function CrmHeader({ email }: { email: string }) {
         </Link>
 
         <div className="ml-auto flex items-center gap-5">
-          <span className="hidden type-caption text-deep-muted sm:inline">{email}</span>
+          <span className="hidden type-caption text-deep-muted sm:inline">
+            {username}
+          </span>
           {/*
-            Cloudflare Access owns the session, so signing out means clearing
-            it at the edge rather than deleting a cookie this app set. A plain
-            link, not a form: there is no action to call.
+            A form, not a link. Signing out deletes the session row, which is
+            a state change, and a GET that mutates state can be triggered by
+            anything that prefetches a URL — including the browser itself.
           */}
-          <a
-            href="/cdn-cgi/access/logout"
-            className="inline-flex min-h-9 items-center rounded-md border border-deep-muted/60 px-3.5 type-caption font-medium text-deep-foreground transition-colors hover:bg-deep-foreground/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-          >
-            Sign out
-          </a>
+          <form action={signOutAction}>
+            <button
+              type="submit"
+              className="inline-flex min-h-9 cursor-pointer items-center rounded-md border border-deep-muted/60 px-3.5 type-caption font-medium text-deep-foreground transition-colors hover:bg-deep-foreground/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+            >
+              Sign out
+            </button>
+          </form>
         </div>
       </Container>
     </header>

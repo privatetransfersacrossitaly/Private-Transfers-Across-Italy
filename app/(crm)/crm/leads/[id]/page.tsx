@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { connection } from "next/server";
 import { CrmHeader, CrmShell, StatusBadge } from "@/components/crm/chrome";
 import { NotesControl, StatusControl } from "@/components/crm/lead-controls";
 import { requireCrmUser } from "@/lib/crm/auth";
+import { csrfTokenFor } from "@/lib/crm/session";
 import { effectiveStatus, getLead } from "@/lib/crm/leads";
 import { formatPhone } from "@/lib/quote/phone";
 
@@ -60,7 +62,17 @@ export default async function CrmLeadPage({
 }: {
   params: Promise<{ id: string }>;
 }) {
+  // Force request-time rendering before anything reads the session cookie.
+  // With `cacheComponents` this page is partially prerendered, and without
+  // this the cookie is read while the shell is being produced — where there
+  // is no request and so no cookie. The symptom is specific and misleading:
+  // a signed-in administrator is bounced to the login page by this route
+  // alone, while /crm works, because /crm already does this.
+  await connection();
+
   const user = await requireCrmUser();
+  // Bound to this session, so it cannot be lifted into another one.
+  const csrf = await csrfTokenFor(user.id);
   const { id } = await params;
 
   const result = await getLead(id);
@@ -71,7 +83,7 @@ export default async function CrmLeadPage({
 
   return (
     <>
-      <CrmHeader email={user.email} />
+      <CrmHeader username={user.username} />
       <CrmShell>
         <Link
           href="/crm"
@@ -165,11 +177,16 @@ export default async function CrmLeadPage({
 
           <aside className="space-y-6">
             <section className="rounded-lg border border-border-strong bg-surface p-6">
-              <StatusControl id={lead.id} status={lead.status} derived={derived} />
+              <StatusControl
+                id={lead.id}
+                status={lead.status}
+                derived={derived}
+                csrf={csrf}
+              />
             </section>
 
             <section className="rounded-lg border border-border-strong bg-surface p-6">
-              <NotesControl id={lead.id} notes={lead.admin_notes ?? ""} />
+              <NotesControl id={lead.id} notes={lead.admin_notes ?? ""} csrf={csrf} />
             </section>
 
             <section className="rounded-lg border border-border bg-surface p-6">

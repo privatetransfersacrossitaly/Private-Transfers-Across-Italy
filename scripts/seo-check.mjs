@@ -44,7 +44,7 @@ const POLICY_PATHS = [
 ];
 
 /** Never in the sitemap, never indexable, access-controlled elsewhere. */
-const PRIVATE_PATHS = ["/crm", "/crm/denied"];
+const PRIVATE_PATHS = ["/crm", "/crm/login"];
 
 const FORBIDDEN_HOSTS = [
   "localhost",

@@ -6,36 +6,40 @@ import { NextResponse, type NextRequest } from "next/server";
  * This is Next 16's `proxy.ts`, which replaces the old `middleware.ts`
  * convention — same request-time position, new file name and export name.
  *
- * ── What changed when Supabase Auth went ──────────────────────────────────
- * It used to create a Supabase client, revalidate the session against the
- * auth server and refresh the session cookie, because a Server Component
- * cannot write cookies. None of that is needed now: Cloudflare Access owns
- * the session, issues the cookie and refuses unauthenticated requests at the
- * edge, before this Worker is invoked at all.
+ * ── What changed when Cloudflare Access went ──────────────────────────────
+ * Under Access, Cloudflare refused unauthenticated requests at the edge and
+ * this file only had to notice that the Access assertion was missing. Now the
+ * application owns the session, so what it notices is a missing session
+ * cookie — and the consequence of being wrong is larger, because there is no
+ * longer an edge refusal behind it.
  *
- * So what is left is deliberately thin — a request with no Access assertion
- * is turned away before any HTML is produced. It does **not** verify the
- * token. Verification needs a network fetch for the team's signing keys, and
- * doing that in the proxy would put a round trip in front of every CRM
- * request to duplicate a check that `lib/crm/auth.ts` already makes properly.
+ * It still does **not** validate the session. Validation means an HMAC check
+ * and a D1 lookup, and doing that here would duplicate, on every request,
+ * work that `lib/crm/auth.ts` already does properly a moment later. What this
+ * buys is that a request with no cookie at all never renders a page.
  *
  * ── Why this is not the security boundary ─────────────────────────────────
- * It is the third-cheapest of three guards and the only one that can be
- * misconfigured into uselessness by editing a matcher. The ones that hold:
+ * It can be defeated by sending any cookie whatsoever. The guards that hold:
  *
- *   1. Cloudflare Access, at the edge, before this runs.
- *   2. `requireCrmUser()` in every CRM page, which verifies the JWT
- *      signature, issuer, audience and expiry and then checks the allow-list.
- *   3. `requireCrmActor()` as the first statement of every CRM server
- *      action, for the same reason — an action is reachable by POST and an
+ *   1. `requireCrmUser()` in every CRM page, which verifies the cookie
+ *      signature, looks the session up, and enforces both expiry clocks.
+ *   2. `requireCrmActorWithCsrf()` in every CRM server action, and
+ *      `requireCrmActor()` inside `setLeadStatus` and `setLeadNotes` — the
+ *      layer closest to the data. An action is reachable by POST and an
  *      action id is not a secret.
  *
  * Delete this file and nothing becomes readable. Delete the check in an
  * action and everything does.
  */
 
-/** Reachable without an Access assertion, because it is what explains why. */
-const PUBLIC_CRM_PATHS = ["/crm/denied"];
+/**
+ * Reachable without a session, because they are how a session is obtained.
+ *
+ * `/crm/login` renders the form and makes no lead query. Nothing else under
+ * `/crm` belongs here, and adding a path to this list is the one edit in this
+ * file that could expose data.
+ */
+const PUBLIC_CRM_PATHS = ["/crm/login"];
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -45,14 +49,9 @@ export async function proxy(request: NextRequest) {
   }
 
   // Presence only. `lib/crm/auth.ts` decides whether it means anything.
-  const assertion =
-    request.headers.get("cf-access-jwt-assertion") ??
-    request.cookies.get("CF_Authorization")?.value ??
-    null;
-
-  if (!assertion) {
+  if (!request.cookies.get("crm_session")?.value) {
     const target = request.nextUrl.clone();
-    target.pathname = "/crm/denied";
+    target.pathname = "/crm/login";
     target.search = "";
     const response = NextResponse.redirect(target);
     // `next.config.ts` sets `X-Robots-Tag` on `/crm/:path*`, but those headers

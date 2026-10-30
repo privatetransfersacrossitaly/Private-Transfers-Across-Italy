@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/site/container";
 import { Cta } from "@/components/site/cta";
@@ -11,9 +12,17 @@ import { homePath, otherLocale, quotePathFor, siteName, type Locale } from "@/li
  * The site's one header, rendered from each root layout so every page in
  * either language gets the same one.
  *
- * The wordmark is the brand name in full and never changes: it is the name of
+ * The logo is the brand name in full and never changes: it is the name of
  * the business, not a string to be translated. Everything around it — menu
  * labels, the quote button, the language switch — comes from the locale.
+ *
+ * ── Why the image carries explicit dimensions and no `sizes` ──────────────
+ * `images.unoptimized` is on, because Cloudflare Images transformations are
+ * billable and were not approved. next/image therefore serves the file
+ * byte-for-byte, so the asset in public/brand is already sized for its
+ * largest use (480px wide for a ~190px slot, i.e. 2x) rather than resized at
+ * request time. `priority` because it sits in the header of every page and is
+ * part of the first paint; without it the brand flashes in late.
  */
 export function SiteHeader({ locale }: { locale: Locale }) {
   const chrome = homeContent[locale].chrome;
@@ -24,11 +33,16 @@ export function SiteHeader({ locale }: { locale: Locale }) {
       <Container size="wide" className="flex items-center gap-3 py-3 sm:gap-4 xl:gap-5">
         <Link
           href={homePath[locale]}
-          className="inline-flex min-h-11 max-w-[13rem] min-w-0 items-center rounded-md font-heading text-[1.0625rem] leading-tight font-semibold tracking-tight lg:text-[0.9375rem] xl:text-[1.0625rem] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring sm:max-w-none"
+          className="inline-flex min-h-11 min-w-0 shrink-0 items-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
         >
-          <span className="text-foreground">Private Transfer</span>
-          <span className="ml-1.5 text-accent-ink">Across Italy</span>
-          <span className="sr-only">{siteName}</span>
+          <Image
+            src="/brand/logo.png"
+            alt={siteName}
+            width={480}
+            height={105}
+            priority
+            className="h-8 w-auto sm:h-9 xl:h-10"
+          />
         </Link>
 
         <SiteNav

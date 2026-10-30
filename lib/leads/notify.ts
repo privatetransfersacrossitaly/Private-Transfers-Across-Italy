@@ -205,10 +205,32 @@ function shell(inner: string): string {
   </div>`;
 }
 
+/**
+ * The masthead: the logo on ivory, then the deep band carrying the title.
+ *
+ * ── Why the logo gets its own light band ──────────────────────────────────
+ * Two of the three words in the lockup are dark navy, so on the deep band
+ * below they would be invisible. The logo file is flattened onto the same
+ * ivory, because a transparent PNG is rendered against black by several
+ * clients — which would hide exactly the same words.
+ *
+ * ── What happens when images are blocked ─────────────────────────────────
+ * Most clients block remote images until the reader allows them, so the
+ * masthead can arrive as `alt` text alone. That is why the alt is the full
+ * business name rather than "logo", and why the customer email names the
+ * business again in its footer: an email with images off still says plainly
+ * who sent it. The explicit width and height matter for the same reason —
+ * without them a blocked image collapses to nothing and the layout jumps
+ * when it is later allowed to load.
+ */
 function header(title: string, subtitle: string): string {
-  return `<div style="background:${palette.deep};padding:26px 32px">
-    <p style="margin:0;font-size:19px;color:#ffffff;letter-spacing:-0.2px">Private Transfer <span style="color:${palette.accentGlow}">Across Italy</span></p>
-    <p style="margin:7px 0 0;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:#ffffff99">${esc(title)}</p>
+  const logo = absoluteUrl("/brand/logo-email.png");
+  return `<div style="background:${palette.ivory};padding:20px 32px;text-align:center;border-bottom:1px solid ${palette.border}">
+    <img src="${esc(logo)}" alt="${esc(siteName)}" width="260" height="57"
+         style="display:inline-block;width:260px;max-width:100%;height:auto;border:0;outline:none;text-decoration:none" />
+  </div>
+  <div style="background:${palette.deep};padding:18px 32px">
+    <p style="margin:0;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:#ffffff99">${esc(title)}</p>
     ${subtitle ? `<p style="margin:5px 0 0;font-size:12px;color:#ffffffaa">${esc(subtitle)}</p>` : ""}
   </div>`;
 }

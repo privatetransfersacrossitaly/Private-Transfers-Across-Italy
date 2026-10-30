@@ -11,8 +11,14 @@ import { cn } from "cn";
  *
  * Both are client components only because they want pending state and an
  * inline result. Neither holds any authority: each posts to a server action
- * whose first statement is `requireCrmActor()`, so hiding or disabling a
- * control here changes what is convenient, never what is permitted.
+ * whose first statement is `requireCrmActorWithCsrf()`, so hiding or
+ * disabling a control here changes what is convenient, never what is
+ * permitted.
+ *
+ * The `csrf` prop is not a secret and is not a credential. It is an HMAC of
+ * the session id, rendered into the form so the action can tell a submission
+ * that came from this page apart from one a third-party site caused. Without
+ * a valid session cookie it authorises nothing at all.
  *
  * That distinction is the one the reference system loses. Its CRM decides
  * what to render based on a client-side session check, and its actions then
@@ -38,10 +44,12 @@ export function StatusControl({
   id,
   status,
   derived,
+  csrf,
 }: {
   id: string;
   status: string;
   derived: string;
+  csrf: string;
 }) {
   const [state, formAction, isPending] = useActionState(
     updateLeadStatusAction,
@@ -60,6 +68,7 @@ export function StatusControl({
   return (
     <form action={formAction}>
       <input type="hidden" name="id" value={id} />
+      <input type="hidden" name="csrf" value={csrf} />
       <label htmlFor="lead-status" className="block type-label text-muted-foreground">
         Status
       </label>
@@ -99,7 +108,15 @@ export function StatusControl({
   );
 }
 
-export function NotesControl({ id, notes }: { id: string; notes: string }) {
+export function NotesControl({
+  id,
+  notes,
+  csrf,
+}: {
+  id: string;
+  notes: string;
+  csrf: string;
+}) {
   const [state, formAction, isPending] = useActionState(
     updateLeadNotesAction,
     initialCrmActionState,
@@ -108,6 +125,7 @@ export function NotesControl({ id, notes }: { id: string; notes: string }) {
   return (
     <form action={formAction}>
       <input type="hidden" name="id" value={id} />
+      <input type="hidden" name="csrf" value={csrf} />
       <label htmlFor="lead-notes" className="block type-label text-muted-foreground">
         Internal notes
       </label>
