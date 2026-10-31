@@ -39,8 +39,13 @@ const palette = {
   muted: "#5b6477",
 };
 
-const cellLabel = `padding:9px 12px;border:1px solid ${palette.border};background:${palette.ivory};font-size:13px;color:${palette.muted};width:160px;text-align:left`;
-const cellValue = `padding:9px 12px;border:1px solid ${palette.border};font-size:13px;color:${palette.deep}`;
+// A percentage, not `width:160px`. A fixed label column cannot shrink, so on
+// a 320px screen it took half the width and left an address nowhere to wrap,
+// which is what forced the whole message sideways.
+const cellLabel = `padding:9px 12px;border:1px solid ${palette.border};background:${palette.ivory};font-size:13px;color:${palette.muted};width:38%;text-align:left;vertical-align:top`;
+// `word-break` because a long address or an email with no spaces in it is the
+// one value guaranteed to overflow a narrow column.
+const cellValue = `padding:9px 12px;border:1px solid ${palette.border};font-size:13px;color:${palette.deep};vertical-align:top;word-break:break-word`;
 
 /**
  * Both languages satisfy one shape, so the compiler guarantees neither is
@@ -177,7 +182,7 @@ function luggageSummary(lead: NewLead, t: Copy): string {
 
 function row(label: string, value: string): string {
   if (!value) return "";
-  return `<tr><td style="${cellLabel}"><strong>${esc(label)}</strong></td><td style="${cellValue}">${esc(value)}</td></tr>`;
+  return `<tr><td class="lbl" style="${cellLabel}"><strong>${esc(label)}</strong></td><td class="val" style="${cellValue}">${esc(value)}</td></tr>`;
 }
 
 function legTable(
@@ -197,12 +202,53 @@ function heading(text: string): string {
   return `<h3 style="margin:26px 0 10px;font-size:12px;letter-spacing:1.6px;text-transform:uppercase;color:${palette.accent};border-bottom:1px solid ${palette.border};padding-bottom:7px">${esc(text)}</h3>`;
 }
 
+/**
+ * The message wrapper.
+ *
+ * ── A whole document, not a fragment ──────────────────────────────────────
+ * It used to be a bare `<div>`. Without a `<head>` there is nowhere to put a
+ * viewport meta or a media query, so a phone rendered the 620px layout at
+ * desktop width and shrank it — which is why the text arrived too small to
+ * read and the tables ran off the side.
+ *
+ * ── Inline styles stay the baseline ───────────────────────────────────────
+ * Every element keeps its inline style, because Gmail's web client strips
+ * `<style>` blocks and Outlook ignores much of what survives. The media
+ * query below is an enhancement for the clients that do honour it — Apple
+ * Mail, iOS Mail, Gmail's apps — never the thing the layout depends on.
+ * `!important` is needed to beat the inline styles it is overriding.
+ */
 function shell(inner: string): string {
-  return `<div style="background:${palette.ivory};padding:28px 16px">
-    <div style="font-family:Georgia,'Times New Roman',serif;max-width:620px;margin:0 auto;background:#ffffff;border:1px solid ${palette.border};border-radius:10px;overflow:hidden">
+  return `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light only">
+<style>
+  /* Stops iOS turning dates and references into tappable blue links. */
+  a[x-apple-data-detectors] { color:inherit !important; text-decoration:none !important; }
+  @media only screen and (max-width:600px) {
+    .wrap   { padding:12px 8px !important; }
+    .card   { border-radius:8px !important; }
+    .pad    { padding:22px 18px !important; }
+    .padsm  { padding:16px 18px !important; }
+    .logo   { width:200px !important; }
+    .h1     { font-size:17px !important; }
+    td.lbl  { width:34% !important; padding:8px 9px !important; font-size:12px !important; }
+    td.val  { padding:8px 9px !important; font-size:12px !important; }
+  }
+</style>
+</head>
+<body style="margin:0;padding:0;background:${palette.ivory}">
+  <div class="wrap" style="background:${palette.ivory};padding:28px 16px">
+    <div class="card" style="font-family:Georgia,'Times New Roman',serif;width:100%;max-width:620px;margin:0 auto;background:#ffffff;border:1px solid ${palette.border};border-radius:10px;overflow:hidden">
       ${inner}
     </div>
-  </div>`;
+  </div>
+</body>
+</html>`;
 }
 
 /**
@@ -225,13 +271,21 @@ function shell(inner: string): string {
  */
 function header(title: string, subtitle: string): string {
   const logo = absoluteUrl("/brand/logo-email.png");
-  return `<div style="background:${palette.ivory};padding:20px 32px;text-align:center;border-bottom:1px solid ${palette.border}">
-    <img src="${esc(logo)}" alt="${esc(siteName)}" width="260" height="57"
-         style="display:inline-block;width:260px;max-width:100%;height:auto;border:0;outline:none;text-decoration:none" />
-  </div>
-  <div style="background:${palette.deep};padding:18px 32px">
-    <p style="margin:0;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:#ffffff99">${esc(title)}</p>
-    ${subtitle ? `<p style="margin:5px 0 0;font-size:12px;color:#ffffffaa">${esc(subtitle)}</p>` : ""}
+  // One navy band, as on the site, with the logo on a light plate inside it.
+  //
+  // The plate is not decoration. Two of the three words in the lockup —
+  // "Private" and "Across Italy" — are the same dark navy as this band, so
+  // placed straight onto it they disappear and only the gold "Transfers" is
+  // left floating. The logo has no light-text variant and one cannot be
+  // derived from it, because the wordmark sits on a photographic composite
+  // rather than flat artwork. The public footer solves it the same way.
+  return `<div class="padsm" style="background:${palette.deep};padding:22px 32px">
+    <div style="background:${palette.ivory};border-radius:8px;padding:12px 16px;text-align:center">
+      <img class="logo" src="${esc(logo)}" alt="${esc(siteName)}" width="260" height="57"
+           style="display:inline-block;width:260px;max-width:100%;height:auto;border:0;outline:none;text-decoration:none" />
+    </div>
+    <p class="h1" style="margin:16px 0 0;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:#ffffff99">${esc(title)}</p>
+    ${subtitle ? `<p style="margin:5px 0 0;font-size:12px;color:#ffffffaa;word-break:break-word">${esc(subtitle)}</p>` : ""}
   </div>`;
 }
 
@@ -251,7 +305,7 @@ export async function sendLeadNotifications(
   // ── 1. The business ──────────────────────────────────────────────────────
   const adminHtml = shell(`
     ${header("New quotation request", `${reference} · ${lead.sourceForm} · ${locale.toUpperCase()}`)}
-    <div style="padding:30px 32px">
+    <div class="pad" style="padding:30px 32px">
       ${heading("Contact")}
       <table style="border-collapse:collapse;width:100%;font-family:Georgia,'Times New Roman',serif">
         ${row("Name", lead.fullName)}
@@ -284,7 +338,7 @@ export async function sendLeadNotifications(
   // ── 2. The customer, in their own language ───────────────────────────────
   const customerHtml = shell(`
     ${header(locale === "it" ? "Richiesta ricevuta" : "Request received", "")}
-    <div style="padding:34px 32px">
+    <div class="pad" style="padding:34px 32px">
       <p style="margin:0 0 16px;font-size:17px;color:${palette.deep}">${esc(t.greeting(lead.fullName))}</p>
       <p style="margin:0 0 20px;font-size:14px;line-height:1.75;color:${palette.muted}">${esc(t.intro)}</p>
 
@@ -317,7 +371,7 @@ export async function sendLeadNotifications(
         <p style="margin:0;font-size:12px;line-height:1.7;color:${palette.deep}"><strong>${esc(t.notBooking)}</strong></p>
       </div>
     </div>
-    <div style="padding:18px 32px;background:${palette.ivory};border-top:1px solid ${palette.border}">
+    <div class="padsm" style="padding:18px 32px;background:${palette.ivory};border-top:1px solid ${palette.border}">
       <p style="margin:0;font-size:11px;color:${palette.muted}">
         ${esc(siteName)} ·
         <a href="${absoluteUrl(pathFor("terms", locale))}" style="color:${palette.accent}">${esc(t.terms)}</a> ·

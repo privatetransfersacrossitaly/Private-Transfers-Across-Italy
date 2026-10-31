@@ -81,9 +81,16 @@ const emptyValues: Values = {
 export function QuoteForm({
   content,
   locale,
+  onDelivered,
 }: {
   content: QuoteContent;
   locale: Locale;
+  /**
+   * Told when the request has been accepted, so the page around the form can
+   * clear itself down to the confirmation. The form cannot do that alone:
+   * the heading and the aside are siblings, not children.
+   */
+  onDelivered?: (delivered: boolean) => void;
 }) {
   const [state, formAction, isPending] = useActionState(
     submitQuoteRequest,
@@ -149,6 +156,22 @@ export function QuoteForm({
 
   const countries = phoneCountryOptions(locale);
   const delivered = state.status === "delivered";
+  const showConfirmation = delivered && !dismissed;
+
+  /**
+   * Tell the page, and put the confirmation where the eye already is.
+   *
+   * The outcome used to render above a form that is several screens tall, so
+   * on a phone a successful submission scrolled nothing: the visitor was left
+   * looking at the fields they had just filled, with the confirmation far
+   * above the fold, unable to tell whether anything had happened.
+   */
+  useEffect(() => {
+    onDelivered?.(showConfirmation);
+    if (showConfirmation && typeof window !== "undefined") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [showConfirmation, onDelivered]);
 
   const outcome = dismissed
     ? null
@@ -164,9 +187,55 @@ export function QuoteForm({
               ? content.outcomes.unreachable
               : null;
 
+  /**
+   * A successful submission replaces the form rather than sitting above it.
+   *
+   * Everything the visitor needs now is here — the confirmation, the
+   * reference, what happens next, and a way to send another. Leaving the
+   * completed form on screen underneath invites a second submission of the
+   * same journey, and buries the reference under it.
+   */
+  if (showConfirmation) {
+    return (
+      <div aria-live="polite" aria-atomic="true">
+        <div className="rounded-xl border border-accent/40 bg-accent-wash p-7 sm:p-10">
+          <h2 className="font-heading type-h2 text-foreground">
+            {content.outcomes.delivered.heading}
+          </h2>
+          <p className="mt-4 max-w-[64ch] type-lead text-muted-foreground">
+            {content.outcomes.delivered.body}
+          </p>
+
+          {state.reference ? (
+            <div className="mt-7 border-t border-accent/30 pt-6">
+              <p className="type-label text-accent-ink">
+                {content.outcomes.delivered.referenceLabel}
+              </p>
+              <p className="mt-2 font-heading type-h2 tracking-[0.12em] text-foreground">
+                {state.reference}
+              </p>
+            </div>
+          ) : null}
+
+          <p className="mt-6 max-w-[64ch] border-t border-accent/30 pt-6 type-small text-muted-foreground">
+            {content.outcomes.delivered.note}
+          </p>
+          <button
+            type="button"
+            onClick={startAgain}
+            className="mt-6 type-small font-medium text-accent-ink underline decoration-accent/40 underline-offset-4 transition-colors hover:decoration-current focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+          >
+            {content.actions.another}
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div>
-      {/* The outcome, above the form, announced when it changes. */}
+      {/* Failures still render above the form, where the fields that caused
+          them are still on screen and can be corrected. */}
       <div aria-live="polite" aria-atomic="true">
         {outcome ? (
           <div
