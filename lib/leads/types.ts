@@ -10,7 +10,53 @@ import type { Locale } from "@/lib/site";
  * the CRM can create a lead by hand or change a status.
  */
 
-export type LeadStatus = "pending" | "confirmed" | "completed" | "cancelled";
+/**
+ * The booking pipeline.
+ *
+ * `completed` is never stored — it is derived from a confirmed booking whose
+ * last leg is in the past, so a journey rolls over on its own. Everything
+ * else is a deliberate state someone put the booking into.
+ *
+ * Widened from four values to six by migration 0004. `quoted` and
+ * `awaiting_customer` sit between an enquiry arriving and it being confirmed,
+ * which is where this business actually spends its time.
+ */
+export type LeadStatus =
+  | "pending"
+  | "quoted"
+  | "awaiting_customer"
+  | "confirmed"
+  | "completed"
+  | "cancelled";
+
+/** The statuses a person may set by hand. `completed` is derived. */
+export const SETTABLE_STATUSES = [
+  "pending",
+  "quoted",
+  "awaiting_customer",
+  "confirmed",
+  "cancelled",
+] as const satisfies readonly LeadStatus[];
+
+/** How each status reads in the interface. */
+export const STATUS_LABELS: Record<LeadStatus, string> = {
+  pending: "Pending",
+  quoted: "Quoted",
+  awaiting_customer: "Awaiting customer",
+  confirmed: "Confirmed",
+  completed: "Completed",
+  cancelled: "Cancelled",
+};
+
+/** Where the customer stands on paying. Independent of booking status. */
+export type PaymentStatus = "unpaid" | "partial" | "paid" | "refunded";
+
+export const PAYMENT_LABELS: Record<PaymentStatus, string> = {
+  unpaid: "Unpaid",
+  partial: "Part paid",
+  paid: "Paid",
+  refunded: "Refunded",
+};
 
 export type EmailStatus = "pending" | "sent" | "failed" | "skipped";
 

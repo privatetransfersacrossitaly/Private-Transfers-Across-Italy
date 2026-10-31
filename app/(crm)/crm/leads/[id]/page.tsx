@@ -1,7 +1,15 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { connection } from "next/server";
-import { CrmHeader, CrmShell, StatusBadge } from "@/components/crm/chrome";
+import { StatusBadge } from "@/components/crm/chrome";
+import { CrmLayout } from "@/components/crm/sidebar";
+import {
+  CancelBookingControl,
+  ConfirmBookingControl,
+  EditLeadForm,
+} from "@/components/crm/booking-controls";
+import { formatMoney } from "@/components/crm/dashboard-panels";
+import { commissionOf } from "@/lib/crm/leads";
 import { NotesControl, StatusControl } from "@/components/crm/lead-controls";
 import { requireCrmUser } from "@/lib/crm/auth";
 import { csrfTokenFor } from "@/lib/crm/session";
@@ -82,11 +90,9 @@ export default async function CrmLeadPage({
   const derived = effectiveStatus(lead);
 
   return (
-    <>
-      <CrmHeader username={user.username} />
-      <CrmShell>
+    <CrmLayout active="leads" username={user.username}>
         <Link
-          href="/crm"
+          href="/crm/leads"
           className="inline-flex items-center gap-2 type-small text-muted-foreground underline decoration-border-strong underline-offset-4 transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
         >
           ← All leads
@@ -173,9 +179,46 @@ export default async function CrmLeadPage({
                 </p>
               </section>
             ) : null}
+
+            <section className="rounded-lg border border-border bg-surface p-6 sm:p-7">
+              <h2 className="font-heading type-h3 text-foreground">Edit</h2>
+              <p className="mt-1.5 type-caption text-muted-foreground">
+                Times are Rome local and are converted to UTC on save, so a
+                journey in July keeps the right hour across the summer-time
+                change.
+              </p>
+              <div className="mt-5">
+                <EditLeadForm lead={lead} csrf={csrf} />
+              </div>
+            </section>
           </div>
 
           <aside className="space-y-6">
+            <section className="rounded-lg border border-border-strong bg-surface p-6">
+              <h2 className="font-heading type-h3 text-foreground">Booking</h2>
+              <dl className="mt-4">
+                <Row label="Reference">
+                  <span className="font-mono">{lead.booking_reference ?? "—"}</span>
+                </Row>
+                <Row label="Confirmed">{lead.confirmed_at ? when(lead.confirmed_at) : "—"}</Row>
+                {lead.cancelled_at ? (
+                  <Row label="Cancelled">{when(lead.cancelled_at)}</Row>
+                ) : null}
+                {lead.cancellation_reason ? (
+                  <Row label="Reason">{lead.cancellation_reason}</Row>
+                ) : null}
+                <Row label="Quoted">{formatMoney(lead.quoted_amount_cents, lead.currency)}</Row>
+                <Row label="Customer paid">{formatMoney(lead.customer_paid_cents, lead.currency)}</Row>
+                <Row label="Supplier cost">{formatMoney(lead.supplier_cost_cents, lead.currency)}</Row>
+                <Row label="Commission">{formatMoney(commissionOf(lead), lead.currency)}</Row>
+                <Row label="Payment">{lead.payment_status}</Row>
+              </dl>
+              <div className="mt-5 space-y-4">
+                <ConfirmBookingControl lead={lead} csrf={csrf} />
+                <CancelBookingControl lead={lead} csrf={csrf} />
+              </div>
+            </section>
+
             <section className="rounded-lg border border-border-strong bg-surface p-6">
               <StatusControl
                 id={lead.id}
@@ -230,7 +273,6 @@ export default async function CrmLeadPage({
             </section>
           </aside>
         </div>
-      </CrmShell>
-    </>
+    </CrmLayout>
   );
 }

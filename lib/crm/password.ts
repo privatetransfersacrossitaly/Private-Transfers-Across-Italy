@@ -140,7 +140,12 @@ export async function verifyPassword(
   stored: string,
 ): Promise<boolean> {
   try {
-    const parts = stored.split("$");
+    // Trimmed because a stored hash is pasted by hand — into `wrangler secret
+    // put`, a .dev.vars file, a dashboard field — and a trailing newline or
+    // carriage return rides along more often than not. Without this the hash
+    // is subtly wrong, every password is rejected, and the error message says
+    // "not recognised", which sends you looking at the password instead.
+    const parts = stored.trim().split("$");
     if (parts.length !== 4) return false;
     const [scheme, iterationField, saltField, keyField] = parts;
     if (scheme !== "pbkdf2-sha256") return false;

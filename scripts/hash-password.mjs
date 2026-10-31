@@ -20,7 +20,6 @@
  * makes the good option the lazy one.
  */
 import { webcrypto as crypto } from "node:crypto";
-import { createInterface } from "node:readline";
 
 const args = process.argv.slice(2);
 const flag = (name) => args.includes(name);
@@ -79,23 +78,91 @@ async function hashPassword(password, iterations) {
   return `pbkdf2-sha256$i=${iterations}$${toB64(salt)}$${toB64(new Uint8Array(bits))}`;
 }
 
+/**
+ * Read a line without echoing it.
+ *
+ * ── Why this does not use readline ────────────────────────────────────────
+ * The previous version created a readline interface *and* attached a `data`
+ * listener to `process.stdin` to blank the echo. Attaching that listener puts
+ * the stream into flowing mode, so the listener consumed the keystrokes and
+ * readline received almost none of them. The symptom was a password that had
+ * clearly been typed being reported as "under 12 characters" — the input was
+ * being eaten, not judged.
+ *
+ * Raw mode and one reader avoids the whole class of problem. An asterisk per
+ * character is echoed so that typing and pasting visibly register; without
+ * any feedback a silent prompt is routinely mistaken for a hung program.
+ */
 function askHidden(question) {
-  return new Promise((resolve) => {
-    const rl = createInterface({ input: process.stdin, output: process.stdout });
-    const onData = (char) => {
-      // Re-write the prompt without the typed characters, so a shoulder and a
-      // scrollback both see nothing.
-      if (![`\n`, `\r`, `\u0004`].includes(String(char))) {
-        process.stdout.write(`\u001b[2K\u001b[200D${question}`);
+  return new Promise((resolve, reject) => {
+    const { stdin, stdout } = process;
+    if (!stdin.isTTY) {
+      reject(new Error("No terminal available to read a password from."));
+      return;
+    }
+    stdout.write(question);
+    stdin.setRawMode(true);
+    stdin.resume();
+    stdin.setEncoding("utf8");
+
+    let buffer = "";
+    const done = (value) => {
+      stdin.setRawMode(false);
+      stdin.pause();
+      stdin.removeListener("data", onData);
+      stdout.write("\n");
+      resolve(value);
+    };
+    const onData = (chunk) => {
+      const text = String(chunk);
+      for (let i = 0; i < text.length; i += 1) {
+        const ch = text[i];
+
+        // ── Escape sequences, skipped whole ───────────────────────────────
+        // An arrow key, Home, End or a function key arrives as ESC [ … final.
+        // Filtering only the ESC byte leaves the rest behind, so pressing Up
+        // mid-entry used to append a literal "[A" to the password. The hash
+        // was then of a string the person never typed, it matched on the
+        // confirmation prompt because the same keys produced the same stray
+        // characters twice, and the failure only appeared later at a login
+        // that said nothing more useful than "not recognised".
+        if (ch === "\u001b") {
+          i += 1;
+          if (text[i] === "[" || text[i] === "O") {
+            i += 1;
+            // CSI parameters are digits and ';'; the sequence ends at a letter
+            // or '~'. Stop at the end of the chunk either way.
+            while (i < text.length && !/[A-Za-z~]/.test(text[i])) i += 1;
+          }
+          continue;
+        }
+
+        if (ch === "\r" || ch === "\n") {
+          done(buffer);
+          return;
+        }
+        if (ch === "\u0003") {
+          // Ctrl+C must still quit, which raw mode would otherwise swallow.
+          stdin.setRawMode(false);
+          stdout.write("\n");
+          process.exit(130);
+        }
+        if (ch === "\u007f" || ch === "\b") {
+          if (buffer.length > 0) {
+            buffer = buffer.slice(0, -1);
+            stdout.write("\b \b");
+          }
+          continue;
+        }
+        // Ignore remaining control characters; accept everything else,
+        // including the punctuation a generated password is full of.
+        if (ch >= " ") {
+          buffer += ch;
+          stdout.write("*");
+        }
       }
     };
-    process.stdin.on("data", onData);
-    rl.question(question, (answer) => {
-      process.stdin.removeListener("data", onData);
-      rl.close();
-      process.stdout.write("\n");
-      resolve(answer);
-    });
+    stdin.on("data", onData);
   });
 }
 
@@ -104,12 +171,23 @@ const username = value("--username", "admin").trim().toLowerCase();
 let password;
 let generated = false;
 if (flag("--ask")) {
-  password = await askHidden("Password (not shown): ");
+  password = await askHidden("Password: ");
   if (password.length < 12) {
     console.error(
-      "\nThat password is under 12 characters. Given the iteration count the\n" +
-        "free plan allows, length is doing most of the work here. Refusing.",
+      `\nReceived ${password.length} character${password.length === 1 ? "" : "s"}; ` +
+        "12 is the minimum.\n\n" +
+        "Given the iteration count the free plan allows, length is doing most\n" +
+        "of the work here, so this is refused rather than warned about.\n\n" +
+        "If you typed more than that, the terminal is not passing input through\n" +
+        "— run without --ask and use the generated password instead.",
     );
+    process.exit(1);
+  }
+  // Asked twice because a mistyped password becomes a hash nobody can match,
+  // and the mistake only surfaces later at a login that cannot succeed.
+  const again = await askHidden("Confirm:  ");
+  if (again !== password) {
+    console.error("\nThose did not match. Nothing was written. Run it again.");
     process.exit(1);
   }
 } else {
@@ -118,6 +196,44 @@ if (flag("--ask")) {
 }
 
 const hash = await hashPassword(password, ITERATIONS);
+
+/**
+ * Prove the hash matches the password before anyone is told to use it.
+ *
+ * This repeats, byte for byte, what `verifyPassword` in lib/crm/password.ts
+ * does at login: split the stored string, decode the salt, derive, compare.
+ * If the two ever disagree — a terminal mangling the input, an encoding
+ * difference, a change to one side and not the other — it is caught here,
+ * in a script that can simply refuse, rather than at a login that silently
+ * says "not recognised" and sends you looking at the wrong thing.
+ */
+async function selfCheck(plain, stored) {
+  const [scheme, iterField, saltField, keyField] = stored.split("$");
+  if (scheme !== "pbkdf2-sha256") return false;
+  const salt = Uint8Array.from(Buffer.from(saltField, "base64"));
+  const key = await crypto.subtle.importKey(
+    "raw",
+    new TextEncoder().encode(plain),
+    "PBKDF2",
+    false,
+    ["deriveBits"],
+  );
+  const bits = await crypto.subtle.deriveBits(
+    { name: "PBKDF2", salt, iterations: Number(iterField.slice(2)), hash: "SHA-256" },
+    key,
+    256,
+  );
+  return toB64(new Uint8Array(bits)) === keyField;
+}
+
+if (!(await selfCheck(password, hash))) {
+  console.error(
+    "\nSelf-check failed: the generated hash does not verify against the\n" +
+      "password. Nothing has been printed. This is a bug — do not set any\n" +
+      "secret from this run.",
+  );
+  process.exit(1);
+}
 
 const sessionSecret = toB64(crypto.getRandomValues(new Uint8Array(48)));
 

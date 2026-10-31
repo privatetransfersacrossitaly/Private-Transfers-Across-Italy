@@ -34,12 +34,20 @@
 		}
 	],
 
-	// Stated rather than defaulted. Adding `routes` would otherwise flip this
-	// to false and withdraw the workers.dev URL. Keeping it on is a deliberate,
-	// temporary choice: it is a second public origin for the whole site, so it
-	// should be set to false once the custom domain is confirmed working. Every
-	// page canonicals to the apex, so nothing here claims to be the original.
-	"workers_dev": true,
+	// Off. It was on temporarily while the custom domain was being proved, and
+	// the apex is now confirmed serving this Worker, so the second origin has
+	// done its job.
+	//
+	// It mattered because *.workers.dev published the entire public site at a
+	// second address: every page canonicals to the apex, so nothing there
+	// claimed to be the original, but it was still a live URL nobody intended
+	// to publish — and one that Cloudflare Access never covered, which is why
+	// /crm on it refused everyone.
+	//
+	// Turning it off does not touch `routes` above. The custom domain is a
+	// separate trigger with its own DNS record, and withdrawing the
+	// workers.dev subdomain leaves it untouched.
+	"workers_dev": false,
 
 	"services": [
 		{
