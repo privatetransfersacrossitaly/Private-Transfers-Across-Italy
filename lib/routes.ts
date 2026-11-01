@@ -78,6 +78,15 @@ export type PageId =
   | "amalfi"
   | "nap-airport"
   | "ravello"
+  | "puglia"
+  | "bari"
+  | "brindisi"
+  | "lecce"
+  | "ostuni"
+  | "alberobello"
+  | "monopoli"
+  | "polignano-a-mare"
+  | "salento"
   | "about"
   | "quote"
   | "privacy"
@@ -655,6 +664,77 @@ const pages: Record<PageId, PageRecord> = {
   // Not a destination, so its parent is the homepage rather than a hub, and
   // its priority sits below every page that answers a journey question. It
   // is the first of the non-journey pages; the legal pages join it here.
+  /* ── Puglia ──────────────────────────────────────────────────────────
+     English under /destinations/puglia, Italian under /it/destinazioni/puglia,
+     no trailing slash — the site's existing convention, confirmed against
+     production before the cluster was started. See docs/puglia-keyword-map.md.
+
+     All eight towns are registered so that `pathFor` resolves and the pillar
+     can link to each one the moment its page lands. Bari and Brindisi
+     shipped in Phase 3; Lecce, Ostuni and Alberobello in Phase 4; Monopoli,
+     Polignano a Mare and Salento in Phase 5. The cluster is complete, and
+     every town in this record is now published. An id in this record is a route,
+     and `published` is the only thing the sitemap and the nav read, so an
+     unfinished page cannot be offered to a crawler — or linked from the
+     pillar — by accident. */
+  puglia: {
+    path: { en: "/destinations/puglia", it: "/it/destinazioni/puglia" },
+    parent: "home",
+    published: true,
+    priority: 0.9,
+  },
+  bari: {
+    path: { en: "/destinations/puglia/bari", it: "/it/destinazioni/puglia/bari" },
+    parent: "puglia",
+    published: true,
+    priority: 0.8,
+  },
+  brindisi: {
+    path: { en: "/destinations/puglia/brindisi", it: "/it/destinazioni/puglia/brindisi" },
+    parent: "puglia",
+    published: true,
+    priority: 0.8,
+  },
+  lecce: {
+    path: { en: "/destinations/puglia/lecce", it: "/it/destinazioni/puglia/lecce" },
+    parent: "puglia",
+    published: true,
+    priority: 0.8,
+  },
+  ostuni: {
+    path: { en: "/destinations/puglia/ostuni", it: "/it/destinazioni/puglia/ostuni" },
+    parent: "puglia",
+    published: true,
+    priority: 0.8,
+  },
+  alberobello: {
+    path: { en: "/destinations/puglia/alberobello", it: "/it/destinazioni/puglia/alberobello" },
+    parent: "puglia",
+    published: true,
+    priority: 0.8,
+  },
+  monopoli: {
+    path: { en: "/destinations/puglia/monopoli", it: "/it/destinazioni/puglia/monopoli" },
+    parent: "puglia",
+    published: true,
+    priority: 0.8,
+  },
+  "polignano-a-mare": {
+    path: {
+      en: "/destinations/puglia/polignano-a-mare",
+      it: "/it/destinazioni/puglia/polignano-a-mare",
+    },
+    parent: "puglia",
+    published: true,
+    priority: 0.8,
+  },
+  salento: {
+    path: { en: "/destinations/puglia/salento", it: "/it/destinazioni/puglia/salento" },
+    parent: "puglia",
+    published: true,
+    priority: 0.8,
+  },
+
   about: {
     path: { en: "/about", it: "/it/chi-siamo" },
     parent: "home",
@@ -770,6 +850,19 @@ export function publishedPages(): { id: PageId; priority: number }[] {
  * and a breadcrumb level that 404s is worse than one that does not mirror the
  * path. See `docs/rome-ia-decisions.md`.
  */
+/**
+ * Whether a page may be linked to yet.
+ *
+ * The pillar names all eight Puglia towns from the day it ships, but their
+ * pages arrive over later phases. Rather than hard-code a list that someone
+ * must remember to edit, the component asks here: a town renders as a link
+ * once its entry is published, and as plain text before that. No broken
+ * links, and no stub pages written only to satisfy a link.
+ */
+export function isPublished(id: PageId): boolean {
+  return pages[id].published;
+}
+
 export function trailFor(id: PageId): PageId[] {
   const trail: PageId[] = [id];
   let cursor = pages[id].parent;

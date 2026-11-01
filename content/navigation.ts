@@ -1,5 +1,5 @@
 import { pageName } from "@/content/page-names";
-import { pathFor, type PageId } from "@/lib/routes";
+import { isPublished, pathFor, type PageId } from "@/lib/routes";
 import { homePath, quotePathFor, type Locale } from "@/lib/site";
 
 /**
@@ -52,6 +52,7 @@ type Strings = {
   florenceAndTuscany: string;
   bolognaAndRomagna: string;
   naplesAndCampania: string;
+  puglia: string;
   acrossItaly: string;
   journeysGroup: string;
   milanJourneysGroup: string;
@@ -94,6 +95,7 @@ const strings: Record<Locale, Strings> = {
     florenceAndTuscany: "Florence and Tuscany",
     bolognaAndRomagna: "Bologna and Romagna",
     naplesAndCampania: "Naples and Campania",
+    puglia: "Puglia",
     acrossItaly: "Across Italy",
     journeysGroup: "Journeys from Rome",
     milanJourneysGroup: "Journeys from Milan",
@@ -243,6 +245,7 @@ const strings: Record<Locale, Strings> = {
     florenceAndTuscany: "Firenze e la Toscana",
     bolognaAndRomagna: "Bologna e la Romagna",
     naplesAndCampania: "Napoli e la Campania",
+    puglia: "Puglia",
     acrossItaly: "In tutta Italia",
     journeysGroup: "Tratte da Roma",
     milanJourneysGroup: "Tratte da Milano",
@@ -443,6 +446,23 @@ export function buildNavigation(locale: Locale): NavEntry[] {
           id: "bologna-and-romagna",
           heading: s.bolognaAndRomagna,
           items: [page("bologna"), page("ravenna"), page("ravenna-terminal")],
+        },
+        {
+          id: "puglia",
+          heading: s.puglia,
+          // Only published pages appear. All eight towns shipped across
+          // Phases 3–5 and all eight are published, so the filter currently
+          // passes everything — it stays because it is what kept the menu
+          // honest while they arrived one phase at a time, and it is what
+          // would keep it honest again if a page were ever unpublished.
+          items: (
+            [
+              "puglia", "bari", "brindisi", "lecce", "ostuni",
+              "alberobello", "monopoli", "polignano-a-mare", "salento",
+            ] as PageId[]
+          )
+            .filter((id) => isPublished(id))
+            .map((id) => page(id)),
         },
         {
           id: "naples-and-campania",

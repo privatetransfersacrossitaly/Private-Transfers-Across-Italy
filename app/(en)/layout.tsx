@@ -3,6 +3,7 @@ import { Inter, Source_Serif_4 } from "next/font/google";
 import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
 import { StickyQuoteCta } from "@/components/site/sticky-quote-cta";
+import { WhatsAppButton } from "@/components/site/whatsapp-button";
 import { homeContent } from "@/content/home";
 import { siteDescription, siteName, siteUrl } from "@/lib/site";
 import "../globals.css";
@@ -58,6 +59,10 @@ export default function EnglishLayout({
         <SiteFooter locale="en" />
         {/* Phone only, and never on the quotation page itself. */}
         <StickyQuoteCta locale="en" label={chrome.quoteCta} />
+        {/* Every page, both languages. The number it dials is never
+            rendered — see the component for what that can and cannot
+            mean for a wa.me link. */}
+        <WhatsAppButton label={chrome.whatsappLabel} />
       </body>
     </html>
   );

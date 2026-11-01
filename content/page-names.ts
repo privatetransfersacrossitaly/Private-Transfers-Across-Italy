@@ -157,6 +157,20 @@ export const pageNames: Record<PageId, Record<Locale, string>> = {
   "nap-airport": { en: "Capodichino", it: "Capodichino" },
   ravello: { en: "Ravello", it: "Ravello" },
 
+  // Puglia. Place names are the same in both languages except the region
+  // itself, which English-language travel writing still often calls Apulia —
+  // the Italian form is used on both sides here because that is what the
+  // signage, the airports and the accommodation all use.
+  puglia: { en: "Puglia", it: "Puglia" },
+  bari: { en: "Bari", it: "Bari" },
+  brindisi: { en: "Brindisi", it: "Brindisi" },
+  lecce: { en: "Lecce", it: "Lecce" },
+  ostuni: { en: "Ostuni", it: "Ostuni" },
+  alberobello: { en: "Alberobello", it: "Alberobello" },
+  monopoli: { en: "Monopoli", it: "Monopoli" },
+  "polignano-a-mare": { en: "Polignano a Mare", it: "Polignano a Mare" },
+  salento: { en: "Salento", it: "Salento" },
+
   about: { en: "About us", it: "Chi siamo" },
   quote: { en: "Get a quote", it: "Preventivo" },
 

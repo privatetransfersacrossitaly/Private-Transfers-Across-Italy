@@ -5,6 +5,7 @@ import { Cta } from "@/components/site/cta";
 import { homeContent } from "@/content/home";
 import { buildFooterNav, buildLegalNav } from "@/content/navigation";
 import {
+  contactEmail,
   copyrightYear,
   homePath,
   quotePathFor,
@@ -25,10 +26,14 @@ import {
  * keeps a single logo file serving both surfaces.
  *
  * Three columns of links that all resolve, a short description of what the
- * service is, and a quotation CTA. There is no address, telephone number,
- * company registration or social account, because none has been supplied.
- * Legal and contact pages are a later phase; when they exist they join the
- * footer navigation and appear here without this component changing.
+ * service is, a contact email and a quotation CTA. There is still no postal
+ * address, telephone number, company registration or social account, because
+ * none has been supplied — and the WhatsApp number behind the floating
+ * button is deliberately not printed here.
+ *
+ * The email comes from `contactEmail` in `lib/site.ts`, the same constant the
+ * privacy, terms and cancellation pages use, so the address shown in the
+ * footer cannot drift away from the one in the policies.
  */
 export function SiteFooter({ locale }: { locale: Locale }) {
   const chrome = homeContent[locale].chrome;
@@ -56,6 +61,19 @@ export function SiteFooter({ locale }: { locale: Locale }) {
             <p className="mt-4 max-w-[42ch] type-small text-deep-muted">
               {chrome.footerTagline}
             </p>
+
+            <div className="mt-6">
+              <h2 className="type-label text-accent-glow">
+                {chrome.contactHeading}
+              </h2>
+              <a
+                href={`mailto:${contactEmail}`}
+                className="mt-2 inline-flex min-h-6 items-center break-all type-small text-deep-muted underline decoration-1 underline-offset-4 transition-colors hover:text-deep-foreground hover:no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+              >
+                {contactEmail}
+              </a>
+            </div>
+
             <Cta href={quotePathFor(locale)} variant="onDeep" className="mt-6">
               {chrome.quoteCta}
             </Cta>

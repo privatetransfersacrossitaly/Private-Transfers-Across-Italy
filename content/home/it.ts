@@ -403,5 +403,7 @@ export const it: HomeContent = {
       "Auto con autista, su prenotazione. Diteci il viaggio — aeroporto, stazione, porto crocieristico, una giornata fuori o una tratta fra città — e ne ricevete un preventivo scritto.",
     footerLegal:
       "I viaggi si preventivano singolarmente e restano soggetti a conferma. Una richiesta di preventivo non è una prenotazione.",
+    contactHeading: "Contatti",
+    whatsappLabel: "Scrivici su WhatsApp",
   },
 };

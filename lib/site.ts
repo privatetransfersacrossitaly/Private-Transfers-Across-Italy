@@ -43,10 +43,30 @@ export const siteUrl = (
  * cancellations contact, because they are the same mailbox — writing it once
  * is what keeps the English and the Italian policies from drifting apart.
  *
- * Not yet in the header or the footer: the pages that carry it are drafts,
- * and putting it in a shared component would publish it site-wide.
+ * It is now also shown in the site footer, so it is genuinely site-wide:
+ * one constant, so the legal pages and the footer cannot drift apart.
  */
 export const contactEmail = "privatetransfersacrossitaly@gmail.com";
+
+/**
+ * The WhatsApp number behind the floating contact button, in the digits-only
+ * form wa.me requires: country code first, no plus, no spaces.
+ *
+ * ── It is deliberately never rendered as text ─────────────────────────────
+ * The brief was that the number must not appear on the site, so no component
+ * prints it and no `tel:` link carries it. What cannot be avoided is that a
+ * wa.me deep link *is* the number: the value below ends up in the button's
+ * `href`, which means it is visible in the page source, on hover in a desktop
+ * browser's status bar, and in the address bar once the link is followed.
+ * That is inherent to how WhatsApp links work, not a choice made here — the
+ * only way to keep it out of the markup entirely would be to drop the deep
+ * link and route through a server redirect instead. Flagged rather than
+ * quietly ignored.
+ */
+export const whatsappNumber = "923148932631";
+
+/** The wa.me link for the floating button. */
+export const whatsappHref = `https://wa.me/${whatsappNumber}`;
 
 export const siteName = "Private Transfer Across Italy";
 

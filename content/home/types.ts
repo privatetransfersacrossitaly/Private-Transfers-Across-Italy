@@ -171,5 +171,9 @@ export type HomeContent = {
     languageLabel: string;
     footerTagline: string;
     footerLegal: string;
+    /** Label above the contact email in the footer. */
+    contactHeading: string;
+    /** Accessible name for the floating WhatsApp button. */
+    whatsappLabel: string;
   };
 };

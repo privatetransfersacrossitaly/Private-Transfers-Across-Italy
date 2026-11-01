@@ -403,5 +403,7 @@ export const en: HomeContent = {
       "Private car and driver, arranged in advance. Tell us the journey — airport, station, cruise port, a day out, or a route between cities — and you get a written quotation for it.",
     footerLegal:
       "Journeys are quoted individually and are subject to confirmation. A quotation request is not a booking.",
+    contactHeading: "Contact",
+    whatsappLabel: "Message us on WhatsApp",
   },
 };
