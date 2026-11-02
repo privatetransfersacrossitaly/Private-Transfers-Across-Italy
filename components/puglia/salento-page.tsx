@@ -364,6 +364,36 @@ export function SalentoPageView({ locale }: { locale: Locale }) {
                 );
               })}
             </ul>
+
+            {/* Both airports, because Salento genuinely uses one and falls
+                back to the other when the flights decide it. */}
+            <p className="mt-8 max-w-[68ch] type-body" style={{ color: "var(--sa-muted)" }}>
+              {en
+                ? "Arrivals, being met and the drive south are covered on "
+                : "Arrivi, incontro con l'autista e la discesa verso sud sono trattati in "}
+              <Link
+                href={pathFor("brindisi-airport", locale)}
+                className="underline decoration-1 underline-offset-4 hover:no-underline"
+                style={{ color: "var(--sa-ionian)" }}
+              >
+                {en
+                  ? "Brindisi Airport transfers (BDS)"
+                  : "Transfer aeroporto di Brindisi (BDS)"}
+              </Link>
+              {en ? ", and on " : ", e in "}
+              <Link
+                href={pathFor("bari-airport", locale)}
+                className="underline decoration-1 underline-offset-4 hover:no-underline"
+                style={{ color: "var(--sa-adriatic)" }}
+              >
+                {en
+                  ? "Bari Airport transfers (BRI)"
+                  : "Transfer aeroporto di Bari (BRI)"}
+              </Link>
+              {en
+                ? " if the flights sent you north instead."
+                : " se i voli vi hanno portato a nord."}
+            </p>
           </Container>
         </section>
 

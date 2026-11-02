@@ -296,35 +296,55 @@ export function BrindisiPageView({ locale }: { locale: Locale }) {
           </Container>
         </section>
 
-        {/* ── Leaving the airport ───────────────────────────────────────── */}
+        {/* ── The airport, in summary ─────────────────────────────────────
+            Three meeting cards stood here until the dedicated BDS page
+            shipped with the same material in full. What is left is the
+            short version plus a card weighted to be the obvious next step,
+            matching how the Bari town page hands off to its own airport. */}
         <section
           className="border-y py-14 sm:py-18"
           style={{ borderColor: "var(--bd-rule)", background: "var(--bd-wash-deep)" }}
         >
           <Container size="content">
             <Heading>{c.airport.heading}</Heading>
-            <div className="mt-6 max-w-[68ch] space-y-5">
-              {c.airport.paragraphs.map((p) => (
+            <div className="mt-6 max-w-[66ch] space-y-5">
+              {c.airport.summary.map((p) => (
                 <p key={p.slice(0, 24)} className="type-body" style={{ color: "var(--bd-muted)" }}>
                   {p}
                 </p>
               ))}
             </div>
-            <div className="mt-10 grid gap-8 md:grid-cols-3">
-              {c.airport.meeting.map((m) => (
-                <div key={m.title}>
-                  <h3
-                    className="border-t pt-4 font-heading type-h3"
-                    style={{ borderColor: "var(--bd-ionian)", color: "var(--bd-ink)" }}
-                  >
-                    {m.title}
-                  </h3>
-                  <p className="mt-3 type-small" style={{ color: "var(--bd-muted)" }}>
-                    {m.body}
-                  </p>
-                </div>
-              ))}
-            </div>
+
+            {/* The hand-off, as a whole-card link. Rounded and ionian-deep
+                rather than Bari's square navy: the same weight in each
+                page's own vocabulary, not the same component twice. */}
+            <Link
+              href={pathFor("brindisi-airport", locale)}
+              className="group mt-10 block max-w-[66ch] rounded-xl border p-6 transition-colors sm:p-7"
+              style={{
+                borderColor: "var(--bd-ionian-deep)",
+                background: "var(--bd-ionian-deep)",
+              }}
+            >
+              <span className="block font-heading type-h3" style={{ color: "#f4f8f8" }}>
+                {c.airport.handoff.heading}
+              </span>
+              <span className="mt-3 block type-body" style={{ color: "#cfe0de" }}>
+                {c.airport.handoff.body}
+              </span>
+              <span
+                className="mt-5 flex items-center gap-2 type-caption font-medium uppercase tracking-[0.1em]"
+                // Lifted from the theme's #b08344 sandstone: on the ionian
+                // -deep panel that measured 4.16:1, and this label is small
+                // text, so it needs 4.5. This value measures 4.88:1.
+                style={{ color: "#ecce99" }}
+              >
+                {c.airport.handoff.cta}
+                <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
+                  →
+                </span>
+              </span>
+            </Link>
           </Container>
         </section>
 

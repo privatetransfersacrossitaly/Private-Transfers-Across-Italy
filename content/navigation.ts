@@ -62,6 +62,7 @@ type Strings = {
   tuscanyAirports: string;
   romagnaAirports: string;
   campaniaAirports: string;
+  pugliaAirports: string;
   pages: Partial<Record<PageId, string>>;
   items: Record<string, { label: string; description?: string }>;
   footer: {
@@ -105,6 +106,7 @@ const strings: Record<Locale, Strings> = {
     tuscanyAirports: "Tuscany",
     romagnaAirports: "Emilia-Romagna",
     campaniaAirports: "Campania",
+    pugliaAirports: "Puglia",
     pages: {
       rome: "Transfers in Rome",
       fiumicino: "Fiumicino Airport (FCO)",
@@ -255,6 +257,7 @@ const strings: Record<Locale, Strings> = {
     tuscanyAirports: "Toscana",
     romagnaAirports: "Emilia-Romagna",
     campaniaAirports: "Campania",
+    pugliaAirports: "Puglia",
     pages: {
       rome: "Transfer a Roma",
       fiumicino: "Aeroporto di Fiumicino (FCO)",
@@ -527,6 +530,13 @@ export function buildNavigation(locale: Locale): NavEntry[] {
           id: "campania-airports",
           heading: s.campaniaAirports,
           items: [page("nap-airport"), page("salerno-airport")],
+        },
+        {
+          // Puglia had pages but no entry in this menu. Its two airports
+          // now sit alongside every other region's.
+          id: "puglia-airports",
+          heading: s.pugliaAirports,
+          items: [page("bari-airport"), page("brindisi-airport")],
         },
         {
           id: "italy-airports",

@@ -24,16 +24,19 @@ import type { BariPage } from "./types";
 export const bariIt: BariPage = {
   meta: {
     // Nudo: il layout aggiunge " | Private Transfer Across Italy".
-    title: "Transfer aeroporto di Bari",
+    // Ri-orientata all'arrivo della pagina dedicata al BRI: questa pagina
+    // portava il titolo "Transfer aeroporto di Bari", che ora appartiene a
+    // quella. Il corpo del testo non e' stato riscritto.
+    title: "Transfer a Bari e al porto crociere",
     description:
       // Attenzione alla lunghezza: ogni apostrofo diventa &#x27; nell'HTML e
       // pesa cinque caratteri invece di uno nel conteggio del meta tag.
-      "Transfer privati dall'aeroporto di Bari (BRI) e dal terminal crociere: città, Alberobello, Polignano, Matera. Preventivo scritto su richiesta.",
+      "Transfer privati a Bari: città vecchia, Terminal Crociere e costa, con le giornate ad Alberobello e Matera. Preventivo scritto su richiesta.",
   },
 
   hero: {
     eyebrow: "Puglia · Bari",
-    h1: "Transfer dall'aeroporto e dal porto di Bari",
+    h1: "Transfer a Bari città e al porto",
     lead: "A Bari si arriva per via aerea o per via mare. L'aeroporto è poco fuori città, il terminal crociere è dentro un porto che lavora. Uscire da entrambi è semplice: il problema è di solito quello che viene dopo, perché molte delle mete per cui si arriva qui sono a un'ora verso l'interno o lungo la costa.",
     primaryCta: "Richiedi un preventivo",
     secondaryCta: "Arrivo in nave",
@@ -55,55 +58,51 @@ export const bariIt: BariPage = {
   },
 
   airport: {
-    heading: "L'arrivo al Karol Wojtyła",
-    lead: "Il BRI è uno scalo piccolo e lineare — ufficialmente Bari Karol Wojtyła, per molti ancora Palese, dal quartiere accanto. È base operativa di Ryanair e Volotea, il che spiega perché tanti arrivi siano di prima mattina o di sera tardi. Questo è l'andamento tipico di uno sbarco.",
-    steps: [
-      {
-        title: "A terra",
-        body: "A piedi o con la navetta fino all'aerogare, a seconda della piazzola. Il controllo passaporti riguarda solo i voli extra-Schengen: da un volo nazionale o europeo si prosegue direttamente.",
-      },
-      {
-        title: "Ritiro bagagli",
-        body: "La sala è piccola e i nastri sono vicini. In una sera d'estate, con più aerei atterrati insieme, i bagagli possono richiedere tempo: è la fase che più spesso allunga un arrivo.",
-      },
-      {
-        title: "In area arrivi",
-        body: "C'è una sola area arrivi, quindi non esiste l'uscita sbagliata. L'autista attende qui con il cartello: è il momento in cui conviene aver già concordato cosa ci sarà scritto sopra.",
-      },
-      {
-        title: "Fino alla vettura",
-        body: "L'area di carico è a pochi passi dalle porte del terminal. Da lì i bagagli li prende l'autista; la breve camminata non cambia nulla sul fatto che la vettura sia già lì ad aspettare.",
-      },
+    heading: "Se arrivate in aereo",
+    lead: "Il BRI è a circa 8 km a nord-ovest del centro — ufficialmente Bari Karol Wojtyła, per molti ancora Palese, dal quartiere accanto. È uno scalo piccolo e si svuota in fretta: per raggiungere la città, l'arrivo in sé è raramente la parte complicata.",
+    summary: [
+      "Un solo aerogare, una sola area arrivi, nessuna uscita sbagliata. L'autista attende lì con il cartello, e le due cose da concordare prima di partire sono cosa ci sarà scritto sopra e il numero di volo a cui è associato.",
+      "Se la destinazione non è un indirizzo di Bari — i trulli, la costa, Matera oltre il confine regionale — tratte, distanze pubblicate e confronto con il treno stanno sulla pagina dedicata allo scalo. Questa resta sulla città e sul porto.",
     ],
-    note: "Il numero del volo conta più dell'orario. Con il numero del volo l'autista verifica da sé se siete in anticipo, in ritardo o dirottati: un orario scritto su un modulo non lo permette.",
+    handoff: {
+      heading: "I transfer dall'aeroporto di Bari, per esteso",
+      body: "L'incontro con l'autista al BRI, come si organizza e come si paga un transfer privato, tutte le tratte con le distanze così come le riportano le fonti, e il confronto diretto con treno e autobus urbano.",
+      cta: "Transfer aeroporto di Bari (BRI)",
+    },
   },
 
+  // Riscritta all'arrivo della pagina del BRI. I dati sono gli stessi — gli
+  // stessi orari pubblicati, le stesse linee — ma le frasi non ricalcano
+  // più il confronto della pagina aeroportuale, e l'inquadratura è "quale
+  // mezzo conviene per la città" e non "come si esce dal BRI", che è la
+  // domanda di quella pagina. La linea 50 compare qui perché il porto è
+  // argomento di questa pagina.
   waysIn: {
     heading: "Come si raggiunge la città: il confronto",
-    lead: "Il transfer privato non è sempre la risposta giusta, e questa pagina è più utile se lo dice. Bari è uno degli aeroporti italiani più facili da lasciare in autonomia.",
+    lead: "Il transfer privato non è sempre la risposta giusta. Bari è servita dai mezzi pubblici meglio di quasi tutta la Puglia, e quale soluzione convenga dipende da dove alloggiate in città e da quanto portate con voi.",
     rows: [
       {
         mode: "Treno",
-        suits: "Per il centro di Bari con pochi bagagli. L'aeroporto ha la propria stazione sulla linea Ferrotramviaria e gli orari pubblicati indicano circa 15-20 minuti fino al centro.",
-        against: "Arriva alla stazione Ferrotramviaria accanto a Bari Centrale, non dentro: se si prosegue con Trenitalia servono un trasbordo e qualche minuto a piedi. Di notte non è attivo.",
+        suits: "Per arrivare in centro dall'aeroporto con il solo bagaglio a mano. La linea Ferrotramviaria ha una stazione in aeroporto e gli orari pubblicati indicano circa 15-20 minuti.",
+        against: "In città si scende alla stazione Ferrotramviaria accanto a Bari Centrale e non a un binario interno: per proseguire con Trenitalia servono un cambio e qualche minuto a piedi. Di notte non circola nulla.",
       },
       {
         mode: "Autobus urbano",
-        suits: "La soluzione più economica. La linea AMTAB 16 collega l'aeroporto con il centro.",
-        against: "Più lento del treno e scomodo con più di un bagaglio a mano.",
+        suits: "Per spendere il meno possibile. La linea AMTAB 16 fa il collegamento con l'aeroporto; la 50 è la circolare che unisce il varco portuale a Piazza Moro, accanto a Bari Centrale.",
+        against: "Entrambe sono più lente delle alternative, e nessuna delle due è pensata per le valigie.",
       },
       {
         mode: "Taxi",
-        suits: "Tragitti brevi dentro Bari quando non si è organizzato nulla in anticipo. C'è il posteggio davanti agli arrivi.",
-        against: "Non essendoci nulla di concordato prima, non c'è un cartello con il nome, né un percorso fissato, né qualcuno che segua il volo. Per una corsa lunga verso l'interno è l'opzione meno prevedibile.",
+        suits: "Il posteggio c'è davanti agli arrivi e a entrambi i terminal portuali, e il vantaggio è esattamente questo: non va concordato nulla prima.",
+        against: "Allo stesso modo, nulla è stato concordato: nessun cartello con il nome, nessun percorso definito per una corsa lunga, nessuno che segua un volo o una nave. Va bene fino al quartiere Murat, molto meno per un'ora verso l'interno.",
       },
       {
         mode: "Transfer privato",
-        suits: "Tutto ciò che non è il centro di Bari: una masseria in fondo a una strada di campagna senza illuminazione, un paese con centro a traffico limitato, Matera oltre il confine, o un arrivo notturno con bambini e bagagli.",
-        against: "Va organizzato in anticipo, e per un breve tragitto verso un albergo in centro è più di quanto serva.",
+        suits: "Gli indirizzi che i mezzi pubblici non raggiungono: una masseria dietro un cancello senza insegna, un borgo con il centro a traffico limitato, Matera oltre il confine, o una nave che riparte nel primo pomeriggio.",
+        against: "Funziona solo se è stato organizzato prima, e per un albergo a dieci minuti dalla stazione è più vettura di quanta ne serva.",
       },
     ],
-    verdict: "In pratica: se alloggiate nel centro di Bari e viaggiate leggeri, il treno va benissimo. Per qualunque altra destinazione della regione il calcolo cambia in fretta, soprattutto dopo il tramonto e soprattutto se c'è di mezzo un seggiolino.",
+    verdict: "Per Bari in sé la risposta onesta è spesso il treno o il 16. È quando il tragitto esce dalla città — o deve rientrare in banchina a un'ora fissa — che una vettura concordata inizia a valere quello che costa.",
   },
 
   port: {
@@ -218,13 +217,19 @@ export const bariIt: BariPage = {
   faq: {
     heading: "Domande sui transfer da Bari",
     items: [
+      // Le due domande che stavano qui — la distanza dell'aeroporto dal
+      // centro e il treno dallo scalo — hanno ora risposta sulla pagina del
+      // BRI, che è dove arriva chi le cerca. Ripeterle identiche su due
+      // nostre URL non serviva a nessuna delle due. Queste riguardano
+      // invece l'argomento di questa pagina: il marciapiede in città e il
+      // porto.
       {
-        question: "Quanto dista l'aeroporto di Bari dal centro?",
-        answer: "Circa 8 km, a nord-ovest. È uno degli aeroporti italiani più vicini alla città che serve, e il tragitto verso il centro è breve: la maggior parte dei transfer che organizziamo dal BRI va molto più lontano di così.",
+        question: "Dove può effettivamente fermarsi la vettura a Bari?",
+        answer: "Davanti alla porta, per gli alberghi del quartiere Murat e della zona di Bari Centrale. Bari Vecchia è l'eccezione: vicoli stretti e in parte a traffico limitato, quindi lo scarico consentito è di norma al margine del borgo e non sotto l'edificio. Un autista che sa quale margine sia il più vicino al vostro indirizzo evita il giro completo delle mura con le valigie.",
       },
       {
-        question: "C'è il treno dall'aeroporto di Bari?",
-        answer: "Sì. L'aeroporto ha la propria stazione sulla linea Ferrotramviaria e gli orari pubblicati indicano circa 15-20 minuti fino al centro. Arriva però alla stazione Ferrotramviaria accanto a Bari Centrale e non al suo interno: se proseguite con Trenitalia tenete conto di un breve trasferimento a piedi e di un cambio, e verificate gli orari aggiornati presso il gestore.",
+        question: "Come si arriva dal terminal crociere al centro storico?",
+        answer: "In autonomia ci sono i posteggi taxi a entrambi i terminal e la circolare AMTAB 50 collega il varco portuale con Piazza Moro, accanto a Bari Centrale; dentro il porto circola una navetta gratuita fra le banchine, dettaglio utile perché l'ormeggio assegnato non è sempre il più vicino al varco. Per una mattinata in Bari Vecchia basta così. Una vettura concordata serve quando la giornata deve andare altrove e rientrare prima dell'orario di rientro a bordo.",
       },
       {
         question: "Venite a prenderci al terminal crociere?",
@@ -236,10 +241,14 @@ export const bariIt: BariPage = {
       },
       {
         question: "Potete portarci da Bari a Matera?",
-        answer: "Sì, ed è fra le richieste più frequenti. Matera è in Basilicata e non in Puglia, a circa 63 km dall'aeroporto secondo i dati pubblicati, e il percorso non passa per il centro di Bari. Si organizza come trasferimento di sola andata oppure come giornata con attesa: diteci quale preferite e il preventivo verrà fatto di conseguenza.",
+        // La distanza non si ripete qui: i circa 63 km delle fonti sono
+        // misurati dall'aeroporto ed è là che vanno. Dal centro o dalla
+        // banchina il punto di partenza è un altro, e per quelli non
+        // esiste un dato pubblicato.
+        answer: "Sì, e dal terminal crociere è fra le giornate più richieste. Matera è in Basilicata e non in Puglia, e il percorso non passa per il centro di Bari. Si organizza di sola andata oppure come giornata con attesa inclusa; se arrivate da una nave, la giornata si costruisce attorno all'orario di rientro a bordo. Diteci quale delle due preferite e il preventivo seguirà quella.",
       },
       {
-        question: "Quanto costa un transfer dall'aeroporto di Bari?",
+        question: "Quanto costa un transfer da Bari?",
         answer: "Non esiste un listino. Il prezzo dipende dal percorso, dal veicolo, dal numero di passeggeri e dalla data. Descrivete il tragitto e riceverete un preventivo scritto; non viene addebitato nulla finché non lo avete accettato.",
       },
       {

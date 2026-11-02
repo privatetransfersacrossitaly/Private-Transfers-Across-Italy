@@ -203,7 +203,8 @@ export const it: HomeContent = {
         region: "Sud e isole",
         airports: [
           { name: "Napoli (Capodichino)", code: "NAP", note: "Dentro l'area urbana di Napoli.", page: "nap-airport" },
-          { name: "Bari (Karol Wojtyła)", code: "BRI", note: "A nord-ovest di Bari, per la Puglia." },
+          { name: "Bari (Karol Wojtyła)", code: "BRI", note: "A nord-ovest di Bari. La metà nord della Puglia, i trulli e Matera oltre il confine.", page: "bari-airport" },
+          { name: "Brindisi (Papola Casale)", code: "BDS", note: "La metà sud della Puglia: Lecce, Ostuni e tutto il Salento.", page: "brindisi-airport" },
           { name: "Catania (Fontanarossa)", code: "CTA", note: "A sud di Catania, per la Sicilia orientale." },
           { name: "Palermo (Falcone Borsellino)", code: "PMO", note: "A ovest di Palermo, a Punta Raisi." },
           { name: "Cagliari (Elmas)", code: "CAG", note: "A nord-ovest di Cagliari, per il sud della Sardegna." },

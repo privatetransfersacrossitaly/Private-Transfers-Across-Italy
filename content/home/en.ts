@@ -203,7 +203,8 @@ export const en: HomeContent = {
         region: "The south and the islands",
         airports: [
           { name: "Naples (Capodichino)", code: "NAP", note: "Inside the Naples urban area.", page: "nap-airport" },
-          { name: "Bari (Karol Wojtyła)", code: "BRI", note: "North-west of Bari, for Puglia." },
+          { name: "Bari (Karol Wojtyła)", code: "BRI", note: "North-west of Bari. The northern half of Puglia, the trulli, and Matera over the border.", page: "bari-airport" },
+          { name: "Brindisi (Papola Casale)", code: "BDS", note: "The southern half of Puglia: Lecce, Ostuni and the whole of Salento.", page: "brindisi-airport" },
           { name: "Catania (Fontanarossa)", code: "CTA", note: "South of Catania, for eastern Sicily." },
           { name: "Palermo (Falcone Borsellino)", code: "PMO", note: "West of Palermo at Punta Raisi." },
           { name: "Cagliari (Elmas)", code: "CAG", note: "North-west of Cagliari, for southern Sardinia." },

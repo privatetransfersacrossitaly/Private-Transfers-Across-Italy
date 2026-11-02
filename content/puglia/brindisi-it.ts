@@ -27,14 +27,17 @@ import type { BrindisiPage } from "./types";
 
 export const brindisiIt: BrindisiPage = {
   meta: {
-    title: "Transfer aeroporto di Brindisi",
+    // Ri-orientata all'arrivo della pagina dedicata al BDS: questa pagina
+    // portava il titolo "Transfer aeroporto di Brindisi", che ora appartiene a
+    // quella. Il corpo del testo non e' stato riscritto.
+    title: "Transfer a Brindisi e verso il Salento",
     description:
-      "Transfer privati dall'aeroporto di Brindisi (BDS) verso Lecce, Ostuni, il Salento e le masserie. Indicate il tragitto e ricevete un preventivo scritto.",
+      "Transfer privati a Brindisi e dintorni: la porta del sud della Puglia, quale scalo conviene e la discesa verso il Salento. Preventivo scritto.",
   },
 
   hero: {
     eyebrow: "Puglia · Brindisi",
-    h1: "Transfer dall'aeroporto di Brindisi",
+    h1: "Transfer a Brindisi e verso sud",
     lead: "Brindisi è lo scalo del Salento. Lecce è a una mezz'ora, Ostuni poco meno, e quasi tutto ciò per cui si scende quaggiù è più vicino a questa pista che a quella di Bari. L'aeroporto si lascia in fretta: la parte da organizzare bene è il tragitto che viene dopo.",
     primaryCta: "Richiedi un preventivo",
     secondaryCta: "Bari o Brindisi?",
@@ -48,9 +51,14 @@ export const brindisiIt: BrindisiPage = {
 
   intro: {
     heading: "La porta del Salento",
+    // L'identità dello scalo — l'intitolazione ad Antonio Papola, i nomi
+    // Papola Casale e Aeroporto del Salento, il traffico 2024, la base
+    // Ryanair — non si ripete qui: sta per esteso, con le fonti, sulla
+    // pagina del BDS, che possiede quella query. Qui serve solo ciò che
+    // l'aeroporto implica per il tragitto.
     paragraphs: [
-      "L'aeroporto di Brindisi è intitolato ad Antonio Papola, aviatore morto in un incidente di volo nel febbraio 1948, e porta altri due nomi che si incontrano su biglietti e cartelli: Papola Casale, dal quartiere, e Aeroporto del Salento, dalla regione storica a cui dà accesso. È quest'ultimo a spiegare meglio di tutti a cosa serve lo scalo.",
-      "È un aeroporto piccolo — poco meno di 3,4 milioni di passeggeri nel 2024 — e base operativa di Ryanair, con un traffico fortemente stagionale: le rotte dal Nord Europa si infittiscono d'estate e si diradano da novembre. La stagionalità conta quando si organizza il trasporto a terra, perché ad agosto sono impegnati l'aeroporto e tutti gli operatori che ci lavorano.",
+      "Brindisi è la porta del sud della Puglia, e il secondo nome con cui lo scalo è conosciuto — Aeroporto del Salento — lo dice meglio del primo. Quasi tutto ciò per cui si scende quaggiù è più vicino a questo angolo di regione che a Bari: Lecce, le masserie negli uliveti, le spiagge di entrambe le coste e i paesi alla punta del tacco.",
+      "Il traffico qui è fortemente stagionale, e lo è anche tutto ciò che a terra lo accoglie. A luglio e agosto lo scalo e gli operatori che ci lavorano sono al massimo insieme; nei mesi di spalla c'è molto più spazio. Questo incide su quanto convenga muoversi in anticipo assai più della distanza.",
       "Organizziamo i transfer con società di noleggio con conducente e autisti locali autorizzati. Non possediamo veicoli e non impieghiamo direttamente gli autisti. Voi indicate il tragitto, noi lo organizziamo con un operatore che copre quella tratta, e l'accordo e il prezzo vi arrivano per iscritto prima di qualsiasi conferma.",
     ],
   },
@@ -126,25 +134,16 @@ export const brindisiIt: BrindisiPage = {
   },
 
   airport: {
-    heading: "Uscire dall'aeroporto",
-    paragraphs: [
-      "Il BDS è piccolo davvero, ed è il suo pregio maggiore. Dall'aereo alla sala arrivi si fanno pochi passi, i bagagli si ritirano in un punto solo e l'uscita è una: non esiste l'uscita sbagliata e non c'è alcun trasferimento interno da mettere in conto.",
-      "La conseguenza pratica è che qui si esce in fretta. Dove uno scalo grande concede all'autista venti minuti di margine mentre i passeggeri si districano, Brindisi non li concede. Un transfer agganciato al numero del volo assorbe questa differenza; uno fissato su un orario stimato no.",
+    heading: "Se arrivate in aereo",
+    summary: [
+      "Il BDS dista circa 6 km dalla città ed è piccolo davvero: pochi passi dall'aereo, un solo punto di ritiro bagagli, un'uscita sola. Quello che conta per un transfer è che si svuota in fretta, quindi qui il margine per un accordo vago è più stretto che in uno scalo grande.",
+      "La meccanica dell'incontro — il cartello, perché il numero del volo vale più di un orario scritto su un modulo, i voli serali d'estate, cosa indicare per un indirizzo di campagna — sta sulla pagina dedicata allo scalo, insieme a tutte le tratte verso sud e al confronto con autobus, treno e auto a noleggio. Questa pagina resta su Brindisi e sulla strada verso sud.",
     ],
-    meeting: [
-      {
-        title: "Punto d'incontro",
-        body: "Gli autisti attendono in sala arrivi con il cartello. Concordate prima cosa ci sarà scritto: un cognome diverso da quello atteso è il motivo più comune per cui due persone restano a dieci metri l'una dall'altra senza trovarsi.",
-      },
-      {
-        title: "Indicate il numero del volo",
-        body: "Con il numero del volo l'autista vede da sé un ritardo o un dirottamento. Senza, un volo in ritardo diventa una telefonata fatta da un aereo appena atterrato: il momento peggiore per organizzare qualsiasi cosa.",
-      },
-      {
-        title: "Voli serali e stagionali",
-        body: "L'orario estivo di Brindisi comprende parecchi arrivi in tarda serata, e nelle ore piccole la disponibilità è più ridotta che in pieno giorno. A luglio e agosto muoversi per tempo fa una differenza reale.",
-      },
-    ],
+    handoff: {
+      heading: "I transfer dall'aeroporto di Brindisi, per esteso",
+      body: "L'incontro con l'autista al BDS, come si organizza e come si paga un transfer privato, tutte le tratte lungo il tacco con le distanze così come le riportano le fonti, e cosa coprono davvero autobus, treno e auto a noleggio.",
+      cta: "Transfer aeroporto di Brindisi (BDS)",
+    },
   },
 
   lecce: {
@@ -210,11 +209,11 @@ export const brindisiIt: BrindisiPage = {
       },
       {
         term: "Zone a traffico limitato",
-        detail: "Lecce, Ostuni e quasi tutti i centri storici limitano l'accesso dei veicoli. È normale e non è un ostacolo: significa solo che lo scarico consentito è a volte a qualche minuto a piedi dalla porta.",
+        detail: "Lecce e Ostuni limitano entrambe l'accesso al centro storico, e così fanno quasi tutti i borghi lungo la penisola. In Italia è la norma, non un ostacolo: significa soltanto che il punto in cui ci si può fermare è a volte un paio di strade più in là, e che conviene sapere prima qual è il varco giusto.",
       },
       {
         term: "Stagionalità",
-        detail: "L'orario di Brindisi è fortemente stagionale, e con esso il trasporto a terra. Luglio e agosto sono mesi pieni per tutti gli operatori dello scalo: organizzare per tempo qui rende più che in un aeroporto attivo tutto l'anno.",
+        detail: "In piena estate la regione lavora al limite, vetture e autisti compresi, e la differenza fra organizzare con due settimane di anticipo e chiedere in giornata è qui più marcata che quasi ovunque in Puglia.",
       },
       {
         term: "Pagamento",
@@ -226,33 +225,36 @@ export const brindisiIt: BrindisiPage = {
   faq: {
     heading: "Domande sui transfer da Brindisi",
     items: [
+      // Riscritte all'arrivo della pagina del BDS. Quella pagina risponde
+      // alle stesse domande dal lato dell'aeroporto; queste rispondono dal
+      // lato della città, e nessuna qui sotto ne ripete più una frase.
       {
         question: "Quanto dista l'aeroporto di Brindisi da Lecce?",
-        answer: "Circa 39 km secondo la guida regionale agli itinerari, con una mezz'ora di percorrenza in condizioni normali. È con ampio margine il tragitto più richiesto da questo scalo.",
+        answer: "Circa 39 km secondo la guida agli itinerari della Regione Puglia, e il tragitto è la parte semplice. A decidere com'è la fine del viaggio è il centro storico di Lecce, come spiega la sezione qui sopra: lo scarico consentito può essere a qualche minuto a piedi dalla porta, e quale varco usare dipende dalla via.",
       },
       {
         question: "Conviene atterrare a Brindisi o a Bari?",
         answer: "Se alloggiate a sud di Ostuni — Lecce, Otranto, Gallipoli, il Salento in generale — Brindisi. A nord di Ostuni è più vicino Bari. Ostuni sta sulla linea di confine e funziona da entrambi. Se i voli convengono sull'altro scalo, il transfer resta organizzabile: è soltanto un tragitto più lungo.",
       },
       {
-        question: "Quanto dista l'aeroporto dal centro di Brindisi?",
-        answer: "Circa 6 km. Lo scalo è vicino alla città, ed è anche per questo che si lascia in fretta — ma chi atterra qui raramente si ferma a Brindisi, e il tragitto che conta è quello più a sud.",
+        question: "Alloggiamo a Brindisi città: vale la pena organizzare un transfer?",
+        answer: "Forse no, e preferiamo dirlo. La città dista circa 6 km dalla pista: è uno dei tragitti aeroportuali più brevi della Puglia e uno dei pochi in cui arrivare senza nulla di concordato è un piano ragionevole. Diteci dove alloggiate e vi rispondiamo francamente. Sono i tragitti che proseguono verso sud — un'ora o più, spesso verso un indirizzo senza numero civico — quelli in cui organizzare prima cambia la serata.",
       },
       {
         question: "Venite a prenderci in una masseria in campagna?",
-        answer: "Sì, ed è una delle richieste più frequenti su questo scalo. Indicate il nome della struttura e le indicazioni di arrivo che vi ha fornito: molte masserie ne tengono una versione scritta per gli autisti proprio perché le stradine sono difficili da trovare, e inoltrarcela è la cosa più utile che possiate fare.",
+        answer: "Sì, ed è la richiesta più frequente da queste parti. L'elenco qui sopra dice cosa indicare: nome completo della struttura, posizione esatta o coordinate se le fornisce, paese più vicino e strada su cui si apre l'ingresso. Le strutture di campagna qui si descrivono molto più facilmente di quanto si trovino, ed è esattamente per questo che tante tengono pronte indicazioni scritte per gli autisti.",
       },
       {
-        question: "Ci sono autobus o treni dall'aeroporto di Brindisi?",
-        answer: "Esistono collegamenti in autobus, ma preferiamo rimandarvi agli orari aggiornati piuttosto che pubblicare orari che non possiamo verificare: i servizi variano per stagione e per operatore. Per Lecce e i centri più a sud il confronto pratico è di solito fra un collegamento con cambio e un'auto porta a porta, e con i bagagli e un arrivo serale il confronto tende a risolversi da sé.",
+        question: "Cambia qualcosa a seconda della costa?",
+        answer: "Cambia il tragitto più di quanto si immagini. Il Salento ha un mare per lato e le strade non li trattano allo stesso modo: il versante adriatico si raggiunge lungo la costa oppure per l'interno passando da Lecce, quello ionico quasi sempre attraversando la penisola da Lecce. Per una meta come Otranto le distanze pubblicate vanno da circa 65 a 97 km a seconda di quale dei due percorsi si prende: è il motivo per cui l'itinerario effettivo lo confermiamo al preventivo e non prima.",
       },
       {
         question: "Organizzate i trasferimenti per un matrimonio in Salento?",
-        answer: "Sì. L'organizzazione tipica prevede gli arrivi degli ospiti in aeroporto distribuiti su più giorni, un trasferimento coordinato verso la location e i rientri successivi. Indicateci numero di ospiti, punti di raccolta e orari e prepariamo un preventivo unico invece che frammentato. Non abbiamo accordi con location specifiche e non sosteniamo di averne.",
+        answer: "Sì, e di solito come un lavoro unico e non come tanti pezzi: ospiti in arrivo su più giorni, un trasferimento coordinato verso la location e i rientri a notte fonda, che sono la parte a cui si pensa più tardi. Mandateci numero di ospiti, punti di raccolta e orari e il preventivo esce intero. Non abbiamo accordi con location specifiche e non sosteniamo di averne.",
       },
       {
-        question: "Quanto costa un transfer dall'aeroporto di Brindisi?",
-        answer: "Non esiste un listino. Dipende dal percorso, dal veicolo, dal numero di passeggeri e dalla data: un tragitto per Ostuni e uno per Santa Maria di Leuca non sono paragonabili. Descrivete quello che vi serve e riceverete un preventivo scritto; non viene addebitato nulla finché non lo avete accettato.",
+        question: "Quanto costa un transfer da Brindisi?",
+        answer: "Non esiste un listino, perché i tragitti non sono confrontabili: un indirizzo a dieci minuti dall'aerostazione e uno in fondo al tacco sono due lavori diversi, e anche data e veicolo spostano la cifra. Descrivete il tragitto e il preventivo arriva per iscritto. Non viene addebitato nulla finché non lo avete accettato.",
       },
       {
         question: "I veicoli sono vostri?",
@@ -263,7 +265,7 @@ export const brindisiIt: BrindisiPage = {
 
   close: {
     heading: "Diteci dove alloggiate",
-    body: "Numero del volo, struttura e quanti siete — e le indicazioni di arrivo della struttura, se ve ne ha mandate. Vi rispondiamo con l'organizzazione e il prezzo per iscritto, e se il tragitto non funziona come lo avete descritto ve lo diciamo.",
+    body: "Qui conta più dove andate che dove atterrate: l'indirizzo, quanti siete e il volo a cui il tragitto deve agganciarsi. L'organizzazione e il prezzo tornano indietro per iscritto, e se il tragitto non funziona come lo avete descritto ve lo diciamo invece di preventivarlo lo stesso.",
     cta: "Richiedi un preventivo",
   },
 };

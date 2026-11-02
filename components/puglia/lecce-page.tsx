@@ -212,6 +212,21 @@ export function LeccePageView({ locale }: { locale: Locale }) {
             >
               {c.arriving.note}
             </p>
+
+            {/* Hand-off to the airport page. This section is about arriving
+                at Brindisi Airport transfers, and that page is where the
+                detail now lives. */}
+            <p className="mt-8 max-w-[66ch] type-body" style={{ color: "var(--le-muted)" }}>
+              {en ? "For the airport itself — arrivals, being met, and the drive in — see" : "Per lo scalo in sé — arrivi, incontro con l'autista e il tragitto — vedete"}{" "}
+              <Link
+                href={pathFor("brindisi-airport", locale)}
+                className="underline decoration-1 underline-offset-4 hover:no-underline"
+                style={{ color: "var(--le-ochre)" }}
+              >
+                {en ? "Brindisi Airport transfers (BDS)" : "Transfer aeroporto di Brindisi (BDS)"}
+              </Link>
+              .
+            </p>
           </Container>
         </section>
 

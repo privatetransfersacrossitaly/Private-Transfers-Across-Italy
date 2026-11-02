@@ -137,13 +137,6 @@ export type PugliaPillarContent = Record<Locale, PugliaPillar>;
 /** A fact shown in the small strip under a destination hero. */
 export type HeroFact = { label: string; value: string };
 
-/** One step in Bari's arrival sequence. */
-export type ArrivalStep = {
-  /** Short imperative label, e.g. "Baggage reclaim". */
-  title: string;
-  body: string;
-};
-
 /** One row of Bari's "ways into the city" comparison. */
 export type WayIn = {
   mode: string;
@@ -175,11 +168,25 @@ export type BariPage = {
     facts: HeroFact[];
   };
   intro: { heading: string; paragraphs: string[] };
+  /**
+   * A summary, not an arrivals guide.
+   *
+   * This section used to carry the full arrival sequence — four numbered
+   * steps through baggage, the name board and the walk to the car. That
+   * material now lives on the dedicated BRI page, which owns the airport
+   * query, so keeping a second copy here put two of our own pages on the
+   * same subject. What stays is enough to orient someone who landed at BRI
+   * and is reading about the city, plus a prominent hand-off to the page
+   * that answers the airport question properly.
+   */
   airport: {
     heading: string;
     lead: string;
-    steps: ArrivalStep[];
-    note: string;
+    /** Two short paragraphs. Resist letting this grow back into steps. */
+    summary: string[];
+    /** The hand-off card. Its `cta` is the link text; the href comes from
+        the route registry, never from content. */
+    handoff: { heading: string; body: string; cta: string };
   };
   waysIn: {
     heading: string;
@@ -241,7 +248,19 @@ export type BrindisiPage = {
     columns: { heading: string; points: string[] }[];
     caveat: string;
   };
-  airport: { heading: string; paragraphs: string[]; meeting: Titled[] };
+  /**
+   * As on the Bari town page: a summary and a hand-off, not an arrivals
+   * guide. The three meeting cards that stood here — the name board, the
+   * flight number, the late-summer schedule — are the dedicated BDS page's
+   * subject and were repeated almost sentence for sentence. What remains is
+   * what somebody reading about Brindisi and the road south needs to know
+   * about the airport, plus a card that is the obvious next click.
+   */
+  airport: {
+    heading: string;
+    summary: string[];
+    handoff: { heading: string; body: string; cta: string };
+  };
   lecce: { heading: string; paragraphs: string[] };
   masserie: {
     heading: string;
@@ -579,3 +598,86 @@ export type SalentoPage = {
 export type MonopoliContent = Record<Locale, MonopoliPage>;
 export type PolignanoContent = Record<Locale, PolignanoPage>;
 export type SalentoContent = Record<Locale, SalentoPage>;
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Airport landing pages — BRI and BDS
+   ══════════════════════════════════════════════════════════════════════════
+
+   These are not the town pages with a different noun. The town pages answer
+   "what is this place and how do I get around it"; these answer "I land
+   here — now what". So the shape is: the airport itself, the mechanics of
+   being met, every onward route it actually serves, and an honest
+   comparison with the train or the bus where one exists.
+
+   ── On keyword ownership ──────────────────────────────────────────────────
+   The Bari and Brindisi *town* pages previously carried the titles "Bari
+   airport transfers" and "Brindisi airport transfers", which are precisely
+   the queries these pages exist to answer. Those titles have been re-pointed
+   at the towns' own intent (city and cruise port; southern gateway) and the
+   airport queries belong here. Their body content was not rewritten.
+
+   ── One type, two airports ────────────────────────────────────────────────
+   Unlike the town pages, BRI and BDS genuinely are the same kind of object:
+   a runway, an arrivals hall, a set of roads leading away from it. Forcing
+   two types here would be ceremony. The pages are told apart by their
+   content and by two different components, not by two different interfaces.
+*/
+
+/** One destination reachable from the airport. */
+export type AirportRoute = {
+  /** Registry id, where the destination has a page of its own. */
+  id: PageId | null;
+  name: string;
+  /** Distance as published sources give it, ranges included. Never invented. */
+  distance: string;
+  /** Who tends to make this journey, and anything that changes it. */
+  note: string;
+};
+
+/** A way of leaving the airport that is not a private transfer. */
+export type AlternativeMode = {
+  mode: string;
+  /** What it genuinely suits. */
+  suits: string;
+  /** The honest drawback. Never omitted. */
+  against: string;
+};
+
+export type AirportPage = {
+  meta: { title: string; description: string };
+  hero: {
+    eyebrow: string;
+    h1: string;
+    lead: string;
+    primaryCta: string;
+    secondaryCta: string;
+    facts: HeroFact[];
+  };
+  identity: { heading: string; paragraphs: string[] };
+  meeting: {
+    heading: string;
+    lead: string;
+    steps: Titled[];
+    note: string;
+  };
+  howItWorks: { heading: string; lead: string; steps: Titled[] };
+  routes: {
+    heading: string;
+    lead: string;
+    /** The city the airport serves, called out separately from the region. */
+    city: AirportRoute;
+    items: AirportRoute[];
+    footnote: string;
+  };
+  alternatives: {
+    heading: string;
+    lead: string;
+    modes: AlternativeMode[];
+    verdict: string;
+  };
+  practical: { heading: string; lead: string; items: Termed[] };
+  faq: { heading: string; items: FaqItem[] };
+  close: { heading: string; body: string; cta: string };
+};
+
+export type AirportContent = Record<Locale, AirportPage>;

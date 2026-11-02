@@ -171,6 +171,15 @@ export const pageNames: Record<PageId, Record<Locale, string>> = {
   "polignano-a-mare": { en: "Polignano a Mare", it: "Polignano a Mare" },
   salento: { en: "Salento", it: "Salento" },
 
+  // The airports. Named by their code in the breadcrumb so that the trail
+  // Home → Puglia → Bari Airport (BRI) cannot be confused with the Bari
+  // town page one level across.
+  "bari-airport": { en: "Bari Airport (BRI)", it: "Aeroporto di Bari (BRI)" },
+  "brindisi-airport": {
+    en: "Brindisi Airport (BDS)",
+    it: "Aeroporto di Brindisi (BDS)",
+  },
+
   about: { en: "About us", it: "Chi siamo" },
   quote: { en: "Get a quote", it: "Preventivo" },
 

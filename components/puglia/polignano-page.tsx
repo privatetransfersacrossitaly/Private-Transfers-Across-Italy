@@ -210,11 +210,11 @@ export function PolignanoPageView({ locale }: { locale: Locale }) {
             </dl>
             <p className="mt-7 type-small" style={{ color: "var(--po-muted)" }}>
               <Link
-                href={pathFor("bari", locale)}
+                href={pathFor("bari-airport", locale)}
                 className="underline decoration-1 underline-offset-4 hover:no-underline"
                 style={{ color: "var(--po-deep-dark)" }}
               >
-                {en ? "Bari airport and cruise port" : "Aeroporto e porto di Bari"}
+                {en ? "Bari Airport transfers (BRI)" : "Transfer aeroporto di Bari (BRI)"}
               </Link>
             </p>
           </Container>

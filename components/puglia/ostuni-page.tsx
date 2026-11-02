@@ -312,19 +312,19 @@ export function OstuniPageView({ locale }: { locale: Locale }) {
 
             <p className="mt-6 type-small" style={{ color: "var(--os-muted)" }}>
               <Link
-                href={pathFor("brindisi", locale)}
+                href={pathFor("brindisi-airport", locale)}
                 className="underline decoration-1 underline-offset-4 hover:no-underline"
                 style={{ color: "var(--os-olive-deep)" }}
               >
-                {en ? "Brindisi airport transfers" : "Transfer dall'aeroporto di Brindisi"}
+                {en ? "Brindisi Airport transfers (BDS)" : "Transfer aeroporto di Brindisi (BDS)"}
               </Link>
               {en ? " · " : " · "}
               <Link
-                href={pathFor("bari", locale)}
+                href={pathFor("bari-airport", locale)}
                 className="underline decoration-1 underline-offset-4 hover:no-underline"
                 style={{ color: "var(--os-olive-deep)" }}
               >
-                {en ? "Bari airport and cruise port" : "Aeroporto e porto di Bari"}
+                {en ? "Bari Airport transfers (BRI)" : "Transfer aeroporto di Bari (BRI)"}
               </Link>
             </p>
           </Container>

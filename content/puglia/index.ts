@@ -1,4 +1,5 @@
 import type {
+  AirportContent,
   AlberobelloContent,
   BariContent,
   BrindisiContent,
@@ -27,6 +28,10 @@ import { polignanoEn } from "./polignano-en";
 import { polignanoIt } from "./polignano-it";
 import { salentoEn } from "./salento-en";
 import { salentoIt } from "./salento-it";
+import { bariAirportEn } from "./bari-airport-en";
+import { bariAirportIt } from "./bari-airport-it";
+import { brindisiAirportEn } from "./brindisi-airport-en";
+import { brindisiAirportIt } from "./brindisi-airport-it";
 
 /**
  * The Puglia cluster's content, keyed by language.
@@ -71,6 +76,18 @@ export const polignanoPage: PolignanoContent = {
 /** Salento: the peninsula, as a circuit. */
 export const salentoPage: SalentoContent = { en: salentoEn, it: salentoIt };
 
+/** Bari Karol Wojtyla Airport (BRI). */
+export const bariAirportPage: AirportContent = {
+  en: bariAirportEn,
+  it: bariAirportIt,
+};
+
+/** Brindisi Airport (BDS). */
+export const brindisiAirportPage: AirportContent = {
+  en: brindisiAirportEn,
+  it: brindisiAirportIt,
+};
+
 export type {
   PugliaPillar,
   PugliaTown,
@@ -83,4 +100,5 @@ export type {
   MonopoliPage,
   PolignanoPage,
   SalentoPage,
+  AirportPage,
 } from "./types";

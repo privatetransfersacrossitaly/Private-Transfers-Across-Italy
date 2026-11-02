@@ -4,10 +4,15 @@ import type { BrindisiPage } from "./types";
  * Brindisi — English.
  *
  * ── What this page owns ───────────────────────────────────────────────────
- * Per the approved keyword map: BDS, and the "Bari or Brindisi?" comparison,
- * which lives here and on the pillar and nowhere else. Lecce, Ostuni and
- * Salento are *introduced* here as destinations reached from this airport;
- * each gets its own page in a later phase and the detail belongs there.
+ * Per the approved keyword map as amended when the dedicated BDS page
+ * shipped: Brindisi as the southern gateway, the road south, and the "Bari
+ * or Brindisi?" comparison, which lives here and on the pillar and nowhere
+ * else. The airport itself — its names, its traffic, being met in its
+ * arrivals hall, the routes away from it and the public-transport
+ * comparison — belongs to /airports/brindisi, which is linked prominently
+ * from the section that used to carry that material. Lecce, Ostuni and
+ * Salento are *introduced* here as destinations; each has its own page and
+ * the detail belongs there.
  *
  * ── Why the page is built around distance ─────────────────────────────────
  * Everyone who lands at Brindisi has the same question, and it is not about
@@ -31,14 +36,18 @@ import type { BrindisiPage } from "./types";
 export const brindisiEn: BrindisiPage = {
   meta: {
     // Bare title; the layout appends the brand. Renders at 62 characters.
-    title: "Brindisi airport transfers",
+    // Re-pointed when the dedicated BDS page shipped. This page previously
+    // carried the title "Brindisi airport transfers", which is the query that
+    // page now owns; two of our own pages competing for it helped neither.
+    // The body below is unchanged — only the targeting moved.
+    title: "Brindisi transfers and southern Puglia",
     description:
-      "Private transfers from Brindisi Airport (BDS) to Lecce, Ostuni, Salento and the masserie. The southern gateway to Puglia — tell us the journey and get a written quote.",
+      "Private transfers in and around Brindisi: the southern gateway to Puglia, which airport suits where you are staying, and the drive down into Salento.",
   },
 
   hero: {
     eyebrow: "Puglia · Brindisi",
-    h1: "Brindisi airport transfers to Salento",
+    h1: "Brindisi transfers and the road south",
     lead: "Brindisi is the airport for the south of Puglia. Lecce is about half an hour away, Ostuni a little less, and almost everything people come to Salento for is nearer to this runway than to Bari's. The airport itself is small and quick to leave; the drive afterwards is the part worth getting right.",
     primaryCta: "Request a Brindisi transfer quote",
     secondaryCta: "Bari or Brindisi?",
@@ -52,9 +61,14 @@ export const brindisiEn: BrindisiPage = {
 
   intro: {
     heading: "The southern gateway",
+    // The airport's own identity — the Antonio Papola naming, the Papola
+    // Casale and Salento Airport alternatives, the 2024 passenger total and
+    // the Ryanair focus-city status — is not repeated here. It is sourced
+    // and set out in full on the BDS page, which owns that query. What this
+    // page needs from the airport is only what it implies for the drive.
     paragraphs: [
-      "Brindisi Airport is formally named after Antonio Papola, an Italian aviator killed in an air accident in February 1948, and it carries two other names that you will see on tickets and signage: Papola Casale, after the neighbourhood, and Salento Airport, after the region it opens. The last of those is the one that explains what the airport is for.",
-      "It is small — a little under 3.4 million passengers in 2024 — and it is a focus city for Ryanair, with seasonal routes from across northern Europe that thicken sharply in summer and thin out again by November. That seasonality matters when you are arranging ground transport: in August the airport is busy and so is every operator working out of it.",
+      "Brindisi is the way into the south of Puglia, and the name it also goes by — Salento Airport — says what it is for better than its own does. Almost everything the far south is visited for is nearer to this corner of the region than to Bari: Lecce, the masserie in the olive country, the beaches on both coasts, and the towns at the very end of the heel.",
+      "Flights here are heavily seasonal, and so is everything on the ground that meets them. Through July and August the airport and the operators working out of it are at their busiest together; in the shoulder months there is considerably more room. That affects how far ahead it is worth arranging a car far more than the distance does.",
       "We arrange transfers here with licensed local transfer companies and drivers. We do not own vehicles and we do not employ the drivers directly. You tell us the journey, we arrange it with an operator who covers that route, and the arrangement and the price come to you in writing before anything is confirmed.",
     ],
   },
@@ -130,25 +144,16 @@ export const brindisiEn: BrindisiPage = {
   },
 
   airport: {
-    heading: "Leaving the airport",
-    paragraphs: [
-      "BDS is genuinely small, and that is its great virtue. The walk from the aircraft to the arrivals hall is short, there is one place to collect bags, and there is one way out — so there is no wrong exit and no long internal transit to allow for.",
-      "The practical consequence is that arrivals happen fast. Where a larger airport gives a driver twenty minutes of slack while passengers work their way out, Brindisi does not. A transfer arranged against a flight number rather than a clock time absorbs that; one arranged against a guessed arrival time does not.",
+    heading: "If you are flying into Brindisi",
+    summary: [
+      "BDS is about 6 km from the city and genuinely small: a short walk from the aircraft, one place to collect bags, one way out. The consequence that matters for a transfer is that it empties quickly, so there is less slack here to absorb a loose arrangement than at a larger airport.",
+      "The mechanics of being met — the name board, why the flight number beats a written-down arrival time, the late-evening summer schedule, what to send about a country address — are set out on the airport's own page, together with every route south and a straight comparison with the bus, the train and a hire car. This page stays with Brindisi and the road south.",
     ],
-    meeting: [
-      {
-        title: "Meeting point",
-        body: "Drivers meet in the arrivals hall with a name board. Agree in advance what the board will say — a surname you did not expect is the commonest reason two people stand ten metres apart without finding each other.",
-      },
-      {
-        title: "Give the flight number",
-        body: "With the flight number the driver can see a delay or a diversion for themselves. Without it, a delayed flight becomes a phone call from a landed aircraft, which is the worst moment to be arranging anything.",
-      },
-      {
-        title: "Late and seasonal flights",
-        body: "Brindisi's summer schedule includes a good many late evening arrivals, and availability in the small hours is tighter than in the middle of the day. Earlier notice genuinely helps in July and August.",
-      },
-    ],
+    handoff: {
+      heading: "Transfers from Brindisi Airport, in full",
+      body: "Being met at BDS, how a private transfer is arranged and paid for, every route down the heel with distances as published sources give them, and what the bus, the train and driving yourself genuinely do and do not cover.",
+      cta: "Brindisi Airport transfers (BDS)",
+    },
   },
 
   lecce: {
@@ -214,11 +219,11 @@ export const brindisiEn: BrindisiPage = {
       },
       {
         term: "Limited-traffic zones",
-        detail: "Lecce, Ostuni and most of the old centres restrict vehicle access. Normal, and not an obstacle — it only means the legal drop-off is sometimes a few minutes' walk from the door.",
+        detail: "Lecce and Ostuni both restrict access to their old centres, and so do most of the smaller hill towns down the peninsula. It is ordinary in Italy rather than an obstacle; it simply means the permitted stopping point can be a couple of streets from the address, and that the right gate is worth knowing in advance.",
       },
       {
         term: "Seasonality",
-        detail: "Brindisi's schedule is strongly seasonal and so is the ground transport around it. July and August are busy for everyone working out of the airport; arranging early is worth more here than at a year-round airport.",
+        detail: "In high summer the whole region is working at capacity, cars and drivers included, and the gap between arranging something a fortnight ahead and asking for it on the day is wider here than almost anywhere else in Puglia.",
       },
       {
         term: "Paying",
@@ -230,33 +235,36 @@ export const brindisiEn: BrindisiPage = {
   faq: {
     heading: "Questions about Brindisi transfers",
     items: [
+      // Rewritten when the BDS page shipped. The airport page answers the
+      // same questions from the airport's side; these answer them from the
+      // town's, and no answer below now repeats one of its sentences.
       {
         question: "How far is Brindisi airport from Lecce?",
-        answer: "About 39 km by the Puglia regional route guide's figure, and roughly half an hour in ordinary conditions. It is the most requested journey from this airport by some margin.",
+        answer: "About 39 km, by the Puglia regional government's route guide — and the drive is the straightforward half of it. What decides the end of the journey is Lecce's restricted historic centre, as the section above describes: the legal drop-off can be a short walk from the door, and which gate the driver uses depends on the street.",
       },
       {
         question: "Should I fly to Brindisi or Bari?",
         answer: "If you are staying south of Ostuni — Lecce, Otranto, Gallipoli, anywhere in Salento — fly to Brindisi. North of Ostuni, Bari is nearer. Ostuni itself sits near the dividing line and works from either. If the flights only suit the other airport, the transfer is still arrangeable; it is simply a longer drive.",
       },
       {
-        question: "How far is Brindisi airport from the city centre?",
-        answer: "About 6 km. The airport is close to Brindisi itself, which is part of why it is quick to leave — but most people landing here are not staying in Brindisi, and the drive that matters is the one further south.",
+        question: "We are staying in Brindisi itself. Is a transfer worth arranging?",
+        answer: "Possibly not, and we would rather say so. The town is about 6 km from the runway, which makes it one of the shortest airport runs in Puglia and one of the few where arriving without anything arranged is a reasonable plan. Tell us where you are staying and we will give you a straight answer. It is the journeys that carry on south — an hour or more, often to an address with no street number — where arranging it in advance changes the evening.",
       },
       {
         question: "Can you collect us from a masseria in the countryside?",
-        answer: "Yes, and it is one of the most common requests we get here. Send the property name and any arrival directions it has given you. Many masserie keep a set of directions written for drivers precisely because the lanes are hard to find; forwarding them is the single most useful thing you can do.",
+        answer: "Yes, and in this part of Puglia it is the request we get most. The list above sets out what to send: the property's full name, a pin or coordinates where it supplies them, the nearest town and the road the entrance is off. Country properties here are far easier to describe than to find, which is exactly why so many of them keep directions written for drivers.",
       },
       {
-        question: "Is there a bus or train from Brindisi airport?",
-        answer: "There are bus connections from the airport, but we would rather point you at current timetables than publish times we cannot verify — services vary by season and by operator. For Lecce and the towns beyond, the practical comparison is usually between a connection with a change and a door-to-door car, and with luggage and a late arrival that comparison tends to settle itself.",
+        question: "Does it matter which coast we are staying on?",
+        answer: "It changes the drive more than people expect. Salento has a sea on each side and the roads do not treat them alike: the Adriatic side is reached either down the coast or inland through Lecce, and the Ionian side almost always across the peninsula via Lecce. For somewhere like Otranto the published distances run anywhere from about 65 to 97 km depending on which of those routes is taken, which is why we confirm the routing when we quote rather than before.",
       },
       {
         question: "Can you arrange transport for a wedding in Salento?",
-        answer: "Yes. The usual arrangement is airport arrivals for guests across several days, a coordinated run to the venue and return journeys afterwards. Tell us guest numbers, pickup points and times and we will quote the whole thing together rather than piecemeal. We do not have agreements with specific venues and we do not claim to.",
+        answer: "Yes, and it is usually one piece of work rather than several: guests arriving across several days, a coordinated run to the venue, and the late journeys back afterwards, which are the part most often left until too late. Send guest numbers, pickup points and times and it gets quoted as a whole. We have no agreements with particular venues and make no claim to.",
       },
       {
-        question: "How much does a transfer from Brindisi airport cost?",
-        answer: "There is no price list. It depends on the route, the vehicle, the number of passengers and the date — a run to Ostuni and a run to Santa Maria di Leuca are not comparable journeys. Describe what you need and you will get a written quotation; nothing is charged until you have agreed it.",
+        question: "How much does a transfer from Brindisi cost?",
+        answer: "There is no price list, because the journeys are not comparable: an address ten minutes from the terminal and one at the end of the heel are different pieces of work, and the date and the vehicle move the figure as well. Describe the journey and the quotation comes in writing. Nothing is charged until you have agreed it.",
       },
       {
         question: "Do you operate the vehicles yourselves?",
@@ -267,7 +275,7 @@ export const brindisiEn: BrindisiPage = {
 
   close: {
     heading: "Tell us where you are staying",
-    body: "The flight number, the property and how many of you there are — and the property's own arrival directions if it has sent you any. We come back with the arrangement and the price in writing, and if the journey will not work the way you have described it, we will say so.",
+    body: "Where you are going matters more here than where you land: the address, how many of you there are, and the flight it has to meet. The arrangement and the price come back in writing, and if the journey will not work the way you have described it, we will say so rather than quote it anyway.",
     cta: "Request a transfer quote",
   },
 };

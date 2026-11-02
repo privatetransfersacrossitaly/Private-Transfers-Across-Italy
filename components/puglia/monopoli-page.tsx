@@ -290,11 +290,11 @@ export function MonopoliPageView({ locale }: { locale: Locale }) {
             </p>
             <p className="mt-6 type-small" style={{ color: "var(--mo-muted)" }}>
               <Link
-                href={pathFor("bari", locale)}
+                href={pathFor("bari-airport", locale)}
                 className="underline decoration-1 underline-offset-4 hover:no-underline"
                 style={{ color: "var(--mo-sea-deep)" }}
               >
-                {en ? "Bari airport and cruise port" : "Aeroporto e porto di Bari"}
+                {en ? "Bari Airport transfers (BRI)" : "Transfer aeroporto di Bari (BRI)"}
               </Link>
             </p>
           </Container>

@@ -87,6 +87,8 @@ export type PageId =
   | "monopoli"
   | "polignano-a-mare"
   | "salento"
+  | "bari-airport"
+  | "brindisi-airport"
   | "about"
   | "quote"
   | "privacy"
@@ -733,6 +735,33 @@ const pages: Record<PageId, PageRecord> = {
     parent: "puglia",
     published: true,
     priority: 0.8,
+  },
+
+  /* ── Puglia's two airports ───────────────────────────────────────────
+     Under /airports/, like every other airport on this site, rather than
+     inside the Puglia destination namespace. That is not a cosmetic
+     choice: the global Airports menu and the homepage airport directory
+     both enumerate this namespace, so a page placed here is discoverable
+     from two existing entry points without any special-casing, and Puglia
+     stops being the only region absent from that menu.
+
+     Their parent is the Puglia pillar rather than a city, which is what
+     gives them the breadcrumb Home → Puglia → <airport>. Compare
+     `fiumicino`, whose parent is `rome`. */
+  "bari-airport": {
+    path: {
+      en: "/airports/bari-karol-wojtyla",
+      it: "/it/aeroporti/bari-karol-wojtyla",
+    },
+    parent: "puglia",
+    published: true,
+    priority: 0.9,
+  },
+  "brindisi-airport": {
+    path: { en: "/airports/brindisi", it: "/it/aeroporti/brindisi" },
+    parent: "puglia",
+    published: true,
+    priority: 0.9,
   },
 
   about: {

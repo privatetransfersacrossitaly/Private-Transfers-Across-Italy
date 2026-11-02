@@ -161,10 +161,12 @@ export function BariPageView({ locale }: { locale: Locale }) {
           </Container>
         </section>
 
-        {/* ── The arrival sequence ────────────────────────────────────────
-            This page's signature device: a drawn rail with numbered nodes,
-            because an arrival is a sequence and a card grid would lose the
-            one thing that matters about it — the order. */}
+        {/* ── The airport, in summary ─────────────────────────────────────
+            This section once held the full arrival sequence as a drawn rail
+            with numbered nodes. The dedicated BRI page owns the airport
+            query and carries that sequence now, so what is left here is a
+            short orientation and a hand-off card with enough weight to be
+            the obvious next click. */}
         <section
           className="border-y py-14 sm:py-18"
           style={{ borderColor: "var(--ba-rule)", background: "#fbf9f5" }}
@@ -175,54 +177,42 @@ export function BariPageView({ locale }: { locale: Locale }) {
               {c.airport.lead}
             </p>
 
-            <ol className="mt-10 max-w-[70ch]">
-              {c.airport.steps.map((step, i) => {
-                const last = i === c.airport.steps.length - 1;
-                return (
-                  <li key={step.title} className="relative flex gap-5 sm:gap-7">
-                    {/* The rail itself, plus the node. Drawn with a border
-                        rather than a pseudo-element so it is visible when
-                        backgrounds are overridden by forced-colours mode. */}
-                    <div className="flex flex-col items-center" aria-hidden="true">
-                      <span
-                        className="flex size-9 shrink-0 items-center justify-center rounded-full border type-caption font-medium"
-                        style={{
-                          borderColor: "var(--ba-deep)",
-                          background: "var(--ba-deep)",
-                          color: "#f7f4ee",
-                        }}
-                      >
-                        {i + 1}
-                      </span>
-                      {!last ? (
-                        <span
-                          className="w-px grow"
-                          style={{ background: "var(--ba-rule)" }}
-                        />
-                      ) : null}
-                    </div>
-                    <div className={last ? "pb-0" : "pb-9"}>
-                      <h3
-                        className="font-heading type-h3"
-                        style={{ color: "var(--ba-ink)" }}
-                      >
-                        {step.title}
-                      </h3>
-                      <p className="mt-2 type-body" style={{ color: "var(--ba-muted)" }}>
-                        {step.body}
-                      </p>
-                    </div>
-                  </li>
-                );
-              })}
-            </ol>
+            <div className="mt-6 max-w-[66ch] space-y-4">
+              {c.airport.summary.map((p) => (
+                <p key={p.slice(0, 24)} className="type-body" style={{ color: "var(--ba-muted)" }}>
+                  {p}
+                </p>
+              ))}
+            </div>
 
-            <p
-              className="mt-10 max-w-[64ch] border-l-4 py-1 pl-5 type-body"
-              style={{ borderColor: "var(--ba-terracotta)", color: "var(--ba-ink)" }}
+            {/* The hand-off. A whole-card link rather than an underlined
+                phrase in a paragraph: this is the one place on the page
+                where somebody who landed at BRI should be sent somewhere
+                else, and a sentence fragment was too easy to read past. */}
+            <Link
+              href={pathFor("bari-airport", locale)}
+              className="group mt-10 block max-w-[66ch] border p-6 transition-colors sm:p-7"
+              style={{ borderColor: "var(--ba-deep)", background: "var(--ba-deep)" }}
             >
-              {c.airport.note}
-            </p>
+              <span
+                className="block font-heading type-h3"
+                style={{ color: "#f7f4ee" }}
+              >
+                {c.airport.handoff.heading}
+              </span>
+              <span className="mt-3 block type-body" style={{ color: "#dcd3c4" }}>
+                {c.airport.handoff.body}
+              </span>
+              <span
+                className="mt-5 flex items-center gap-2 type-caption font-medium uppercase tracking-[0.1em]"
+                style={{ color: "#e8b79c" }}
+              >
+                {c.airport.handoff.cta}
+                <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
+                  →
+                </span>
+              </span>
+            </Link>
           </Container>
         </section>
 

@@ -313,19 +313,19 @@ export function AlberobelloPageView({ locale }: { locale: Locale }) {
 
             <p className="mt-6 type-small" style={{ color: "var(--al-muted)" }}>
               <Link
-                href={pathFor("bari", locale)}
+                href={pathFor("bari-airport", locale)}
                 className="underline decoration-1 underline-offset-4 hover:no-underline"
                 style={{ color: "var(--al-valley)" }}
               >
-                {en ? "Bari airport and cruise port" : "Aeroporto e porto di Bari"}
+                {en ? "Bari Airport transfers (BRI)" : "Transfer aeroporto di Bari (BRI)"}
               </Link>
               {" · "}
               <Link
-                href={pathFor("brindisi", locale)}
+                href={pathFor("brindisi-airport", locale)}
                 className="underline decoration-1 underline-offset-4 hover:no-underline"
                 style={{ color: "var(--al-valley)" }}
               >
-                {en ? "Brindisi airport" : "Aeroporto di Brindisi"}
+                {en ? "Brindisi Airport transfers (BDS)" : "Transfer aeroporto di Brindisi (BDS)"}
               </Link>
             </p>
           </Container>

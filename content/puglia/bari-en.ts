@@ -4,12 +4,15 @@ import type { BariPage } from "./types";
  * Bari — English.
  *
  * ── What this page owns, and what it does not ─────────────────────────────
- * Per the approved keyword map: this page owns Bari Karol Wojtyła Airport
- * (BRI) and the Port of Bari. Journeys *from* Bari to Alberobello, Polignano
- * and the rest are introduced here and detailed on their own pages when
- * those ship. The "Bari or Brindisi?" comparison is deliberately absent —
- * that belongs to the Brindisi page and the pillar, and repeating it here
- * would put two pages in competition for the same query.
+ * Per the approved keyword map as amended when the dedicated BRI page
+ * shipped: this page owns Bari the city and the Port of Bari. The airport
+ * belongs to /airports/bari-karol-wojtyla, which carries the arrival
+ * sequence, the onward routes and the public-transport comparison in full;
+ * what survives here is a short orientation and a hand-off to it. Journeys
+ * *from* Bari to Alberobello, Polignano and the rest are introduced here
+ * and detailed on their own pages. The "Bari or Brindisi?" comparison is
+ * deliberately absent — that belongs to the Brindisi page and the pillar,
+ * and repeating it here would put two pages in competition for one query.
  *
  * ── Sourcing ──────────────────────────────────────────────────────────────
  * Airport codes, the operator and the approximate distance from the centre
@@ -32,14 +35,22 @@ export const bariEn: BariPage = {
   meta: {
     // Bare title: the root layout appends " | Private Transfer Across
     // Italy". Renders at 58 characters.
-    title: "Bari airport transfers",
+    // Re-pointed when the dedicated BRI page shipped. This page previously
+    // carried the title "Bari airport transfers", which is the query that
+    // page now owns; two of our own pages competing for it helped neither.
+    // The body below is unchanged — only the targeting moved.
+    title: "Bari city and cruise port transfers",
+    // Trimmed from 159 to 151 characters so a desktop result shows the whole
+    // sentence. Every element of the intent is intact: the city, the cruise
+    // terminal by its real name, the coast, the two days out, and the fact
+    // that the quotation is written. Only "the journey" became "it".
     description:
-      "Private transfers from Bari Karol Wojtyła Airport (BRI) and the cruise terminal: the city, Alberobello, Polignano, Matera. Tell us the journey for a written quote.",
+      "Private transfers in Bari: the old town, the Terminal Crociere and the coast, plus days out to Alberobello and Matera. Describe it for a written quote.",
   },
 
   hero: {
     eyebrow: "Puglia · Bari",
-    h1: "Bari airport and cruise port transfers",
+    h1: "Bari city and cruise port transfers",
     lead: "Bari is where most people arrive in Puglia, by air or by sea. The airport sits a short way out of the city; the cruise terminal sits inside the port, a working one. Both are easy to leave — the question is usually what happens after that, because most of the places people are heading for are an hour inland or down the coast.",
     primaryCta: "Request a Bari transfer quote",
     secondaryCta: "Arriving by ship",
@@ -61,55 +72,51 @@ export const bariEn: BariPage = {
   },
 
   airport: {
-    heading: "Arriving at Bari Karol Wojtyła",
-    lead: "BRI is a small, straightforward airport — officially Bari Karol Wojtyła, still called Palese by plenty of people after the neighbourhood next to it. It is a focus city for Ryanair and Volotea, which is why so many of the arrivals are early-morning or late-evening. Here is the shape of an arrival.",
-    steps: [
-      {
-        title: "On the ground",
-        body: "Walk or bus to the terminal, depending on the stand. Passport control only applies on arrivals from outside Schengen; on a flight from elsewhere in Italy or the EU you walk straight through.",
-      },
-      {
-        title: "Baggage reclaim",
-        body: "The hall is small and the belts are close together. On a busy summer evening with several aircraft down at once, bags can take a while — this is the part of an arrival that most often runs over.",
-      },
-      {
-        title: "Into arrivals",
-        body: "One arrivals area, so there is no wrong exit to take. A driver meeting you waits here with a name board, and that is the point at which the two of you need to have agreed what the board will say.",
-      },
-      {
-        title: "To the car",
-        body: "The pick-up area is a short walk from the terminal doors. Your driver takes the luggage from there; nothing about the walk changes whether the car is waiting.",
-      },
+    heading: "If you are flying into Bari",
+    lead: "BRI sits about 8 km north-west of the centre — officially Bari Karol Wojtyła, still Palese to plenty of people after the neighbourhood beside it. It is small and it empties quickly, so for a run into the city the arrival itself is rarely the difficult part.",
+    summary: [
+      "One terminal, one arrivals hall, no wrong exit to take. A driver meeting you waits in arrivals with a name board, and the two things worth settling before you fly are what that board will say and the flight number it is attached to.",
+      "If you are heading somewhere that is not a Bari address — the trulli, the coast, Matera over the regional border — the routes, the published distances and the comparison with the train all belong on the airport's own page. This one stays with the city and the port.",
     ],
-    note: "Flight numbers matter more than arrival times. Give us the flight number and the driver can see for themselves whether you are early, late or diverted — a time written down on a booking form cannot do that.",
+    handoff: {
+      heading: "Transfers from Bari Airport, in full",
+      body: "Being met at BRI, how a private transfer is arranged and paid for, every onward route with distances as published sources give them, and a straight comparison with the train and the city bus.",
+      cta: "Bari Airport transfers (BRI)",
+    },
   },
 
+  // Reworded when the BRI page shipped. The facts are unchanged — they are
+  // the same published timetables and route numbers — but the sentences no
+  // longer run close to the airport page's own comparison, and the framing
+  // is now "which way into the city suits you" rather than "how to leave
+  // BRI", which is that page's question. Route 50 is included here because
+  // the port is this page's subject.
   waysIn: {
     heading: "Ways into the city, honestly compared",
-    lead: "A private transfer is not always the right answer, and this page is more useful if it says so. Bari is one of the easier Italian airports to leave under your own steam.",
+    lead: "A private transfer is not always the right answer. Bari is better served by public transport than most of Puglia, and which option suits you comes down to where in the city you are staying and how much you are carrying.",
     rows: [
       {
         mode: "Train",
-        suits: "Going to central Bari with little luggage. The airport has its own station on the Ferrotramviaria line, and published timetables put the run to the centre at roughly 15 to 20 minutes.",
-        against: "It terminates at the Ferrotramviaria station beside Bari Centrale, not inside it, so there is a walk and a change if you are continuing by Trenitalia. It does not run through the night.",
+        suits: "Reaching the centre from the airport with hand luggage. The Ferrotramviaria line has a station at the airport and its published timetables show roughly 15 to 20 minutes.",
+        against: "The city end is the Ferrotramviaria station next door to Bari Centrale rather than a platform inside it, so continuing on Trenitalia means a change and a short walk. Nothing runs overnight.",
       },
       {
         mode: "City bus",
-        suits: "The cheapest way in. AMTAB route 16 connects the airport with the centre.",
-        against: "Slower than the train, and awkward with more than a cabin bag.",
+        suits: "Spending as little as possible. AMTAB route 16 covers the airport run; route 50 is the circular that links the port gate with Piazza Moro, beside Bari Centrale.",
+        against: "Both are slower than the alternatives, and neither is designed around suitcases.",
       },
       {
         mode: "Taxi",
-        suits: "Short hops into Bari itself when you have not arranged anything in advance. There is a rank outside arrivals.",
-        against: "Nothing is arranged beforehand, so there is no name board, no fixed route and nobody expecting your flight. For a long run inland it is the least predictable option.",
+        suits: "There is a rank outside arrivals and at both port terminals, and that is the appeal: nothing has to be arranged beforehand.",
+        against: "Equally, nothing has been arranged — no name board, no agreed route for a long run, nobody following a flight or a ship. Fine into the Murat quarter; much less predictable for an hour inland.",
       },
       {
         mode: "Private transfer",
-        suits: "Anywhere that is not central Bari: a masseria down an unlit lane, a hill town with a limited-traffic centre, Matera over the border, or a late arrival with children and luggage.",
-        against: "It has to be arranged in advance, and for a short run to a city-centre hotel it is more than the journey needs.",
+        suits: "Addresses that public transport does not reach: a masseria behind an unmarked gate, a hill town with a restricted centre, Matera over the border, or a ship that sails in the early evening.",
+        against: "It only works if it was arranged in advance, and for a hotel ten minutes from the station it is more car than the journey needs.",
       },
     ],
-    verdict: "Rule of thumb: if you are staying in central Bari and travelling light, take the train. If you are going anywhere else in the region, the arithmetic changes quickly — especially after dark, and especially with a car seat in the equation.",
+    verdict: "For Bari itself the honest answer is often the train or the number 16. It is when the journey leaves the city — or has to be back at a quayside by a fixed hour — that an arranged car starts to earn its place.",
   },
 
   port: {
@@ -224,13 +231,18 @@ export const bariEn: BariPage = {
   faq: {
     heading: "Questions about Bari transfers",
     items: [
+      // The two questions that stood here — the distance from the airport
+      // to the centre, and the airport train — are now answered on the BRI
+      // page, which is where somebody asking them has landed. Repeating
+      // them verbatim on two of our own URLs helped neither. These two are
+      // this page's own subject: the city kerbside and the port.
       {
-        question: "How far is Bari airport from the city centre?",
-        answer: "Roughly 8 km, north-west of the centre. It is one of the closer Italian airports to the city it serves, and the drive into central Bari is short — most of the transfers we arrange from BRI are going considerably further than that.",
+        question: "Where in Bari can a car actually drop us off?",
+        answer: "At the door, for hotels in the Murat quarter and around Bari Centrale. Bari Vecchia is the exception: the lanes are narrow and partly restricted to traffic, so the legal drop-off is usually at the edge of the old town rather than outside the building. A driver who knows which edge is nearest your address saves a circuit of the walls with the suitcases.",
       },
       {
-        question: "Is there a train from Bari airport?",
-        answer: "Yes. The airport has a station on the Ferrotramviaria line and published timetables put the run into the centre at roughly 15 to 20 minutes. It arrives at the Ferrotramviaria station beside Bari Centrale rather than inside it, so allow for a walk and a change if you are continuing by Trenitalia, and check current times with the operator.",
+        question: "How do we get from the cruise terminal into the old town?",
+        answer: "Independently, there are taxi ranks at both terminals and AMTAB's circular route 50 links the port gate with Piazza Moro beside Bari Centrale; inside the port a free shuttle runs between the quaysides, which matters because the berth a ship is given is not always the one nearest the gate. For a morning in Bari Vecchia that is enough. An arranged car earns its place when the day has to go somewhere else and be back before the all-aboard.",
       },
       {
         question: "Can you collect from the Bari cruise terminal?",
@@ -242,10 +254,14 @@ export const bariEn: BariPage = {
       },
       {
         question: "Can you take us from Bari to Matera?",
-        answer: "Yes, and it is one of the more common requests. Matera is in Basilicata rather than Puglia, about 63 km from the airport by published figures, and the route does not go through central Bari. It is arranged as either a one-way transfer or a day out with waiting time — tell us which you want and we will quote accordingly.",
+        // The distance figure is deliberately not repeated here: the ~63 km
+        // in the sources is measured from the airport, and the airport page
+        // is where it belongs. From a city hotel or the quayside it is a
+        // different start point, and we have no published figure for those.
+        answer: "Yes, and from the cruise terminal it is among the most requested days out. Matera is in Basilicata rather than Puglia, and the route does not pass through central Bari. It is arranged either one way or as a day with waiting time included; if you are coming off a ship, the all-aboard time is what the day gets built around. Say which of the two you want and the quotation follows it.",
       },
       {
-        question: "How much does a transfer from Bari airport cost?",
+        question: "How much does a transfer from Bari cost?",
         answer: "There is no price list. The price depends on the route, the vehicle, the number of passengers and the date. Describe the journey and you will get a written quotation; nothing is charged until you have agreed it.",
       },
       {

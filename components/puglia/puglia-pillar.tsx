@@ -253,6 +253,64 @@ export function PugliaPillarPage({ locale }: { locale: Locale }) {
                 {c.airports.choosing.body}
               </p>
             </div>
+
+            {/* ── Airport transfer pages ──────────────────────────────────
+                The two airports have pages of their own covering arrivals,
+                being met and every onward route. This block is the pillar's
+                hand-off to them: a crawlable anchor each, with the line that
+                says which airport suits which part of the region, so the
+                link carries meaning rather than just equity. */}
+            <div
+              className="mt-10 border-t pt-7"
+              style={{ borderColor: "var(--pg-rule)" }}
+            >
+              <h3 className="font-heading type-h3" style={{ color: "var(--pg-ink)" }}>
+                {locale === "en"
+                  ? "Airport transfers in Puglia"
+                  : "Transfer aeroportuali in Puglia"}
+              </h3>
+              <ul className="mt-5 grid gap-5 sm:grid-cols-2">
+                {(
+                  [
+                    [
+                      "bari-airport",
+                      locale === "en"
+                        ? "Bari Airport transfers (BRI)"
+                        : "Transfer aeroporto di Bari (BRI)",
+                      locale === "en"
+                        ? "The northern airport. Nearest for Bari itself, the Adriatic coast at Polignano and Monopoli, the trulli at Alberobello, and Matera over the regional border."
+                        : "Lo scalo a nord. Il piu vicino per Bari, la costa adriatica fra Polignano e Monopoli, i trulli di Alberobello e Matera oltre il confine regionale.",
+                    ],
+                    [
+                      "brindisi-airport",
+                      locale === "en"
+                        ? "Brindisi Airport transfers (BDS)"
+                        : "Transfer aeroporto di Brindisi (BDS)",
+                      locale === "en"
+                        ? "The southern airport. Nearest for Lecce, Ostuni and the whole of Salento, including Gallipoli, Otranto and the towns at the tip."
+                        : "Lo scalo a sud. Il piu vicino per Lecce, Ostuni e tutto il Salento, Gallipoli e Otranto compresi.",
+                    ],
+                  ] as const
+                ).map(([id, title, blurb]) => (
+                  <li
+                    key={id}
+                    className="rounded-xl border p-6"
+                    style={{ borderColor: "var(--pg-rule)", background: "#fffdf8" }}
+                  >
+                    <Link
+                      href={pathFor(id, locale)}
+                      className="font-heading type-h3 underline decoration-1 underline-offset-4 hover:no-underline"
+                      style={{ color: "var(--pg-ink)" }}
+                    >
+                      {title}
+                    </Link>
+                    <p className="mt-2 type-small" style={{ color: "var(--pg-sea)" }}>
+                      {blurb}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </Container>
         </section>
 
