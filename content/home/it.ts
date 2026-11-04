@@ -104,7 +104,7 @@ export const it: HomeContent = {
     eyebrow: "Dove si va",
     heading: "Destinazioni in Italia",
     lead:
-      "Le città di cui ci si chiede più spesso. Roma, Milano, Venezia e Firenze hanno ciascuna pagine proprie: i loro aeroporti e le stazioni, con il porto, il lago, la laguna e la campagna che le accompagnano. Tutto ciò che non è indicato qui si può comunque richiedere con un preventivo.",
+      "I luoghi di cui ci si chiede più spesso. Roma, Milano, Venezia e Firenze hanno ciascuna pagine proprie: i loro aeroporti e le stazioni, con il porto, il lago, la laguna e la campagna che le accompagnano. Puglia e Sicilia sono trattate come regioni e non come città, perché è così che si percorrono. Tutto ciò che non è indicato qui si può comunque richiedere con un preventivo.",
     cards: [
       {
         id: "rome",
@@ -137,6 +137,44 @@ export const it: HomeContent = {
           "Un aeroporto piccolo dentro l'area urbana, uno più grande a Pisa, un centro rigidamente regolato e la Toscana che comincia pochi minuti dopo i viali.",
         photo: "florence-skyline",
         page: "florence",
+      },
+      // La Puglia è una regione, non una città, ed è l'unica scheda qui
+      // senza fotografia: in libreria non c'è ancora un'immagine della
+      // Puglia con licenza verificata, e l'alternativa — una foto di
+      // campagna generica sotto il nome di una regione precisa — è proprio
+      // ciò che abbiamo rifiutato in tutto il cluster. Meglio la scheda
+      // senza foto che nessun collegamento: l'elenco degli aeroporti più
+      // sotto raggiunge già i due scali, ma alla pagina regionale e agli
+      // otto centri non arrivava nulla, e il cluster più grande del sito
+      // restava senza una via d'accesso dalla home.
+      {
+        id: "puglia",
+        name: "Puglia",
+        blurb:
+          "Due aeroporti alle due estremità di una regione lunga, i trulli e le masserie nel mezzo, e indirizzi che spesso stanno in fondo a una strada di campagna e non su una via.",
+        plate: "BRI · BDS",
+        page: "puglia",
+        links: [
+          { page: "bari-airport", label: "Aeroporto di Bari (BRI)" },
+          { page: "brindisi-airport", label: "Aeroporto di Brindisi (BDS)" },
+        ],
+      },
+      // La Sicilia, seconda scheda senza foto e per lo stesso motivo: in
+      // libreria non c'è un'immagine dell'isola con licenza verificata, e
+      // una veduta mediterranea generica sotto il nome di una regione
+      // precisa è proprio la cosa che non facciamo. La targa porta i tre
+      // codici aeroportuali.
+      {
+        id: "sicily",
+        name: "Sicilia",
+        blurb:
+          "Un triangolo con due aeroporti a due vertici e quasi nulla al terzo, tre scali crocieristici e paesi in cui l'auto non sempre entra.",
+        plate: "PMO · CTA · TPS",
+        page: "sicily",
+        links: [
+          { page: "palermo-airport", label: "Aeroporto di Palermo (PMO)" },
+          { page: "catania-airport", label: "Aeroporto di Catania (CTA)" },
+        ],
       },
     ],
     alsoHeading: "Ci si chiede anche di",
@@ -205,8 +243,9 @@ export const it: HomeContent = {
           { name: "Napoli (Capodichino)", code: "NAP", note: "Dentro l'area urbana di Napoli.", page: "nap-airport" },
           { name: "Bari (Karol Wojtyła)", code: "BRI", note: "A nord-ovest di Bari. La metà nord della Puglia, i trulli e Matera oltre il confine.", page: "bari-airport" },
           { name: "Brindisi (Papola Casale)", code: "BDS", note: "La metà sud della Puglia: Lecce, Ostuni e tutto il Salento.", page: "brindisi-airport" },
-          { name: "Catania (Fontanarossa)", code: "CTA", note: "A sud di Catania, per la Sicilia orientale." },
-          { name: "Palermo (Falcone Borsellino)", code: "PMO", note: "A ovest di Palermo, a Punta Raisi." },
+          { name: "Catania (Fontanarossa)", code: "CTA", note: "A circa 4,3 km da Catania. Taormina, Siracusa e l'Etna.", page: "catania-airport" },
+          { name: "Palermo (Falcone Borsellino)", code: "PMO", note: "A Cinisi, circa 35 km da Palermo. La costa nord e l'ovest.", page: "palermo-airport" },
+          { name: "Trapani (Vincenzo Florio)", code: "TPS", note: "Fra Trapani e Marsala, per il vertice occidentale.", page: "trapani-airport" },
           { name: "Cagliari (Elmas)", code: "CAG", note: "A nord-ovest di Cagliari, per il sud della Sardegna." },
           { name: "Olbia (Costa Smeralda)", code: "OLB", note: "Per il nord-est della Sardegna." },
         ],

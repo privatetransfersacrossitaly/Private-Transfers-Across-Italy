@@ -27,8 +27,24 @@ export type DestinationCard = {
   name: string;
   blurb: string;
   photo?: PhotoSlug;
+  /**
+   * Shown on the typographic plate that stands in for a missing photograph.
+   * Repeating the card's own name there would print it twice, so this is
+   * something the heading does not already say. Ignored when `photo` is set.
+   */
+  plate?: string;
   /** Set once a destination page exists; the tile becomes a link. */
   page?: PageId;
+  /**
+   * Secondary links shown beneath the blurb, for a destination whose
+   * cluster has more than one obvious entry point — Puglia's two airports
+   * are at opposite ends of the region, so which one a visitor wants is a
+   * real question and not a detail to bury one level down.
+   *
+   * They render outside the tile's own link: an anchor inside an anchor is
+   * invalid HTML and browsers resolve it unpredictably.
+   */
+  links?: { page: PageId; label: string }[];
 };
 
 export type AirportGroup = {

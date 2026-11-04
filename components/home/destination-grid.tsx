@@ -7,6 +7,29 @@ import type { Locale } from "@/lib/site";
 import { photo } from "@/content/photos";
 
 /**
+ * What stands where a photograph would, when there is no photograph.
+ *
+ * Puglia has no licensed image in the library yet, and a generic landscape
+ * printed under a region's name is the one thing this project has refused
+ * throughout the cluster. An empty cell would have made the newest and
+ * largest destination look like an afterthought, so the tile carries a
+ * typographic plate instead — the same device the airport pages use with
+ * their IATA codes. It is decorative: the heading beneath it already names
+ * the place, so this is hidden from assistive technology rather than read
+ * out twice.
+ */
+function Plate({ label }: { label: string }) {
+  return (
+    <div
+      aria-hidden="true"
+      className="flex aspect-[4/5] items-end rounded-md border border-border bg-accent-wash p-5"
+    >
+      <span className="font-heading text-accent-ink type-h2">{label}</span>
+    </div>
+  );
+}
+
+/**
  * Destination discovery.
  *
  * The four cities are presented editorially, with a photograph and a line
@@ -15,6 +38,9 @@ import { photo } from "@/content/photos";
  * looks clickable and is not is worse than one that never pretended. Rome is
  * the first to have a page behind it; the other three follow when their
  * clusters are built.
+ *
+ * A card with no photograph gets a typographic plate instead of an empty
+ * cell, so a destination without licensed imagery still reads as finished.
  *
  * The cities listed underneath are text for the same reason.
  */
@@ -51,7 +77,9 @@ export function DestinationGrid({
                     aspect="aspect-[4/5]"
                     sizes="(min-width: 1024px) 18rem, (min-width: 640px) 45vw, 92vw"
                   />
-                ) : null}
+                ) : (
+                  <Plate label={card.plate ?? card.name} />
+                )}
                 <h3 className="mt-4 type-h3 text-foreground underline decoration-transparent underline-offset-4 transition-colors group-hover:decoration-accent">
                   {card.name}
                 </h3>
@@ -68,13 +96,33 @@ export function DestinationGrid({
                     aspect="aspect-[4/5]"
                     sizes="(min-width: 1024px) 18rem, (min-width: 640px) 45vw, 92vw"
                   />
-                ) : null}
+                ) : (
+                  <Plate label={card.plate ?? card.name} />
+                )}
                 <h3 className="mt-4 type-h3 text-foreground">{card.name}</h3>
                 <p className="mt-2 type-small text-muted-foreground">
                   {card.blurb}
                 </p>
               </>
             )}
+
+            {/* Deliberately a sibling of the tile link rather than a child:
+                nesting an anchor inside an anchor is invalid, and the two
+                destinations here are genuinely separate places to go. */}
+            {card.links?.length ? (
+              <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-1">
+                {card.links.map((link) => (
+                  <li key={link.page}>
+                    <Link
+                      href={pathFor(link.page, locale)}
+                      className="type-small text-accent-ink underline decoration-1 underline-offset-4 hover:no-underline"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
           </li>
         ))}
       </ul>

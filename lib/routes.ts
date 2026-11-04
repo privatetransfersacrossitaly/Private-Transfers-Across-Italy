@@ -89,6 +89,25 @@ export type PageId =
   | "salento"
   | "bari-airport"
   | "brindisi-airport"
+  // ── Sicily ──────────────────────────────────────────────────────────────
+  // The cluster ships page by page. Every id is declared here from the
+  // start so the pillar can name all thirteen supporting pages and ask
+  // `isPublished` whether each one is a link yet, exactly as Puglia's
+  // pillar did while its towns were still being built.
+  | "sicily"
+  | "palermo"
+  | "catania"
+  | "taormina"
+  | "syracuse"
+  | "trapani"
+  | "agrigento"
+  | "cefalu"
+  | "palermo-airport"
+  | "catania-airport"
+  | "trapani-airport"
+  | "palermo-cruise-port"
+  | "catania-cruise-port"
+  | "messina-cruise-port"
   | "about"
   | "quote"
   | "privacy"
@@ -762,6 +781,148 @@ const pages: Record<PageId, PageRecord> = {
     parent: "puglia",
     published: true,
     priority: 0.9,
+  },
+
+  /* ── Sicily ────────────────────────────────────────────────────────────
+     Fourteen pages: the regional pillar, seven destinations, three
+     airports and three cruise ports.
+
+     ── On the airport slugs ─────────────────────────────────────────────
+     `city-airport-name`, because that is what the other sixteen airport
+     pages do. The brief proposed `/airports/palermo`; three bare city
+     slugs would have been the only airport URLs on the site that do not
+     name the airport, and the city pages sit under /destinations/sicily/
+     anyway, so the pair would have read oddly.
+
+     ── On the ports ─────────────────────────────────────────────────────
+     Three, not five, and under the existing /cruise-ports/ namespace
+     rather than a new /ports/ one. Trapani and Milazzo are ferry ports;
+     filing Milazzo — the Aeolian ferry port — under "cruise-ports" would
+     have put a page under a name that misdescribes it. Their ferry
+     traffic is covered inside the Trapani page and the pillar.
+
+     ── `published` ──────────────────────────────────────────────────────
+     False until a page's route file exists. The pillar reads this to
+     decide whether a name is a link or plain text, so the cluster can
+     ship in phases without a single broken link or stub page. */
+  sicily: {
+    path: { en: "/destinations/sicily", it: "/it/destinazioni/sicilia" },
+    parent: "home",
+    published: true,
+    priority: 0.9,
+  },
+  palermo: {
+    path: {
+      en: "/destinations/sicily/palermo",
+      it: "/it/destinazioni/sicilia/palermo",
+    },
+    parent: "sicily",
+    published: true,
+    priority: 0.8,
+  },
+  catania: {
+    path: {
+      en: "/destinations/sicily/catania",
+      it: "/it/destinazioni/sicilia/catania",
+    },
+    parent: "sicily",
+    published: true,
+    priority: 0.8,
+  },
+  taormina: {
+    path: {
+      en: "/destinations/sicily/taormina",
+      it: "/it/destinazioni/sicilia/taormina",
+    },
+    parent: "sicily",
+    published: true,
+    priority: 0.8,
+  },
+  // The slug differs between languages, as Florence's and Naples' do:
+  // "syracuse" is what an English speaker searches, "siracusa" what an
+  // Italian one does. The registry is what keeps the hreflang pair right.
+  syracuse: {
+    path: {
+      en: "/destinations/sicily/syracuse",
+      it: "/it/destinazioni/sicilia/siracusa",
+    },
+    parent: "sicily",
+    published: true,
+    priority: 0.8,
+  },
+  trapani: {
+    path: {
+      en: "/destinations/sicily/trapani",
+      it: "/it/destinazioni/sicilia/trapani",
+    },
+    parent: "sicily",
+    published: true,
+    priority: 0.8,
+  },
+  agrigento: {
+    path: {
+      en: "/destinations/sicily/agrigento",
+      it: "/it/destinazioni/sicilia/agrigento",
+    },
+    parent: "sicily",
+    published: true,
+    priority: 0.8,
+  },
+  // Unaccented in the slug, both languages, matching val-d-orcia and
+  // salerno-costa-damalfi. The accent comes back in the name and the H1.
+  cefalu: {
+    path: {
+      en: "/destinations/sicily/cefalu",
+      it: "/it/destinazioni/sicilia/cefalu",
+    },
+    parent: "sicily",
+    published: true,
+    priority: 0.8,
+  },
+  "palermo-airport": {
+    path: {
+      en: "/airports/palermo-falcone-borsellino",
+      it: "/it/aeroporti/palermo-falcone-borsellino",
+    },
+    parent: "sicily",
+    published: true,
+    priority: 0.9,
+  },
+  "catania-airport": {
+    path: {
+      en: "/airports/catania-fontanarossa",
+      it: "/it/aeroporti/catania-fontanarossa",
+    },
+    parent: "sicily",
+    published: true,
+    priority: 0.9,
+  },
+  "trapani-airport": {
+    path: {
+      en: "/airports/trapani-birgi",
+      it: "/it/aeroporti/trapani-birgi",
+    },
+    parent: "sicily",
+    published: true,
+    priority: 0.9,
+  },
+  "palermo-cruise-port": {
+    path: { en: "/cruise-ports/palermo", it: "/it/porti-crociere/palermo" },
+    parent: "sicily",
+    published: true,
+    priority: 0.8,
+  },
+  "catania-cruise-port": {
+    path: { en: "/cruise-ports/catania", it: "/it/porti-crociere/catania" },
+    parent: "sicily",
+    published: true,
+    priority: 0.8,
+  },
+  "messina-cruise-port": {
+    path: { en: "/cruise-ports/messina", it: "/it/porti-crociere/messina" },
+    parent: "sicily",
+    published: true,
+    priority: 0.8,
   },
 
   about: {

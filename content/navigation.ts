@@ -53,6 +53,7 @@ type Strings = {
   bolognaAndRomagna: string;
   naplesAndCampania: string;
   puglia: string;
+  sicily: string;
   acrossItaly: string;
   journeysGroup: string;
   milanJourneysGroup: string;
@@ -63,6 +64,8 @@ type Strings = {
   romagnaAirports: string;
   campaniaAirports: string;
   pugliaAirports: string;
+  sicilyAirports: string;
+  sicilyPorts: string;
   pages: Partial<Record<PageId, string>>;
   items: Record<string, { label: string; description?: string }>;
   footer: {
@@ -97,6 +100,7 @@ const strings: Record<Locale, Strings> = {
     bolognaAndRomagna: "Bologna and Romagna",
     naplesAndCampania: "Naples and Campania",
     puglia: "Puglia",
+    sicily: "Sicily",
     acrossItaly: "Across Italy",
     journeysGroup: "Journeys from Rome",
     milanJourneysGroup: "Journeys from Milan",
@@ -107,6 +111,8 @@ const strings: Record<Locale, Strings> = {
     romagnaAirports: "Emilia-Romagna",
     campaniaAirports: "Campania",
     pugliaAirports: "Puglia",
+    sicilyAirports: "Sicily",
+    sicilyPorts: "Sicily",
     pages: {
       rome: "Transfers in Rome",
       fiumicino: "Fiumicino Airport (FCO)",
@@ -248,6 +254,7 @@ const strings: Record<Locale, Strings> = {
     bolognaAndRomagna: "Bologna e la Romagna",
     naplesAndCampania: "Napoli e la Campania",
     puglia: "Puglia",
+    sicily: "Sicilia",
     acrossItaly: "In tutta Italia",
     journeysGroup: "Tratte da Roma",
     milanJourneysGroup: "Tratte da Milano",
@@ -258,6 +265,8 @@ const strings: Record<Locale, Strings> = {
     romagnaAirports: "Emilia-Romagna",
     campaniaAirports: "Campania",
     pugliaAirports: "Puglia",
+    sicilyAirports: "Sicilia",
+    sicilyPorts: "Sicilia",
     pages: {
       rome: "Transfer a Roma",
       fiumicino: "Aeroporto di Fiumicino (FCO)",
@@ -468,6 +477,22 @@ export function buildNavigation(locale: Locale): NavEntry[] {
             .map((id) => page(id)),
         },
         {
+          // Sicily, built after Puglia and on the same principle: the
+          // pillar first, then the seven destinations, every one filtered
+          // through `isPublished` so the menu can never name a page that
+          // is not there.
+          id: "sicily",
+          heading: s.sicily,
+          items: (
+            [
+              "sicily", "palermo", "catania", "taormina",
+              "syracuse", "trapani", "agrigento", "cefalu",
+            ] as PageId[]
+          )
+            .filter((id) => isPublished(id))
+            .map((id) => page(id)),
+        },
+        {
           id: "naples-and-campania",
           heading: s.naplesAndCampania,
           items: [
@@ -537,6 +562,33 @@ export function buildNavigation(locale: Locale): NavEntry[] {
           id: "puglia-airports",
           heading: s.pugliaAirports,
           items: [page("bari-airport"), page("brindisi-airport")],
+        },
+        {
+          // Sicily's three. Trapani is included because it is a page, not
+          // because its schedule is thick — the page itself says when the
+          // bus is the better answer.
+          id: "sicily-airports",
+          heading: s.sicilyAirports,
+          items: (
+            ["palermo-airport", "catania-airport", "trapani-airport"] as PageId[]
+          )
+            .filter((id) => isPublished(id))
+            .map((id) => page(id)),
+        },
+        {
+          // The cluster's three cruise ports sit in the Airports menu
+          // rather than a menu of their own: it is where a visitor looks
+          // for "how do I arrive", and a fourth top-level menu for three
+          // pages would cost more than it returns.
+          id: "sicily-ports",
+          heading: s.sicilyPorts,
+          items: (
+            [
+              "palermo-cruise-port", "catania-cruise-port", "messina-cruise-port",
+            ] as PageId[]
+          )
+            .filter((id) => isPublished(id))
+            .map((id) => page(id)),
         },
         {
           id: "italy-airports",

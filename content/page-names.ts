@@ -180,6 +180,43 @@ export const pageNames: Record<PageId, Record<Locale, string>> = {
     it: "Aeroporto di Brindisi (BDS)",
   },
 
+  // ── Sicily ────────────────────────────────────────────────────────────
+  // These are breadcrumb and menu labels, so they are the short form of
+  // each place rather than the page's title. The accents the slugs drop —
+  // Cefalù — come back here, because this is what a reader sees.
+  sicily: { en: "Sicily", it: "Sicilia" },
+  palermo: { en: "Palermo", it: "Palermo" },
+  catania: { en: "Catania", it: "Catania" },
+  taormina: { en: "Taormina", it: "Taormina" },
+  syracuse: { en: "Syracuse", it: "Siracusa" },
+  trapani: { en: "Trapani", it: "Trapani" },
+  agrigento: { en: "Agrigento", it: "Agrigento" },
+  cefalu: { en: "Cefalù", it: "Cefalù" },
+  "palermo-airport": {
+    en: "Palermo Airport (PMO)",
+    it: "Aeroporto di Palermo (PMO)",
+  },
+  "catania-airport": {
+    en: "Catania Airport (CTA)",
+    it: "Aeroporto di Catania (CTA)",
+  },
+  "trapani-airport": {
+    en: "Trapani Airport (TPS)",
+    it: "Aeroporto di Trapani (TPS)",
+  },
+  "palermo-cruise-port": {
+    en: "Palermo cruise port",
+    it: "Porto crociere di Palermo",
+  },
+  "catania-cruise-port": {
+    en: "Catania cruise port",
+    it: "Porto crociere di Catania",
+  },
+  "messina-cruise-port": {
+    en: "Messina cruise port",
+    it: "Porto crociere di Messina",
+  },
+
   about: { en: "About us", it: "Chi siamo" },
   quote: { en: "Get a quote", it: "Preventivo" },
 

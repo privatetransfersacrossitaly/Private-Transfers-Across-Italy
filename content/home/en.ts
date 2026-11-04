@@ -104,7 +104,7 @@ export const en: HomeContent = {
     eyebrow: "Where people are going",
     heading: "Destinations across Italy",
     lead:
-      "The cities we are asked about most often. Rome, Milan, Venice and Florence each have pages of their own — their airports and stations, and the port, lake, lagoon and countryside that go with them. Anywhere not named here can still be requested through a quotation.",
+      "The places we are asked about most often. Rome, Milan, Venice and Florence each have pages of their own — their airports and stations, and the port, lake, lagoon and countryside that go with them. Puglia and Sicily are covered as regions rather than cities, because that is how they are travelled. Anywhere not named here can still be requested through a quotation.",
     cards: [
       {
         id: "rome",
@@ -137,6 +137,43 @@ export const en: HomeContent = {
           "A small airport inside the urban area, a larger one at Pisa, a strictly regulated centre, and Tuscany beginning minutes past the ring road.",
         photo: "florence-skyline",
         page: "florence",
+      },
+      // Puglia is a region rather than a city, and it is the only card here
+      // without a photograph: no licensed image of Puglia is in the library
+      // yet, and the alternative — a generic countryside shot under the name
+      // of a specific region — is the thing we have refused everywhere else
+      // in this cluster. The card goes in without one rather than wait: the
+      // airport directory below already reaches the two airport pages, but
+      // nothing on this page reached the regional pillar or the eight town
+      // pages, so the largest cluster on the site had no route in from the
+      // home page at all.
+      {
+        id: "puglia",
+        name: "Puglia",
+        blurb:
+          "Two airports at opposite ends of a long region, the trulli and the masserie in between, and addresses that are often down an unlit lane rather than on a street.",
+        plate: "BRI · BDS",
+        page: "puglia",
+        links: [
+          { page: "bari-airport", label: "Bari Airport (BRI)" },
+          { page: "brindisi-airport", label: "Brindisi Airport (BDS)" },
+        ],
+      },
+      // Sicily, the second photo-less card and for the same reason: no
+      // licensed image of the island is in the library, and a generic
+      // Mediterranean view under a region's name is the claim this project
+      // refuses to make. Its plate carries the three airport codes.
+      {
+        id: "sicily",
+        name: "Sicily",
+        blurb:
+          "A triangle with two airports at two corners and nothing at the third, three cruise calls, and towns a car cannot always be driven into.",
+        plate: "PMO · CTA · TPS",
+        page: "sicily",
+        links: [
+          { page: "palermo-airport", label: "Palermo Airport (PMO)" },
+          { page: "catania-airport", label: "Catania Airport (CTA)" },
+        ],
       },
     ],
     alsoHeading: "Also asked about",
@@ -205,8 +242,9 @@ export const en: HomeContent = {
           { name: "Naples (Capodichino)", code: "NAP", note: "Inside the Naples urban area.", page: "nap-airport" },
           { name: "Bari (Karol Wojtyła)", code: "BRI", note: "North-west of Bari. The northern half of Puglia, the trulli, and Matera over the border.", page: "bari-airport" },
           { name: "Brindisi (Papola Casale)", code: "BDS", note: "The southern half of Puglia: Lecce, Ostuni and the whole of Salento.", page: "brindisi-airport" },
-          { name: "Catania (Fontanarossa)", code: "CTA", note: "South of Catania, for eastern Sicily." },
-          { name: "Palermo (Falcone Borsellino)", code: "PMO", note: "West of Palermo at Punta Raisi." },
+          { name: "Catania (Fontanarossa)", code: "CTA", note: "About 4.3 km from Catania. Taormina, Syracuse and Etna.", page: "catania-airport" },
+          { name: "Palermo (Falcone Borsellino)", code: "PMO", note: "At Cinisi, about 35 km from Palermo. The north coast and the west.", page: "palermo-airport" },
+          { name: "Trapani (Vincenzo Florio)", code: "TPS", note: "Between Trapani and Marsala, for the western corner.", page: "trapani-airport" },
           { name: "Cagliari (Elmas)", code: "CAG", note: "North-west of Cagliari, for southern Sardinia." },
           { name: "Olbia (Costa Smeralda)", code: "OLB", note: "For the north-east of Sardinia." },
         ],
