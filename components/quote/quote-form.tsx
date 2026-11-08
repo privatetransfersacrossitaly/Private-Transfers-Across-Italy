@@ -127,6 +127,30 @@ export function QuoteForm({
     }
   }, [state, values]);
 
+  /**
+   * Take the visitor to the first field that needs fixing.
+   *
+   * Every error is printed under its own field, which is right — but the form
+   * is several screens tall and the visitor presses Send at the very bottom.
+   * Without this, a mistake in the pickup address leaves them looking at an
+   * unchanged button with no clue why nothing was sent.
+   *
+   * So after a rejected submission the first control marked `aria-invalid`
+   * (in page order, top to bottom) is scrolled to the middle of the screen —
+   * clear of the sticky header — and focused, so a keyboard or screen-reader
+   * user lands on it too and hears its error read out. Depends on `state`
+   * alone: it runs once per submission, never while the visitor is typing.
+   */
+  useEffect(() => {
+    if (state.status !== "invalid") return;
+    const form = formRef.current;
+    const first = form?.querySelector<HTMLElement>('[aria-invalid="true"]');
+    if (!first) return;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    first.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
+    first.focus({ preventScroll: true });
+  }, [state]);
+
   const set =
     (field: FieldName) =>
     (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>

@@ -34,15 +34,46 @@ export type PhoneParts = {
 };
 
 /**
- * Strip everything a person might type for legibility.
+ * Strip everything a person might type for legibility, and nothing else.
  *
- * Spaces, hyphens, dots, parentheses and a leading plus all go. A leading
- * zero does *not*: it is significant in several numbering plans, and the
- * library knows which. Removing it here would silently corrupt an Italian
- * landline.
+ * Spaces, dashes, dots, slashes, parentheses and a plus all go — of every
+ * kind, including the non-breaking spaces, non-breaking hyphens and invisible
+ * direction marks that come along when a number is pasted from a contacts app
+ * or a WhatsApp profile. Digits typed on an Urdu, Arabic, Persian, Hindi or
+ * full-width keypad (۰۳۰۰ / ٠٣٠٠ / ０３００) become ASCII: to the visitor they
+ * are simply digits, and rejecting them looks like rejecting a correct number.
+ *
+ * A leading zero is *kept*. It is the trunk prefix in many numbering plans
+ * (0300… in Pakistan, 07… in the UK) and part of the number itself in Italy,
+ * and the library knows which is which. So 3001234567 and 03001234567 both
+ * validate for Pakistan, and an Italian landline is never corrupted.
  */
 export function cleanNationalNumber(value: string): string {
-  return (value ?? "").replace(/[\s().\-+]/g, "");
+  return (value ?? "")
+    .replace(/\p{Nd}/gu, toAsciiDigit)
+    .replace(/[\p{Cf}\p{Z}\s\p{Pd}().\/+]/gu, "");
+}
+
+/** Code points of "0" in the digit sets a phone keypad can produce. */
+const digitZeros = [
+  0x0660, // Arabic-Indic ٠
+  0x06f0, // Extended Arabic-Indic (Urdu, Persian) ۰
+  0x0966, // Devanagari ०
+  0x09e6, // Bengali ০
+  0x0a66, // Gurmukhi ੦
+  0x0ae6, // Gujarati ૦
+  0x0e50, // Thai ๐
+  0xff10, // Full-width ０
+];
+
+/** "۳" → "3". Anything not in a known set is left for the validator to reject. */
+function toAsciiDigit(d: string): string {
+  const code = d.codePointAt(0)!;
+  if (code >= 0x30 && code <= 0x39) return d;
+  for (const zero of digitZeros) {
+    if (code >= zero && code <= zero + 9) return String(code - zero);
+  }
+  return d;
 }
 
 /**
