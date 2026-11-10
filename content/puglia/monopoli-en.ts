@@ -36,7 +36,7 @@ export const monopoliEn: MonopoliPage = {
   meta: {
     title: "Monopoli transfers and coastal arrivals",
     description:
-      "Private transfers to Monopoli: Bari airport, the harbour town, the beaches either side of it, and days out to Alberobello. Tell us the journey for a written quote.",
+      "Private transfers to Monopoli from Bari airport: the harbour town, nearby beaches and days out to Alberobello. Send your journey for a written quote.",
   },
 
   hero: {

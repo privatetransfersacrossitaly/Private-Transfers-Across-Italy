@@ -17,7 +17,7 @@ const en: VeniceStations = {
   meta: {
     title: "Venice railway station transfers",
     description:
-      "Santa Lucia is in the historic centre and cannot be reached by car. Mestre is on the mainland and can. Both say Venezia on a ticket — and the difference decides your transfer.",
+      "Venezia Santa Lucia is in the historic centre with no car access; Mestre is on the mainland. Both say Venezia on a ticket, and it decides your transfer.",
   },
   breadcrumbLabel: "Breadcrumb",
 
@@ -133,6 +133,11 @@ const en: VeniceStations = {
         label: "Marco Polo Airport to Venice",
         detail: "The same endpoint question, from the airport.",
       },
+      {
+        page: "route-tsf-venice",
+        label: "Treviso Airport to Venice",
+        detail: "The road run from the airport sold as Venice, about 31 km away.",
+      },
     ],
   },
 
@@ -184,7 +189,7 @@ const it: VeniceStations = {
   meta: {
     title: "Transfer per le stazioni di Venezia",
     description:
-      "Santa Lucia è nel centro storico e non si raggiunge in auto. Mestre è in terraferma e sì. Sul biglietto compaiono entrambe come Venezia, e la differenza decide il vostro transfer.",
+      "Santa Lucia è nel centro storico e non si raggiunge in auto; Mestre è in terraferma. Sul biglietto sono entrambe Venezia: la differenza conta.",
   },
   breadcrumbLabel: "Percorso di navigazione",
 
@@ -299,6 +304,11 @@ const it: VeniceStations = {
         page: "route-vce-venice",
         label: "Dall'aeroporto Marco Polo a Venezia",
         detail: "La stessa questione dei punti di arrivo, vista dall'aeroporto.",
+      },
+      {
+        page: "route-tsf-venice",
+        label: "Dall'aeroporto di Treviso a Venezia",
+        detail: "Il tragitto su strada dall'aeroporto venduto come Venezia, a circa 31 km.",
       },
     ],
   },

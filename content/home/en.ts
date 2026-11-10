@@ -16,9 +16,9 @@ import type { HomeContent } from "./types";
  */
 export const en: HomeContent = {
   meta: {
-    title: "Private Transfers Across Italy | Airports, Cities, Cruise Ports",
+    title: "Private Transfers Across Italy | Airports, Cities, Ports",
     description:
-      "Request a private car and driver in Italy: airport arrivals and departures, journeys between cities, cruise-port connections, day trips and selected cross-border routes. Quoted journey by journey.",
+      "Private car and driver across Italy: airport transfers, city-to-city journeys, cruise ports, day trips and cross-border routes. Every journey quoted.",
   },
 
   hero: {
@@ -178,9 +178,11 @@ export const en: HomeContent = {
     ],
     alsoHeading: "Also asked about",
     also: [
-      "Naples and the Amalfi Coast",
-      "Bologna",
-      "Verona and Lake Garda",
+      { label: "Naples and the Amalfi Coast", page: "naples" },
+      { label: "Bologna", page: "bologna" },
+      { label: "Ravenna", page: "ravenna" },
+      { label: "Verona and Lake Garda", page: "verona" },
+      { label: "Lake Como", page: "lake-como" },
       "Pisa and the Tuscan coast",
       "Turin",
       "Genoa",
@@ -188,7 +190,7 @@ export const en: HomeContent = {
       "Catania",
     ],
     note:
-      "Naming a city here means a journey to or from it can be quoted. It does not mean a dedicated page exists yet, and it does not mean a vehicle is standing by.",
+      "Naming a city here means a journey to or from it can be quoted. A linked name has a page of its own; an unlinked one does not yet. Neither means a vehicle is standing by.",
   },
 
   airports: {
@@ -288,7 +290,14 @@ export const en: HomeContent = {
       "Where a vehicle may wait is set by the port, not by us, and it differs between terminals. The arrangement for your own journey is confirmed when the quotation is prepared.",
     ],
     photo: "cruise-ship-dock",
-    link: { page: "civitavecchia", label: "Civitavecchia cruise port transfers" },
+    links: [
+      { page: "civitavecchia", label: "Civitavecchia cruise port transfers" },
+      { page: "naples-cruise-port", label: "Naples cruise terminal" },
+      { page: "ravenna-terminal", label: "Ravenna Cruise Terminal" },
+      { page: "palermo-cruise-port", label: "Palermo cruise port" },
+      { page: "catania-cruise-port", label: "Catania cruise port" },
+      { page: "messina-cruise-port", label: "Messina cruise port" },
+    ],
     checklistHeading: "For a cruise request, send",
     checklist: [
       "The port and the terminal or berth named by your cruise line",

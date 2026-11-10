@@ -68,6 +68,21 @@ export const whatsappNumber = "923148932631";
 /** The wa.me link for the floating button. */
 export const whatsappHref = `https://wa.me/${whatsappNumber}`;
 
+/**
+ * The brand as the public website presents it: titles, Open Graph, the
+ * Organization and WebSite structured data, the header and footer. Plural,
+ * matching the domain (privatetransfersacrossitaly.com) and the contact
+ * address. Standardised on 10 November 2026.
+ */
+export const publicSiteName = "Private Transfers Across Italy";
+
+/**
+ * The name used by the CRM and the lead-notification emails.
+ *
+ * Kept at its original spelling on purpose: the public-site brand change of
+ * 10 November 2026 was scoped to the website, and the CRM and outgoing email
+ * branding were to stay as they were. Public pages use `publicSiteName`.
+ */
 export const siteName = "Private Transfer Across Italy";
 
 /**

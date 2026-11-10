@@ -374,7 +374,7 @@ const it: AmalfiDestination = {
   meta: {
     title: "Transfer privati per Amalfi",
     description:
-      "Il regolamento del Comune consente a un veicolo NCC di entrare nel centro storico di Amalfi per un massimo di sessanta minuti, e vieta del tutto la fermata nelle quattro vie principali.",
+      "Ad Amalfi un veicolo NCC può entrare nel centro storico per al massimo 60 minuti e non può fermarsi nelle quattro vie principali. Cosa sapere.",
   },
   breadcrumbLabel: "Percorso di navigazione",
 

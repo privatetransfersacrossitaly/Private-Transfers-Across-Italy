@@ -23,7 +23,7 @@ import type { BariPage } from "./types";
 
 export const bariIt: BariPage = {
   meta: {
-    // Nudo: il layout aggiunge " | Private Transfer Across Italy".
+    // Nudo: il layout aggiunge " | Private Transfers Across Italy".
     // Ri-orientata all'arrivo della pagina dedicata al BRI: questa pagina
     // portava il titolo "Transfer aeroporto di Bari", che ora appartiene a
     // quella. Il corpo del testo non e' stato riscritto.

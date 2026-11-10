@@ -199,9 +199,9 @@ const en: LakeComo = {
 
 const it: LakeComo = {
   meta: {
-    title: "Transfer per il Lago di Como",
+    title: "Transfer al Lago di Como",
     description:
-      "Il Lago di Como non è una destinazione sola. Il paese che indicate determina la strada, la sponda e il viaggio — e un transfer su strada non comprende mai un battello.",
+      "Il Lago di Como non è una destinazione sola: il paese decide strada, sponda e tempi. E un transfer su strada non comprende mai un battello.",
   },
   breadcrumbLabel: "Percorso di navigazione",
 

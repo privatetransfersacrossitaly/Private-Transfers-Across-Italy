@@ -144,7 +144,7 @@ const it: CityAirport = {
   meta: {
     title: "Transfer aeroporto di Linate (LIN)",
     description:
-      "L'aeroporto cittadino di Milano: il più vicino, il più piccolo dei tre, soprattutto corto raggio. Che cosa vi dà davvero la vicinanza e che cosa vi tolgono Area B e Area C.",
+      "Linate (LIN), l'aeroporto cittadino di Milano: il più vicino e il più piccolo dei tre. Cosa vi dà la vicinanza e cosa cambiano Area B e Area C.",
   },
   breadcrumbLabel: "Percorso di navigazione",
 

@@ -233,7 +233,7 @@ const it: RavennaTerminal = {
   meta: {
     title: "Transfer per il terminal crociere di Ravenna a Porto Corsini",
     description:
-      "Tre fonti ufficiali descrivono questo porto in modo diverso. Invece di sceglierne una, questa pagina mostra che cosa dice ciascuna — e che cosa nessuna pubblica.",
+      "Terminal crociere di Ravenna a Porto Corsini: tre fonti ufficiali lo descrivono in modo diverso. Cosa dice ciascuna e cosa nessuna pubblica.",
   },
   breadcrumbLabel: "Percorso di navigazione",
 

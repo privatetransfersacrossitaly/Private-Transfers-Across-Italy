@@ -17,7 +17,7 @@ const en: MilanHub = {
   meta: {
     title: "Private transfers in Milan",
     description:
-      "Three airports sold under one city name, two companies running them, and two nested traffic zones that decide where a car can stop. What to check before you ask for a quotation.",
+      "Milan: three airports under one city name, two airport operators and two nested traffic zones. What to check before you ask for a transfer quote.",
   },
   breadcrumbLabel: "Breadcrumb",
 
@@ -225,7 +225,7 @@ const it: MilanHub = {
   meta: {
     title: "Transfer privati a Milano",
     description:
-      "Tre aeroporti venduti con il nome di una sola città, due società che li gestiscono e due zone a traffico limitato una dentro l'altra. Che cosa verificare prima di chiedere un preventivo.",
+      "Milano: tre aeroporti con un solo nome, due gestori e due zone a traffico limitato. Cosa verificare prima di chiedere un preventivo per il transfer.",
   },
   breadcrumbLabel: "Percorso di navigazione",
 

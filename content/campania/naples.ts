@@ -245,7 +245,7 @@ const it: NaplesHub = {
   meta: {
     title: "Transfer privati a Napoli",
     description:
-      "Napoli ha quattro punti d'arrivo e un solo nome. Quale intendete decide il viaggio — e il gestore aeroportuale ha annunciato una chiusura della pista per novembre 2026.",
+      "Napoli ha quattro punti d'arrivo e un solo nome: aeroporto, porto, stazione e costa. Quale intendete decide il viaggio. Cosa sapere prima.",
   },
   breadcrumbLabel: "Percorso di navigazione",
 

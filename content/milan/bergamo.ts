@@ -22,7 +22,7 @@ const en: DistantAirport = {
   meta: {
     title: "Bergamo Airport transfers (BGY)",
     description:
-      "The airport sold as Milan is about 50 km from it, in the province of Bergamo. Where it actually is, who runs it, and what that distance changes about your transfer.",
+      "Bergamo Airport (BGY) is sold as Milan but sits about 50 km away. Where it really is, who runs it and what that distance means for your transfer.",
   },
   breadcrumbLabel: "Breadcrumb",
 
@@ -177,7 +177,7 @@ const it: DistantAirport = {
   meta: {
     title: "Transfer aeroporto di Bergamo (BGY)",
     description:
-      "L'aeroporto venduto come Milano dista da Milano circa 50 km, in provincia di Bergamo. Dove si trova davvero, chi lo gestisce e che cosa comporta quella distanza.",
+      "L'aeroporto di Bergamo (BGY) è venduto come Milano ma dista circa 50 km. Dove si trova davvero, chi lo gestisce e cosa cambia per il vostro transfer.",
   },
   breadcrumbLabel: "Percorso di navigazione",
 

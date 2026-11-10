@@ -46,7 +46,7 @@ export function HomePage({ locale }: { locale: Locale }) {
         lead={content.cruise.lead}
         paragraphs={content.cruise.paragraphs}
         photoSlug={content.cruise.photo}
-        link={content.cruise.link}
+        links={content.cruise.links}
         checklist={{
           heading: content.cruise.checklistHeading,
           items: content.cruise.checklist,

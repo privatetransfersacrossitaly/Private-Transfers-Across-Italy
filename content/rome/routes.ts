@@ -28,7 +28,7 @@ const fcoRomeEn: RoutePage = {
   meta: {
     title: "Fiumicino Airport to Rome",
     description:
-      "What a quotation for the Fiumicino run actually needs: the terminal at one end, the address and its traffic restrictions at the other, and the things that genuinely change the price.",
+      "Fiumicino Airport to Rome by private car: the terminal at one end, your address and its traffic limits at the other, and what changes the price.",
   },
   breadcrumbLabel: "Breadcrumb",
   hero: {
@@ -172,7 +172,7 @@ const fcoRomeIt: RoutePage = {
   meta: {
     title: "Dall'aeroporto di Fiumicino a Roma",
     description:
-      "Che cosa serve davvero per un preventivo sulla tratta da Fiumicino: il terminal da una parte, l'indirizzo e le sue limitazioni al traffico dall'altra, e ciò che fa variare il prezzo.",
+      "Transfer da Fiumicino a Roma: il terminal da una parte, l'indirizzo e le ZTL dall'altra, e cosa fa davvero variare il prezzo del preventivo.",
   },
   breadcrumbLabel: "Percorso di navigazione",
   hero: {
@@ -318,7 +318,7 @@ const ciaRomeEn: RoutePage = {
   meta: {
     title: "Ciampino Airport to Rome",
     description:
-      "The shorter of the two Rome airport runs, and what is genuinely different about it: the hours, the single passenger building, and why closer does not mean quicker.",
+      "Ciampino Airport to Rome by private car: the shorter of the two Rome airport runs, the hours, the single terminal and why closer is not quicker.",
   },
   breadcrumbLabel: "Breadcrumb",
   hero: {
@@ -490,7 +490,7 @@ const ciaRomeIt: RoutePage = {
   meta: {
     title: "Dall'aeroporto di Ciampino a Roma",
     description:
-      "La più breve delle due tratte aeroportuali romane e ciò che la distingue davvero: gli orari, l'unico edificio passeggeri e perché più vicino non significa più veloce.",
+      "Transfer da Ciampino a Roma: la più breve delle due tratte aeroportuali, orari, l'unico terminal e perché più vicino non vuol dire più veloce.",
   },
   breadcrumbLabel: "Percorso di navigazione",
   hero: {
@@ -664,7 +664,7 @@ const romeCivEn: RoutePage = {
   meta: {
     title: "Rome to Civitavecchia cruise port",
     description:
-      "Sailing day, worked backwards from the all-aboard time printed on your cruise documents — the port's geography, what to send, and why the margin is not symmetrical.",
+      "Rome to Civitavecchia cruise port on sailing day, planned back from your all-aboard time: the port's layout, what to send and how much margin.",
   },
   breadcrumbLabel: "Breadcrumb",
   hero: {

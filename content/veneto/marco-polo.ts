@@ -205,7 +205,7 @@ const it: MarcoPolo = {
   meta: {
     title: "Transfer aeroporto Marco Polo (VCE)",
     description:
-      "L'aeroporto di Venezia, a Tessera, dentro il comune — e comunque incapace di portare un'auto davanti a un portone del centro storico. Dove può finire davvero un transfer da VCE.",
+      "Aeroporto Marco Polo (VCE), a Tessera: un'auto non può arrivare a un portone del centro storico. Dove può finire davvero un transfer da Venezia.",
   },
   breadcrumbLabel: "Percorso di navigazione",
 

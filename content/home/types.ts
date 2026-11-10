@@ -94,7 +94,12 @@ export type HomeContent = {
     lead: string;
     cards: DestinationCard[];
     alsoHeading: string;
-    also: string[];
+    /**
+     * Places a journey can be quoted for. A plain string is a name only; an
+     * entry with a `page` is a place that has a page of its own, and renders
+     * as a link to it.
+     */
+    also: (string | { label: string; page: PageId })[];
     note: string;
   };
 
@@ -126,8 +131,8 @@ export type HomeContent = {
     lead: string;
     paragraphs: string[];
     photo?: PhotoSlug;
-    /** A port that has its own page. */
-    link?: { page: PageId; label: string };
+    /** The ports that have pages of their own. */
+    links?: { page: PageId; label: string }[];
     checklistHeading: string;
     checklist: string[];
   };

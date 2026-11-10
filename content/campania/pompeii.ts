@@ -280,7 +280,7 @@ const it: PompeiiDestination = {
   meta: {
     title: "Transfer privati per Pompei",
     description:
-      "Tre ingressi, chiamati in due modi diversi dal Parco stesso, e un regolamento che tiene fuori le valigie. Che cosa il Parco Archeologico di Pompei pubblica sull'arrivo, e che cosa no.",
+      "Pompei: tre ingressi chiamati in due modi dal Parco e un regolamento che esclude le valigie. Cosa pubblica il Parco sull'arrivo in auto e cosa no.",
   },
   breadcrumbLabel: "Percorso di navigazione",
 

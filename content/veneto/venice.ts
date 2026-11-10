@@ -25,7 +25,7 @@ const en: VeniceHub = {
   meta: {
     title: "Private transfers in Venice",
     description:
-      "Venice is the one Italian city where a road transfer cannot finish at the door. Where a car can actually take you, what the airports and stations really mean, and what is never included.",
+      "Venice is the one Italian city where a road transfer cannot reach the door. Where a car can take you, what the airports and stations mean, and limits.",
   },
   breadcrumbLabel: "Breadcrumb",
 

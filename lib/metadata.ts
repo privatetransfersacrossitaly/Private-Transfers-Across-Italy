@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { homeContent } from "@/content/home";
 import { alternatesFor, urlFor, type PageId } from "@/lib/routes";
-import { htmlLang, siteName, type Locale } from "@/lib/site";
+import { htmlLang, publicSiteName, type Locale } from "@/lib/site";
+
+/** Longest `<title>` that still carries the brand suffix. */
+const MAX_TITLE_LENGTH = 60;
 
 /**
  * Metadata for any page, in one language.
@@ -35,7 +38,13 @@ export function pageMetadata({
 }): Metadata {
   const url = urlFor(id, locale);
   const other: Locale = locale === "en" ? "it" : "en";
-  const fullTitle = brandedTitle ? `${title} | ${siteName}` : title;
+  // The approved title rule: the brand suffix is kept only when the whole
+  // title still fits in 60 characters. Otherwise the page's own name stands
+  // alone — Google shows the site name separately, from the WebSite
+  // structured data — rather than being truncated mid-brand in results.
+  const branded = `${title} | ${publicSiteName}`;
+  const fullTitle =
+    brandedTitle && branded.length <= MAX_TITLE_LENGTH ? branded : title;
 
   return {
     title: { absolute: fullTitle },
@@ -49,7 +58,7 @@ export function pageMetadata({
       locale: htmlLang[locale],
       alternateLocale: [htmlLang[other]],
       url,
-      siteName,
+      siteName: publicSiteName,
       title: { absolute: fullTitle },
       description,
     },

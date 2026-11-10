@@ -134,6 +134,11 @@ const en: PisaAirport = {
         detail:
           "The other Tuscan airport, under the same operator, and a good deal smaller for a physical reason.",
       },
+      {
+        page: "route-flr-florence",
+        label: "Florence Airport to Florence",
+        detail: "The short run in from Peretola, if your flight lands there instead.",
+      },
     ],
   },
 
@@ -304,6 +309,11 @@ const it: PisaAirport = {
         label: "Firenze Peretola (FLR)",
         detail:
           "L'altro aeroporto toscano, dello stesso gestore, e parecchio più piccolo per una ragione fisica.",
+      },
+      {
+        page: "route-flr-florence",
+        label: "Dall'aeroporto di Firenze alla città",
+        detail: "Il breve tragitto da Peretola, se il vostro volo atterra lì.",
       },
     ],
   },

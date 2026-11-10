@@ -29,7 +29,7 @@ export const ostuniIt: OstuniPage = {
   meta: {
     title: "Transfer per Ostuni e le masserie",
     description:
-      "Transfer privati per Ostuni e le masserie dei dintorni: aeroporti di Brindisi e Bari, indirizzi di campagna, coordinamento ospiti per matrimoni. Preventivo scritto.",
+      "Transfer privati per Ostuni e le masserie dagli aeroporti di Brindisi e Bari: indirizzi di campagna e ospiti di matrimoni. Preventivo scritto.",
   },
 
   hero: {

@@ -34,7 +34,7 @@ const en: ValDOrcia = {
   meta: {
     title: "Private transfers to the Val d'Orcia",
     description:
-      "Five comuni south of Siena, and no railway that reaches any of them. The valley's own tourist board says a car is the best way to come; here is how to ask for one.",
+      "Five comuni south of Siena and no railway to any of them. The valley's tourist board recommends a car; here is how to request a private transfer.",
   },
   breadcrumbLabel: "Breadcrumb",
 
@@ -229,7 +229,7 @@ const it: ValDOrcia = {
   meta: {
     title: "Transfer privati per la Val d'Orcia",
     description:
-      "Cinque comuni a sud di Siena e nessuna ferrovia che ne raggiunga uno. L'ente turistico della valle indica l'auto come il mezzo migliore: ecco come chiederne una.",
+      "Cinque comuni a sud di Siena e nessuna ferrovia. L'ente turistico della valle indica l'auto come mezzo migliore: ecco come chiedere un transfer.",
   },
   breadcrumbLabel: "Percorso di navigazione",
 

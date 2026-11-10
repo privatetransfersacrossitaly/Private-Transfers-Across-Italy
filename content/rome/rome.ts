@@ -17,7 +17,7 @@ const en: RomeHub = {
   meta: {
     title: "Private transfers in Rome",
     description:
-      "Which airport, cruise port or station your journey actually starts from, what Rome's limited-traffic zones mean for a door-to-door pickup, and what to send when you ask for a quotation.",
+      "Rome transfers: which airport, cruise port or station your journey starts from, what the ZTL means for door-to-door pickups and what to send for a quote.",
   },
   breadcrumbLabel: "Breadcrumb",
 
@@ -249,7 +249,7 @@ const it: RomeHub = {
   meta: {
     title: "Transfer privati a Roma",
     description:
-      "Da quale aeroporto, porto o stazione comincia davvero il viaggio, che cosa comportano le ZTL di Roma per un servizio porta a porta e quali dati indicare quando chiedete un preventivo.",
+      "Transfer a Roma: da quale aeroporto, porto o stazione partite, cosa comportano le ZTL per il porta a porta e quali dati indicare nel preventivo.",
   },
   breadcrumbLabel: "Percorso di navigazione",
 

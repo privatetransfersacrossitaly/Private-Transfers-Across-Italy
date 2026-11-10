@@ -37,7 +37,7 @@ export const ostuniEn: OstuniPage = {
   meta: {
     title: "Ostuni masseria and airport transfers",
     description:
-      "Private transfers to Ostuni and the masserie around it: Brindisi and Bari airports, countryside addresses, wedding-guest coordination. Tell us the journey for a written quote.",
+      "Private transfers to Ostuni and its masserie from Brindisi and Bari airports: countryside addresses and wedding-guest transport. Written quotes.",
   },
 
   hero: {

@@ -19,7 +19,7 @@ const en: AirportHub = {
   meta: {
     title: "Fiumicino Airport transfers (FCO)",
     description:
-      "Arranging a car at Rome Fiumicino: which terminal you are using and how to confirm it, what a useful pickup request contains, and where a transfer from the airport can take you.",
+      "Rome Fiumicino (FCO) transfers: which terminal you are using, what a useful pickup request contains and where a car from the airport can take you.",
   },
   breadcrumbLabel: "Breadcrumb",
 
@@ -218,7 +218,7 @@ const it: AirportHub = {
   meta: {
     title: "Transfer aeroporto di Fiumicino (FCO)",
     description:
-      "Organizzare un'auto a Roma Fiumicino: quale terminal vi riguarda e come verificarlo, che cosa serve indicare per una richiesta utile e dove può portarvi un transfer dall'aeroporto.",
+      "Transfer da Roma Fiumicino (FCO): quale terminal vi riguarda e come verificarlo, cosa indicare nella richiesta e dove può portarvi un'auto.",
   },
   breadcrumbLabel: "Percorso di navigazione",
 

@@ -132,11 +132,22 @@ export function DestinationGrid({
           {destinations.alsoHeading}
         </h3>
         <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
-          {destinations.also.map((place) => (
-            <li key={place} className="type-small text-muted-foreground">
-              {place}
-            </li>
-          ))}
+          {destinations.also.map((place) =>
+            typeof place === "string" ? (
+              <li key={place} className="type-small text-muted-foreground">
+                {place}
+              </li>
+            ) : (
+              <li key={place.page} className="type-small">
+                <Link
+                  href={pathFor(place.page, locale)}
+                  className="text-accent-ink underline decoration-1 underline-offset-4 hover:no-underline"
+                >
+                  {place.label}
+                </Link>
+              </li>
+            ),
+          )}
         </ul>
         <p className="mt-6 max-w-[70ch] type-small text-muted-foreground">
           {destinations.note}

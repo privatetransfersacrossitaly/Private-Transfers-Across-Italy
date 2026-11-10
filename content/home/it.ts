@@ -18,7 +18,7 @@ export const it: HomeContent = {
   meta: {
     title: "Transfer privati in tutta Italia | Aeroporti, città, porti",
     description:
-      "Richiedi un'auto con autista in Italia: arrivi e partenze dagli aeroporti, viaggi fra città, collegamenti con i porti crocieristici, escursioni in giornata e tratte transfrontaliere selezionate. Ogni viaggio su preventivo.",
+      "Auto con autista in tutta Italia: transfer da e per gli aeroporti, viaggi tra città, porti crociere, escursioni e tratte transfrontaliere. Su preventivo.",
   },
 
   hero: {
@@ -179,9 +179,11 @@ export const it: HomeContent = {
     ],
     alsoHeading: "Ci si chiede anche di",
     also: [
-      "Napoli e la Costiera Amalfitana",
-      "Bologna",
-      "Verona e il lago di Garda",
+      { label: "Napoli e la Costiera Amalfitana", page: "naples" },
+      { label: "Bologna", page: "bologna" },
+      { label: "Ravenna", page: "ravenna" },
+      { label: "Verona e il lago di Garda", page: "verona" },
+      { label: "Lago di Como", page: "lake-como" },
       "Pisa e la costa toscana",
       "Torino",
       "Genova",
@@ -189,7 +191,7 @@ export const it: HomeContent = {
       "Catania",
     ],
     note:
-      "Nominare qui una città significa che un viaggio da o per quella città si può preventivare. Non significa che esista già una pagina dedicata, né che ci sia un veicolo fermo ad aspettare.",
+      "Nominare qui una città significa che un viaggio da o per quella città si può preventivare. Un nome con il link ha una pagina dedicata; uno senza link non ce l'ha ancora. In nessuno dei due casi significa che ci sia un veicolo fermo ad aspettare.",
   },
 
   airports: {
@@ -289,7 +291,14 @@ export const it: HomeContent = {
       "Dove un veicolo possa attendere lo stabilisce il porto, non noi, e cambia da terminal a terminal. L'organizzazione per il vostro viaggio si conferma insieme al preventivo.",
     ],
     photo: "cruise-ship-dock",
-    link: { page: "civitavecchia", label: "Transfer per il porto di Civitavecchia" },
+    links: [
+      { page: "civitavecchia", label: "Transfer per il porto di Civitavecchia" },
+      { page: "naples-cruise-port", label: "Terminal crociere di Napoli" },
+      { page: "ravenna-terminal", label: "Terminal crociere di Ravenna" },
+      { page: "palermo-cruise-port", label: "Porto crociere di Palermo" },
+      { page: "catania-cruise-port", label: "Porto crociere di Catania" },
+      { page: "messina-cruise-port", label: "Porto crociere di Messina" },
+    ],
     checklistHeading: "Per un transfer da crociera scriveteci",
     checklist: [
       "Il porto e il terminal o l'accosto indicati dalla compagnia",

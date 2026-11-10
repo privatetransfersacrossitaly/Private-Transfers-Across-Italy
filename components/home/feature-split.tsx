@@ -24,7 +24,7 @@ export function FeatureSplit({
   tone = "default",
   checklist,
   note,
-  link,
+  links,
 }: {
   locale: Locale;
   id: string;
@@ -38,7 +38,7 @@ export function FeatureSplit({
   checklist?: { heading: string; items: readonly string[] };
   note?: string;
   /** A page that covers one of the places this section talks about. */
-  link?: { page: PageId; label: string };
+  links?: readonly { page: PageId; label: string }[];
 }) {
   return (
     <Section id={id} eyebrow={eyebrow} heading={heading} lead={lead} tone={tone} size="wide">
@@ -64,13 +64,19 @@ export function FeatureSplit({
             </p>
           ))}
 
-          {link ? (
-            <Link
-              href={pathFor(link.page, locale)}
-              className="mt-6 inline-flex min-h-11 items-center type-small font-medium text-accent-ink underline decoration-accent/40 underline-offset-4 transition-colors hover:decoration-current focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-            >
-              {link.label}
-            </Link>
+          {links?.length ? (
+            <ul className="mt-6 flex flex-wrap gap-x-6">
+              {links.map((link) => (
+                <li key={link.page}>
+                  <Link
+                    href={pathFor(link.page, locale)}
+                    className="inline-flex min-h-11 items-center type-small font-medium text-accent-ink underline decoration-accent/40 underline-offset-4 transition-colors hover:decoration-current focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           ) : null}
 
           {checklist ? (

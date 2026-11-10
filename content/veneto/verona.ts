@@ -161,7 +161,7 @@ const it: VeronaHub = {
   meta: {
     title: "Transfer privati a Verona",
     description:
-      "Verona dopo Venezia: una normale città su strada, dove l'auto arriva all'indirizzo. L'aeroporto, la stazione di Porta Nuova e che cosa possiamo dire davvero sul Lago di Garda.",
+      "Verona è una città raggiungibile su strada: l'auto arriva all'indirizzo. L'aeroporto, la stazione di Porta Nuova e cosa sapere sul Lago di Garda.",
   },
   breadcrumbLabel: "Percorso di navigazione",
 

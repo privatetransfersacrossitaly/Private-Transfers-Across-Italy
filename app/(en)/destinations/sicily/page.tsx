@@ -11,7 +11,7 @@ const content = sicilyPillar.en;
  * `brandedTitle: false` across the whole Sicily cluster.
  *
  * The title rule for these pages is 50-60 characters including a call to
- * action. The layout's " | Private Transfer Across Italy" is 32 characters
+ * action. The layout's " | Private Transfers Across Italy" is 33 characters
  * on its own, so keyword plus CTA plus brand cannot fit inside 60 — the
  * brand is what gives way. The title below is 51 characters and carries
  * the primary keyword first.

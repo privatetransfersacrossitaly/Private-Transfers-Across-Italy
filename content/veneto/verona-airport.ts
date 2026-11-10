@@ -170,7 +170,7 @@ const it: VeronaAirport = {
   meta: {
     title: "Transfer aeroporto di Verona (VRN)",
     description:
-      "Verona Villafranca, a circa 10 km a sud-ovest della città: il tragitto verso Verona, che cosa possiamo dire davvero sul Lago di Garda e che cosa l'Airlink non risolve.",
+      "Verona Villafranca (VRN), circa 10 km dalla città: il tragitto verso Verona, cosa possiamo dire sul Lago di Garda e cosa l'Airlink non risolve.",
   },
   breadcrumbLabel: "Percorso di navigazione",
 

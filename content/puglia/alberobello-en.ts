@@ -45,7 +45,7 @@ export const alberobelloEn: AlberobelloPage = {
   meta: {
     title: "Alberobello transfers and trulli arrivals",
     description:
-      "Private transfers to Alberobello: Bari and Brindisi airports, trulli accommodation, cruise excursions and the Valle d'Itria. Tell us the journey for a written quote.",
+      "Private transfers to Alberobello from Bari and Brindisi airports: trulli stays, cruise excursions and the Valle d'Itria. Send your journey for a quote.",
   },
 
   hero: {

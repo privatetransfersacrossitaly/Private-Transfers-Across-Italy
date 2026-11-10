@@ -139,7 +139,7 @@ for (const [en, it, keywords, forbidden] of PAGES) {
     check(`${path} title leads with its keyword`,
       title.toLowerCase().includes(keyword.toLowerCase()), title);
     check(`${path} title carries no brand`,
-      !title.includes("Private Transfer Across Italy"), title);
+      !/Private Transfers? Across Italy/.test(title), title);
     check(`${path} title has a call to action`,
       /book|reserve|prenota|riserva/i.test(title), title);
     check(`${path} title is unique`, !titles.has(title), titles.get(title) ?? "");

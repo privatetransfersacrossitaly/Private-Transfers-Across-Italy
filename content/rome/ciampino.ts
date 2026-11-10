@@ -20,7 +20,7 @@ const en: SecondAirport = {
   meta: {
     title: "Ciampino Airport transfers (CIA)",
     description:
-      "Rome's second airport and how it differs from Fiumicino: closer to the city, far smaller, busiest at the ends of the day. What to check and what to send when you arrange a car.",
+      "Rome Ciampino (CIA): closer to the city than Fiumicino, much smaller and busiest early and late. What to check and send when arranging a car.",
   },
   breadcrumbLabel: "Breadcrumb",
 
@@ -193,7 +193,7 @@ const it: SecondAirport = {
   meta: {
     title: "Transfer aeroporto di Ciampino (CIA)",
     description:
-      "Il secondo aeroporto di Roma e come differisce da Fiumicino: più vicino, molto più piccolo, con voli agli estremi della giornata. Che cosa verificare e che cosa indicare.",
+      "Roma Ciampino (CIA): più vicino di Fiumicino, molto più piccolo, con voli agli estremi della giornata. Cosa verificare e cosa indicare per l'auto.",
   },
   breadcrumbLabel: "Percorso di navigazione",
 

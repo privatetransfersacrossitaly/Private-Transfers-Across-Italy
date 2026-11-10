@@ -109,6 +109,11 @@ const en: FlorenceAirport = {
         detail:
           "The larger Tuscan airport, under the same operator — and, thanks to the runway, where a good many Florence-bound flights actually land.",
       },
+      {
+        page: "route-psa-florence",
+        label: "Pisa Airport to Florence",
+        detail: "The longer run from Pisa, where many Florence-bound flights land instead.",
+      },
     ],
   },
 
@@ -160,7 +165,7 @@ const it: FlorenceAirport = {
   meta: {
     title: "Transfer dall'aeroporto di Firenze Peretola",
     description:
-      "L'aeroporto di Firenze è al margine dell'area urbana ed è limitato da un'unica pista corta. Perché è questa la ragione per cui molti voli per Firenze atterrano a Pisa.",
+      "Aeroporto di Firenze (FLR): ai margini della città e limitato da un'unica pista corta. Per questo molti voli per Firenze atterrano a Pisa. Cosa sapere.",
   },
   breadcrumbLabel: "Percorso di navigazione",
 
@@ -240,6 +245,11 @@ const it: FlorenceAirport = {
         label: "Pisa Galileo Galilei (PSA)",
         detail:
           "L'aeroporto toscano più grande, dello stesso gestore — e, grazie alla pista, quello su cui atterra buona parte dei voli diretti a Firenze.",
+      },
+      {
+        page: "route-psa-florence",
+        label: "Dall'aeroporto di Pisa a Firenze",
+        detail: "Il tragitto più lungo da Pisa, dove atterrano molti voli diretti a Firenze.",
       },
     ],
   },

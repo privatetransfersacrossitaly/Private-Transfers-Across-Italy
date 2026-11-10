@@ -214,7 +214,7 @@ const psaIt: RoutePage = {
   meta: {
     title: "Dall'aeroporto di Pisa a Firenze",
     description:
-      "Il transfer toscano più richiesto, e l'unica tratta aeroportuale del sito con due città diverse ai capi. Che cosa determina l'arrivo e che cosa non abbiamo confermato.",
+      "Transfer dall'aeroporto di Pisa a Firenze: il più richiesto in Toscana, con due città ai capi. Cosa determina l'arrivo e cosa non è confermato.",
   },
   breadcrumbLabel: "Percorso di navigazione",
   hero: {

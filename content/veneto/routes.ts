@@ -218,7 +218,7 @@ const vceIt: RoutePage = {
   meta: {
     title: "Dall'aeroporto Marco Polo a Venezia",
     description:
-      "Il transfer veneziano più richiesto, e quello in cui la destinazione potrebbe non essere raggiungibile su strada. Dove si ferma davvero l'auto e che cosa succede dopo.",
+      "Transfer da Marco Polo a Venezia: il più richiesto, e la destinazione potrebbe non essere raggiungibile su strada. Dove si ferma l'auto e poi?",
   },
   breadcrumbLabel: "Percorso di navigazione",
   hero: {
@@ -888,7 +888,7 @@ const vrnIt: RoutePage = {
   meta: {
     title: "Dall'aeroporto di Verona alla città",
     description:
-      "Il breve tragitto da Villafranca a Verona: un normale transfer aeroportuale che finisce all'indirizzo, e la pagina più breve di questo gruppo per una ragione precisa.",
+      "Transfer dall'aeroporto di Verona Villafranca alla città: un breve tragitto che finisce all'indirizzo. Cosa indicare nella richiesta.",
   },
   breadcrumbLabel: "Percorso di navigazione",
   hero: {

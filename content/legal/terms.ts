@@ -37,7 +37,7 @@ export const terms: LocalizedLegal = {
     meta: {
       title: "Terms and Conditions",
       description:
-        "How our transfer quotation service works: requests, quotations, booking confirmation, payment direct to the transfer company, changes, cancellations and responsibilities.",
+        "How our transfer quotation service works: requests, quotes, confirmation, payment direct to the transfer company, changes and cancellations.",
     },
     breadcrumbLabel: "Breadcrumb",
     eyebrow: "Legal",
@@ -266,7 +266,7 @@ export const terms: LocalizedLegal = {
     meta: {
       title: "Termini e condizioni",
       description:
-        "Come funziona il nostro servizio di preventivi per transfer: richieste, preventivi, conferma, pagamento diretto all'azienda di transfer, modifiche, cancellazioni e responsabilità.",
+        "Come funziona il servizio di preventivi per transfer: richieste, conferma, pagamento diretto all'azienda di transfer, modifiche e cancellazioni.",
     },
     breadcrumbLabel: "Percorso di navigazione",
     eyebrow: "Note legali",

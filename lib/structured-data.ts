@@ -6,7 +6,7 @@ import {
   homePath,
   htmlLang,
   siteDescription,
-  siteName,
+  publicSiteName,
   siteUrl,
   type Locale,
 } from "@/lib/site";
@@ -35,7 +35,7 @@ function organization() {
   return {
     "@type": "Organization",
     "@id": organizationId,
-    name: siteName,
+    name: publicSiteName,
     url: siteUrl,
     description: siteDescription,
   };
@@ -46,7 +46,7 @@ function website(locale: Locale) {
     "@type": "WebSite",
     "@id": websiteId,
     url: absoluteUrl(homePath[locale]),
-    name: siteName,
+    name: publicSiteName,
     description: siteDescription,
     inLanguage: htmlLang[locale],
     publisher: { "@id": organizationId },

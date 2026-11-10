@@ -51,7 +51,7 @@ const en: CasertaDestination = {
   meta: {
     title: "Private transfers to Caserta",
     description:
-      "The Royal Palace of Caserta publishes two entrances and states that it has no public parking of its own. Which gate you want, and what the palace does not publish about cars.",
+      "The Royal Palace of Caserta has two entrances and no public parking. Which gate you want, and what the palace does not publish about arriving by car.",
   },
   breadcrumbLabel: "Breadcrumb",
 
@@ -271,7 +271,7 @@ const it: CasertaDestination = {
   meta: {
     title: "Transfer privati per Caserta",
     description:
-      "La Reggia di Caserta pubblica due ingressi e dichiara di non avere un parcheggio pubblico proprio. Quale cancello vi serve, e cosa la Reggia non pubblica sulle auto.",
+      "La Reggia di Caserta ha due ingressi e nessun parcheggio pubblico proprio. Quale cancello vi serve e cosa la Reggia non pubblica sulle auto.",
   },
   breadcrumbLabel: "Percorso di navigazione",
 

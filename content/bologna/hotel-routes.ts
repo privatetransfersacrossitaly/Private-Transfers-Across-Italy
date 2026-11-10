@@ -193,6 +193,16 @@ const majesticEn: RoutePage = {
         detail:
           "The city's restriction at three strengths, and why the street decides the answer.",
       },
+      {
+        page: "route-blq-commercianti",
+        label: "Bologna Airport to the Art Hotel Commercianti",
+        detail: "The same airport, to a pedestrian address reached by an authorised route.",
+      },
+      {
+        page: "route-blq-excelsior",
+        label: "Bologna Airport to the Starhotels Excelsior",
+        detail: "The same airport, to the hotel opposite the central station.",
+      },
     ],
   },
   faq: {
@@ -387,6 +397,16 @@ const majesticIt: RoutePage = {
         detail:
           "La limitazione cittadina nei suoi tre gradi, e perché è la via a determinare la risposta.",
       },
+      {
+        page: "route-blq-commercianti",
+        label: "Dall'aeroporto di Bologna all'Art Hotel Commercianti",
+        detail: "Lo stesso aeroporto, verso un indirizzo pedonale raggiunto con un percorso autorizzato.",
+      },
+      {
+        page: "route-blq-excelsior",
+        label: "Dall'aeroporto di Bologna allo Starhotels Excelsior",
+        detail: "Lo stesso aeroporto, verso l'hotel di fronte alla stazione centrale.",
+      },
     ],
   },
   faq: {
@@ -579,6 +599,16 @@ const commerciantiEn: RoutePage = {
         detail:
           "The city's restriction at three strengths, and why the street decides the answer.",
       },
+      {
+        page: "route-blq-majestic",
+        label: "Bologna Airport to the Grand Hotel Majestic",
+        detail: "The same airport, to an address the hotel tells guests not to drive to.",
+      },
+      {
+        page: "route-blq-excelsior",
+        label: "Bologna Airport to the Starhotels Excelsior",
+        detail: "The same airport, to the hotel opposite the central station.",
+      },
     ],
   },
   faq: {
@@ -767,6 +797,16 @@ const commerciantiIt: RoutePage = {
         label: "Transfer privati a Bologna",
         detail:
           "La limitazione cittadina nei suoi tre gradi, e perché è la via a determinare la risposta.",
+      },
+      {
+        page: "route-blq-majestic",
+        label: "Dall'aeroporto di Bologna al Grand Hotel Majestic",
+        detail: "Lo stesso aeroporto, verso un indirizzo a cui l'hotel raccomanda di non guidare.",
+      },
+      {
+        page: "route-blq-excelsior",
+        label: "Dall'aeroporto di Bologna allo Starhotels Excelsior",
+        detail: "Lo stesso aeroporto, verso l'hotel di fronte alla stazione centrale.",
       },
     ],
   },
@@ -1002,6 +1042,16 @@ const excelsiorEn: RoutePage = {
         detail:
           "The city's restriction at three strengths, and why the street decides the answer.",
       },
+      {
+        page: "route-blq-majestic",
+        label: "Bologna Airport to the Grand Hotel Majestic",
+        detail: "The same airport, to an address the hotel tells guests not to drive to.",
+      },
+      {
+        page: "route-blq-commercianti",
+        label: "Bologna Airport to the Art Hotel Commercianti",
+        detail: "The same airport, to a pedestrian address reached by an authorised route.",
+      },
     ],
   },
   faq: {
@@ -1233,6 +1283,16 @@ const excelsiorIt: RoutePage = {
         label: "Transfer privati a Bologna",
         detail:
           "La limitazione cittadina nei suoi tre gradi, e perché è la via a determinare la risposta.",
+      },
+      {
+        page: "route-blq-majestic",
+        label: "Dall'aeroporto di Bologna al Grand Hotel Majestic",
+        detail: "Lo stesso aeroporto, verso un indirizzo a cui l'hotel raccomanda di non guidare.",
+      },
+      {
+        page: "route-blq-commercianti",
+        label: "Dall'aeroporto di Bologna all'Art Hotel Commercianti",
+        detail: "Lo stesso aeroporto, verso un indirizzo pedonale raggiunto con un percorso autorizzato.",
       },
     ],
   },

@@ -36,7 +36,7 @@ export const lecceEn: LeccePage = {
   meta: {
     title: "Lecce private transfers",
     description:
-      "Private transfers to and around Lecce: Brindisi and Bari airports, the walled historic centre, wedding transport and onward journeys into Salento. Written quotes.",
+      "Private transfers to Lecce from Brindisi and Bari airports: the walled centre, wedding transport and onward journeys into Salento. Written quotes.",
   },
 
   hero: {

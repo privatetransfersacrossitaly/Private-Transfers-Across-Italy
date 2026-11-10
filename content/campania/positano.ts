@@ -78,7 +78,7 @@ const en: PositanoDestination = {
   meta: {
     title: "Private transfers to Positano",
     description:
-      "Positano's limited-traffic zone charges vehicles with six or more seats including the driver. What the Comune publishes about the charge, and what paying it does not allow.",
+      "Positano charges vehicles with six or more seats to enter its limited-traffic zone. What the Comune publishes about the charge and what it does not allow.",
   },
   breadcrumbLabel: "Breadcrumb",
 

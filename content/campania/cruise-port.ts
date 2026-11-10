@@ -44,7 +44,7 @@ const sourceIt = {
 
 const en: NaplesCruisePort = {
   meta: {
-    title: "Naples cruise terminal transfers — Stazione Marittima",
+    title: "Naples cruise terminal (Stazione Marittima) transfers",
     description:
       "Three quays within sight of each other take three different kinds of vessel. Which one your ship uses decides the journey, and it is on your ticket.",
   },
@@ -208,7 +208,7 @@ const en: NaplesCruisePort = {
 
 const it: NaplesCruisePort = {
   meta: {
-    title: "Transfer per il terminal crociere di Napoli — Stazione Marittima",
+    title: "Transfer terminal crociere Napoli (Stazione Marittima)",
     description:
       "Tre banchine a vista l'una dall'altra accolgono tre tipi di mezzo diversi. Quale usi la vostra nave decide il viaggio, ed è scritto sul biglietto.",
   },

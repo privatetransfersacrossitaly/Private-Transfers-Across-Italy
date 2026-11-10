@@ -5,7 +5,7 @@ import { SiteHeader } from "@/components/site/site-header";
 import { StickyQuoteCta } from "@/components/site/sticky-quote-cta";
 import { WhatsAppButton } from "@/components/site/whatsapp-button";
 import { homeContent } from "@/content/home";
-import { siteDescription, siteName, siteUrl } from "@/lib/site";
+import { siteDescription, publicSiteName, siteUrl } from "@/lib/site";
 import "../globals.css";
 
 /**
@@ -35,9 +35,9 @@ const display = Source_Serif_4({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: { default: siteName, template: `%s | ${siteName}` },
+  title: { default: publicSiteName, template: `%s | ${publicSiteName}` },
   description: siteDescription,
-  applicationName: siteName,
+  applicationName: publicSiteName,
 };
 
 export default function EnglishLayout({

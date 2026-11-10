@@ -15,7 +15,7 @@ import type { PugliaPillar } from "./types";
  */
 export const pugliaPillarIt: PugliaPillar = {
   meta: {
-    // Nudo: il layout aggiunge già " | Private Transfer Across Italy".
+    // Nudo: il layout aggiunge già " | Private Transfers Across Italy".
     title: "Transfer privati in Puglia",
     description:
       "Transfer privati in Puglia: aeroporti di Bari e Brindisi, porto, masserie, matrimoni e costa. Indicate il tragitto e ricevete un preventivo scritto.",

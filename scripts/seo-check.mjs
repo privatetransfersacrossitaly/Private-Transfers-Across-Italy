@@ -175,10 +175,73 @@ assert(
   `one Italian URL per English URL (${english.length} en, ${italian.length} it)`,
 );
 
-// `lastModified` is deliberately absent; see the comment in app/sitemap.ts.
+// ── <lastmod> ─────────────────────────────────────────────────────────────
+// Since commit 32b9590 every date is derived from git by
+// scripts/build-page-dates.mjs: the latest commit touching the files that
+// render the page. A page the generator cannot date honestly (no git, a
+// shallow clone, unresolvable imports) has no <lastmod> at all, so absence
+// is allowed. What must never appear is a date that was made up — and the
+// shapes a made-up date takes are what these checks look for. See the
+// comment in app/sitemap.ts.
+
+/** The repository's first commit. Nothing on the site can predate it. */
+const PROJECT_START = new Date("2026-10-08T00:00:00Z");
+
+const entries = [...sitemap.body.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((m) => ({
+  loc: m[1].match(/<loc>([^<]+)<\/loc>/)?.[1],
+  lastmods: [...m[1].matchAll(/<lastmod>([^<]*)<\/lastmod>/g)].map((x) => x[1]),
+  en: m[1].match(/hreflang="en"\s+href="([^"]+)"/)?.[1],
+}));
+const dated = entries.filter((e) => e.lastmods.length > 0);
+console.log(`  ${dated.length} of ${entries.length} URLs carry a <lastmod>`);
+
 assert(
-  !sitemap.body.includes("<lastmod>"),
-  "emits no fabricated <lastmod> date",
+  entries.every((e) => e.lastmods.length <= 1),
+  "no URL carries more than one <lastmod>",
+);
+
+const W3C_DATETIME = /^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}(:\d{2}(\.\d+)?)?(Z|[+-]\d{2}:\d{2}))?$/;
+const badFormat = dated.filter(
+  (e) => !W3C_DATETIME.test(e.lastmods[0]) || Number.isNaN(Date.parse(e.lastmods[0])),
+);
+assert(
+  badFormat.length === 0,
+  `every <lastmod> is a valid W3C datetime${badFormat.length ? ` (bad: ${badFormat.slice(0, 3).map((e) => `${e.loc} ${e.lastmods[0]}`).join(", ")})` : ""}`,
+);
+
+const tomorrow = Date.now() + 24 * 60 * 60 * 1000;
+const future = dated.filter((e) => Date.parse(e.lastmods[0]) > tomorrow);
+assert(
+  future.length === 0,
+  `no <lastmod> is in the future${future.length ? ` (${future.slice(0, 3).map((e) => e.loc).join(", ")})` : ""}`,
+);
+
+const tooEarly = dated.filter((e) => Date.parse(e.lastmods[0]) < PROJECT_START.getTime());
+assert(
+  tooEarly.length === 0,
+  `no <lastmod> predates the repository (${PROJECT_START.toISOString().slice(0, 10)})${tooEarly.length ? ` (${tooEarly.slice(0, 3).map((e) => e.loc).join(", ")})` : ""}`,
+);
+
+// Both languages of a page are rendered by the same content modules, so the
+// generator gives them one date. A pair that disagrees means the dates came
+// from somewhere other than the generator.
+const byEnglish = new Map();
+for (const e of entries) {
+  if (!e.en) continue;
+  if (!byEnglish.has(e.en)) byEnglish.set(e.en, []);
+  byEnglish.get(e.en).push(e.lastmods[0] ?? null);
+}
+const splitPairs = [...byEnglish].filter(([, dates]) => new Set(dates).size > 1);
+assert(
+  splitPairs.length === 0,
+  `English and Italian versions of a page share one <lastmod>${splitPairs.length ? ` (differ: ${splitPairs.slice(0, 3).map(([url]) => url).join(", ")})` : ""}`,
+);
+
+// The defect commit 32b9590 replaced: one constant stamped on every URL.
+const distinct = new Set(dated.map((e) => Date.parse(e.lastmods[0])));
+assert(
+  dated.length < 2 || distinct.size > 1,
+  `<lastmod> is not one constant stamped on every URL (${distinct.size} distinct dates)`,
 );
 
 // ── every sitemap URL ──────────────────────────────────────────────────────

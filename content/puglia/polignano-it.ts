@@ -29,7 +29,7 @@ export const polignanoIt: PolignanoPage = {
   meta: {
     title: "Transfer per Polignano a Mare",
     description:
-      "Transfer privati per Polignano a Mare: arrivi dall'aeroporto di Bari, strutture sulla falesia, resort costieri e piccoli matrimoni. Preventivo scritto su richiesta.",
+      "Transfer privati per Polignano a Mare dall'aeroporto di Bari: strutture sulla falesia, resort sulla costa e piccoli matrimoni. Preventivo scritto.",
   },
 
   hero: {

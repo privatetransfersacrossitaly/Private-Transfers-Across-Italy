@@ -9,7 +9,7 @@ import {
   copyrightYear,
   homePath,
   quotePathFor,
-  siteName,
+  publicSiteName,
   type Locale,
 } from "@/lib/site";
 
@@ -52,7 +52,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
             >
               <Image
                 src="/brand/logo.png"
-                alt={siteName}
+                alt={publicSiteName}
                 width={480}
                 height={105}
                 className="h-10 w-auto sm:h-11"
@@ -124,7 +124,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
 
         <div className="mt-6 flex flex-col gap-3 type-caption text-deep-muted sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {copyrightYear} {siteName}
+            © {copyrightYear} {publicSiteName}
           </p>
           <p className="max-w-[60ch]">{chrome.footerLegal}</p>
         </div>

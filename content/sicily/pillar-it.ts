@@ -13,8 +13,8 @@ import type { SicilyPillar } from "./types";
  *
  * ── Titolo ────────────────────────────────────────────────────────────────
  * Tutto il cluster Sicilia usa `brandedTitle: false`: la regola è 50-60
- * caratteri con una call to action, e " | Private Transfer Across Italy"
- * pesa da solo 32 caratteri. Il titolo qui sotto ne conta 52.
+ * caratteri con una call to action, e " | Private Transfers Across Italy"
+ * pesa da solo 33 caratteri. Il titolo qui sotto ne conta 52.
  *
  * ── Fonti ─────────────────────────────────────────────────────────────────
  * Identiche alla versione inglese: dati degli aeroporti dalle rispettive

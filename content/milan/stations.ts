@@ -18,7 +18,7 @@ const en: MilanStations = {
   meta: {
     title: "Milan railway station transfers",
     description:
-      "Centrale, Porta Garibaldi, Cadorna and Rogoredo: what is verified about each, why one of them is run by a different company, and where a car fits into a rail journey.",
+      "Milan Centrale, Porta Garibaldi, Cadorna and Rogoredo: what is verified about each station and where a private car fits into your rail journey.",
   },
   breadcrumbLabel: "Breadcrumb",
 
@@ -119,6 +119,16 @@ const en: MilanStations = {
         label: "Malpensa Airport to Milan",
         detail: "The road version of the same journey.",
       },
+      {
+        page: "route-lin-milan",
+        label: "Linate Airport to Milan",
+        detail: "The shortest of the three airport runs into the city.",
+      },
+      {
+        page: "route-bgy-milan",
+        label: "Bergamo Airport to Milan",
+        detail: "From the airport sold as Milan, about 50 km from the city.",
+      },
     ],
   },
 
@@ -170,7 +180,7 @@ const it: MilanStations = {
   meta: {
     title: "Transfer per le stazioni di Milano",
     description:
-      "Centrale, Porta Garibaldi, Cadorna e Rogoredo: che cosa è verificato di ciascuna, perché una è gestita da un'altra società e dove si colloca l'auto in un viaggio in treno.",
+      "Milano Centrale, Porta Garibaldi, Cadorna e Rogoredo: cosa è verificato di ogni stazione e dove si inserisce l'auto in un viaggio in treno.",
   },
   breadcrumbLabel: "Percorso di navigazione",
 
@@ -270,6 +280,16 @@ const it: MilanStations = {
         page: "route-mxp-milan",
         label: "Dall'aeroporto di Malpensa a Milano",
         detail: "La versione su strada dello stesso viaggio.",
+      },
+      {
+        page: "route-lin-milan",
+        label: "Dall'aeroporto di Linate a Milano",
+        detail: "La più breve delle tre tratte aeroportuali verso la città.",
+      },
+      {
+        page: "route-bgy-milan",
+        label: "Dall'aeroporto di Bergamo a Milano",
+        detail: "Dall'aeroporto venduto come Milano, a circa 50 km dalla città.",
       },
     ],
   },

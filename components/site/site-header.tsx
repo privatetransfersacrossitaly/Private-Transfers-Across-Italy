@@ -6,7 +6,7 @@ import { LanguageSwitch } from "@/components/site/language-switch";
 import { SiteNav } from "@/components/site/site-nav";
 import { homeContent } from "@/content/home";
 import { buildNavigation } from "@/content/navigation";
-import { homePath, otherLocale, quotePathFor, siteName, type Locale } from "@/lib/site";
+import { homePath, otherLocale, quotePathFor, publicSiteName, type Locale } from "@/lib/site";
 
 /**
  * The site's one header, rendered from each root layout so every page in
@@ -37,7 +37,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
         >
           <Image
             src="/brand/logo.png"
-            alt={siteName}
+            alt={publicSiteName}
             width={480}
             height={105}
             priority

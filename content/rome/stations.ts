@@ -18,7 +18,7 @@ const en: StationsPage = {
   meta: {
     title: "Rome railway station transfers",
     description:
-      "Termini, Tiburtina, Ostiense and San Pietro: what is verified about each, where a car fits into a rail journey, and the assistance service the two main stations share.",
+      "Rome Termini, Tiburtina, Ostiense and San Pietro: what is verified about each station, where a car fits a rail journey and the assistance service.",
   },
   breadcrumbLabel: "Breadcrumb",
 
@@ -119,6 +119,16 @@ const en: StationsPage = {
         label: "Fiumicino Airport to Rome",
         detail: "The city end of that journey is the same problem.",
       },
+      {
+        page: "route-cia-rome",
+        label: "Ciampino Airport to Rome",
+        detail: "The other airport run into the city, from the south-east.",
+      },
+      {
+        page: "route-rome-civitavecchia",
+        label: "Rome to Civitavecchia cruise port",
+        detail: "If the train brings you to Rome before a cruise departs.",
+      },
     ],
   },
 
@@ -170,7 +180,7 @@ const it: StationsPage = {
   meta: {
     title: "Transfer per le stazioni di Roma",
     description:
-      "Termini, Tiburtina, Ostiense e San Pietro: che cosa è verificato di ciascuna, dove si colloca l'auto in un viaggio in treno e il servizio di assistenza comune alle due stazioni principali.",
+      "Roma Termini, Tiburtina, Ostiense e San Pietro: cosa è verificato di ogni stazione, dove si inserisce l'auto e il servizio di assistenza comune.",
   },
   breadcrumbLabel: "Percorso di navigazione",
 
@@ -270,6 +280,16 @@ const it: StationsPage = {
         page: "route-fco-rome",
         label: "Dall'aeroporto di Fiumicino a Roma",
         detail: "Il capo cittadino di quel viaggio pone lo stesso problema.",
+      },
+      {
+        page: "route-cia-rome",
+        label: "Dall'aeroporto di Ciampino a Roma",
+        detail: "L'altra tratta aeroportuale verso la città, da sud-est.",
+      },
+      {
+        page: "route-rome-civitavecchia",
+        label: "Da Roma al porto di Civitavecchia",
+        detail: "Se il treno vi porta a Roma prima di un imbarco.",
       },
     ],
   },

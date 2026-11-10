@@ -32,7 +32,7 @@ export const pugliaPillarEn: PugliaPillar = {
     // description, where it survives.
     title: "Private transfers in Puglia",
     description:
-      "Private transfers across Puglia — Bari and Brindisi airports, cruise arrivals, masserie, wedding venues and the coast. Tell us the journey and get a written quote.",
+      "Private transfers across Puglia: Bari and Brindisi airports, cruise arrivals, masserie, wedding venues and the coast. Send the journey for a written quote.",
   },
 
   hero: {

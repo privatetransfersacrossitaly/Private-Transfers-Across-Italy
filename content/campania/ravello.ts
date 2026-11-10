@@ -383,7 +383,7 @@ const it: RavelloDestination = {
   meta: {
     title: "Transfer privati per Ravello",
     description:
-      "Ravello indica per nome le aree in cui i passeggeri possono scendere e salire, e richiede che l'autorizzazione all'accesso sia prenotata il giorno prima del viaggio.",
+      "Ravello indica le aree dove i passeggeri possono scendere e salire e chiede di prenotare l'accesso il giorno prima. Cosa sapere per il transfer.",
   },
   breadcrumbLabel: "Percorso di navigazione",
 

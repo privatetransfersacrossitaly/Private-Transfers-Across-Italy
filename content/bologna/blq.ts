@@ -167,6 +167,16 @@ const en: BlqAirport = {
         detail:
           "For passengers joining or leaving a ship, which is not the same destination as Ravenna itself.",
       },
+      {
+        page: "route-terminal-ravenna",
+        label: "Ravenna Cruise Terminal to Ravenna",
+        detail: "Off the ship at Porto Corsini and into the city.",
+      },
+      {
+        page: "route-ravenna-terminal",
+        label: "Ravenna to Ravenna Cruise Terminal",
+        detail: "From the city to the berth on sailing day.",
+      },
     ],
   },
 
@@ -232,7 +242,7 @@ const it: BlqAirport = {
   meta: {
     title: "Transfer dall'aeroporto di Bologna Marconi",
     description:
-      "Il BLQ ha una monorotaia propria per Bologna Centrale e non pubblica nulla su dove un'auto con conducente vi prenda a bordo. Vale la pena sapere entrambe le cose.",
+      "Aeroporto di Bologna (BLQ): la monorotaia per Bologna Centrale e cosa non viene pubblicato su dove un'auto con conducente vi carica. Cosa sapere prima.",
   },
   breadcrumbLabel: "Percorso di navigazione",
 
@@ -355,6 +365,16 @@ const it: BlqAirport = {
         label: "Terminal crociere di Ravenna a Porto Corsini",
         detail:
           "Per chi si imbarca o sbarca: non è la stessa destinazione di Ravenna città.",
+      },
+      {
+        page: "route-terminal-ravenna",
+        label: "Dal terminal crociere di Ravenna alla città",
+        detail: "Dalla nave a Porto Corsini fino in città.",
+      },
+      {
+        page: "route-ravenna-terminal",
+        label: "Da Ravenna al terminal crociere",
+        detail: "Dalla città all'ormeggio, il giorno dell'imbarco.",
       },
     ],
   },

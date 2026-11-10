@@ -178,7 +178,7 @@ const it: ExcelsiorHotel = {
   meta: {
     title: "Transfer per lo Starhotels Excelsior, Bologna",
     description:
-      "L'hotel è di fronte a Bologna Centrale, capolinea della monorotaia dell'aeroporto. Che cosa pubblica sull'arrivo in auto e che cosa nessuno pubblica sulla sua via.",
+      "Lo Starhotels Excelsior è di fronte a Bologna Centrale, capolinea della monorotaia. Cosa pubblica l'hotel sull'arrivo in auto e cosa manca.",
   },
   breadcrumbLabel: "Percorso di navigazione",
 

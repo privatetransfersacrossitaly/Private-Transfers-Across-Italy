@@ -34,7 +34,7 @@ export const monopoliIt: MonopoliPage = {
   meta: {
     title: "Transfer per Monopoli",
     description:
-      "Transfer privati per Monopoli: aeroporto di Bari, il porto antico, la costa a nord e a sud e le giornate ad Alberobello. Indicate il tragitto, ricevete un preventivo.",
+      "Transfer privati per Monopoli dall'aeroporto di Bari: il porto antico, la costa e le giornate ad Alberobello. Indicate il tragitto per un preventivo.",
   },
 
   hero: {

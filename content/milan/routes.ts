@@ -132,6 +132,11 @@ const mxpMilanEn: RoutePage = {
         label: "Milan's railway stations",
         detail: "If the journey continues by train.",
       },
+      {
+        page: "route-bgy-milan",
+        label: "Bergamo Airport to Milan",
+        detail: "The same city end, from an airport about 50 km out.",
+      },
     ],
   },
   faq: {
@@ -275,6 +280,11 @@ const mxpMilanIt: RoutePage = {
         page: "milan-stations",
         label: "Le stazioni ferroviarie di Milano",
         detail: "Se il viaggio prosegue in treno.",
+      },
+      {
+        page: "route-bgy-milan",
+        label: "Dall'aeroporto di Bergamo a Milano",
+        detail: "Lo stesso arrivo in città, da un aeroporto a circa 50 km.",
       },
     ],
   },
@@ -450,6 +460,11 @@ const linMilanEn: RoutePage = {
         label: "Private transfers in Milan",
         detail: "What governs the last part of any journey here.",
       },
+      {
+        page: "route-bgy-milan",
+        label: "Bergamo Airport to Milan",
+        detail: "The third Milan airport, about 50 km from the city.",
+      },
     ],
   },
   faq: {
@@ -494,7 +509,7 @@ const linMilanIt: RoutePage = {
   meta: {
     title: "Dall'aeroporto di Linate a Milano",
     description:
-      "La più breve delle tre tratte aeroportuali milanesi, e perché breve non significa affidabilmente rapida. Che cosa indicare e che cosa fanno le zone a traffico limitato all'ultimo tratto.",
+      "Transfer da Linate a Milano: la più breve delle tre tratte, perché breve non significa rapida e cosa cambiano Area B e Area C sull'ultimo tratto.",
   },
   breadcrumbLabel: "Percorso di navigazione",
   hero: {
@@ -621,6 +636,11 @@ const linMilanIt: RoutePage = {
         page: "milan",
         label: "Transfer privati a Milano",
         detail: "Che cosa governa l'ultimo tratto di qualsiasi viaggio qui.",
+      },
+      {
+        page: "route-bgy-milan",
+        label: "Dall'aeroporto di Bergamo a Milano",
+        detail: "Il terzo aeroporto di Milano, a circa 50 km dalla città.",
       },
     ],
   },
@@ -820,6 +840,11 @@ const bgyMilanEn: RoutePage = {
         label: "Private transfers in Milan",
         detail: "What waits at the city end.",
       },
+      {
+        page: "route-lin-milan",
+        label: "Linate Airport to Milan",
+        detail: "The shortest of the three, from the city's own airport.",
+      },
     ],
   },
   faq: {
@@ -1014,6 +1039,11 @@ const bgyMilanIt: RoutePage = {
         page: "milan",
         label: "Transfer privati a Milano",
         detail: "Che cosa vi aspetta dal lato città.",
+      },
+      {
+        page: "route-lin-milan",
+        label: "Dall'aeroporto di Linate a Milano",
+        detail: "La più breve delle tre, dall'aeroporto cittadino.",
       },
     ],
   },

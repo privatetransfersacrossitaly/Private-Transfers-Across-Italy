@@ -19,7 +19,7 @@ const en: CruisePort = {
   meta: {
     title: "Civitavecchia cruise port transfers",
     description:
-      "The port that serves Rome is a separate town roughly 70 km away. How the port is laid out, what to confirm before sailing day, and why a meeting point has to be agreed rather than assumed.",
+      "Civitavecchia, Rome's cruise port, is a separate town about 70 km away. How the port is laid out, what to confirm and why a meeting point is agreed.",
   },
   breadcrumbLabel: "Breadcrumb",
 
@@ -175,7 +175,7 @@ const it: CruisePort = {
   meta: {
     title: "Transfer per il porto di Civitavecchia",
     description:
-      "Il porto che serve Roma è un comune a sé, a circa 70 km dalla città. Com'è organizzato, che cosa confermare prima del giorno dell'imbarco e perché il punto d'incontro va concordato.",
+      "Civitavecchia, il porto crociere di Roma, è un comune a circa 70 km. Com'è organizzato, cosa confermare prima dell'imbarco e il punto d'incontro.",
   },
   breadcrumbLabel: "Percorso di navigazione",
 

@@ -33,7 +33,7 @@ export const alberobelloIt: AlberobelloPage = {
   meta: {
     title: "Transfer per Alberobello e i trulli",
     description:
-      "Transfer privati per Alberobello: aeroporti di Bari e Brindisi, alloggi nei trulli, escursioni dal porto e Valle d'Itria. Indicate il tragitto, ricevete un preventivo.",
+      "Transfer privati per Alberobello dagli aeroporti di Bari e Brindisi: trulli, escursioni dal porto e Valle d'Itria. Indicate il tragitto.",
   },
 
   hero: {

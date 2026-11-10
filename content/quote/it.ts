@@ -12,7 +12,7 @@ export const quoteIt: QuoteContent = {
   meta: {
     title: "Richiedi un preventivo",
     description:
-      "Descrivete il vostro viaggio in Italia e ricevete un preventivo scritto: i due indirizzi, la data, chi viaggia e quanti bagagli. Una richiesta non è una prenotazione.",
+      "Descrivete il vostro viaggio in Italia e ricevete un preventivo scritto: indirizzi, data, passeggeri e bagagli. Una richiesta non è una prenotazione.",
   },
 
   breadcrumbLabel: "Percorso di navigazione",

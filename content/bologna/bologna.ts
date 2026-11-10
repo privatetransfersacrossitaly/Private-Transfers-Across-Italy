@@ -40,7 +40,7 @@ const en: BolognaHub = {
   meta: {
     title: "Private transfers in Bologna",
     description:
-      "Bologna's centre is restricted at three different strengths, and which one applies depends on your street. What that means for a car, and what the city does not publish.",
+      "Bologna's centre has three levels of traffic restriction, and your street decides which applies. What that means for a car and what the city leaves out.",
   },
   breadcrumbLabel: "Breadcrumb",
 
@@ -128,6 +128,21 @@ const en: BolognaHub = {
         label: "Starhotels Excelsior",
         detail:
           "Opposite the central station, where the airport monorail terminates.",
+      },
+      {
+        page: "route-blq-majestic",
+        label: "Bologna Airport to the Grand Hotel Majestic",
+        detail: "The arrival from BLQ at an address the hotel tells guests not to drive to.",
+      },
+      {
+        page: "route-blq-commercianti",
+        label: "Bologna Airport to the Art Hotel Commercianti",
+        detail: "The arrival from BLQ by the authorised route the hotel arranges.",
+      },
+      {
+        page: "route-blq-excelsior",
+        label: "Bologna Airport to the Starhotels Excelsior",
+        detail: "A transfer from BLQ and the airport monorail, compared.",
       },
       {
         page: "ravenna",
@@ -299,6 +314,21 @@ const it: BolognaHub = {
         label: "Starhotels Excelsior",
         detail:
           "Di fronte alla stazione centrale, dove arriva la monorotaia dell'aeroporto.",
+      },
+      {
+        page: "route-blq-majestic",
+        label: "Dall'aeroporto di Bologna al Grand Hotel Majestic",
+        detail: "L'arrivo dal BLQ a un indirizzo a cui l'hotel raccomanda di non guidare.",
+      },
+      {
+        page: "route-blq-commercianti",
+        label: "Dall'aeroporto di Bologna all'Art Hotel Commercianti",
+        detail: "L'arrivo dal BLQ con il percorso autorizzato che organizza l'hotel.",
+      },
+      {
+        page: "route-blq-excelsior",
+        label: "Dall'aeroporto di Bologna allo Starhotels Excelsior",
+        detail: "Transfer dal BLQ e monorotaia dell'aeroporto a confronto.",
       },
       {
         page: "ravenna",

@@ -25,7 +25,7 @@ const en: BigAirport = {
   meta: {
     title: "Malpensa Airport transfers (MXP)",
     description:
-      "Italy's principal intercontinental gateway, north-west of Milan: which terminal you are using, what a pickup request needs, and where a transfer can actually take you.",
+      "Malpensa (MXP), Milan's intercontinental airport: which terminal you use, what a pickup request needs and where a transfer from it can take you.",
   },
   breadcrumbLabel: "Breadcrumb",
 
@@ -214,7 +214,7 @@ const it: BigAirport = {
   meta: {
     title: "Transfer aeroporto di Malpensa (MXP)",
     description:
-      "Il principale scalo intercontinentale italiano, a nord-ovest di Milano: quale terminal vi riguarda, che cosa indicare nella richiesta e dove può davvero portarvi un transfer da Malpensa.",
+      "Malpensa (MXP), principale scalo intercontinentale: quale terminal vi riguarda, cosa indicare nella richiesta e dove può portarvi un transfer.",
   },
   breadcrumbLabel: "Percorso di navigazione",
 

@@ -169,7 +169,7 @@ const it: TrevisoAirport = {
   meta: {
     title: "Transfer aeroporto di Treviso (TSF)",
     description:
-      "L'aeroporto venduto con il nome di Venezia dista da Venezia circa 31 km e si trova a Treviso. Che cosa comporta quella distanza, e il secondo ostacolo che vi aspetta all'arrivo.",
+      "L'aeroporto di Treviso (TSF) è venduto come Venezia ma dista circa 31 km. Cosa comporta quella distanza e il secondo ostacolo all'arrivo.",
   },
   breadcrumbLabel: "Percorso di navigazione",
 
