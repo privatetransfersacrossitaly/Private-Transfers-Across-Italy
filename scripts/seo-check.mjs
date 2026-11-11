@@ -302,10 +302,11 @@ for (const url of locs) {
     }
   }
 
-  // Outbound links. External citations are followed on purpose — they point
-  // at the authority a page's claim rests on — so `nofollow` is a defect
-  // here, not a default. `noopener` is required. And no internal link may
-  // carry `nofollow`, which is what `outboundRel` exists to guarantee.
+  // Outbound links. Since 11 November 2026 every external link carries
+  // `nofollow`, by the site owner's decision — citations and the WhatsApp
+  // button alike — so a followed external link is a defect. `noopener` is
+  // still required. And no internal link may carry `nofollow`, which is what
+  // `outboundRel` exists to guarantee.
   for (const tag of page.body.match(/<a\s[^>]*>/gi) ?? []) {
     const target = attr(tag, "href");
     if (!target) continue;
@@ -314,8 +315,8 @@ for (const url of locs) {
       /^https?:\/\//i.test(target) && !target.startsWith(PRODUCTION_ORIGIN);
     if (isExternal) {
       externalAnchors += 1;
-      if (/nofollow/i.test(rel)) {
-        linkProblems.push(`${path} → ${target} carries nofollow`);
+      if (!/\bnofollow\b/i.test(rel)) {
+        linkProblems.push(`${path} → ${target} is missing nofollow`);
       }
       if (!/noopener/i.test(rel)) {
         linkProblems.push(`${path} → ${target} is missing noopener`);
@@ -335,7 +336,7 @@ for (const problem of problems) console.log(`       - ${problem}`);
 section(`outbound links (${externalAnchors} external anchors)`);
 assert(
   linkProblems.length === 0,
-  "external links followed with noopener; no internal link nofollowed",
+  "every external link nofollow with noopener; no internal link nofollowed",
 );
 for (const problem of linkProblems) console.log(`       - ${problem}`);
 

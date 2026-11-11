@@ -38,7 +38,7 @@ export function WhatsAppButton({ label }: { label: string }) {
     <a
       href={whatsappHref}
       target="_blank"
-      rel="noopener noreferrer"
+      rel="nofollow noopener noreferrer"
       aria-label={label}
       title={label}
       className="fixed right-4 bottom-[calc(6rem+env(safe-area-inset-bottom))] z-40 inline-flex size-13 items-center justify-center rounded-full bg-[#25d366] text-white shadow-lg shadow-foreground/25 transition-transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring md:right-6 md:bottom-6"

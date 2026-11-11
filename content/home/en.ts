@@ -452,6 +452,8 @@ export const en: HomeContent = {
     footerLegal:
       "Journeys are quoted individually and are subject to confirmation. A quotation request is not a booking.",
     contactHeading: "Contact",
+    followHeading: "Follow us",
+    followOn: "Private Transfers Across Italy on {network} (opens in a new tab)",
     whatsappLabel: "Message us on WhatsApp",
   },
 };

@@ -49,6 +49,21 @@ export const siteUrl = (
 export const contactEmail = "privatetransfersacrossitaly@gmail.com";
 
 /**
+ * The business's social profiles, shown as icons in the footer.
+ *
+ * The Pinterest address is the profile itself, not the `pin.it` share link it
+ * was supplied as: that link redirects here through Pinterest's shortener and
+ * appends an invite code and the sharing account's id, neither of which
+ * belongs in a public link.
+ */
+export const socialProfiles = [
+  { network: "instagram", name: "Instagram", href: "https://www.instagram.com/privatetransfersacrossitaly/" },
+  { network: "pinterest", name: "Pinterest", href: "https://www.pinterest.com/acrossitaly/" },
+] as const;
+
+export type SocialNetwork = (typeof socialProfiles)[number]["network"];
+
+/**
  * The WhatsApp number behind the floating contact button, in the digits-only
  * form wa.me requires: country code first, no plus, no spaces.
  *
@@ -135,12 +150,15 @@ export function absoluteUrl(path: string): string {
 /**
  * The `rel` for a link whose destination comes from a content file.
  *
- * ── Do-follow by decision ─────────────────────────────────────────────────
+ * ── Nofollow by the owner's decision (11 November 2026) ───────────────────
  * Every external link on this site is a citation: the comune whose ordinance
  * a page quotes, the airport operator whose terminal allocation it reports,
- * RFI, UNESCO. `nofollow` exists for untrusted and paid links, and these are
- * neither — linking to the authority a claim rests on is the whole editorial
- * premise of the site. So ordinary external links are followed.
+ * RFI, UNESCO. They were followed until 11 November 2026, when the site owner
+ * decided that no external link should be followed from this site. Visitors
+ * can still click every one of them; only crawlers are told not to treat the
+ * link as an endorsement. The citations themselves are unchanged.
+ *
+ * The WhatsApp button builds its own `rel` and follows the same rule.
  *
  * `noopener` stays. Nothing here opens in a new tab, so it is a no-op today
  * rather than a protection, and it costs nothing to keep correct in advance
@@ -165,7 +183,7 @@ export function outboundRel(href: string): string | undefined {
   } catch {
     return undefined;
   }
-  return "noopener";
+  return "nofollow noopener";
 }
 
 /**

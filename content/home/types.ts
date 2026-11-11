@@ -194,6 +194,14 @@ export type HomeContent = {
     footerLegal: string;
     /** Label above the contact email in the footer. */
     contactHeading: string;
+    /** Label above the social icons in the footer. */
+    followHeading: string;
+    /**
+     * Accessible name for each social icon. `{network}` is replaced with the
+     * network's name. A string rather than a function, so the content stays
+     * plain data that can cross into a client component.
+     */
+    followOn: string;
     /** Accessible name for the floating WhatsApp button. */
     whatsappLabel: string;
   };
