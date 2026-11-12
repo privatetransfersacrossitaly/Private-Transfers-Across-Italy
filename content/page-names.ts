@@ -218,6 +218,7 @@ export const pageNames: Record<PageId, Record<Locale, string>> = {
   },
 
   about: { en: "About us", it: "Chi siamo" },
+  blog: { en: "Blog", it: "Blog" },
   quote: { en: "Get a quote", it: "Preventivo" },
 
   privacy: { en: "Privacy", it: "Privacy" },

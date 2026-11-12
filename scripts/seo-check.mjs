@@ -168,12 +168,19 @@ for (const priv of PRIVATE_PATHS) {
   assert(!paths.includes(priv), `excludes the private ${priv}`);
 }
 
-const english = paths.filter((p) => !p.startsWith("/it"));
-const italian = paths.filter((p) => p.startsWith("/it"));
+// Blog URLs come from D1, not the registry, and a post may exist in one
+// language only — exactly as on Italy Taxi Service. They are exempt from the
+// one-to-one count and checked by their own rules below; every registry page
+// is held to the pairing rule as before.
+const isBlogPath = (p) => /^\/(it\/)?blog(\/|$)/.test(p);
+const english = paths.filter((p) => !isBlogPath(p) && !p.startsWith("/it"));
+const italian = paths.filter((p) => !isBlogPath(p) && p.startsWith("/it"));
 assert(
   english.length === italian.length,
-  `one Italian URL per English URL (${english.length} en, ${italian.length} it)`,
+  `one Italian URL per English URL, outside the blog (${english.length} en, ${italian.length} it)`,
 );
+const blogPaths = paths.filter(isBlogPath);
+console.log(`  ${blogPaths.length} blog URLs (index pages and posts, from D1)`);
 
 // ── <lastmod> ─────────────────────────────────────────────────────────────
 // Since commit 32b9590 every date is derived from git by
@@ -225,9 +232,13 @@ assert(
 // Both languages of a page are rendered by the same content modules, so the
 // generator gives them one date. A pair that disagrees means the dates came
 // from somewhere other than the generator.
+// Not blog URLs: a post and its translation are separate D1 rows, edited
+// separately, each dated by its own `updated_at` — different dates are the
+// truth there, not a sign of fabrication.
 const byEnglish = new Map();
 for (const e of entries) {
   if (!e.en) continue;
+  if (isBlogPath(e.loc.slice(PRODUCTION_ORIGIN.length) || "/")) continue;
   if (!byEnglish.has(e.en)) byEnglish.set(e.en, []);
   byEnglish.get(e.en).push(e.lastmods[0] ?? null);
 }
@@ -280,11 +291,22 @@ for (const url of locs) {
   const alternates = alternatesOf(page.body);
   alternatesByUrl.set(url, alternates);
 
-  if (!alternates.en || !alternates.it) {
-    problems.push(`${path} is missing an en or it alternate`);
-  }
-  if (alternates["x-default"] !== alternates.en) {
-    problems.push(`${path} points x-default at ${alternates["x-default"]}, not at its English URL`);
+  if (isBlogPath(path)) {
+    // A post or index may stand alone in its language. It must still name
+    // itself, and x-default must be its English URL when it has one.
+    const own = path.startsWith("/it") ? alternates.it : alternates.en;
+    if (!own) problems.push(`${path} is missing its own-language alternate`);
+    const expectedDefault = alternates.en ?? own;
+    if (alternates["x-default"] !== expectedDefault) {
+      problems.push(`${path} points x-default at ${alternates["x-default"]}, not at ${expectedDefault}`);
+    }
+  } else {
+    if (!alternates.en || !alternates.it) {
+      problems.push(`${path} is missing an en or it alternate`);
+    }
+    if (alternates["x-default"] !== alternates.en) {
+      problems.push(`${path} points x-default at ${alternates["x-default"]}, not at its English URL`);
+    }
   }
   const self = path.startsWith("/it") ? alternates.it : alternates.en;
   if (self !== url) {
@@ -348,6 +370,8 @@ section("hreflang reciprocity");
 let asymmetric = 0;
 for (const [url, alternates] of alternatesByUrl) {
   const counterpart = url === alternates.en ? alternates.it : alternates.en;
+  // A single-language blog post has no counterpart to compare with.
+  if (!counterpart && isBlogPath(url.slice(PRODUCTION_ORIGIN.length) || "/")) continue;
   const theirs = alternatesByUrl.get(counterpart);
   if (!theirs) {
     console.log(`       - ${url} names a counterpart that is not in the sitemap`);

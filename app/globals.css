@@ -251,3 +251,119 @@
     line-height: 1.5;
   }
 }
+
+/*
+ * A blog post body.
+ *
+ * The one place on the site whose markup is not written in components: it
+ * is HTML stored in D1 (see lib/blog/content.ts). So the type scale above is
+ * applied by element here instead of by class, in the same sizes and
+ * colours, so an article reads as part of the site. Italy Taxi styles the
+ * same `.blog-content` wrapper with its own palette; nothing of that is
+ * carried over.
+ */
+@layer components {
+  .blog-content {
+    font-size: var(--text-body);
+    line-height: 1.75;
+    color: var(--foreground);
+  }
+  .blog-content > * + * {
+    margin-top: 1.25em;
+  }
+  .blog-content h2 {
+    font-family: var(--font-display);
+    font-size: var(--text-h2);
+    line-height: 1.18;
+    letter-spacing: -0.012em;
+    margin-top: 2.4em;
+  }
+  .blog-content h3 {
+    font-family: var(--font-display);
+    font-size: var(--text-h3);
+    line-height: 1.3;
+    margin-top: 1.9em;
+  }
+  .blog-content h4 {
+    font-weight: 600;
+    margin-top: 1.6em;
+  }
+  .blog-content h2 + *,
+  .blog-content h3 + *,
+  .blog-content h4 + * {
+    margin-top: 0.7em;
+  }
+  .blog-content p,
+  .blog-content li {
+    color: var(--muted-foreground);
+  }
+  .blog-content strong {
+    color: var(--foreground);
+    font-weight: 600;
+  }
+  .blog-content a {
+    color: var(--accent-ink);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in oklch, var(--accent) 40%, transparent);
+    text-underline-offset: 4px;
+  }
+  .blog-content a:hover {
+    text-decoration-color: currentColor;
+  }
+  .blog-content ul,
+  .blog-content ol {
+    padding-left: 1.4em;
+  }
+  .blog-content ul {
+    list-style: disc;
+  }
+  .blog-content ol {
+    list-style: decimal;
+  }
+  .blog-content li + li {
+    margin-top: 0.45em;
+  }
+  .blog-content li::marker {
+    color: var(--accent);
+  }
+  .blog-content blockquote {
+    border-left: 3px solid var(--accent);
+    padding-left: 1.1em;
+    color: var(--foreground);
+    font-style: italic;
+  }
+  .blog-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+  }
+  .blog-content figure figcaption {
+    margin-top: 0.6em;
+    font-size: var(--text-caption);
+    color: var(--muted-foreground);
+  }
+  .blog-content hr {
+    border-top: 1px solid var(--border);
+    margin: 2.4em 0;
+  }
+  /* Wide tables scroll inside the column instead of widening the page. */
+  .blog-content table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    font-size: var(--text-small);
+  }
+  .blog-content th,
+  .blog-content td {
+    border-bottom: 1px solid var(--border);
+    padding: 0.6em 0.9em;
+    text-align: left;
+    vertical-align: top;
+  }
+  .blog-content th {
+    color: var(--foreground);
+    font-weight: 600;
+    background: var(--surface-sunken);
+  }
+}

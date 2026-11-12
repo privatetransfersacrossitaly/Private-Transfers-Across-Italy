@@ -103,6 +103,89 @@ export function homeJsonLd(locale: Locale) {
  * `faq` is optional and is passed only where the page renders those questions
  * and answers as visible text.
  */
+/**
+ * A blog post: BlogPosting, its breadcrumb, and FAQPage when it has one.
+ *
+ * Posts are not in the route registry, so the breadcrumb is built here
+ * rather than by `trailFor`: Home → Blog → the post. The author is the
+ * named blogger when the post has one, and the organisation otherwise —
+ * Italy Taxi always used the organisation; a real byline is better when
+ * there is one.
+ */
+export function blogPostJsonLd({
+  locale,
+  url,
+  headline,
+  description,
+  image,
+  datePublished,
+  dateModified,
+  authorName,
+  keywords,
+  faq,
+}: {
+  locale: Locale;
+  url: string;
+  headline: string;
+  description: string;
+  image?: string | null;
+  datePublished: string;
+  dateModified: string;
+  authorName?: string | null;
+  keywords?: string[];
+  faq?: { question: string; answer: string }[];
+}) {
+  const blogUrl = urlFor("blog", locale);
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      organization(),
+      website(locale),
+      {
+        "@type": "BlogPosting",
+        "@id": `${url}#article`,
+        mainEntityOfPage: { "@type": "WebPage", "@id": url },
+        url,
+        headline,
+        description,
+        inLanguage: htmlLang[locale],
+        ...(image ? { image: absoluteUrl(image) } : {}),
+        datePublished,
+        dateModified,
+        author: authorName
+          ? { "@type": "Person", name: authorName }
+          : { "@id": organizationId },
+        publisher: { "@id": organizationId },
+        isPartOf: { "@type": "Blog", "@id": `${blogUrl}#blog`, url: blogUrl },
+        ...(keywords && keywords.length > 0 ? { keywords: keywords.join(", ") } : {}),
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${url}#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: pageName("home", locale), item: urlFor("home", locale) },
+          { "@type": "ListItem", position: 2, name: pageName("blog", locale), item: blogUrl },
+          { "@type": "ListItem", position: 3, name: headline, item: url },
+        ],
+      },
+      ...(faq && faq.length > 0
+        ? [
+            {
+              "@type": "FAQPage",
+              "@id": `${url}#faq`,
+              isPartOf: { "@id": websiteId },
+              mainEntity: faq.map((item) => ({
+                "@type": "Question",
+                name: item.question,
+                acceptedAnswer: { "@type": "Answer", text: item.answer },
+              })),
+            },
+          ]
+        : []),
+    ],
+  };
+}
+
 export function pageJsonLd({
   id,
   locale,

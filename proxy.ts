@@ -1,4 +1,41 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { publishedPostExists } from "@/lib/blog/repository";
+
+/**
+ * Blog posts: a real 404 for an address with no published post.
+ *
+ * A post page reads D1 at request time, and by then the site's layout has
+ * already started streaming with a 200 status. `notFound()` in the page can
+ * only add a noindex tag at that point — Google reports such pages as soft
+ * 404s. The Next.js docs give this as the fix: check the slug here, before
+ * rendering starts, and send a missing post to the not-found page with a
+ * real 404 (see node_modules/next/dist/docs/.../loading.md, "Status codes").
+ *
+ * Covers unknown slugs, drafts and unpublished posts alike, because the
+ * query asks only for published rows. With no database (build, `next start`)
+ * it steps aside and the page's own `notFound()` still applies.
+ *
+ * Cost: one indexed D1 lookup per post request, on post URLs only.
+ */
+const BLOG_POST = /^\/(it\/)?blog\/([^/]+)\/?$/;
+
+/** Matches no route, so it renders app/global-not-found.tsx with a 404. */
+const NOT_FOUND_PATH = "/_blog-post-not-found";
+
+async function blogProxy(request: NextRequest, match: RegExpExecArray) {
+  const locale = match[1] ? "it" : "en";
+  let slug: string;
+  try {
+    slug = decodeURIComponent(match[2]);
+  } catch {
+    return NextResponse.rewrite(new URL(NOT_FOUND_PATH, request.url));
+  }
+  const exists = await publishedPostExists(locale, slug);
+  if (exists === false) {
+    return NextResponse.rewrite(new URL(NOT_FOUND_PATH, request.url));
+  }
+  return NextResponse.next();
+}
 
 /**
  * A cheap first refusal for the CRM.
@@ -44,6 +81,11 @@ const PUBLIC_CRM_PATHS = ["/crm/login"];
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  const blogPost = BLOG_POST.exec(pathname);
+  if (blogPost) return blogProxy(request, blogPost);
+
+  // ── Everything below is the CRM, unchanged ──────────────────────────────
+
   if (PUBLIC_CRM_PATHS.some((p) => pathname === p || pathname.startsWith(p + "/"))) {
     return NextResponse.next();
   }
@@ -66,11 +108,11 @@ export async function proxy(request: NextRequest) {
 }
 
 /**
- * CRM routes only.
+ * CRM routes and blog post routes only.
  *
  * Every other page on this site is static and public, and running this on
  * them would cost an invocation per request for nothing.
  */
 export const config = {
-  matcher: ["/crm/:path*"],
+  matcher: ["/crm/:path*", "/blog/:slug", "/it/blog/:slug"],
 };

@@ -109,6 +109,7 @@ export type PageId =
   | "catania-cruise-port"
   | "messina-cruise-port"
   | "about"
+  | "blog"
   | "quote"
   | "privacy"
   | "terms"
@@ -932,6 +933,19 @@ const pages: Record<PageId, PageRecord> = {
     priority: 0.5,
   },
 
+  // The blog index. Its posts are not in this registry: they live in D1
+  // (migrations/0005_create_blog.sql) and are listed in the sitemap from
+  // there. `published: true` means the index route exists; whether it is
+  // listed and indexable is decided at request time by whether any post is
+  // published — an index with nothing in it is `noindex` and left out of the
+  // sitemap (see app/sitemap.ts and app/(en)/blog/page.tsx).
+  blog: {
+    path: { en: "/blog", it: "/it/blog" },
+    parent: "home",
+    published: true,
+    priority: 0.6,
+  },
+
   // The destination every "Request a quote" on the site points at. High
   // priority because it is the one page the whole site is pointed at, and
   // `quotePathFor()` in lib/site.ts resolves to it.
@@ -1082,6 +1096,13 @@ export function counterpartForPath(pathname: string, other: Locale): string {
     for (const locale of locales) {
       if (pages[id].path[locale] === path) return pages[id].path[other];
     }
+  }
+  // A blog post is not in the registry, and which post translates which is
+  // only known to D1, not to this client-side switch. The other language's
+  // blog index is the nearest honest destination; the post page itself
+  // declares the exact counterpart in its hreflang alternates.
+  for (const locale of locales) {
+    if (path.startsWith(`${pages.blog.path[locale]}/`)) return pages.blog.path[other];
   }
   return homePath[other];
 }
