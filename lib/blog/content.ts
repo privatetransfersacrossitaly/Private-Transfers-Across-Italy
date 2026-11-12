@@ -46,6 +46,15 @@ export type PreparedPost = {
   html: string;
   faq: FaqItem[];
   toc: TocItem[];
+  /**
+   * Credit for the featured image, as HTML, when the post supplies one.
+   *
+   * Written in the body as `<p data-image-credit>…</p>` and lifted out here
+   * so the page can print it directly under the featured image — which a
+   * CC BY licence requires — without a database column for it. Cleaned and
+   * link-ruled like the rest of the body before it is lifted.
+   */
+  imageCredit: string | null;
 };
 
 const decodeEntities = (s: string) =>
@@ -156,12 +165,16 @@ function extractToc(html: string): TocItem[] {
  * add ids before extracting the FAQ (whose headings already carry theirs)
  * and the table of contents (which needs every id).
  */
+const IMAGE_CREDIT = /<p\b[^>]*\sdata-image-credit\b[^>]*>([\s\S]*?)<\/p>\s*/i;
+
 export function prepareBlogHtml(stored: string | null | undefined): PreparedPost {
-  const cleaned = ruleLinks(addHeadingIds(stripExecutable(stored ?? "")));
+  const ruled = ruleLinks(addHeadingIds(stripExecutable(stored ?? "")));
+  const credit = IMAGE_CREDIT.exec(ruled);
+  const cleaned = credit ? ruled.replace(IMAGE_CREDIT, "") : ruled;
   const faq = extractFaq(cleaned);
   const html =
     faq.length > 0 ? cleaned.replace(FAQ_PAIR, "").replace(FAQ_HEADING, "") : cleaned;
-  return { html, faq, toc: extractToc(html) };
+  return { html, faq, toc: extractToc(html), imageCredit: credit ? credit[1].trim() : null };
 }
 
 /**

@@ -111,16 +111,27 @@ export function BlogPostView({
 
       {post.featured_image_url ? (
         <Container size="content" className="pt-10 sm:pt-12">
-          <div className="relative aspect-[16/9] overflow-hidden rounded-lg bg-surface-sunken">
-            <Image
-              src={post.featured_image_url}
-              alt={post.featured_image_alt ?? ""}
-              fill
-              priority
-              sizes="(min-width: 1024px) 64rem, 92vw"
-              className="object-cover"
-            />
-          </div>
+          <figure>
+            <div className="relative aspect-[16/9] overflow-hidden rounded-lg bg-surface-sunken">
+              <Image
+                src={post.featured_image_url}
+                alt={post.featured_image_alt ?? ""}
+                fill
+                priority
+                sizes="(min-width: 1024px) 64rem, 92vw"
+                className="object-cover"
+              />
+            </div>
+            {/* Required by the image's licence when it has one (e.g. CC BY-SA).
+                Comes from the post body's `data-image-credit` line, already
+                cleaned and link-ruled by prepareBlogHtml. */}
+            {prepared.imageCredit ? (
+              <figcaption
+                className="blog-image-credit mt-2 type-caption text-muted-foreground"
+                dangerouslySetInnerHTML={{ __html: prepared.imageCredit }}
+              />
+            ) : null}
+          </figure>
         </Container>
       ) : null}
 

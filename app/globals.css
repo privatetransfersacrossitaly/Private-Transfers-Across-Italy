@@ -366,4 +366,50 @@
     font-weight: 600;
     background: var(--surface-sunken);
   }
+
+  /*
+   * A call to action inside a post: `<aside class="blog-cta">` with a
+   * paragraph and a link. Styled here rather than with utility classes,
+   * because Tailwind only generates classes it finds in source files, and a
+   * post body lives in D1. Matches the site's primary button and callouts.
+   */
+  .blog-content .blog-cta {
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+    padding: 1.4em 1.5em;
+    border: 1px solid color-mix(in oklch, var(--accent) 35%, transparent);
+    border-radius: var(--radius-lg);
+    background: var(--accent-wash);
+  }
+  .blog-content .blog-cta p {
+    color: var(--foreground);
+  }
+  .blog-content .blog-cta p + p {
+    margin-top: 0.9em;
+  }
+  .blog-content .blog-cta a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0 1.25rem;
+    border-radius: var(--radius-md);
+    background: var(--accent);
+    color: var(--accent-foreground);
+    font-weight: 600;
+    font-size: var(--text-small);
+    text-decoration: none;
+  }
+  .blog-content .blog-cta a:hover {
+    background: var(--accent-hover);
+  }
+
+  /* Links inside an image credit caption. */
+  .blog-image-credit a {
+    text-decoration: underline;
+    text-decoration-color: var(--border-strong);
+    text-underline-offset: 3px;
+  }
+  .blog-image-credit a:hover {
+    text-decoration-color: currentColor;
+  }
 }
