@@ -16,6 +16,8 @@
  *   - FAQ: an <h2>Frequently Asked Questions</h2> (or "Domande frequenti"),
  *     then pairs of <h3 id="faq-1">Question?</h3><p>Answer.</p>. They are
  *     moved into the page's FAQ section and FAQPage structured data.
+ *   - Image caption: <p data-image-caption>What the photo shows.</p> — printed
+ *     under the featured image. Put any licence credit in a Sources section.
  *   - Link to the site's own pages with relative paths (/destinations/rome).
  *     External links get rel="nofollow noopener" automatically.
  *

@@ -121,6 +121,7 @@ export function blogPostJsonLd({
   datePublished,
   dateModified,
   authorName,
+  authorBio,
   keywords,
   faq,
 }: {
@@ -132,6 +133,8 @@ export function blogPostJsonLd({
   datePublished: string;
   dateModified: string;
   authorName?: string | null;
+  /** The blogger's bio, as `Person.description`. */
+  authorBio?: string | null;
   keywords?: string[];
   faq?: { question: string; answer: string }[];
 }) {
@@ -153,7 +156,12 @@ export function blogPostJsonLd({
         datePublished,
         dateModified,
         author: authorName
-          ? { "@type": "Person", name: authorName }
+          ? {
+              "@type": "Person",
+              name: authorName,
+              ...(authorBio ? { description: authorBio } : {}),
+              worksFor: { "@id": organizationId },
+            }
           : { "@id": organizationId },
         publisher: { "@id": organizationId },
         isPartOf: { "@type": "Blog", "@id": `${blogUrl}#blog`, url: blogUrl },

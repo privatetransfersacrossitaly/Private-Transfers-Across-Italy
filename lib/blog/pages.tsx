@@ -206,6 +206,7 @@ export async function BlogPostRoute({
           datePublished: post.published_at ?? post.created_at,
           dateModified: post.updated_at,
           authorName: post.author?.full_name,
+          authorBio: post.author?.bio,
           keywords: post.focus_keyword ? [post.focus_keyword, ...post.tags] : post.tags,
           faq: prepared.faq,
         })}

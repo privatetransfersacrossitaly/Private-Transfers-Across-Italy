@@ -402,14 +402,4 @@
   .blog-content .blog-cta a:hover {
     background: var(--accent-hover);
   }
-
-  /* Links inside an image credit caption. */
-  .blog-image-credit a {
-    text-decoration: underline;
-    text-decoration-color: var(--border-strong);
-    text-underline-offset: 3px;
-  }
-  .blog-image-credit a:hover {
-    text-decoration-color: currentColor;
-  }
 }

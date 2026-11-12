@@ -44,10 +44,11 @@
  * Italian version: not written — see the implementation report.
  */
 export default {
+  // Bio as described by the site owner, 12 November 2026.
   author: {
     id: "bareera",
     full_name: "Bareera",
-    bio: null,
+    bio: "Bareera writes the blog for Private Transfers Across Italy. She works as a driver, and gathers what she learns on the road about airports, stations, venues and traffic in Italy's cities, then turns it into practical guides for travellers planning their journeys.",
     avatar_url: null,
   },
 
@@ -69,7 +70,7 @@ export default {
         "The glass exterior of La Nuvola, the Roma Convention Center in the EUR district, on a clear day",
       status: "published",
       content: `
-<p data-image-credit>La Nuvola, Roma Convention Center, EUR. Photo: Indeciso42, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, via <a href="https://commons.wikimedia.org/wiki/File:EURNUVOLA25082023_105A.jpg">Wikimedia Commons</a>.</p>
+<p data-image-caption>La Nuvola, the Roma Convention Center in Rome's EUR district, where Roma Arte in Nuvola 2026 takes place from 20 to 22 November.</p>
 
 <p><strong>Roma Arte in Nuvola 2026 takes place from 20 to 22 November at La Nuvola, the Roma Convention Center in the EUR district, south of Rome's historic centre.</strong> The venue is open from 10:30 to 20:30 each day, with last entry at 20:00. From Fiumicino Airport the organiser gives the distance as about 20 km; from Termini, Metro line B runs to EUR Fermi, a short walk from the building. If you would rather be met at the airport, your hotel or the station and driven to the door, you can ask us for a written quotation for the journey.</p>
 
@@ -148,6 +149,7 @@ export default {
 
 <h2>Sources</h2>
 <p>Event dates, hours, address and access routes are from the organiser's <a href="https://romaarteinnuvola.eu/en/info-contacts/">Info &amp; Contacts</a> and <a href="https://romaarteinnuvola.eu/en/roma-arte-in-nuvola-whats-new-in-the-sixth-edition/">sixth-edition announcement</a>, and from <a href="https://www.turismoroma.it/it/eventi/roma-arte-nuvola-2026">Turismo Roma</a>, read on 12 November 2026. Sources give slightly different street numbers on Viale Asia; this article uses the organiser's.</p>
+<p>Photograph of La Nuvola: Indeciso42, <a href="https://commons.wikimedia.org/wiki/File:EURNUVOLA25082023_105A.jpg">via Wikimedia Commons</a>, licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p>
 
 <h2>Frequently Asked Questions</h2>
 <h3 id="faq-1">How far is La Nuvola from Fiumicino Airport?</h3>

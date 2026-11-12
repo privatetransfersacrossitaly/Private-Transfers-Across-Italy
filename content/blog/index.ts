@@ -28,9 +28,15 @@ export type BlogChrome = {
     faqEyebrow: string;
     faqHeading: string;
     writtenBy: string;
+    /** Byline under the title: "By <name>". */
+    by: string;
     relatedHeading: string;
     allArticles: string;
     otherLanguage: string;
+    /** The request box in the sticky sidebar, beside the contents list. */
+    sidebarCtaHeading: string;
+    sidebarCtaBody: string;
+    sidebarCtaButton: string;
   };
   closing: {
     id: string;
@@ -68,9 +74,14 @@ export const blogChrome: Record<Locale, BlogChrome> = {
       faqEyebrow: "Questions",
       faqHeading: "Frequently asked questions",
       writtenBy: "Written by",
+      by: "By",
       relatedHeading: "Related articles",
       allArticles: "All articles",
       otherLanguage: "Leggi in italiano",
+      sidebarCtaHeading: "Need a car for this journey?",
+      sidebarCtaBody:
+        "Send the addresses, the date and time, how many of you there are and your luggage. We reply with a written quote.",
+      sidebarCtaButton: "Request a quote",
     },
     closing: {
       id: "request",
@@ -108,9 +119,14 @@ export const blogChrome: Record<Locale, BlogChrome> = {
       faqEyebrow: "Domande",
       faqHeading: "Domande frequenti",
       writtenBy: "Scritto da",
+      by: "Di",
       relatedHeading: "Articoli correlati",
       allArticles: "Tutti gli articoli",
       otherLanguage: "Read in English",
+      sidebarCtaHeading: "Vi serve un'auto per questo viaggio?",
+      sidebarCtaBody:
+        "Indicate gli indirizzi, la data e l'ora, quanti siete e i bagagli. Vi rispondiamo con un preventivo scritto.",
+      sidebarCtaButton: "Richiedi un preventivo",
     },
     closing: {
       id: "richiesta",

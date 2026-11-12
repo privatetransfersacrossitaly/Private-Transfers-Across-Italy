@@ -47,14 +47,16 @@ export type PreparedPost = {
   faq: FaqItem[];
   toc: TocItem[];
   /**
-   * Credit for the featured image, as HTML, when the post supplies one.
+   * Caption for the featured image — what the photograph shows — as HTML,
+   * when the post supplies one.
    *
-   * Written in the body as `<p data-image-credit>…</p>` and lifted out here
-   * so the page can print it directly under the featured image — which a
-   * CC BY licence requires — without a database column for it. Cleaned and
-   * link-ruled like the rest of the body before it is lifted.
+   * Written in the body as `<p data-image-caption>…</p>` and lifted out here
+   * so the page can print it under the featured image without a database
+   * column for it. Cleaned like the rest of the body before it is lifted.
+   * A caption describes the picture; where a licence requires a credit
+   * (CC BY, CC BY-SA), the credit goes in the post's Sources section.
    */
-  imageCredit: string | null;
+  imageCaption: string | null;
 };
 
 const decodeEntities = (s: string) =>
@@ -165,16 +167,16 @@ function extractToc(html: string): TocItem[] {
  * add ids before extracting the FAQ (whose headings already carry theirs)
  * and the table of contents (which needs every id).
  */
-const IMAGE_CREDIT = /<p\b[^>]*\sdata-image-credit\b[^>]*>([\s\S]*?)<\/p>\s*/i;
+const IMAGE_CAPTION = /<p\b[^>]*\sdata-image-caption\b[^>]*>([\s\S]*?)<\/p>\s*/i;
 
 export function prepareBlogHtml(stored: string | null | undefined): PreparedPost {
   const ruled = ruleLinks(addHeadingIds(stripExecutable(stored ?? "")));
-  const credit = IMAGE_CREDIT.exec(ruled);
-  const cleaned = credit ? ruled.replace(IMAGE_CREDIT, "") : ruled;
+  const caption = IMAGE_CAPTION.exec(ruled);
+  const cleaned = caption ? ruled.replace(IMAGE_CAPTION, "") : ruled;
   const faq = extractFaq(cleaned);
   const html =
     faq.length > 0 ? cleaned.replace(FAQ_PAIR, "").replace(FAQ_HEADING, "") : cleaned;
-  return { html, faq, toc: extractToc(html), imageCredit: credit ? credit[1].trim() : null };
+  return { html, faq, toc: extractToc(html), imageCaption: caption ? caption[1].trim() : null };
 }
 
 /**

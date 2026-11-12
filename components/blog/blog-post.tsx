@@ -6,6 +6,7 @@ import { Eyebrow, LinkIndex, QuestionList } from "@/components/site/blocks";
 import { Band } from "@/components/site/band";
 import { ClosingCta } from "@/components/site/closing-cta";
 import { Container } from "@/components/site/container";
+import { Cta } from "@/components/site/cta";
 import { pageName } from "@/content/page-names";
 import type { PreparedPost } from "@/lib/blog/content";
 import type { BlogPostWithAuthor, BlogSummary } from "@/lib/blog/types";
@@ -90,6 +91,17 @@ export function BlogPostView({
                   <time dateTime={post.updated_at}>{formatPostDate(post.updated_at, locale)}</time>
                 </span>
               ) : null}
+              {post.author ? (
+                <span>
+                  {t.post.by}{" "}
+                  <a
+                    href="#author-heading"
+                    className="font-medium text-foreground underline decoration-border-strong underline-offset-4 hover:decoration-current focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                  >
+                    {post.author.full_name}
+                  </a>
+                </span>
+              ) : null}
               <span>{readTime}</span>
               {counterpartSlug ? (
                 <Link
@@ -122,67 +134,106 @@ export function BlogPostView({
                 className="object-cover"
               />
             </div>
-            {/* Required by the image's licence when it has one (e.g. CC BY-SA).
-                Comes from the post body's `data-image-credit` line, already
-                cleaned and link-ruled by prepareBlogHtml. */}
-            {prepared.imageCredit ? (
+            {/* A description of what the photograph shows, from the post
+                body's `data-image-caption` line. Source and licence credits
+                belong in the post's Sources section, not here. */}
+            {prepared.imageCaption ? (
               <figcaption
-                className="blog-image-credit mt-2 type-caption text-muted-foreground"
-                dangerouslySetInnerHTML={{ __html: prepared.imageCredit }}
+                className="mt-2 type-small text-muted-foreground"
+                dangerouslySetInnerHTML={{ __html: prepared.imageCaption }}
               />
             ) : null}
           </figure>
         </Container>
       ) : null}
 
-      <Container size="prose" className="py-12 sm:py-14">
-        {toc.length >= 2 ? (
-          <nav
-            aria-labelledby="contents-heading"
-            className="mb-12 rounded-lg border border-border bg-surface p-6 sm:p-7"
+      {/* Two columns from `lg`: a sticky sidebar (contents + request box) on
+          the left, the article on the right. Below `lg` the contents list
+          stacks above the article and the request box is hidden — phones
+          already have the site's sticky "Request a quote" bar. */}
+      <Container size="content" className="py-12 sm:py-14">
+        <div className="grid gap-10 lg:grid-cols-[16rem_minmax(0,1fr)] lg:gap-14 xl:grid-cols-[17.5rem_minmax(0,1fr)]">
+          {/* Sticky from `lg`, capped at the window height. The request box
+              never shrinks, so it is always fully in view; when a long
+              contents list does not fit above it, the list scrolls inside its
+              own box rather than pushing the request box out of sight. */}
+          <aside
+            data-blog-sidebar
+            className="flex flex-col gap-5 lg:sticky lg:top-24 lg:max-h-[calc(100vh-7rem)] lg:self-start"
           >
-            <h2 id="contents-heading" className="type-label text-accent-ink">
-              {t.post.contents}
-            </h2>
-            <ol className="mt-4 space-y-2.5">
-              {toc.map((item) => (
-                <li key={item.id}>
-                  <a
-                    href={`#${item.id}`}
-                    className="type-small text-foreground underline decoration-border-strong underline-offset-4 transition-colors hover:decoration-current focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-                  >
-                    {item.text}
-                  </a>
-                </li>
-              ))}
-            </ol>
-          </nav>
-        ) : null}
-
-        {/* Stored HTML, after lib/blog/content.ts has removed anything
-            executable, ruled external links and lifted out the FAQ. */}
-        <div className="blog-content" dangerouslySetInnerHTML={{ __html: prepared.html }} />
-
-        {post.author ? (
-          <aside className="mt-14 flex items-start gap-5 border-t border-border pt-8">
-            {post.author.avatar_url ? (
-              <Image
-                src={post.author.avatar_url}
-                alt=""
-                width={64}
-                height={64}
-                className="size-16 shrink-0 rounded-full object-cover"
-              />
+            {toc.length >= 2 ? (
+              <nav
+                aria-labelledby="contents-heading"
+                className="flex min-h-0 flex-col rounded-lg border border-border bg-surface p-5"
+              >
+                <h2 id="contents-heading" className="shrink-0 type-label text-accent-ink">
+                  {t.post.contents}
+                </h2>
+                <ol className="mt-3 space-y-2 lg:min-h-0 lg:overflow-y-auto lg:pr-1">
+                  {toc.map((item) => (
+                    <li key={item.id} className="leading-snug">
+                      <a
+                        href={`#${item.id}`}
+                        className="type-caption text-foreground underline decoration-border-strong underline-offset-4 transition-colors hover:text-accent-ink hover:decoration-current focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                      >
+                        {item.text}
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </nav>
             ) : null}
-            <div className="min-w-0">
-              <p className="type-label text-accent-ink">{t.post.writtenBy}</p>
-              <p className="mt-1 type-h3 text-foreground">{post.author.full_name}</p>
-              {post.author.bio ? (
-                <p className="mt-2 type-small text-muted-foreground">{post.author.bio}</p>
-              ) : null}
+
+            <div className="hidden shrink-0 rounded-lg border border-accent/35 bg-accent-wash p-5 lg:block">
+              <p className="type-h3 text-foreground">{t.post.sidebarCtaHeading}</p>
+              <p className="mt-2 type-small text-muted-foreground">{t.post.sidebarCtaBody}</p>
+              <Cta href={quotePathFor(locale)} className="mt-4 w-full">
+                {t.post.sidebarCtaButton}
+              </Cta>
             </div>
           </aside>
-        ) : null}
+
+          <div className="min-w-0 max-w-prose">
+            {/* Stored HTML, after lib/blog/content.ts has removed anything
+                executable, ruled external links and lifted out the FAQ. */}
+            <div className="blog-content" dangerouslySetInnerHTML={{ __html: prepared.html }} />
+
+            {/* The author card: who wrote this and why they know. A photo
+                when the blogger profile has one, otherwise their initial. */}
+            {post.author ? (
+              <aside
+                aria-labelledby="author-heading"
+                className="mt-14 flex flex-col gap-5 rounded-lg border border-border bg-surface p-6 sm:flex-row sm:items-start sm:p-7"
+              >
+                {post.author.avatar_url ? (
+                  <Image
+                    src={post.author.avatar_url}
+                    alt={post.author.full_name}
+                    width={72}
+                    height={72}
+                    className="size-18 shrink-0 rounded-full object-cover"
+                  />
+                ) : (
+                  <span
+                    aria-hidden="true"
+                    className="flex size-18 shrink-0 items-center justify-center rounded-full bg-deep font-heading text-2xl font-semibold text-deep-foreground"
+                  >
+                    {post.author.full_name.trim().charAt(0).toUpperCase()}
+                  </span>
+                )}
+                <div className="min-w-0">
+                  <p className="type-label text-accent-ink">{t.post.writtenBy}</p>
+                  <p id="author-heading" className="mt-1 type-h3 text-foreground">
+                    {post.author.full_name}
+                  </p>
+                  {post.author.bio ? (
+                    <p className="mt-3 type-small text-muted-foreground">{post.author.bio}</p>
+                  ) : null}
+                </div>
+              </aside>
+            ) : null}
+          </div>
+        </div>
       </Container>
 
       {prepared.faq.length > 0 ? (

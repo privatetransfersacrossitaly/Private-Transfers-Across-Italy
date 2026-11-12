@@ -13,8 +13,11 @@ an entry here must not be published.
 - **Date taken:** 25 August 2023
 - **Licence:** Creative Commons Attribution-ShareAlike 4.0 (CC BY-SA 4.0)
   https://creativecommons.org/licenses/by-sa/4.0/
-- **Attribution required:** yes — shown as a caption under the image on the
-  page: "Photo: Indeciso42, CC BY-SA 4.0, via Wikimedia Commons".
+- **Attribution required:** yes — given in the post's Sources section:
+  "Photograph of La Nuvola: Indeciso42, via Wikimedia Commons, licensed under
+  CC BY-SA 4.0", with links to the file page and the licence. The caption
+  under the image describes the photograph only (owner's decision, 12 Nov
+  2026).
 - **Changes made:** re-encoded from JPEG to WebP at the original 1600×1065
   pixels (318 KB → 206 KB). No cropping, retouching or other edits. The file
   remains under CC BY-SA 4.0.
