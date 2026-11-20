@@ -108,6 +108,13 @@ export type PageId =
   | "palermo-cruise-port"
   | "catania-cruise-port"
   | "messina-cruise-port"
+  // Airport → destination routes, added 18 November 2026. Each owns the
+  // "<airport> to <town>" query, which the Sicily keyword table leaves
+  // unclaimed: town pages may not target airport queries, and airport pages
+  // own only "<airport> transfers".
+  | "route-cta-taormina"
+  | "route-cta-syracuse"
+  | "route-pmo-cefalu"
   | "about"
   | "blog"
   | "quote"
@@ -922,6 +929,37 @@ const pages: Record<PageId, PageRecord> = {
   "messina-cruise-port": {
     path: { en: "/cruise-ports/messina", it: "/it/porti-crociere/messina" },
     parent: "sicily",
+    published: true,
+    priority: 0.8,
+  },
+
+  // Sicily's airport routes. Parent is the airport, as for every route page
+  // in the project, so the breadcrumb runs Home → Sicily → airport → route
+  // and reaches the pillar on the way.
+  "route-cta-taormina": {
+    path: {
+      en: "/routes/catania-airport-to-taormina",
+      it: "/it/tratte/aeroporto-catania-taormina",
+    },
+    parent: "catania-airport",
+    published: true,
+    priority: 0.8,
+  },
+  "route-cta-syracuse": {
+    path: {
+      en: "/routes/catania-airport-to-syracuse",
+      it: "/it/tratte/aeroporto-catania-siracusa",
+    },
+    parent: "catania-airport",
+    published: true,
+    priority: 0.8,
+  },
+  "route-pmo-cefalu": {
+    path: {
+      en: "/routes/palermo-airport-to-cefalu",
+      it: "/it/tratte/aeroporto-palermo-cefalu",
+    },
+    parent: "palermo-airport",
     published: true,
     priority: 0.8,
   },

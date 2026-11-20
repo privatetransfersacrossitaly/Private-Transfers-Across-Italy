@@ -96,6 +96,7 @@ export const palermoAirportEn: SicilyAirportPage = {
     items: [
       {
         id: "cefalu",
+        route: "route-pmo-cefalu",
         note: "East along the Tyrrhenian coast, about 70 km beyond the capital by the published figure. The usual day out and a common second base.",
       },
       {

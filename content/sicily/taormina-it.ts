@@ -65,6 +65,7 @@ export const taorminaIt: SicilyDestination = {
     options: [
       {
         id: "catania-airport",
+        route: "route-cta-taormina",
         label: "In aereo",
         body: "Catania-Fontanarossa è lo scalo di riferimento e la salita avviene da sud lungo la costa. L'incontro con l'autista, le aerostazioni e le tratte stanno sulla pagina dell'aeroporto. Non pubblichiamo un tempo di percorrenza: le cifre in circolazione non concordano e la costiera ad agosto non è la stessa strada di marzo.",
       },

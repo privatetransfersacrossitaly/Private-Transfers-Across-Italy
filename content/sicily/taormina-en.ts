@@ -77,6 +77,7 @@ export const taorminaEn: SicilyDestination = {
     options: [
       {
         id: "catania-airport",
+        route: "route-cta-taormina",
         label: "By air",
         body: "Catania–Fontanarossa is the airport for Taormina, and the approach runs up the coast from the south. The airport page covers being met there, the terminals and the onward routes. We publish no journey time for the run up: the figures in circulation disagree and the coast road in August is not the coast road in March.",
       },

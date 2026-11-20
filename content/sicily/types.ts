@@ -169,6 +169,12 @@ export type ArrivalOption = {
   /** How this arrival point is described here, e.g. "The usual one". */
   label: string;
   body: string;
+  /**
+   * The route page for this arrival, where one exists: Catania Airport →
+   * Taormina on the Taormina page, for instance. Rendered as a small link
+   * under the body, and only once that route page is published.
+   */
+  route?: PageId;
 };
 
 /** Something people travel to this place for. */
@@ -238,6 +244,8 @@ export type AirportRoute = {
   /** Used only when `id` is null — a place we name but do not have a page for. */
   name?: string;
   note: string;
+  /** The route page for this journey, where one exists (see ArrivalOption). */
+  route?: PageId;
 };
 
 export type SicilyAirportPage = {

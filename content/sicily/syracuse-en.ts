@@ -77,6 +77,7 @@ export const syracuseEn: SicilyDestination = {
     options: [
       {
         id: "catania-airport",
+        route: "route-cta-syracuse",
         label: "By air",
         body: "Catania–Fontanarossa is the airport for the whole south-east. Its page covers the three terminals, being met and the onward routes. We publish no journey time for the run down: the figures in circulation disagree with each other and we would rather the operator confirm it when quoting than print something that is wrong half the year.",
       },

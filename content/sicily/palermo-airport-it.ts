@@ -86,6 +86,7 @@ export const palermoAirportIt: SicilyAirportPage = {
     items: [
       {
         id: "cefalu",
+        route: "route-pmo-cefalu",
         note: "A est lungo la costa tirrenica, circa 70 km oltre il capoluogo secondo il dato pubblicato. La gita abituale e una seconda base frequente.",
       },
       {

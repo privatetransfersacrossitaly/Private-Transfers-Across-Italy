@@ -1,7 +1,7 @@
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { Container } from "@/components/site/container";
 import { Cta } from "@/components/site/cta";
-import { RouteName } from "@/components/sicily/airport-shared";
+import { RouteLink, RouteName } from "@/components/sicily/airport-shared";
 import { cataniaAirportPage } from "@/content/sicily";
 import { quotePathFor, type Locale } from "@/lib/site";
 
@@ -188,6 +188,7 @@ export function CataniaAirportPageView({ locale }: { locale: Locale }) {
                   <p className="mt-2 type-small" style={{ color: "var(--ca-muted)" }}>
                     {r.note}
                   </p>
+                  <RouteLink id={r.route} locale={locale} color="var(--ca-ink)" />
                 </Cell>
               ))}
             </div>

@@ -85,10 +85,12 @@ export const cataniaAirportIt: SicilyAirportPage = {
     items: [
       {
         id: "taormina",
+        route: "route-cta-taormina",
         note: "A nord risalendo la costa: il tragitto più richiesto da questo scalo. Il paese sta a circa 250 m sul mare con il centro a traffico limitato, quindi l'arrivo è più complicato della strada.",
       },
       {
         id: "syracuse",
+        route: "route-cta-syracuse",
         note: "A sud, verso Ortigia, l'isola che è il centro storico di Siracusa. Tragitto più lungo, e il fatto che il vostro indirizzo sia o meno sull'isola decide come finisce.",
       },
       {

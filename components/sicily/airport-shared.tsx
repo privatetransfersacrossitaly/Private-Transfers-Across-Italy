@@ -66,3 +66,29 @@ export function RouteName({
   }
   return <PlaceLink id={route.id} locale={locale} color={color} />;
 }
+
+/**
+ * A link to the route page for a journey, shown under an airport's route
+ * entry or a town's arrival option. Renders nothing until the route page is
+ * published, so content can name a route before it goes live.
+ */
+export function RouteLink({
+  id,
+  locale,
+  color,
+}: {
+  id: PageId | undefined;
+  locale: Locale;
+  color: string;
+}) {
+  if (!id || !isPublished(id)) return null;
+  return (
+    <Link
+      href={pathFor(id, locale)}
+      className="mt-3 inline-flex min-h-11 items-center type-small font-medium underline decoration-1 underline-offset-4 hover:no-underline"
+      style={{ color }}
+    >
+      {pageName(id, locale)} →
+    </Link>
+  );
+}

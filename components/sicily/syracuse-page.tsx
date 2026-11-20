@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { Container } from "@/components/site/container";
 import { Cta } from "@/components/site/cta";
+import { RouteLink } from "@/components/sicily/airport-shared";
 import { syracusePage } from "@/content/sicily";
 import { pageName } from "@/content/page-names";
 import { isPublished, pathFor, type PageId } from "@/lib/routes";
@@ -210,6 +211,7 @@ export function SyracusePageView({ locale }: { locale: Locale }) {
                 <p className="mt-3 type-small" style={{ color: "var(--sy-muted)" }}>
                   {o.body}
                 </p>
+                <RouteLink id={o.route} locale={locale} color="var(--sy-ink)" />
               </div>
             ))}
           </div>

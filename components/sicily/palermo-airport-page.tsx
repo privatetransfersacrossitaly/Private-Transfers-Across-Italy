@@ -1,7 +1,7 @@
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { Container } from "@/components/site/container";
 import { Cta } from "@/components/site/cta";
-import { RouteName } from "@/components/sicily/airport-shared";
+import { RouteLink, RouteName } from "@/components/sicily/airport-shared";
 import { palermoAirportPage } from "@/content/sicily";
 import { quotePathFor, type Locale } from "@/lib/site";
 
@@ -183,9 +183,12 @@ export function PalermoAirportPageView({ locale }: { locale: Locale }) {
                   <h3 className="font-heading type-h3">
                     <RouteName route={r} locale={locale} color="var(--pm-ink)" />
                   </h3>
-                  <p className="type-small" style={{ color: "var(--pm-muted)" }}>
-                    {r.note}
-                  </p>
+                  <div>
+                    <p className="type-small" style={{ color: "var(--pm-muted)" }}>
+                      {r.note}
+                    </p>
+                    <RouteLink id={r.route} locale={locale} color="var(--pm-ink)" />
+                  </div>
                 </li>
               ))}
             </ul>

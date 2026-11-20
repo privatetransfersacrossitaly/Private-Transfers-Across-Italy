@@ -119,13 +119,38 @@ const PAGES = [
     ["Taormina Private Transfers", "Catania Airport Transfers"]],
 ];
 
+/**
+ * The airport-to-town route pages. Same rules as PAGES, plus the reverse of
+ * the ownership table: a route must not claim its town's query or its
+ * airport's. They are not required on the pillar — they hang off their
+ * airport page, which is where the breadcrumb puts them.
+ */
+const ROUTES = [
+  ["/routes/catania-airport-to-taormina", "/it/tratte/aeroporto-catania-taormina",
+    ["Catania Airport to Taormina", "Transfer aeroporto Catania–Taormina"],
+    ["Catania Airport Transfers", "Taormina Private Transfers"]],
+  ["/routes/catania-airport-to-syracuse", "/it/tratte/aeroporto-catania-siracusa",
+    ["Catania Airport to Syracuse", "Transfer aeroporto Catania–Siracusa"],
+    ["Catania Airport Transfers", "Syracuse and Ortigia Private Transfers"]],
+  ["/routes/palermo-airport-to-cefalu", "/it/tratte/aeroporto-palermo-cefalu",
+    ["Palermo Airport to Cefalù", "Transfer aeroporto Palermo–Cefalù"],
+    ["Palermo Airport Transfers", "Cefalù Private Transfers"]],
+];
+
+// And the other direction: no town or airport page may claim a route query.
+for (const [en, , , forbidden] of PAGES) {
+  if (/taormina|catania-fontanarossa/.test(en)) forbidden.push("Catania Airport to Taormina");
+  if (/syracuse|catania-fontanarossa/.test(en)) forbidden.push("Catania Airport to Syracuse");
+  if (/cefalu|palermo-falcone/.test(en)) forbidden.push("Palermo Airport to Cefalù");
+}
+
 const PILLAR = { en: "/destinations/sicily", it: "/it/destinazioni/sicilia" };
 
 const titles = new Map();
 const descriptions = new Map();
 const headings = new Map();
 
-for (const [en, it, keywords, forbidden] of PAGES) {
+for (const [en, it, keywords, forbidden] of [...PAGES, ...ROUTES]) {
   for (const [path, locale, counterpart, keyword] of [
     [en, "en", it, keywords[0]],
     [it, "it", en, keywords[1]],
@@ -228,7 +253,7 @@ for (const locale of ["en", "it"]) {
 
 // ── Sitemap ───────────────────────────────────────────────────────────────
 const sitemap = await get("/sitemap.xml");
-const urls = PAGES.flatMap(([en, it]) => [en, it]);
+const urls = [...PAGES, ...ROUTES].flatMap(([en, it]) => [en, it]);
 for (const url of urls) {
   check(`sitemap holds ${url}`, sitemap.body.includes(`<loc>${PROD}${url}</loc>`));
 }

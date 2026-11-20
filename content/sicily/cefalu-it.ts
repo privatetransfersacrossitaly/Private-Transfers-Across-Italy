@@ -62,6 +62,7 @@ export const cefaluIt: SicilyDestination = {
     options: [
       {
         id: "palermo-airport",
+        route: "route-pmo-cefalu",
         label: "In aereo",
         body: "Lo scalo è il Falcone Borsellino di Palermo e il tragitto verso Cefalù corre a est lungo la costa, senza attraversare la città. Gli arrivi e le tratte sono trattati sulla sua pagina. Da tenere presente: l'aeroporto sta già a ovest di Palermo, quindi la strada fin qui è la lunghezza della città più la costa oltre di essa.",
       },

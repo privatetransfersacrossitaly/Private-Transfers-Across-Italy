@@ -454,6 +454,66 @@ export const photos = {
       attributionRequired: false,
     },
   },
+
+  // ── Sicily, added 18 November 2026 for the airport route pages ─────────
+  // The first Sicily photographs in the library. Each was downloaded and
+  // looked at before use; each licence was read from the Commons file
+  // metadata (Copyrighted: False / CC0, AttributionRequired: false). Resized
+  // to 1600 px and re-encoded as JPEG; no other change.
+  "taormina-teatro-greco": {
+    slug: "taormina-teatro-greco",
+    src: "/photos/taormina-teatro-greco.jpg",
+    width: 1600,
+    height: 1200,
+    alt: {
+      en: "The ruins of Taormina's ancient theatre, looking south over the bay of Giardini Naxos with Etna under snow behind.",
+      it: "Le rovine del teatro antico di Taormina, con vista a sud sulla baia di Giardini Naxos e l'Etna innevato sullo sfondo.",
+    },
+    source: {
+      creator: "Evan Erickson",
+      provider: "wikimedia",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Taormina-Teatro_Greco01.JPG",
+      licence: "Public domain (released by the author)",
+      licenceUrl: "https://commons.wikimedia.org/wiki/File:Taormina-Teatro_Greco01.JPG",
+      attributionRequired: false,
+    },
+  },
+  "ortigia-temple-of-apollo": {
+    slug: "ortigia-temple-of-apollo",
+    src: "/photos/ortigia-temple-of-apollo.jpg",
+    width: 1600,
+    height: 1200,
+    alt: {
+      en: "The stone ruins of the Temple of Apollo on Ortigia, Syracuse, with an arched opening onto the street beyond.",
+      it: "I resti in pietra del Tempio di Apollo a Ortigia, Siracusa, con un'apertura ad arco sulla strada retrostante.",
+    },
+    source: {
+      creator: "August Dominus",
+      provider: "wikimedia",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Apolonov_hram_u_Sirakuzi.jpg",
+      licence: "CC0 1.0",
+      licenceUrl: "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      attributionRequired: false,
+    },
+  },
+  "cefalu-cathedral-old-town": {
+    slug: "cefalu-cathedral-old-town",
+    src: "/photos/cefalu-cathedral-old-town.jpg",
+    width: 1600,
+    height: 1200,
+    alt: {
+      en: "The twin Norman towers of Cefalù cathedral rising above the old town's houses and the seafront.",
+      it: "Le due torri normanne del duomo di Cefalù sopra le case del centro storico e il lungomare.",
+    },
+    source: {
+      creator: "Martin Teetz",
+      provider: "wikimedia",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Cefalu_paese.jpg",
+      licence: "Public domain (released by the author)",
+      licenceUrl: "https://commons.wikimedia.org/wiki/File:Cefalu_paese.jpg",
+      attributionRequired: false,
+    },
+  },
 } as const satisfies Record<string, SitePhoto>;
 
 export type PhotoSlug = keyof typeof photos;

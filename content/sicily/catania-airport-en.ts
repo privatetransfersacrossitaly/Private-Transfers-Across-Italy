@@ -97,10 +97,12 @@ export const cataniaAirportEn: SicilyAirportPage = {
     items: [
       {
         id: "taormina",
+        route: "route-cta-taormina",
         note: "North up the coast, the single most requested journey from this airport. The town sits about 250 m above the sea with a restricted centre, so the arrival is more involved than the drive.",
       },
       {
         id: "syracuse",
+        route: "route-cta-syracuse",
         note: "South towards Ortygia, the island that is Syracuse's historic centre. A longer run, and one where whether your address is on the island decides the ending.",
       },
       {

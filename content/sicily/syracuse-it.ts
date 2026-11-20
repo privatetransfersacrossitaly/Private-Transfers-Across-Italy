@@ -64,6 +64,7 @@ export const syracuseIt: SicilyDestination = {
     options: [
       {
         id: "catania-airport",
+        route: "route-cta-syracuse",
         label: "In aereo",
         body: "Catania-Fontanarossa serve tutto il sud-est. La sua pagina tratta le tre aerostazioni, l'incontro con l'autista e le tratte. Non pubblichiamo un tempo di percorrenza per la discesa: le cifre in circolazione non concordano e preferiamo che sia l'operatore a confermarlo al preventivo piuttosto che scrivere qui qualcosa di sbagliato per metà anno.",
       },

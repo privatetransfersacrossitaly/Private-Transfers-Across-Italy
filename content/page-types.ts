@@ -1,4 +1,5 @@
 import type { PageId } from "@/lib/routes";
+import type { PhotoSlug } from "./photos";
 
 /**
  * The content primitives both clusters are built from.
@@ -85,6 +86,12 @@ export type RoutePage = PageChrome & {
     primaryCta: string;
     secondaryCta: string;
     note: string;
+    /**
+     * A photograph of the destination, from the CC0 / public-domain library
+     * in content/photos.ts. Optional: added for the Sicily routes, and no
+     * earlier route sets it, so they render exactly as before.
+     */
+    photo?: PhotoSlug;
   };
   lead?: {
     id: string;

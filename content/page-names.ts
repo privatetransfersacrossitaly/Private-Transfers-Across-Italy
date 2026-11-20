@@ -216,6 +216,18 @@ export const pageNames: Record<PageId, Record<Locale, string>> = {
     en: "Messina cruise port",
     it: "Porto crociere di Messina",
   },
+  "route-cta-taormina": {
+    en: "Catania Airport to Taormina",
+    it: "Dall'aeroporto di Catania a Taormina",
+  },
+  "route-cta-syracuse": {
+    en: "Catania Airport to Syracuse",
+    it: "Dall'aeroporto di Catania a Siracusa",
+  },
+  "route-pmo-cefalu": {
+    en: "Palermo Airport to Cefalù",
+    it: "Dall'aeroporto di Palermo a Cefalù",
+  },
 
   about: { en: "About us", it: "Chi siamo" },
   blog: { en: "Blog", it: "Blog" },

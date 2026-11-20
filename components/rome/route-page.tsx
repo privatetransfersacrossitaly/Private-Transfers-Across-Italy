@@ -14,6 +14,9 @@ import {
 } from "@/components/site/blocks";
 import { ClosingCta } from "@/components/site/closing-cta";
 import { HeroRoute } from "@/components/site/heroes";
+import { Container } from "@/components/site/container";
+import { Photo } from "@/components/site/photo";
+import { photo } from "@/content/photos";
 import type { Endpoint, RoutePage } from "@/content/rome/types";
 import { pathFor, pathWithHash, type PageId } from "@/lib/routes";
 import { quotePathFor, type Locale } from "@/lib/site";
@@ -100,6 +103,19 @@ export function RoutePageView({
         }}
         note={c.hero.note}
       />
+
+      {/* The destination, when the route has a library photograph. */}
+      {c.hero.photo ? (
+        <Container size="content" className="pt-10 sm:pt-12">
+          <Photo
+            photo={photo(c.hero.photo)}
+            locale={locale}
+            aspect="aspect-[16/9]"
+            sizes="(min-width: 1024px) 72rem, 92vw"
+            priority
+          />
+        </Container>
+      ) : null}
 
       {/* Whatever this particular route leads with. */}
       {c.lead ? (

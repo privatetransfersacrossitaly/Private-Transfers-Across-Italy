@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { Container } from "@/components/site/container";
 import { Cta } from "@/components/site/cta";
+import { RouteLink } from "@/components/sicily/airport-shared";
 import { taorminaPage } from "@/content/sicily";
 import { pageName } from "@/content/page-names";
 import { isPublished, pathFor, type PageId } from "@/lib/routes";
@@ -208,6 +209,7 @@ export function TaorminaPageView({ locale }: { locale: Locale }) {
                 <p className="mt-3 type-small" style={{ color: "var(--tm-muted)" }}>
                   {o.body}
                 </p>
+                <RouteLink id={o.route} locale={locale} color="var(--tm-ink)" />
               </div>
             ))}
           </div>

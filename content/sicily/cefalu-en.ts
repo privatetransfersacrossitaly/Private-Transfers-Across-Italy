@@ -76,6 +76,7 @@ export const cefaluEn: SicilyDestination = {
     options: [
       {
         id: "palermo-airport",
+        route: "route-pmo-cefalu",
         label: "By air",
         body: "Palermo's Falcone Borsellino is the airport, and the run to Cefalù goes east along the coast rather than through the city. Its page covers arrivals there and the onward routes. Note that the airport is already west of Palermo, so the drive here is the length of the city plus the coast beyond it.",
       },
